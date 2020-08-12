@@ -1,11 +1,9 @@
-//
 //  ZJUtilsDef.h
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/8/11.
-//  Copyright © 2020 Eafy<lizhijian_21@163.com>. All rights reserved.
+//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
-
 #ifndef ZJUtilsDef_h
 #define ZJUtilsDef_h
 
