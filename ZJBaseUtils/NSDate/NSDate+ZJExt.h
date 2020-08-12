@@ -46,23 +46,23 @@ extern NSString *NSDateFormat_Sec(void);
 
 @interface NSDate (ZJExt)
 
-/// 按照日期格式获取日期字符串
+/// 获取日期字符串
 /// @param dateFormatStr 时间格式字符串，如，‘MM-dd’
 - (NSString *)zj_toString:(NSString *)dateFormatStr;
 
-/// 将0时区Date转换成当前时区的Date
+/// 转换为本地时区的Date
 - (NSDate *)zj_localDate;
 
-/// 将本地时区时间转换成0时区的时间
+/// 转换为0时区的Date
 - (NSDate *)zj_utcDate;
 
 /// 获取当月的天数
 - (NSUInteger)zj_daysOfMonth;
 
-/// 获取本地时区与0时区的时差时间
+/// 获取本地时区与0时区的时差时间（秒）
 - (NSInteger)zj_intervalFromUTC;
 
-/// 获取零点时间
+/// 获取当天零点时间
 - (NSDate *)zj_zero;
 
 /// 是否为闰年

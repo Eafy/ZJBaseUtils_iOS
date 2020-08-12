@@ -11,3 +11,5 @@
 #import "ZJSingleton"
 #import "NSArray+ZJExt.h"
 #import "NSDate+ZJExt.h"
+#import "NSFileManager+ZJExt.h"
+#import "NSObject+ZJExt.h"

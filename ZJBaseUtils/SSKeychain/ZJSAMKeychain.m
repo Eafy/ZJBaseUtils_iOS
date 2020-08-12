@@ -8,7 +8,7 @@
 
 #import "ZJSAMKeychain.h"
 
-NSString *const kZJSSKeychainErrorDomain = @"com.jimi.sskeychain";
+NSString *const kZJSSKeychainErrorDomain = @"org.eafy.sskeychain";
 
 NSString *const kZJSSKeychainAccountKey = @"acct";
 NSString *const kZJSSKeychainCreatedAtKey = @"cdat";

@@ -18,6 +18,14 @@
 		0C95697224E2D96A00C9A6C5 /* NSArray+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C95693A24E2D96900C9A6C5 /* NSArray+ZJExt.m */; };
 		0C95697324E2D96A00C9A6C5 /* NSArray+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C95693B24E2D96900C9A6C5 /* NSArray+ZJExt.h */; };
 		0C95698624E2D96A00C9A6C5 /* ZJUtilsDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C95695224E2D96900C9A6C5 /* ZJUtilsDef.h */; };
+		0C95699224E2EF1000C9A6C5 /* NSFileManager+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C95699024E2EF1000C9A6C5 /* NSFileManager+ZJExt.h */; };
+		0C95699324E2EF1000C9A6C5 /* NSFileManager+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C95699124E2EF1000C9A6C5 /* NSFileManager+ZJExt.m */; };
+		0C95699724E4257D00C9A6C5 /* NSObject+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C95699524E4257D00C9A6C5 /* NSObject+ZJExt.h */; };
+		0C95699824E4257D00C9A6C5 /* NSObject+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C95699624E4257D00C9A6C5 /* NSObject+ZJExt.m */; };
+		0C95699C24E42F4100C9A6C5 /* NSString+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C95699A24E42F4100C9A6C5 /* NSString+ZJExt.h */; };
+		0C95699D24E42F4100C9A6C5 /* NSString+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C95699B24E42F4100C9A6C5 /* NSString+ZJExt.m */; };
+		0C9569A124E4326D00C9A6C5 /* NSData+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C95699F24E4326D00C9A6C5 /* NSData+ZJExt.h */; };
+		0C9569A224E4326D00C9A6C5 /* NSData+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9569A024E4326D00C9A6C5 /* NSData+ZJExt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +53,14 @@
 		0C95693A24E2D96900C9A6C5 /* NSArray+ZJExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ZJExt.m"; sourceTree = "<group>"; };
 		0C95693B24E2D96900C9A6C5 /* NSArray+ZJExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ZJExt.h"; sourceTree = "<group>"; };
 		0C95695224E2D96900C9A6C5 /* ZJUtilsDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJUtilsDef.h; sourceTree = "<group>"; };
+		0C95699024E2EF1000C9A6C5 /* NSFileManager+ZJExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+ZJExt.h"; sourceTree = "<group>"; };
+		0C95699124E2EF1000C9A6C5 /* NSFileManager+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+ZJExt.m"; sourceTree = "<group>"; };
+		0C95699524E4257D00C9A6C5 /* NSObject+ZJExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZJExt.h"; sourceTree = "<group>"; };
+		0C95699624E4257D00C9A6C5 /* NSObject+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZJExt.m"; sourceTree = "<group>"; };
+		0C95699A24E42F4100C9A6C5 /* NSString+ZJExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZJExt.h"; sourceTree = "<group>"; };
+		0C95699B24E42F4100C9A6C5 /* NSString+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZJExt.m"; sourceTree = "<group>"; };
+		0C95699F24E4326D00C9A6C5 /* NSData+ZJExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+ZJExt.h"; sourceTree = "<group>"; };
+		0C9569A024E4326D00C9A6C5 /* NSData+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+ZJExt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +103,10 @@
 		0C279C4924E2D22E00474649 /* ZJBaseUtils */ = {
 			isa = PBXGroup;
 			children = (
+				0C95699E24E4325500C9A6C5 /* NSData */,
+				0C95699924E42F2A00C9A6C5 /* NSString */,
+				0C95699424E4256800C9A6C5 /* NSObject */,
+				0C95698F24E2EED300C9A6C5 /* NSFileManager */,
 				0C95693224E2D96900C9A6C5 /* ZJSingleton.h */,
 				0C95695224E2D96900C9A6C5 /* ZJUtilsDef.h */,
 				0C95693924E2D96900C9A6C5 /* NSArray */,
@@ -134,6 +154,42 @@
 			path = NSArray;
 			sourceTree = "<group>";
 		};
+		0C95698F24E2EED300C9A6C5 /* NSFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				0C95699024E2EF1000C9A6C5 /* NSFileManager+ZJExt.h */,
+				0C95699124E2EF1000C9A6C5 /* NSFileManager+ZJExt.m */,
+			);
+			path = NSFileManager;
+			sourceTree = "<group>";
+		};
+		0C95699424E4256800C9A6C5 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				0C95699524E4257D00C9A6C5 /* NSObject+ZJExt.h */,
+				0C95699624E4257D00C9A6C5 /* NSObject+ZJExt.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		0C95699924E42F2A00C9A6C5 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				0C95699A24E42F4100C9A6C5 /* NSString+ZJExt.h */,
+				0C95699B24E42F4100C9A6C5 /* NSString+ZJExt.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		0C95699E24E4325500C9A6C5 /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				0C95699F24E4326D00C9A6C5 /* NSData+ZJExt.h */,
+				0C9569A024E4326D00C9A6C5 /* NSData+ZJExt.m */,
+			);
+			path = NSData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -145,7 +201,11 @@
 				0C95696D24E2D96A00C9A6C5 /* ZJSingleton.h in Headers */,
 				0C95697324E2D96A00C9A6C5 /* NSArray+ZJExt.h in Headers */,
 				0C279C5824E2D22F00474649 /* ZJBaseUtils.h in Headers */,
+				0C95699224E2EF1000C9A6C5 /* NSFileManager+ZJExt.h in Headers */,
+				0C9569A124E4326D00C9A6C5 /* NSData+ZJExt.h in Headers */,
+				0C95699C24E42F4100C9A6C5 /* NSString+ZJExt.h in Headers */,
 				0C95698624E2D96A00C9A6C5 /* ZJUtilsDef.h in Headers */,
+				0C95699724E4257D00C9A6C5 /* NSObject+ZJExt.h in Headers */,
 				0C95697024E2D96A00C9A6C5 /* NSDate+ZJExt.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,8 +308,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C95699324E2EF1000C9A6C5 /* NSFileManager+ZJExt.m in Sources */,
 				0C95697124E2D96A00C9A6C5 /* NSDate+ZJExt.m in Sources */,
+				0C95699824E4257D00C9A6C5 /* NSObject+ZJExt.m in Sources */,
+				0C95699D24E42F4100C9A6C5 /* NSString+ZJExt.m in Sources */,
 				0C95697224E2D96A00C9A6C5 /* NSArray+ZJExt.m in Sources */,
+				0C9569A224E4326D00C9A6C5 /* NSData+ZJExt.m in Sources */,
 				0C95691D24E2D8FB00C9A6C5 /* ZJSAMKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

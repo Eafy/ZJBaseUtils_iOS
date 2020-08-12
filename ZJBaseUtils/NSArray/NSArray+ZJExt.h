@@ -12,19 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (ZJExt)
 
-/// 数组计算交集(两数组比较取相同，组成新数组)
-/// @param array 需对比处理的数组
+/// 计算2个数组的交集
+/// @param array 对比的数组
 - (NSArray *)zj_intersecWithArray:(NSArray *)array;
 
-/// 数组计算差集(两数组比较取不同，组成新数组)
-/// @param array 需对比处理的数组
+/// 计算2个数组的差集
+/// @param array 对比的数组
 - (NSArray *)zj_exceptWithArray:(NSArray *)array;
 
-/// 数组计算并集(两数组数据合并，组成新数组)
-/// @param array 需对比处理的数组
+/// 计算2个数组的并集
+/// @param array 对比的数组
 - (NSArray *)zj_unionWithArray:(NSArray *)array;
 
-/// 反转数组
+/// 反转数组（反序）
 - (NSArray *)zj_reverseArray;
 
 @end
