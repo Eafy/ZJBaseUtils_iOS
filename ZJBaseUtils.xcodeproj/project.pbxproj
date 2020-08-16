@@ -44,6 +44,8 @@
 		0CCF75B524E9232700794878 /* NSDictionary+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75B324E9232700794878 /* NSDictionary+ZJExt.m */; };
 		0CCF75B924E9238D00794878 /* NSThread+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF75B724E9238D00794878 /* NSThread+ZJExt.h */; };
 		0CCF75BA24E9238D00794878 /* NSThread+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75B824E9238D00794878 /* NSThread+ZJExt.m */; };
+		0CCF75BE24E9285A00794878 /* UIColor+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF75BC24E9285A00794878 /* UIColor+ZJExt.h */; };
+		0CCF75BF24E9285A00794878 /* UIColor+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75BD24E9285A00794878 /* UIColor+ZJExt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		0CCF75B324E9232700794878 /* NSDictionary+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ZJExt.m"; sourceTree = "<group>"; };
 		0CCF75B724E9238D00794878 /* NSThread+ZJExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSThread+ZJExt.h"; sourceTree = "<group>"; };
 		0CCF75B824E9238D00794878 /* NSThread+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSThread+ZJExt.m"; sourceTree = "<group>"; };
+		0CCF75BC24E9285A00794878 /* UIColor+ZJExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZJExt.h"; sourceTree = "<group>"; };
+		0CCF75BD24E9285A00794878 /* UIColor+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZJExt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 		0C279C4924E2D22E00474649 /* ZJBaseUtils */ = {
 			isa = PBXGroup;
 			children = (
+				0CCF75BB24E9284500794878 /* UIColor */,
 				0CCF75B624E9237A00794878 /* NSThread */,
 				0CCF75B124E9231700794878 /* NSDictionary */,
 				0C95699E24E4325500C9A6C5 /* NSData */,
@@ -260,6 +265,15 @@
 			path = NSThread;
 			sourceTree = "<group>";
 		};
+		0CCF75BB24E9284500794878 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				0CCF75BC24E9285A00794878 /* UIColor+ZJExt.h */,
+				0CCF75BD24E9285A00794878 /* UIColor+ZJExt.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -285,6 +299,7 @@
 				0C95698624E2D96A00C9A6C5 /* ZJUtilsDef.h in Headers */,
 				0C95699724E4257D00C9A6C5 /* NSObject+ZJExt.h in Headers */,
 				0C95697024E2D96A00C9A6C5 /* NSDate+ZJExt.h in Headers */,
+				0CCF75BE24E9285A00794878 /* UIColor+ZJExt.h in Headers */,
 				0CCF75A724E91C3600794878 /* NSString+ZJAESDES.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +418,7 @@
 				0CCF759824E8E71000794878 /* NSString+ZJSHA.m in Sources */,
 				0C95691D24E2D8FB00C9A6C5 /* ZJSAMKeychain.m in Sources */,
 				0CCF75B524E9232700794878 /* NSDictionary+ZJExt.m in Sources */,
+				0CCF75BF24E9285A00794878 /* UIColor+ZJExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
