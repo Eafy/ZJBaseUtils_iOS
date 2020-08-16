@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (ZJExt)
 
+/// 转换为Json字符串
+- (NSString *)zj_toJsonString;
+
 /// 计算2个数组的交集
 /// @param array 对比的数组
 - (NSArray *)zj_intersecWithArray:(NSArray *)array;

@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSUInteger)zj_filesSize:(NSArray *)paths;
 
 /// 清除缓存
-/// @param clearcache 清除结果回调
+/// @param completion 清除结果回调
 /// @param filepPath 需要清楚的文件/文件夹
 + (void)clearFiles:filepPath completion:(void (^)(BOOL finished))completion;
 

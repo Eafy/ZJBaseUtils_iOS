@@ -10,6 +10,18 @@
 
 @implementation NSArray (ZJExt)
 
+- (NSString *)zj_toJsonString
+{
+    if (!self) return nil;
+
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    if (error != nil)
+        return nil;
+    return jsonString;
+}
+
 - (NSArray *)zj_intersecWithArray:(NSArray *)array
 {
     if (!self || !array) return nil;
