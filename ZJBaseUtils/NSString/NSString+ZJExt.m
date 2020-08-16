@@ -10,6 +10,14 @@
 
 @implementation NSString (ZJExt)
 
+- (NSData *)zj_base64Decode
+{
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return data;
+}
+
+#pragma mark -
+
 - (BOOL)zj_isEmpty
 {
     return !self || [self isEqualToString:@""];

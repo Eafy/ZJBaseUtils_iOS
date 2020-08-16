@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (ZJExt)
 
+- (NSData *)zj_base64Decode;
+
 #pragma mark - 判断
 
 /// 判断字符串是否为空字符串
