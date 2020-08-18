@@ -20,7 +20,7 @@
     int length = (int)strlen(string);
     unsigned char bytes[CC_SHA1_DIGEST_LENGTH];
     CC_SHA1(string, length, bytes);
-    return [NSString stringFromBytes:bytes length:CC_SHA1_DIGEST_LENGTH];
+    return [NSString zj_stringFromBytes:bytes length:CC_SHA1_DIGEST_LENGTH];
 }
 
 - (NSString *)zj_sha256String
@@ -29,7 +29,7 @@
     int length = (int)strlen(string);
     unsigned char bytes[CC_SHA256_DIGEST_LENGTH];
     CC_SHA256(string, length, bytes);
-    return [NSString stringFromBytes:bytes length:CC_SHA256_DIGEST_LENGTH];
+    return [NSString zj_stringFromBytes:bytes length:CC_SHA256_DIGEST_LENGTH];
 }
 
 - (NSString *)zj_sha512String
@@ -38,7 +38,7 @@
     int length = (int)strlen(string);
     unsigned char bytes[CC_SHA512_DIGEST_LENGTH];
     CC_SHA512(string, length, bytes);
-    return [NSString stringFromBytes:bytes length:CC_SHA512_DIGEST_LENGTH];
+    return [NSString zj_stringFromBytes:bytes length:CC_SHA512_DIGEST_LENGTH];
 }
 
 - (NSString *)zj_shaWithKey:(NSString *)key type:(ZJ_SHA_TYPE)type
@@ -60,7 +60,7 @@
             break;
     }
     CCHmac(mode, keyData.bytes, keyData.length, messageData.bytes, messageData.length, mutableData.mutableBytes);
-    return [NSString stringFromBytes:(unsigned char *)mutableData.bytes length:mutableData.length];
+    return [NSString zj_stringFromBytes:(unsigned char *)mutableData.bytes length:mutableData.length];
 }
 
 @end

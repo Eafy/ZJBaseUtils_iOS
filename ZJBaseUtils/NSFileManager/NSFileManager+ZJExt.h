@@ -81,17 +81,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param filePath 文件路径
 + (NSData *)zj_fileData:(NSString *)filePath;
 
-/** 获取一个文件夹以及文件夹下所有文件的大小，返回值得单位是byte */
-+ (NSUInteger)zj_size: (NSString *)path;
+/// 获取一个文件夹以及文件夹下所有文件的大小(字节)
+/// @param path 文件/文件夹路径
++ (NSUInteger)zj_size:(NSString *)path;
 
-/** 获取手机总容量(GB)（除去iOS系统所占容量） */
+/// 获取手机总容量(字节)（除去iOS系统所占容量）
 + (NSUInteger)zj_totalDiskSizeOfSystem;
 
-/** 获取可用容量(GB) */
+/// 获取可用容量(字节)
 + (NSUInteger)zj_freeDiskSizeOfSystem;
 
-/** 获取所给路径下文件或文件夹的总大小(Kb)
- */
+/// 获取所给路径下文件或文件夹的总大小(字节)
+/// @param paths 文件列表
 + (NSUInteger)zj_filesSize:(NSArray *)paths;
 
 /// 清除缓存

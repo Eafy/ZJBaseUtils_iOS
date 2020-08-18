@@ -46,11 +46,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 数据转为字符串
 /// @param bytes 数据
 /// @param length 长度
-+ (NSString *)stringFromBytes:(unsigned char *)bytes length:(NSUInteger)length;
++ (NSString *)zj_stringFromBytes:(unsigned char *)bytes length:(NSUInteger)length;
 
 /// 随机获取字符串
-/// @param count 生成字符串的长度
-+ (NSString *)zj_getRandomString:(NSUInteger)count;
+/// @param size 生成字符串的长度
++ (NSString *)zj_stringRandomWithSize:(NSUInteger)size;
 
 /// 将16进制字符串转为NSData
 - (NSData *)zj_toData;

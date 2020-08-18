@@ -122,7 +122,7 @@
 
 #pragma mark - 数据和字符串互转
 
-+ (NSString *)stringFromBytes:(unsigned char *)bytes length:(NSUInteger)length
++ (NSString *)zj_stringFromBytes:(unsigned char *)bytes length:(NSUInteger)length
 {
     NSMutableString *mutableString = @"".mutableCopy;
     for (int i = 0; i < length; i++) {
@@ -131,12 +131,12 @@
     return [NSString stringWithString:mutableString];
 }
 
-+ (NSString *)zj_getRandomString:(NSUInteger)count
++ (NSString *)zj_stringRandomWithSize:(NSUInteger)size
 {
-    if (count == 0) return @"";
+    if (size == 0) return @"";
     
-    char data[count];
-    for (int i=0; i<sizeof(data); i++) {
+    char data[size];
+    for (int i=0; i<size; i++) {
         if (arc4random_uniform(3) == 0) {
             data[i] = (char)('0' + (arc4random_uniform(10)));
         } else if (arc4random_uniform(3) == 1) {
@@ -145,7 +145,7 @@
             data[i] = (char)('A' + (arc4random_uniform(26)));
         }
     }
-    return [[NSString alloc] initWithBytes:data length:sizeof(data) encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithBytes:data length:size encoding:NSUTF8StringEncoding];
 }
 
 - (NSData *)zj_toData

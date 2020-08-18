@@ -19,7 +19,7 @@
     int length = (int)strlen(string);
     unsigned char bytes[CC_MD5_DIGEST_LENGTH];
     CC_MD5(string, length, bytes);
-    return [NSString stringFromBytes:bytes length:CC_MD5_DIGEST_LENGTH];
+    return [NSString zj_stringFromBytes:bytes length:CC_MD5_DIGEST_LENGTH];
 }
 
 - (NSString *)zj_md5For16String
