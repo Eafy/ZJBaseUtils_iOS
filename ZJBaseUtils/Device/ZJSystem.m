@@ -7,9 +7,13 @@
 //
 
 #import "ZJSystem.h"
-#import "ZJSAMKeychain.h"
+#import "ZJSAMKeychain.hpp"
 #import "NSString+ZJExt.h"
 #import "NSString+ZJMD5.h"
+
+extern CGFloat ZJSysVersion(void) {
+    return [[[UIDevice currentDevice] systemVersion] doubleValue];
+}
 
 @implementation ZJSystem
 

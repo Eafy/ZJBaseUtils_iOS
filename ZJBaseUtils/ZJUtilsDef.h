@@ -38,6 +38,8 @@
 #endif
 #endif
 
+#ifndef NSLonglong
 typedef long long NSLonglong;
+#endif
 
 #endif /* ZJUtilsDef_h */
