@@ -23,3 +23,5 @@
 #import "NSDictionary+ZJExt.h"
 #import "NSThread+ZJExt.h"
 #import "UIColor+ZJExt.h"
+#import "UIImage+ZJExt.h"
+#import "UIView+ZJExt.h"
