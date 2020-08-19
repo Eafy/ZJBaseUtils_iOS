@@ -6,7 +6,7 @@
 //
 
 #import "ZJUtilsDef.h"
-#import "ZJSingleton"
+#import "ZJSingleton.h"
 #import "NSArray+ZJExt.h"
 #import "NSDate+ZJExt.h"
 #import "NSFileManager+ZJExt.h"
