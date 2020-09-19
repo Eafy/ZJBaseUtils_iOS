@@ -8,29 +8,31 @@
 
 #import "UIColor+ZJExt.h"
 
-@implementation UIColor (ZJExt)
-
-extern UIColor *ZJColor(NSInteger r, NSInteger g, NSInteger b) {
+UIColor *ZJColor(NSInteger r, NSInteger g, NSInteger b) {
     return [UIColor zj_color:r g:g b:b];
 }
 
-extern UIColor *ZJColorWithAlpha(NSInteger r, NSInteger g, NSInteger b, CGFloat a) {
+UIColor *ZJColorWithAlpha(NSInteger r, NSInteger g, NSInteger b, CGFloat a) {
     return [UIColor zj_color:r g:g b:b a:a];
 }
 
-extern UIColor *ZJColorFromRGB(NSInteger rgb) {
+UIColor *ZJColorFromRGB(NSInteger rgb) {
     return [UIColor zj_color:rgb];
 }
 
-extern UIColor *ZJColorFromRrgWithAlpha(NSInteger rgb, CGFloat alpha) {
+UIColor *ZJColorFromRrgWithAlpha(NSInteger rgb, CGFloat alpha) {
     return [UIColor zj_color:rgb a:alpha];
 }
 
-extern UIColor *ZJColorRandom() {
+UIColor *JMColorFromHex(NSString *str) {
+    return [UIColor zj_colorWithHexString:str];
+}
+
+UIColor *ZJColorRandom() {
     return [UIColor zj_colorRandom];
 }
 
-#pragma mark -
+@implementation UIColor (ZJExt)
 
 + (UIColor *)zj_colorWithHexString:(NSString *)hexString
 {

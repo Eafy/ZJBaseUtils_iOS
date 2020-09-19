@@ -8,35 +8,35 @@
 
 #import "ZJScreen.h"
 
-extern CGRect ZJScreenFrame() {
+CGRect ZJScreenFrame() {
     return [ZJScreen screenFrame];
 }
 
-extern CGFloat ZJScreenHeight() {
+CGFloat ZJScreenHeight() {
     return [ZJScreen height];
 }
 
-extern CGFloat ZJScreenWidth() {
+CGFloat ZJScreenWidth() {
     return [ZJScreen width];
 }
 
-extern CGFloat ZJStatusBarHeight() {
+CGFloat ZJStatusBarHeight() {
     return [ZJScreen statusBarHeight];
 }
 
-extern CGFloat ZJNavBarHeight() {
+CGFloat ZJNavBarHeight() {
     return [ZJScreen navBarHeight];
 }
 
-extern ZJScreenSizeType ZJscreenSizeType() {
+ZJScreenSizeType ZJscreenSizeType() {
     return [ZJScreen screenSizeType];
 }
 
-extern BOOL ZJIsIPad() {
+BOOL ZJIsIPad() {
     return [ZJScreen isIPad];
 }
 
-extern CGFloat ZJScale() {
+CGFloat ZJScale() {
     if (ZJIsIPad()) {
         return ZJNavBarHeight()/ZJScreenWidth();
     } else {
@@ -67,8 +67,8 @@ singleton_m();
     }
 
     if (@available(iOS 13.0, *)) {
-        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-        _statusBarHeight = keyWindow.windowScene.statusBarManager.statusBarFrame.size.height;
+        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+        _statusBarHeight = statusBarManager.statusBarFrame.size.height;
         _isIPad = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
     } else {
         _statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
