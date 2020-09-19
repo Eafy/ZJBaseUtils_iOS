@@ -24,7 +24,7 @@ UIColor *ZJColorFromRrgWithAlpha(NSInteger rgb, CGFloat alpha) {
     return [UIColor zj_color:rgb a:alpha];
 }
 
-UIColor *JMColorFromHex(NSString *str) {
+UIColor *ZJColorFromHex(NSString *str) {
     return [UIColor zj_colorWithHexString:str];
 }
 

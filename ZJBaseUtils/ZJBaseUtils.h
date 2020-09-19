@@ -31,7 +31,7 @@
 #import "UIView+ZJGesture.h"
 #import "UIViewController+ZJExt.h"
 #import "ZJSystem.h"
-#import "JMScreen.h"
+#import "ZJScreen.h"
 
 #import "UIButton+ZJExt.h"
 #import "ZJBaseViewController.h"
