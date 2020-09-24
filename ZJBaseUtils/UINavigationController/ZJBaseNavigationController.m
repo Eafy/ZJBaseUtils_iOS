@@ -1,19 +1,19 @@
 //
-//  JMBaseNavigationController.m
-//  JMSmartUtils
+//  ZJBaseNavigationController.m
+//  ZJBaseUtils
 //
-//  Created by 李治健 on 2020/9/16.
-//  Copyright © 2020 Jimi. All rights reserved.
+//  Created by eafy on 2020/9/16.
+//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 
-#import "JMBaseNavigationController.h"
-#import "JMBaseViewController.h"
+#import "ZJBaseNavigationController.h"
+#import "ZJBaseViewController.h"
 
-@interface JMBaseNavigationController ()
+@interface ZJBaseNavigationController ()
 
 @end
 
-@implementation JMBaseNavigationController
+@implementation ZJBaseNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,7 +26,7 @@
     [super pushViewController:viewController animated:animated];
     if (self.hideNavBarArray && [self.hideNavBarArray containsObject:[self class]]) {
         if ([viewController respondsToSelector:@selector(getIsHideNavBar)]) {
-            [self setNavigationBarHidden:((JMBaseViewController *)viewController).isHideNavBar animated:YES];
+            [self setNavigationBarHidden:((ZJBaseViewController *)viewController).isHideNavBar animated:YES];
         }
     }
 }

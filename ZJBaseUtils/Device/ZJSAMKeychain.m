@@ -6,7 +6,7 @@
 //  Copyright (c) 2009-2011 Sam Soffes. All rights reserved.
 //
 
-#import "ZJSAMKeychain.hpp"
+#import "ZJSAMKeychain.h"
 
 NSString *const kZJSSKeychainErrorDomain = @"org.eafy.sskeychain";
 

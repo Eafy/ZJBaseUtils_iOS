@@ -1,19 +1,19 @@
 //
-//  JMBaseViewController.h
-//  JMSmartUtils
+//  ZJBaseViewController.h
+//  ZJBaseUtils
 //
-//  Created by 李治健 on 2020/9/14.
-//  Copyright © 2020 Jimi. All rights reserved.
+//  Created by eafy on 2020/9/14.
+//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^JMBaseViewCtlReturnBeforeCompletion)(void);
-typedef void (^JMBaseViewCtlReturnAfterCompletion)(void);
+typedef void (^ZJBaseViewCtlReturnBeforeCompletion)(void);
+typedef void (^ZJBaseViewCtlReturnAfterCompletion)(void);
 
-@interface JMBaseViewController : UIViewController
+@interface ZJBaseViewController : UIViewController
 
 @property (nonatomic,assign) BOOL isLeftSidesliEnable;    //是否开启左侧边栏右滑返回，默认开启
 @property (nonatomic,strong) UIViewController * _Nullable nextViewController;
@@ -25,8 +25,8 @@ typedef void (^JMBaseViewCtlReturnAfterCompletion)(void);
 
 @property (nonatomic,strong) UIButton * _Nullable navRightBtn;
 @property (nonatomic,strong) UIButton * _Nullable navLeftBtn;
-@property (nonatomic,copy) JMBaseViewCtlReturnBeforeCompletion _Nullable returnBeforeBlock;      //返回之前需要执行的Block
-@property (nonatomic,copy) JMBaseViewCtlReturnAfterCompletion _Nullable returnAfterBlock;        //返回之后需要执行的Block(模态有效)
+@property (nonatomic,copy) ZJBaseViewCtlReturnBeforeCompletion _Nullable returnBeforeBlock;      //返回之前需要执行的Block
+@property (nonatomic,copy) ZJBaseViewCtlReturnAfterCompletion _Nullable returnAfterBlock;        //返回之后需要执行的Block(模态有效)
 
 @property (nonatomic,assign) BOOL isShowNavBarView;     //是否显示自定义导航栏视图，当isHideNavBar为YES时生效
 @property (nonatomic,strong) UILabel *navBarTitleLB;

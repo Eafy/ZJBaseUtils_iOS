@@ -1,23 +1,23 @@
 //
-//  JMLocalizationTool.m
-//  JMSmartUtils
+//  ZJLocalizationTool.h
+//  ZJBaseUtils
 //
-//  Created by 李治健 on 2020/9/14.
-//  Copyright © 2020 Jimi. All rights reserved.
+//  Created by eafy on 2020/8/18.
+//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 
-#import "JMLocalizationTool.h"
+#import "ZJLocalizationTool.h"
 
-#define kLocalizationLanguage @"kLocalizationLanguage"
+#define kZJLocalizationLanguage @"kZJLocalizationLanguage"
 
-@interface JMLocalizationTool ()
+@interface ZJLocalizationTool ()
 
 @property (nonatomic,strong) NSBundle *bundle;
 @property (nonatomic,copy) NSString *currentLanguage;
 
 @end
 
-@implementation JMLocalizationTool
+@implementation ZJLocalizationTool
 singleton_m();
 
 - (void)initData {
@@ -37,17 +37,17 @@ singleton_m();
         return;
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:languageStr forKey:kLocalizationLanguage];
+    [[NSUserDefaults standardUserDefaults] setObject:languageStr forKey:kZJLocalizationLanguage];
     [[NSUserDefaults standardUserDefaults] synchronize];
     self.currentLanguage = [self loadLanguageBundle];
 }
 
 - (NSString *)loadLanguageBundle {
-    NSString *defaultLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:kLocalizationLanguage];
+    NSString *defaultLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:kZJLocalizationLanguage];
     NSString *systemLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     if (!defaultLanguage || ![defaultLanguage isEqualToString:systemLanguage]) {
         defaultLanguage = systemLanguage;
-        [[NSUserDefaults standardUserDefaults] setObject:defaultLanguage forKey:kLocalizationLanguage];
+        [[NSUserDefaults standardUserDefaults] setObject:defaultLanguage forKey:kZJLocalizationLanguage];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
@@ -59,12 +59,19 @@ singleton_m();
     return defaultLanguage;
 }
 
+#pragma mark -
+
+- (void)setLocaleLanguage:(NSString *)languageStr
+{
+    [self setLanguage:languageStr];
+}
+
 @end
 
 @implementation NSString (JMLocalization)
 
 - (NSString *)localized {
-    return [JMLocalizationTool.shared valueWithKey:self];
+    return [ZJLocalizationTool.shared valueWithKey:self];
 }
 
 @end

@@ -1,17 +1,17 @@
 //
-//  UIButton.m
-//  JMSmartUtils
+//  UIButton+ZJExt.m
+//  ZJBaseUtils
 //
-//  Created by 李治健 on 2020/9/14.
-//  Copyright © 2020 Jimi. All rights reserved.
+//  Created by eafy on 2020/9/14.
+//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 
-#import "UIButton+JMExt.h"
-#import "UIView+JMFrame.h"
+#import "UIButton+ZJExt.h"
+#import "UIView+ZJFrame.h"
 
-@implementation UIButton (JMExt)
+@implementation UIButton (ZJExt)
 
-- (void)jm_layoutWithEdgeInsetsStyle:(JMButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space;
+- (void)zj_layoutWithEdgeInsetsStyle:(ZJButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space;
 {
     // 1. 得到imageView和titleLabel的宽、高
     CGFloat imageWith = self.imageView.frame.size.width;
@@ -34,25 +34,25 @@
  
     // 3. 根据style和space得到imageEdgeInsets和labelEdgeInsets的值
     switch (style) {
-        case JMButtonEdgeInsetsStyleTop:
+        case ZJButtonEdgeInsetsStyleTop:
         {
             imageEdgeInsets = UIEdgeInsetsMake(-labelHeight-space/2.0, 0, 0, -labelWidth);
             labelEdgeInsets = UIEdgeInsetsMake(0, -imageWith, -imageHeight-space/2.0, 0);
         }
             break;
-        case JMButtonEdgeInsetsStyleLeft:
+        case ZJButtonEdgeInsetsStyleLeft:
         {
             imageEdgeInsets = UIEdgeInsetsMake(0, -space/2.0, 0, space/2.0);
             labelEdgeInsets = UIEdgeInsetsMake(0, space/2.0, 0, -space/2.0);
         }
             break;
-        case JMButtonEdgeInsetsStyleBottom:
+        case ZJButtonEdgeInsetsStyleBottom:
         {
             imageEdgeInsets = UIEdgeInsetsMake(0, 0, -labelHeight-space/2.0, -labelWidth);
             labelEdgeInsets = UIEdgeInsetsMake(-imageHeight-space/2.0, -imageWith, 0, 0);
         }
             break;
-        case JMButtonEdgeInsetsStyleRight:
+        case ZJButtonEdgeInsetsStyleRight:
         {
             imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth+space/2.0, 0, -labelWidth-space/2.0);
             labelEdgeInsets = UIEdgeInsetsMake(0, -imageWith-space/2.0, 0, imageWith+space/2.0);
@@ -66,14 +66,14 @@
     self.imageEdgeInsets = imageEdgeInsets;
 }
 
-- (void)jm_layoutWithEdgeInsets:(CGPoint)imgPoint labelPoint:(CGPoint)labelPoint
+- (void)zj_layoutWithEdgeInsets:(CGPoint)imgPoint labelPoint:(CGPoint)labelPoint
 {
-    CGFloat imageTop = -(self.imageView.jm_top - imgPoint.y);
-    CGFloat imageLeft = -(self.imageView.jm_left - imgPoint.x);
+    CGFloat imageTop = -(self.imageView.zj_top - imgPoint.y);
+    CGFloat imageLeft = -(self.imageView.zj_left - imgPoint.x);
     self.imageEdgeInsets = UIEdgeInsetsMake(imageTop, imageLeft, -imageTop, -imageLeft);
 
-    CGFloat labelTop = -(self.titleLabel.jm_top - labelPoint.y);
-    CGFloat labelLeft = -(self.titleLabel.jm_left - labelPoint.x);
+    CGFloat labelTop = -(self.titleLabel.zj_top - labelPoint.y);
+    CGFloat labelLeft = -(self.titleLabel.zj_left - labelPoint.x);
     self.titleEdgeInsets = UIEdgeInsetsMake(labelTop, labelLeft, -labelTop, -labelLeft);
 }
 

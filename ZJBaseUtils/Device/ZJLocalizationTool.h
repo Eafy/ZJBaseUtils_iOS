@@ -1,17 +1,17 @@
 //
-//  JMLocalizationTool.h
-//  JMSmartUtils
+//  ZJLocalizationTool.h
+//  ZJBaseUtils
 //
-//  Created by 李治健 on 2020/9/14.
-//  Copyright © 2020 Jimi. All rights reserved.
+//  Created by eafy on 2020/8/18.
+//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "JMSingleton.h"
+#import "ZJSingleton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JMLocalizationTool : NSObject
+@interface ZJLocalizationTool : NSObject
 singleton_h();
 
 /// 设置本地语言包
@@ -20,7 +20,7 @@ singleton_h();
 
 @end
 
-@interface NSString (JMLocalization)
+@interface NSString (ZJLocalization)
 
 /// 本地化语言
 - (NSString *)localized;

@@ -7,7 +7,7 @@
 //
 
 #import "ZJSystem.h"
-#import "ZJSAMKeychain.hpp"
+#import "ZJSAMKeychain.h"
 #import "NSString+ZJExt.h"
 #import "NSString+ZJMD5.h"
 
@@ -16,6 +16,28 @@ extern CGFloat ZJSysVersion(void) {
 }
 
 @implementation ZJSystem
+
++ (NSString *)currentLanguage
+{
+    NSString *preferredLang = [[NSLocale preferredLanguages] objectAtIndex:0];
+    return preferredLang;
+}
+
++ (ZJ_SYS_LANGUAGE_TYPE)currentLanguageType
+{
+    ZJ_SYS_LANGUAGE_TYPE type = ZJ_SYS_LANGUAGE_TYPE_EN;
+    NSString *preferredLang = [self currentLanguage];
+    if ([preferredLang hasPrefix:@"en"]) {  //英文
+        type = ZJ_SYS_LANGUAGE_TYPE_EN;
+    } else if ([preferredLang hasPrefix:@"zh"]) {   //中文
+        type = ZJ_SYS_LANGUAGE_TYPE_ZH_Hans;
+    } else if ([preferredLang hasPrefix:@"he"]) {   //希伯来语
+        type = ZJ_SYS_LANGUAGE_TYPE_Hebrew;
+    }
+    
+    return type;
+}
+
 
 + (NSString *)getUUID
 {

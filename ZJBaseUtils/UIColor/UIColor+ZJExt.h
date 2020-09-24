@@ -15,6 +15,7 @@ extern UIColor *ZJColor(NSInteger r, NSInteger g, NSInteger b);
 extern UIColor *ZJColorWithAlpha(NSInteger r, NSInteger g, NSInteger b, CGFloat a);
 extern UIColor *ZJColorFromRGB(NSInteger rgb);
 extern UIColor *ZJColorFromRrgWithAlpha(NSInteger rgb, CGFloat alpha);
+extern UIColor *ZJColorFromHex(NSString *str);
 extern UIColor *ZJColorRandom(void);
 
 @interface UIColor (ZJExt)

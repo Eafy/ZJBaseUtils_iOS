@@ -1,23 +1,23 @@
 //
-//  JMBaseViewController.m
-//  JMSmartUtils
+//  ZJBaseViewController.m
+//  ZJBaseUtils
 //
-//  Created by 李治健 on 2020/9/14.
-//  Copyright © 2020 Jimi. All rights reserved.
+//  Created by eafy on 2020/9/14.
+//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 
-#import "JMBaseViewController.h"
-#import "JMScreen.h"
-#import "JMSystem.h"
-#import "UIView+JMFrame.h"
+#import "ZJBaseViewController.h"
+#import "ZJScreen.h"
+#import "ZJSystem.h"
+#import "UIView+ZJFrame.h"
 
-@interface JMBaseViewController ()  <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
+@interface ZJBaseViewController ()  <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,assign) BOOL isLeftSideslipBack;     //是左侧边栏右滑返回
 
 @end
 
-@implementation JMBaseViewController
+@implementation ZJBaseViewController
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -93,20 +93,20 @@
 {
     if (!_navLeftBtn) {
         UIImage *leftImg = [UIImage imageNamed:@"icon_nav_back_no"];
-        _navLeftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, JMNavBarHeight() + (JMIsIPad()?30:0), JMNavBarHeight())];
+        _navLeftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight())];
         [_navLeftBtn setImage:leftImg forState:UIControlStateNormal];
         [_navLeftBtn setImage:[UIImage imageNamed:@"icon_nav_back_sel"] forState:UIControlStateHighlighted];
-        [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*JMScale()]];
+        [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
         [_navLeftBtn setBackgroundColor:[UIColor clearColor]];
         [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
-        if ([JMSystem currentLanguageType] == JM_SYS_LANGUAGE_TYPE_Hebrew) {
+        if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
             _navLeftBtn.imageView.transform = CGAffineTransformMakeScale(-1, 1);
             [_navLeftBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
             [_navLeftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
         } else {
             [_navLeftBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
             [_navLeftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-            if (JMIsIPad()) {
+            if (ZJIsIPad()) {
                 [_navLeftBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
             }
         }
@@ -119,17 +119,17 @@
 {
     if (!_navRightBtn) {
         _navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _navRightBtn.frame = CGRectMake(0, 0, JMNavBarHeight() + (JMIsIPad()?30:0), JMNavBarHeight());
-        [_navRightBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*JMScale()]];
+        _navRightBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight());
+        [_navRightBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
         [_navRightBtn setBackgroundColor:[UIColor clearColor]];
         [_navRightBtn addTarget:self action:@selector(navRightBtnAction) forControlEvents:UIControlEventTouchUpInside];
-        if ([JMSystem currentLanguageType] == JM_SYS_LANGUAGE_TYPE_Hebrew) {
+        if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
             [_navRightBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
             [_navRightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         } else {
             [_navRightBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
             [_navRightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-            if (JMIsIPad()) {
+            if (ZJIsIPad()) {
                 [_navRightBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
             }
         }
@@ -141,9 +141,9 @@
 - (UILabel *)navBarTitleLB
 {
     if (!_navBarTitleLB) {
-        _navBarTitleLB = [[UILabel alloc] initWithFrame:CGRectMake(0, JMStatusBarHeight(), JMScreenWidth()/2.0, JMNavBarHeight())];
-        _navBarTitleLB.jm_centerX = JMScreenWidth()/2.0;
-        _navBarTitleLB.jm_centerY = JMStatusBarHeight() + JMNavBarHeight()/2.0;
+        _navBarTitleLB = [[UILabel alloc] initWithFrame:CGRectMake(0, ZJStatusBarHeight(), ZJScreenWidth()/2.0, ZJNavBarHeight())];
+        _navBarTitleLB.zj_centerX = ZJScreenWidth()/2.0;
+        _navBarTitleLB.zj_centerY = ZJStatusBarHeight() + ZJNavBarHeight()/2.0;
         _navBarTitleLB.text = self.title;
         _navBarTitleLB.textAlignment = NSTextAlignmentCenter;
         _navBarTitleLB.backgroundColor = [UIColor clearColor];
@@ -235,11 +235,11 @@
 
 - (void)addNavBarBtnForHide
 {
-    self.navLeftBtn.frame = CGRectMake(15, JMStatusBarHeight(), self.navLeftBtn?self.navLeftBtn.jm_width: (JMNavBarHeight() + (JMIsIPad()?30:0)), JMNavBarHeight());
+    self.navLeftBtn.frame = CGRectMake(15, ZJStatusBarHeight(), self.navLeftBtn?self.navLeftBtn.zj_width: (ZJNavBarHeight() + (ZJIsIPad()?30:0)), ZJNavBarHeight());
     [self.view addSubview:self.navLeftBtn];
     
-    self.navRightBtn.frame = CGRectMake(0, JMStatusBarHeight(), self.navRightBtn?self.navRightBtn.jm_width:(JMNavBarHeight() + (JMIsIPad()?30:0)), JMNavBarHeight());
-    self.navRightBtn.jm_right = JMScreenWidth() - 15;
+    self.navRightBtn.frame = CGRectMake(0, ZJStatusBarHeight(), self.navRightBtn?self.navRightBtn.zj_width:(ZJNavBarHeight() + (ZJIsIPad()?30:0)), ZJNavBarHeight());
+    self.navRightBtn.zj_right = ZJScreenWidth() - 15;
     [self.view addSubview:self.navRightBtn];
     
     [self.view addSubview:self.navBarTitleLB];

@@ -1,3 +1,4 @@
+//
 //  ZJBaseUtils.h
 //  ZJBaseUtils
 //
@@ -17,6 +18,7 @@
 #import "NSString+ZJAESDES.h"
 #import "NSString+ZJMD5.h"
 #import "NSString+ZJJSON.h"
+#import "NSString+ZJIMGExt.h"
 #import "NSData+ZJExt.h"
 #import "NSData+ZJRSA.h"
 #import "NSData+ZJAESDES.h"
@@ -25,5 +27,13 @@
 #import "UIColor+ZJExt.h"
 #import "UIImage+ZJExt.h"
 #import "UIView+ZJExt.h"
+#import "UIView+ZJFrame.h"
+#import "UIView+ZJGesture.h"
 #import "UIViewController+ZJExt.h"
 #import "ZJSystem.h"
+#import "ZJScreen.h"
+
+#import "UIButton+ZJExt.h"
+#import "ZJBaseViewController.h"
+#import "ZJBaseNavigationController.h"
+#import "ZJLocalizationTool.h"
