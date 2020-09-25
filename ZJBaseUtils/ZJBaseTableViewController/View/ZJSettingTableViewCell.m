@@ -52,6 +52,7 @@
         }
         cell.item = item;
         cell.tableViewConfig = config;
+        cell.tag = item.tag;
     } else {
         for (UIView *subView in cell.contentView.subviews) {
             [subView removeFromSuperview];
@@ -134,7 +135,6 @@
 - (void)dealloc
 {
     _item = nil;
-    _switchBtnBlock = nil;
     if (_customView) {
         [self.customView removeFromSuperview];
         _customView = nil;
@@ -243,9 +243,10 @@
             self.accessoryType = UITableViewCellAccessoryNone;
             self.selectionStyle = UITableViewCellSelectionStyleNone;
         } else if ([self.item isKindOfClass:[ZJSettingSwitchItem class]]) {
+            ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
             self.accessoryView = self.switchBtn;
-            self.switchBtn.on = self.item.switchBtnValue;
-            self.switchBtn.enabled = self.item.switchBtnEnble;
+            self.switchBtn.on = itemT.switchBtnValue;
+            self.switchBtn.enabled = itemT.switchBtnEnable;
             self.selectionStyle = UITableViewCellSelectionStyleNone;
         } else {
             self.accessoryView = self.arrowImgView;
@@ -271,8 +272,9 @@
 
 - (void)switchBtnChange:(UISwitch *)switchBtn
 {
-    if (self.switchBtnBlock) {
-        self.switchBtnBlock(switchBtn);
+    ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
+    if (itemT.switchBtnBlock) {
+        itemT.switchBtnBlock(switchBtn);
     }
 }
 

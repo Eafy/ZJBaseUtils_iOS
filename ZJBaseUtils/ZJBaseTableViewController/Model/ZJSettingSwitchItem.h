@@ -10,4 +10,11 @@
 
 @interface ZJSettingSwitchItem : ZJSettingItem
 
+/// SwitchBtn操作之后的响应
+@property (nonatomic,copy) void(^ _Nullable switchBtnBlock)(UISwitch * _Nonnull switchBtn);
+/// SwitchBtn的值
+@property (nonatomic,assign) BOOL switchBtnValue;
+/// SwitchBtn的使能
+@property (nonatomic,assign) BOOL switchBtnEnable;
+
 @end

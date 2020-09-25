@@ -9,4 +9,22 @@
 
 @implementation ZJSettingSwitchItem
 
+- (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title
+{
+    if (self = [super initWithIcon:icon title:title]) {
+        _switchBtnEnable = YES;
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title destClass:(Class)destVc
+{
+    if (self = [super initWithIcon:icon title:title destClass:destVc]) {
+        _switchBtnEnable = YES;
+    }
+    
+    return self;
+}
+
 @end

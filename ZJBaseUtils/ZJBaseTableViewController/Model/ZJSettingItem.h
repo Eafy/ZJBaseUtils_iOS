@@ -26,12 +26,6 @@
 @property (nonatomic,copy) NSString * _Nullable arrowIcon;
 /// 处理点击的事件，走此block会终端默认的操作
 @property (nonatomic,copy) void(^ _Nullable cellOptionBlock)(ZJSettingItem * _Nullable item);
-/// SwitchBtn操作之后的响应
-@property (nonatomic,copy) void(^ _Nullable switchBtnBlock)(UISwitch * _Nonnull switchBtn);
-/// SwitchBtn的值
-@property (nonatomic,assign) BOOL switchBtnValue;
-/// SwitchBtn的使能
-@property (nonatomic,assign) BOOL switchBtnEnble;
 
 /*传递数据区*/
 /// 需要传递的数据

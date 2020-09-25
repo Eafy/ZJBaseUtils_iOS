@@ -16,9 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZJSettingTableViewCell : UITableViewCell
 
 /// 基础数据模型
-@property (nonatomic,strong) ZJSettingItem *item;
-/// SwitchBtn操作之后的响应
-@property (nonatomic,copy) void(^ _Nullable switchBtnBlock)(UISwitch * _Nonnull switchBtn);
+@property (nonatomic,strong,readonly) ZJSettingItem *item;
 /// 自定义视图
 @property (nonatomic,strong) UIView *customView;
 

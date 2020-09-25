@@ -15,7 +15,6 @@
     if (self = [super init]) {
         self.icon = icon;
         self.title = title;
-        self.switchBtnEnble = YES;
     }
     return self;
 }

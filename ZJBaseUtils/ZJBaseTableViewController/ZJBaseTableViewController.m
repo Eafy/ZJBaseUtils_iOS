@@ -420,8 +420,6 @@
     ZJSettingItem *item = group.items[indexPath.row];
     
     ZJSettingTableViewCell *cell = [ZJSettingTableViewCell cellWithTableView:tableView item:item config:self.tableViewConfig];
-    cell.tag = item.tag;
-    cell.switchBtnBlock = item.switchBtnBlock;
 
     return cell;
 }
