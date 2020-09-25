@@ -123,4 +123,35 @@
     } while (vc && searchCount < 128);
 }
 
+#pragma mark -
+
+- (UIAlertController *)zj_showAlertController:(NSString *_Nullable)title message:(NSString *_Nullable)msg firstBtnName:(NSString *_Nonnull)firstBtnName handler:(void (^ __nullable)(UIAlertAction * _Nullable action))firstHandler secondBtnName:(NSString *_Nullable)secondBtnName handler:(void (^ __nullable)(UIAlertAction * _Nullable action))secondHandler isShow:(BOOL)isShow
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
+    if (firstBtnName) {
+        UIAlertAction *firstBtnAction = [UIAlertAction actionWithTitle:firstBtnName style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            if (firstHandler) {
+                firstHandler(action);
+            }
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alertController addAction:firstBtnAction];
+    }
+    if (secondBtnName) {
+        UIAlertAction *secondBtnAction = [UIAlertAction actionWithTitle:secondBtnName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (secondHandler) {
+                secondHandler(action);
+            }
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alertController addAction:secondBtnAction];
+    }
+    
+    if (isShow) {
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+        
+    return alertController;
+}
+
 @end

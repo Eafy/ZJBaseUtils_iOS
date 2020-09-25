@@ -20,7 +20,7 @@
 
 - (BOOL)zj_isEmpty
 {
-    return !self || [self isEqualToString:@""];
+    return [self isEqualToString:@""];
 }
 
 - (BOOL)isValidateByRegex:(NSString *)regex

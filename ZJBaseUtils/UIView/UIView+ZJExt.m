@@ -45,4 +45,30 @@
     [[self layer] addSublayer:shapeLayer];
 }
 
+- (void)zj_drawCircularWithCornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)corners
+{
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:cornerRadii];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = bezierPath.CGPath;
+    self.layer.mask = maskLayer;
+}
+
+
+- (void)zj_drawBorderWithWidth:(CGFloat)width cornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)rectCorner length:(CGFloat)length space:(CGFloat)space strokeColor:(UIColor *)strokeColor
+{
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:rectCorner cornerRadii:cornerRadii];
+    CAShapeLayer *borderLayer = [CAShapeLayer layer];
+    borderLayer.frame = self.bounds;
+    borderLayer.path = bezierPath.CGPath;
+    borderLayer.fillColor = [UIColor clearColor].CGColor;
+    [borderLayer setLineWidth:width];
+    if (space > 0) {
+        [borderLayer setLineJoin:kCALineJoinRound];
+        [borderLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:length],[NSNumber numberWithFloat:space],nil]];
+    }
+    borderLayer.strokeColor = strokeColor.CGColor;
+    [self.layer addSublayer:borderLayer];
+}
+
 @end

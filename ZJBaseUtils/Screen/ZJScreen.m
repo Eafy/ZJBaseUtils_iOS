@@ -28,6 +28,10 @@ CGFloat ZJNavBarHeight() {
     return [ZJScreen navBarHeight];
 }
 
+CGFloat ZJSafeAreaInsetsHeight(void) {
+    return [ZJScreen safeAreaInsetsHeight];
+}
+
 ZJScreenSizeType ZJscreenSizeType() {
     return [ZJScreen screenSizeType];
 }
@@ -66,6 +70,12 @@ singleton_m();
         _navBarHeight = 64.0;
     }
 
+    _safeAreaInsetsHeight = 0;
+    if (@available(iOS 11.0, *)) {
+        UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+        _safeAreaInsetsHeight = safeAreaInsets.bottom - safeAreaInsets.top;
+    }
+    
     if (@available(iOS 13.0, *)) {
         UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
         _statusBarHeight = statusBarManager.statusBarFrame.size.height;
@@ -119,6 +129,10 @@ singleton_m();
 
 + (CGFloat)navBarHeight {
     return ZJScreen.shared.navBarHeight;
+}
+
++ (CGFloat)safeAreaInsetsHeight {
+    return ZJScreen.shared.safeAreaInsetsHeight;
 }
 
 + (ZJScreenSizeType)screenSizeType {

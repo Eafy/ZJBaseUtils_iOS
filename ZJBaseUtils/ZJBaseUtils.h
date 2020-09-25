@@ -37,3 +37,7 @@
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"
 #import "ZJLocalizationTool.h"
+#import "UIImageView+JMExt.h"
+
+#import "JMBaseSettingViewController.h"
+#import "JMBaseTableViewController.h"
