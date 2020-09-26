@@ -68,7 +68,7 @@ singleton_m();
 
 @end
 
-@implementation NSString (JMLocalization)
+@implementation NSString (ZJLocalization)
 
 - (NSString *)localized {
     return [ZJLocalizationTool.shared valueWithKey:self];
