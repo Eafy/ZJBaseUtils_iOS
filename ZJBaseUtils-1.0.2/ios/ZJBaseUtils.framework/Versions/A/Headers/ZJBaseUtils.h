@@ -30,17 +30,14 @@
 #import "UIView+ZJFrame.h"
 #import "UIView+ZJGesture.h"
 #import "UIViewController+ZJExt.h"
-#import "UIImageView+ZJExt.h"
-#import "UIButton+ZJExt.h"
-
 #import "ZJSystem.h"
 #import "ZJScreen.h"
-#import "ZJThread.h"
-#import "ZJModel.h"
-#import "ZJLocalizationTool.h"
 
+#import "UIButton+ZJExt.h"
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"
+#import "ZJLocalizationTool.h"
+#import "UIImageView+ZJExt.h"
 
 #import "ZJBaseSettingViewController.h"
 #import "ZJBaseTableViewController.h"

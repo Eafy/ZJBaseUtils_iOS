@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - StaticAPI
 
-/// 获取类的属性列表
+/// 获取静态类的属性列表
 + (NSArray *)zj_propertyList;
 
 /// 格式化之后的属性列表

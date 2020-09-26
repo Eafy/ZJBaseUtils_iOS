@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSThread (ZJExt)
 
-/// 是否正在休眠
-@property (readonly) BOOL zj_isSleep;
+@property (atomic, assign) BOOL zj_isSleep;     //是否正在休眠
+@property (atomic, strong) NSCondition *zj_condition;   //线程信号量
 
 /// 休眠线程
 /// @param ti 休眠时间（秒）

@@ -11,8 +11,10 @@ Pod::Spec.new do |s|
   s.license      = { :type => "Apache License 2.0", :file => "LICENSE" }
   s.author       = { "Eafy" => "lizhijian_21@163.com" }
   s.requires_arc = true
-  s.ios.deployment_target   = "9.0"
+  s.ios.deployment_target   = '9.0'
   s.frameworks = ["UIKit", "GLKit", "AVFoundation", "CoreLocation", "AssetsLibrary", "SystemConfiguration", "Photos", "Security", "CoreText"]
+  #s.xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64 arm64e' }
+  #s.pod_target_xcconfig = { 'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)' }
 
   s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "#{s.version}"}
   s.source_files  = "ZJBaseUtils/*.{h,m,mm,c,hpp,cpp}", "ZJBaseUtils/**/*.{h,m,mm,c,hpp,cpp}"
