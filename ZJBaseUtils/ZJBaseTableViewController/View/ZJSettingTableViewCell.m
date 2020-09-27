@@ -124,7 +124,7 @@
         if (self.accessoryView) {
             self.subTitleLabel.zj_right = self.accessoryView.zj_left - 5.0f;
         } else {
-            self.subTitleLabel.zj_right = self.contentView.zj_right - 5.0f;
+            self.subTitleLabel.zj_right = self.contentView.zj_right - 15.0f;
         }
     } else {
         self.detailTextLabel.zj_right = self.contentView.zj_right - 5.0f;

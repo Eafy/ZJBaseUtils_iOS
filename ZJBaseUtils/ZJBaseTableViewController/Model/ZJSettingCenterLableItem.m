@@ -11,6 +11,11 @@
 
 @implementation ZJSettingCenterLableItem
 
+- (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title
+{
+    return [self initWithIcon:icon title:title destClass:nil];
+}
+
 - (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title destClass:(Class)destVc
 {
     if (self = [super initWithIcon:icon title:title destClass:destVc]) {
