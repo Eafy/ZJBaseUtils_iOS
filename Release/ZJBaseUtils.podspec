@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target   = '8.0'
   s.frameworks = ["UIKit", "GLKit", "AVFoundation", "CoreLocation", "AssetsLibrary", "SystemConfiguration", "Photos", "Security", "CoreText"]
   s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "#{s.version}"}
-  s.ios.vendored_framework   = 'CocoaPods/ZJBaseUtils.framework'
+  s.ios.vendored_framework   = 'Release/ZJBaseUtils.framework'
 
 end
 
