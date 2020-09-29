@@ -12,7 +12,6 @@
 #import "ZJSettingArrowItem.h"
 #import "ZJSettingSwitchItem.h"
 #import "ZJSettingLabelItem.h"
-#import "ZJSettingCenterLableItem.h"
 #import "ZJSettingCustomViewItem.h"
 #import "ZJSettingTextFieldItem.h"
 #import "ZJBaseTableViewConfig.h"

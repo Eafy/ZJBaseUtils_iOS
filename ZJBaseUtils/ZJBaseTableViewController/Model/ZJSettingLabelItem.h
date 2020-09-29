@@ -10,4 +10,11 @@
 
 @interface ZJSettingLabelItem : ZJSettingItem
 
+/// 是否是中心模式
+@property (nonatomic,assign) BOOL isCenterModel;
+/// 中心主标题字体
+@property (nonatomic,strong) UIColor *titleColor;
+/// 中心主标题字体
+@property (nonatomic,strong) UIFont *titleFont;
+
 @end

@@ -97,15 +97,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-        
-    if (_titleDetailImgView) {
-        self.titleDetailImgView.zj_left = self.textLabel.zj_right + 5.0f;
-        self.titleDetailImgView.zj_centerY = self.textLabel.zj_centerY;
-    }
     
-    if ([self.item isKindOfClass:[ZJSettingCenterLableItem class]]) {
-        self.subTitleLabel.frame = self.contentView.bounds;
-    } else if (_subTitleLabel) {   //有副标题
+    if (_subTitleLabel) {   //有副标题
         [self.textLabel sizeToFit];
         [self.detailTextLabel sizeToFit];
         CGFloat fontHeight = self.textLabel.font.lineHeight - self.detailTextLabel.font.lineHeight;
@@ -113,6 +106,7 @@
             self.textLabel.zj_bottom += fontHeight/2.0;
             self.detailTextLabel.zj_bottom += fontHeight/2.0;
         }
+        
         self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
         self.subTitleLabel.zj_width = self.contentView.zj_width - self.textLabel.zj_right - 10.0f;
         if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator || self.accessoryView) {
@@ -123,6 +117,11 @@
     } else {
         self.detailTextLabel.zj_right = self.contentView.zj_right - 5.0f;
         self.detailTextLabel.zj_centerY = self.contentView.zj_centerY;
+    }
+    
+    if (_titleDetailImgView) {
+        self.titleDetailImgView.zj_left = self.textLabel.zj_right + 5.0f;
+        self.titleDetailImgView.zj_centerY = self.textLabel.zj_centerY;
     }
 }
 
@@ -151,8 +150,7 @@
         }
     }
     
-    if (self.item.subTitle &&
-        ![self.item isKindOfClass:[ZJSettingCenterLableItem class]]) {
+    if (self.item.subTitle) {
         if (self.tableViewConfig.cellDetailTitleColor) [_subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
         if (self.tableViewConfig.cellDetailTitleFont) [_subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
     }
@@ -226,9 +224,7 @@
         if (!self.customView.superview) {
             [self.contentView addSubview:self.customView];
         }
-    } else if ([self.item isKindOfClass:[ZJSettingArrowItem class]] ||
-               [self.item isKindOfClass:[ZJSettingLabelItem class]] ||
-               [self.item isKindOfClass:[ZJSettingSwitchItem class]]) {
+    } else {
         if (self.item.subTitle && self.item.detailTitle) {
             self.subTitleLabel.text = self.item.detailTitle;
             self.detailTextLabel.text = self.item.subTitle;
@@ -240,7 +236,23 @@
         
         if ([self.item isKindOfClass:[ZJSettingLabelItem class]]) {
             self.accessoryType = UITableViewCellAccessoryNone;
-            self.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            ZJSettingLabelItem *labelItem = (ZJSettingLabelItem *)self.item;
+            if (labelItem.isCenterModel) {
+                [self.subTitleLabel removeFromSuperview];
+                self.textLabel.text = nil;
+                self.detailTextLabel.text = nil;
+                self.imageView.image = nil;
+                
+                self.item.subTitle = nil;
+                if (labelItem.titleColor) self.subTitleLabel.textColor = labelItem.titleColor;
+                if (labelItem.titleFont) self.subTitleLabel.font = labelItem.titleFont;
+                self.subTitleLabel.textAlignment = NSTextAlignmentCenter;
+                self.subTitleLabel.text = self.item.title.localized;
+                [self.contentView addSubview:self.subTitleLabel];
+            } else {
+                self.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
         } else if ([self.item isKindOfClass:[ZJSettingSwitchItem class]]) {
             ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
             self.accessoryView = self.switchBtn;
@@ -250,20 +262,6 @@
         } else {
             self.accessoryView = self.arrowImgView;
         }
-    } else if ([self.item isKindOfClass:[ZJSettingCenterLableItem class]]) {
-        self.textLabel.text = @"";
-        self.detailTextLabel.text = @"";
-        self.imageView.image = nil;
-        [self.subTitleLabel removeFromSuperview];
-        self.accessoryType = UITableViewCellAccessoryNone;
-        
-        ZJSettingCenterLableItem *itemT = (ZJSettingCenterLableItem *)self.item;
-        if (itemT.titleColor) self.subTitleLabel.textColor = itemT.titleColor;
-        if (itemT.titleFont) self.subTitleLabel.font = itemT.titleFont;
-
-        self.subTitleLabel.textAlignment = NSTextAlignmentCenter;
-        self.subTitleLabel.text = self.item.title.localized;
-        [self.contentView addSubview:self.subTitleLabel];
     }
 }
 

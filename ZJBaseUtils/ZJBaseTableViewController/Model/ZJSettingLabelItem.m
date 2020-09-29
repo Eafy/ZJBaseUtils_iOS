@@ -7,7 +7,17 @@
 //
 
 #import "ZJSettingLabelItem.h"
+#import "UIColor+ZJExt.h"
 
 @implementation ZJSettingLabelItem
+
+- (void)setIsCenterModel:(BOOL)isCenterModel
+{
+    _isCenterModel = isCenterModel;
+    if (_isCenterModel) {
+        _titleColor = ZJColorFromRGB(0xF02359);
+        _titleFont = [UIFont boldSystemFontOfSize:16.0f];
+    }
+}
 
 @end
