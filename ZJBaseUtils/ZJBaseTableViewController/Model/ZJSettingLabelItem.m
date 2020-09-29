@@ -11,6 +11,12 @@
 
 @implementation ZJSettingLabelItem
 
+- (ZJSettingItemType)type
+{
+    return ZJSettingItemTypeLabel;
+}
+
+
 - (void)setIsCenterModel:(BOOL)isCenterModel
 {
     _isCenterModel = isCenterModel;

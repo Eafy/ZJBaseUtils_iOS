@@ -8,6 +8,8 @@
 
 #import "ZJSettingItem.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ZJSettingLabelItem : ZJSettingItem
 
 /// 是否是中心模式
@@ -18,3 +20,5 @@
 @property (nonatomic,strong) UIFont *titleFont;
 
 @end
+
+NS_ASSUME_NONNULL_END

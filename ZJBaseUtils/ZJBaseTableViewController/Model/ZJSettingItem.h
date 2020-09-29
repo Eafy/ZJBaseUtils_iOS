@@ -8,7 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/// Cell的item类型
+typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
+    ZJSettingItemTypeNone = 0,      //不识别
+    ZJSettingItemTypeArrow,         //跳转类型
+    ZJSettingItemTypeLabel,         //标签类型
+    ZJSettingItemTypeSwitch,        //开关类型
+    ZJSettingItemTypeTextFidld,     //文本类型
+    
+    ZJSettingItemTypeCustomView,    //自定义类型
+};
+
 @interface ZJSettingItem : NSObject
+
+/// item类型(设置无效)
+@property (nonatomic,assign) ZJSettingItemType type;
 
 /// 标识
 @property (nonatomic,assign) NSInteger tag;
@@ -45,3 +61,5 @@
 - (instancetype _Nonnull)initWithIcon:(NSString *_Nullable)icon title:(NSString *_Nullable)title destClass:(Class _Nullable )destVc;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -9,22 +9,32 @@
 
 @implementation ZJSettingSwitchItem
 
-- (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title
+- (ZJSettingItemType)type
 {
-    if (self = [super initWithIcon:icon title:title]) {
-        _switchBtnEnable = YES;
-    }
-    
-    return self;
+    return ZJSettingItemTypeSwitch;
 }
 
-- (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title destClass:(Class)destVc
+- (void)setSwitchBtnValue:(BOOL)switchBtnValue
 {
-    if (self = [super initWithIcon:icon title:title destClass:destVc]) {
-        _switchBtnEnable = YES;
+    _switchBtnValue = switchBtnValue;
+    self.switchBtn.on = switchBtnValue;
+}
+
+- (void)setSwitchBtnEnable:(BOOL)switchBtnEnable
+{
+    _switchBtnEnable = switchBtnEnable;
+    self.switchBtn.enabled = switchBtnEnable;
+}
+
+#pragma mark -
+
+- (UISwitch *)switchBtn
+{
+    if (!_switchBtn) {
+        _switchBtn = [[UISwitch alloc] init];
     }
     
-    return self;
+    return _switchBtn;
 }
 
 @end

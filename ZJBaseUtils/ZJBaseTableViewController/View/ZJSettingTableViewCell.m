@@ -22,7 +22,6 @@
 @property (nonatomic,strong) ZJBaseTableViewConfig *tableViewConfig;
 
 @property (nonatomic, strong) UIImageView *arrowImgView;
-@property (nonatomic, strong) UISwitch *switchBtn;
 @property (nonatomic, strong) UILabel *subTitleLabel;
 @property (nonatomic, strong) UIImageView *titleDetailImgView;
 
@@ -88,9 +87,20 @@
     if (self.item.subTitle) {
         if (self.tableViewConfig.cellSubTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
         if (self.tableViewConfig.cellSubTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellSubTitleFont];
+        if (_subTitleLabel) {
+            if (self.tableViewConfig.cellDetailTitleColor) [_subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
+            if (self.tableViewConfig.cellDetailTitleFont) [_subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
+        }
     } else {
         if (self.tableViewConfig.cellDetailTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
         if (self.tableViewConfig.cellDetailTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellDetailTitleFont];
+    }
+    
+    if (self.item.type == ZJSettingItemTypeSwitch) {
+        ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
+        if (self.tableViewConfig.switchBgColor) itemT.switchBtn.backgroundColor = self.tableViewConfig.switchBgColor;
+        if (self.tableViewConfig.switchOnTintColor) itemT.switchBtn.onTintColor = self.tableViewConfig.switchOnTintColor;
+        if (self.tableViewConfig.switchThumbTintColor) itemT.switchBtn.thumbTintColor = self.tableViewConfig.switchThumbTintColor;
     }
 }
 
@@ -150,11 +160,6 @@
         }
     }
     
-    if (self.item.subTitle) {
-        if (self.tableViewConfig.cellDetailTitleColor) [_subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
-        if (self.tableViewConfig.cellDetailTitleFont) [_subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
-    }
-    
     return _subTitleLabel;
 }
 
@@ -177,15 +182,6 @@
     }
     
     return _arrowImgView;
-}
-
-- (UISwitch *)switchBtn
-{
-    if (_switchBtn == nil) {
-        _switchBtn = [[UISwitch alloc] init];
-        [_switchBtn addTarget:self action:@selector(switchBtnChange:) forControlEvents:UIControlEventValueChanged];
-    }
-    return _switchBtn;
 }
 
 - (UIImageView *)titleDetailImgView
@@ -218,7 +214,7 @@
         self.imageView.image = [UIImage imageNamed:_item.icon];
     }
     
-    if ([self.item isKindOfClass:[ZJSettingCustomViewItem class]]) {
+    if (self.item.type == ZJSettingItemTypeCustomView) {
         self.imageView.image = nil;
         self.textLabel.text = nil;
         if (!self.customView.superview) {
@@ -234,7 +230,7 @@
             self.detailTextLabel.text = self.item.detailTitle;
         }
         
-        if ([self.item isKindOfClass:[ZJSettingLabelItem class]]) {
+        if (self.item.type == ZJSettingItemTypeLabel) {
             self.accessoryType = UITableViewCellAccessoryNone;
             
             ZJSettingLabelItem *labelItem = (ZJSettingLabelItem *)self.item;
@@ -253,12 +249,11 @@
             } else {
                 self.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-        } else if ([self.item isKindOfClass:[ZJSettingSwitchItem class]]) {
-            ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
-            self.accessoryView = self.switchBtn;
-            self.switchBtn.on = itemT.switchBtnValue;
-            self.switchBtn.enabled = itemT.switchBtnEnable;
+        } else if (self.item.type == ZJSettingItemTypeSwitch) {
             self.selectionStyle = UITableViewCellSelectionStyleNone;
+            ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
+            self.accessoryView = itemT.switchBtn;
+            [itemT.switchBtn addTarget:self action:@selector(switchBtnChange:) forControlEvents:UIControlEventValueChanged];
         } else {
             self.accessoryView = self.arrowImgView;
         }

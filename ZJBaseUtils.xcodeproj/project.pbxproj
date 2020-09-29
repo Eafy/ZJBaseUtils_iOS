@@ -315,14 +315,14 @@
 				0C50B872251E4F0C0032CB2F /* ZJSettingItem.m */,
 				0C50B86B251E4F0C0032CB2F /* ZJSettingArrowItem.h */,
 				0C50B873251E4F0C0032CB2F /* ZJSettingArrowItem.m */,
-				0C50B868251E4F0C0032CB2F /* ZJSettingSwitchItem.h */,
-				0C50B86F251E4F0C0032CB2F /* ZJSettingSwitchItem.m */,
 				0C50B871251E4F0C0032CB2F /* ZJSettingLabelItem.h */,
 				0C50B869251E4F0C0032CB2F /* ZJSettingLabelItem.m */,
-				0C50B86E251E4F0C0032CB2F /* ZJSettingCustomViewItem.h */,
-				0C50B875251E4F0C0032CB2F /* ZJSettingCustomViewItem.m */,
+				0C50B868251E4F0C0032CB2F /* ZJSettingSwitchItem.h */,
+				0C50B86F251E4F0C0032CB2F /* ZJSettingSwitchItem.m */,
 				0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */,
 				0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */,
+				0C50B86E251E4F0C0032CB2F /* ZJSettingCustomViewItem.h */,
+				0C50B875251E4F0C0032CB2F /* ZJSettingCustomViewItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

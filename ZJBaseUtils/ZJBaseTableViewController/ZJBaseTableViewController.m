@@ -418,7 +418,6 @@
 {
     ZJSettingItemGroup *group = self.datasArray[indexPath.section];
     ZJSettingItem *item = group.items[indexPath.row];
-    
     ZJSettingTableViewCell *cell = [ZJSettingTableViewCell cellWithTableView:tableView item:item config:self.tableViewConfig];
 
     return cell;

@@ -10,4 +10,9 @@
 
 @implementation ZJSettingCustomViewItem
 
+- (ZJSettingItemType)type
+{
+    return ZJSettingItemTypeCustomView;
+}
+
 @end

@@ -41,7 +41,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// Cell副标题字体
 @property (nonatomic,strong) UIFont *cellDetailTitleFont;
 
-
+/*UISwitch相关设置参数*/
+/// UISwitch选中颜色
+@property (nonatomic,strong) UIColor *switchOnTintColor;
+/// UISwitch按钮颜色
+@property (nonatomic,strong) UIColor *switchThumbTintColor;
+/// UISwitch背景颜色
+@property (nonatomic,strong) UIColor *switchBgColor;
 
 @end
 

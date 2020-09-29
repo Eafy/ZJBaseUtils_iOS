@@ -10,4 +10,9 @@
 
 @implementation ZJSettingArrowItem
 
+- (ZJSettingItemType)type
+{
+    return ZJSettingItemTypeArrow;
+}
+
 @end

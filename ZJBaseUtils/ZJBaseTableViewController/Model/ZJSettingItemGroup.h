@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ZJSettingItem.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ZJSettingItemGroup : NSMutableArray
 
 /// 标识
@@ -21,3 +23,5 @@
 @property (nonatomic,strong) NSArray<ZJSettingItem *> *items;
 
 @end
+
+NS_ASSUME_NONNULL_END
