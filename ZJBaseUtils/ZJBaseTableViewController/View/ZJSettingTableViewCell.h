@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class ZJSettingItem;
-@class ZJBaseTableViewConfig;
+#import "ZJSettingItemGroup.h"
+#import "ZJSettingItem.h"
+#import "ZJSettingArrowItem.h"
+#import "ZJSettingSwitchItem.h"
+#import "ZJSettingLabelItem.h"
+#import "ZJSettingCenterLableItem.h"
+#import "ZJSettingCustomViewItem.h"
+#import "ZJSettingTextFieldItem.h"
+#import "ZJBaseTableViewConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

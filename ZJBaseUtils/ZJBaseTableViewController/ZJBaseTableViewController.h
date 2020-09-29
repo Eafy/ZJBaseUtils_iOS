@@ -8,13 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJSettingTableViewCell.h"
-#import "ZJSettingSwitchItem.h"
-#import "ZJSettingArrowItem.h"
-#import "ZJSettingItemGroup.h"
-#import "ZJSettingLabelItem.h"
-#import "ZJSettingCenterLableItem.h"
-#import "ZJSettingCustomViewItem.h"
-#import "ZJBaseTableViewConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

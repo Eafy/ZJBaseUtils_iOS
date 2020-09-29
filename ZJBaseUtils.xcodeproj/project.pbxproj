@@ -101,6 +101,8 @@
 		0CCF75DB24EC107400794878 /* ZJSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75D924EC107400794878 /* ZJSystem.m */; };
 		0CCF75DF24EC125900794878 /* ZJScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF75DD24EC125900794878 /* ZJScreen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CCF75E024EC125900794878 /* ZJScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75DE24EC125900794878 /* ZJScreen.m */; };
+		0CFBF56025230CFA00D55386 /* ZJSettingTextFieldItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CFBF56125230CFA00D55386 /* ZJSettingTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +213,8 @@
 		0CCF75D924EC107400794878 /* ZJSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJSystem.m; sourceTree = "<group>"; };
 		0CCF75DD24EC125900794878 /* ZJScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJScreen.h; sourceTree = "<group>"; };
 		0CCF75DE24EC125900794878 /* ZJScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJScreen.m; sourceTree = "<group>"; };
+		0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSettingTextFieldItem.h; sourceTree = "<group>"; };
+		0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSettingTextFieldItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +327,8 @@
 				0C50B870251E4F0C0032CB2F /* ZJSettingCenterLableItem.m */,
 				0C50B86E251E4F0C0032CB2F /* ZJSettingCustomViewItem.h */,
 				0C50B875251E4F0C0032CB2F /* ZJSettingCustomViewItem.m */,
+				0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */,
+				0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CFBF56025230CFA00D55386 /* ZJSettingTextFieldItem.h in Headers */,
 				0CA0211A251F76D200A9F216 /* ZJModel.h in Headers */,
 				0C50B913251EF53A0032CB2F /* ZJThread.h in Headers */,
 				0C50B8B0251E516A0032CB2F /* UIImageView+ZJExt.h in Headers */,
@@ -722,6 +729,7 @@
 				0CCF75A024E8EA1700794878 /* NSData+ZJRSA.m in Sources */,
 				0CCF759C24E8E8C000794878 /* NSString+ZJRSA.m in Sources */,
 				0C50B88B251E4F0C0032CB2F /* ZJSettingArrowItem.m in Sources */,
+				0CFBF56125230CFA00D55386 /* ZJSettingTextFieldItem.m in Sources */,
 				0CCF75D724EC0DAD00794878 /* UIViewController+ZJExt.m in Sources */,
 				0C50B8AF251E516A0032CB2F /* UIImageView+ZJExt.m in Sources */,
 				0CCF75C924EC03BB00794878 /* UIView+ZJExt.m in Sources */,

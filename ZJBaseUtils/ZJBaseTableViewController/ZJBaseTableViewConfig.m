@@ -18,9 +18,9 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        _cellTitleColor = ZJColor(48, 48, 48);
-        _cellSubTitleColor = ZJColor(130, 130, 130);
-        _cellDetailTitleColor = ZJColor(130, 130, 130);
+         _cellTitleColor = ZJColorFromHex(@"#181E28");
+        _cellSubTitleColor = ZJColorFromHex(@"#8690A9");
+        _cellDetailTitleColor = ZJColorFromHex(@"#5A6482");
         
         _cellTitleFont = [UIFont systemFontOfSize:16.0f];
         _cellSubTitleFont = [UIFont systemFontOfSize:12.0f];

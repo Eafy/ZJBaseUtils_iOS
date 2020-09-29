@@ -8,12 +8,6 @@
 
 #import "ZJSettingTableViewCell.h"
 #import "ZJBaseTableViewConfig+ZJExt.h"
-#import "ZJSettingItem.h"
-#import "ZJSettingArrowItem.h"
-#import "ZJSettingSwitchItem.h"
-#import "ZJSettingLabelItem.h"
-#import "ZJSettingCenterLableItem.h"
-#import "ZJSettingCustomViewItem.h"
 #import "UIColor+ZJExt.h"
 #import "ZJSystem.h"
 #import "ZJScreen.h"
@@ -121,8 +115,8 @@
         }
         self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
         self.subTitleLabel.zj_width = self.contentView.zj_width - self.textLabel.zj_right - 10.0f;
-        if (self.accessoryView) {
-            self.subTitleLabel.zj_right = self.accessoryView.zj_left - 5.0f;
+        if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator || self.accessoryView) {
+            self.subTitleLabel.zj_right = (self.accessoryView ? self.accessoryView.zj_left : self.contentView.zj_right) - 5.0f;
         } else {
             self.subTitleLabel.zj_right = self.contentView.zj_right - 15.0f;
         }
@@ -146,10 +140,15 @@
 - (UILabel *)subTitleLabel
 {
     if (!_subTitleLabel) {
-        _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.zj_height)];
-        _subTitleLabel.backgroundColor = [UIColor clearColor];
-        _subTitleLabel.textAlignment = NSTextAlignmentRight;
-        _subTitleLabel.numberOfLines = 0;
+        if ([self.item isKindOfClass:[ZJSettingTextFieldItem class]]) {
+            _subTitleLabel = (UILabel *)((ZJSettingTextFieldItem *)self.item).detailTextField;
+            _subTitleLabel.zj_height = self.zj_height;
+        } else {
+            _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.zj_height)];
+            _subTitleLabel.backgroundColor = [UIColor clearColor];
+            _subTitleLabel.textAlignment = NSTextAlignmentRight;
+            _subTitleLabel.numberOfLines = 0;
+        }
     }
     
     if (self.item.subTitle &&
