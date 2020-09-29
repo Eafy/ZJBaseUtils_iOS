@@ -118,11 +118,19 @@
         }
         
         self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
-        self.subTitleLabel.zj_width = self.contentView.zj_width - self.textLabel.zj_right - 10.0f;
+        CGFloat preRight = self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right;
+        self.subTitleLabel.zj_width = self.contentView.zj_width - preRight - 10.0f;
         if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator || self.accessoryView) {
             self.subTitleLabel.zj_right = (self.accessoryView ? self.accessoryView.zj_left : self.contentView.zj_right) - 5.0f;
         } else {
             self.subTitleLabel.zj_right = self.contentView.zj_right - 15.0f;
+            if (self.item.type == ZJSettingItemTypeTextFidld) {
+                CGFloat excessWidth = self.subTitleLabel.zj_left - self.contentView.zj_width/2.0;
+                if (excessWidth < 0) {
+                    self.subTitleLabel.zj_left -= excessWidth;
+                    self.subTitleLabel.zj_width += excessWidth;
+                }
+            }
         }
     } else {
         self.detailTextLabel.zj_right = self.contentView.zj_right - 5.0f;
@@ -152,6 +160,8 @@
         if ([self.item isKindOfClass:[ZJSettingTextFieldItem class]]) {
             _subTitleLabel = (UILabel *)((ZJSettingTextFieldItem *)self.item).detailTextField;
             _subTitleLabel.zj_height = self.zj_height;
+            self.selectionStyle = UITableViewCellSelectionStyleNone;
+            self.accessoryType = UITableViewCellAccessoryNone;
         } else {
             _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.zj_height)];
             _subTitleLabel.backgroundColor = [UIColor clearColor];
@@ -230,7 +240,9 @@
             self.detailTextLabel.text = self.item.detailTitle;
         }
         
-        if (self.item.type == ZJSettingItemTypeLabel) {
+        if (self.item.type == ZJSettingItemTypeArrow) {
+           self.accessoryView = self.arrowImgView;
+        } else if (self.item.type == ZJSettingItemTypeLabel) {
             self.accessoryType = UITableViewCellAccessoryNone;
             
             ZJSettingLabelItem *labelItem = (ZJSettingLabelItem *)self.item;
@@ -254,8 +266,6 @@
             ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
             self.accessoryView = itemT.switchBtn;
             [itemT.switchBtn addTarget:self action:@selector(switchBtnChange:) forControlEvents:UIControlEventValueChanged];
-        } else {
-            self.accessoryView = self.arrowImgView;
         }
     }
 }
