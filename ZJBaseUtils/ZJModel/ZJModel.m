@@ -16,7 +16,6 @@
 {
     unsigned int count = 0;
     objc_property_t *properties = class_copyPropertyList([self class], &count);
-    Ivar *ivars = class_copyIvarList([self class], nil);
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     for (int i = 0; i < count; i++) {

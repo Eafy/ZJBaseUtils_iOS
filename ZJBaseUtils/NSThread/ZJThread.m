@@ -21,15 +21,19 @@
 
 - (void)start
 {
-    self.isRunning = YES;
-    [super start];
+    if (!self.isRunning) {
+        self.isRunning = YES;
+        [super start];
+    }
 }
 
 - (void)cancel
 {
-    self.isRunning = NO;
-    [self wakeup];
-    [super cancel];
+    if (self.isRunning) {
+        self.isRunning = NO;
+        [self wakeup];
+        [super cancel];
+    }
 }
 
 #pragma mark -
