@@ -27,7 +27,7 @@
 
 //缓存数据
 @property (nonatomic, copy) NSString *arrowIcon;
-@property (nonatomic, copy) NSString *titleDetailIcon;      //缓存Detail图片名称
+@property (nonatomic, copy) NSString *titleHintIcon;      //缓存Detail图片名称
 
 @end
 
@@ -38,11 +38,13 @@
     static NSString *identifier = @"kZJBaseTableViewControllerCellIdentifier";
     ZJSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell || ![cell.item isKindOfClass:[item class]]) {
-        if ((item.subTitle && item.detailTitle)) {
+        if ((item.subTitle)) {
             cell = [[ZJSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
         } else {
             cell = [[ZJSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.item = item;
         cell.tableViewConfig = config;
         cell.tag = item.tag;
@@ -85,11 +87,14 @@
     if (self.tableViewConfig.cellTitleFont) [self.textLabel setFont:self.tableViewConfig.cellTitleFont];
     
     if (self.item.subTitle) {
-        if (self.tableViewConfig.cellSubTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
-        if (self.tableViewConfig.cellSubTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellSubTitleFont];
-        if (_subTitleLabel) {
-            if (self.tableViewConfig.cellDetailTitleColor) [_subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
-            if (self.tableViewConfig.cellDetailTitleFont) [_subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
+        if (self.item.detailTitle) {
+            if (self.tableViewConfig.cellSubTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
+            if (self.tableViewConfig.cellSubTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellSubTitleFont];
+            if (self.tableViewConfig.cellDetailTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
+            if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
+        } else {
+            if (self.tableViewConfig.cellSubTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
+            if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellSubTitleFont];
         }
     } else {
         if (self.tableViewConfig.cellDetailTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
@@ -111,26 +116,29 @@
     if (_subTitleLabel) {   //有副标题
         [self.textLabel sizeToFit];
         [self.detailTextLabel sizeToFit];
-        CGFloat fontHeight = self.textLabel.font.lineHeight - self.detailTextLabel.font.lineHeight;
+        CGFloat fontHeight = self.textLabel.font.lineHeight - (self.item.detailTitle ? self.detailTextLabel.font.lineHeight : self.subTitleLabel.font.lineHeight);
         if (fontHeight > 0) {   //微调textLabel、detailTextLabel在垂直方向的位置
-            self.textLabel.zj_bottom += fontHeight/2.0;
-            self.detailTextLabel.zj_bottom += fontHeight/2.0;
+            self.textLabel.zj_bottom = self.contentView.zj_height/2.0;
+            self.detailTextLabel.zj_top = self.textLabel.zj_bottom + fontHeight;
+            self.subTitleLabel.zj_top = self.detailTextLabel.zj_top;
         }
         
-        self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
-        CGFloat preRight = self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right;
-        self.subTitleLabel.zj_width = self.contentView.zj_width - preRight - 10.0f;
-        if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator || self.accessoryView) {
-            self.subTitleLabel.zj_right = (self.accessoryView ? self.accessoryView.zj_left : self.contentView.zj_right) - 5.0f;
-        } else {
-            self.subTitleLabel.zj_right = self.contentView.zj_right - 15.0f;
-            if (self.item.type == ZJSettingItemTypeTextFidld) {
-                CGFloat excessWidth = self.subTitleLabel.zj_left - self.contentView.zj_width/2.0;
-                if (excessWidth < 0) {
-                    self.subTitleLabel.zj_left -= excessWidth;
-                    self.subTitleLabel.zj_width += excessWidth;
-                }
+        if (self.item.detailTitle) {    //有详细
+            self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
+            CGFloat preRight = (self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right) + 5.0f;
+            if (self.item.type == ZJSettingItemTypeTextFidld && preRight < self.contentView.zj_width/2.0) {     //防止TextFidld太宽，影响点击区域
+                preRight = self.contentView.zj_width/2.0;
             }
+            self.subTitleLabel.zj_left = preRight;
+            if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator || self.accessoryView) {
+                self.subTitleLabel.zj_width = (self.accessoryView ? self.accessoryView.zj_left : self.contentView.zj_right) - preRight - 5.0f;
+            } else {
+                self.subTitleLabel.zj_width = self.contentView.zj_right - preRight - 15.0f;
+            }
+        } else {
+            self.subTitleLabel.zj_left = self.textLabel.zj_left;
+            self.subTitleLabel.textAlignment = NSTextAlignmentLeft;
+            [self.subTitleLabel sizeToFit];
         }
     } else {
         self.detailTextLabel.zj_right = self.contentView.zj_right - 5.0f;
@@ -145,11 +153,16 @@
 
 - (void)dealloc
 {
-    _item = nil;
-    if (_customView) {
-        [self.customView removeFromSuperview];
-        _customView = nil;
+    if (_item && self.item.accessoryView) {
+        [self.item.accessoryView removeFromSuperview];
+        self.item.accessoryView = nil;
     }
+    if (_item && self.item.customView) {
+        [self.item.customView removeFromSuperview];
+        self.item.customView = nil;
+    }
+    
+    _item = nil;
 }
 
 #pragma mark - View懒加载
@@ -175,7 +188,9 @@
 
 - (UIImageView *)arrowImgView
 {
-    if (self.item.arrowIcon && ![self.item.arrowIcon zj_isEmpty]) {
+    if (self.item.accessoryView) {
+        return (UIImageView *)self.item.accessoryView;
+    } else if (self.item.arrowIcon && ![self.item.arrowIcon zj_isEmpty]) {
         if (![self.item.arrowIcon isEqualToString:self.arrowIcon]) {
             if (_arrowImgView) [_arrowImgView removeFromSuperview];
             UIImage *arrowImg = [UIImage imageNamed:self.item.arrowIcon];
@@ -190,21 +205,22 @@
         }
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    self.selectionStyle = UITableViewCellSelectionStyleDefault;
     
     return _arrowImgView;
 }
 
 - (UIImageView *)titleDetailImgView
 {
-    if (self.item.titleDetailIcon && ![self.item.titleDetailIcon zj_isEmpty]) {
-        if (![self.item.titleDetailIcon isEqualToString:self.titleDetailIcon]) {
+    if (self.item.titleHintIcon && ![self.item.titleHintIcon zj_isEmpty]) {
+        if (![self.item.titleHintIcon isEqualToString:self.titleHintIcon]) {
             if (_titleDetailImgView) [_titleDetailImgView removeFromSuperview];
-            _titleDetailImgView = [UIImageView zj_imageWithName:self.item.titleDetailIcon center:CGPointMake(0, 0) scale:1.0];
-            self.titleDetailIcon = self.item.titleDetailIcon;
-            _titleDetailImgView.image = [UIImage imageNamed:self.item.titleDetailIcon];
+            _titleDetailImgView = [UIImageView zj_imageWithName:self.item.titleHintIcon center:CGPointMake(0, 0) scale:1.0];
+            self.titleHintIcon = self.item.titleHintIcon;
+            _titleDetailImgView.image = [UIImage imageNamed:self.item.titleHintIcon];
         }
     } else {
-        self.titleDetailIcon = nil;
+        self.titleHintIcon = nil;
         if (_titleDetailImgView) {
             [_titleDetailImgView removeFromSuperview];
             _titleDetailImgView = nil;
@@ -227,21 +243,23 @@
     if (self.item.type == ZJSettingItemTypeCustomView) {
         self.imageView.image = nil;
         self.textLabel.text = nil;
-        if (!self.customView.superview) {
-            [self.contentView addSubview:self.customView];
-        }
+        if (!self.item.customView.superview) [self.contentView addSubview:self.item.customView];
     } else {
-        if (self.item.subTitle && self.item.detailTitle) {
-            self.subTitleLabel.text = self.item.detailTitle;
-            self.detailTextLabel.text = self.item.subTitle;
-            [self.subTitleLabel removeFromSuperview];
-            [self.contentView addSubview:self.subTitleLabel];
+        if (self.item.subTitle) {
+            if (self.item.detailTitle) {
+                self.subTitleLabel.text = self.item.detailTitle;
+                self.detailTextLabel.text = self.item.subTitle;
+            } else {
+                self.subTitleLabel.text = self.item.subTitle;
+            }
+            if (!self.subTitleLabel.superview) [self.contentView addSubview:self.subTitleLabel];
         } else {
             self.detailTextLabel.text = self.item.detailTitle;
         }
         
         if (self.item.type == ZJSettingItemTypeArrow) {
-           self.accessoryView = self.arrowImgView;
+            self.accessoryView = self.arrowImgView;
+            [self addSubview:self.titleDetailImgView];
         } else if (self.item.type == ZJSettingItemTypeLabel) {
             self.accessoryType = UITableViewCellAccessoryNone;
             
