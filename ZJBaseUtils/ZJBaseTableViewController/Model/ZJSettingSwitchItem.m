@@ -58,7 +58,7 @@
 
 - (void)switchBtnChange:(UISwitch *)switchBtn
 {
-    if (self.switchBtnBlock) {
+    if (_switchBtnBlock) {
         self.switchBtnBlock(switchBtn);
     }
 }
