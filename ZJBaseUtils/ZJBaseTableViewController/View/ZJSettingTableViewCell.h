@@ -15,6 +15,7 @@
 #import "ZJSettingSwitchItem.h"
 #import "ZJSettingLabelItem.h"
 #import "ZJSettingTextFieldItem.h"
+#import "ZJSettingRadioItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,9 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 基础数据模型
 @property (nonatomic,strong,readonly) ZJSettingItem *item;
-/// 自定义视图
-@property (nonatomic,strong) UIView *customView;
 
+/// 获取一个模板类Cell视图示例
+/// @param tableView UITableView对象
+/// @param item ZJSettingItem数据模组
+/// @param config 全局颜色、字体等配置
 + (instancetype)cellWithTableView:(UITableView *)tableView item:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config;
 
 @end

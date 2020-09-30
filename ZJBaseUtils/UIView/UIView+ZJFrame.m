@@ -86,6 +86,14 @@
     self.center = CGPointMake(self.center.x, centerY);
 }
 
+- (CGPoint)zj_centerXY {
+    return self.center;
+}
+
+- (void)setZj_centerXY:(CGPoint)centerXY {
+    self.center = centerXY;
+}
+
 - (CGPoint)zj_origin {
     return self.frame.origin;
 }

@@ -7,12 +7,22 @@
 //
 
 #import "ZJSettingCustomViewItem.h"
+#import "ZJSettingTableViewCell.h"
 
 @implementation ZJSettingCustomViewItem
 
 - (ZJSettingItemType)type
 {
     return ZJSettingItemTypeCustomView;
+}
+
+#pragma mark - 重载差异化
+
+- (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
+{
+    cell.imageView.image = nil;
+    cell.textLabel.text = nil;
+    if (!self.customView.superview) [cell.contentView addSubview:self.customView];
 }
 
 @end

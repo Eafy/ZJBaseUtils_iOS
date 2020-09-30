@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否是中心模式
 @property (nonatomic,assign) BOOL isCenterModel;
 /// 中心主标题字体
-@property (nonatomic,strong) UIColor *titleColor;
+@property (nonatomic,strong) UIColor *centerTitleColor;
 /// 中心主标题字体
-@property (nonatomic,strong) UIFont *titleFont;
+@property (nonatomic,strong) UIFont *centerTitleFont;
 
 @end
 

@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 
-#import "ZJSettingTableViewCell.h"
+#import "ZJSettingTableViewCellExt.h"
 #import "ZJBaseTableViewConfig+ZJExt.h"
 #import "UIColor+ZJExt.h"
 #import "ZJSystem.h"
@@ -22,12 +22,11 @@
 @property (nonatomic,strong) ZJBaseTableViewConfig *tableViewConfig;
 
 @property (nonatomic, strong) UIImageView *arrowImgView;
-@property (nonatomic, strong) UILabel *subTitleLabel;
 @property (nonatomic, strong) UIImageView *titleDetailImgView;
 
 //缓存数据
 @property (nonatomic, copy) NSString *arrowIcon;
-@property (nonatomic, copy) NSString *titleDetailIcon;      //缓存Detail图片名称
+@property (nonatomic, copy) NSString *titleHintIcon;      //缓存Detail图片名称
 
 @end
 
@@ -35,22 +34,20 @@
 
 + (instancetype)cellWithTableView:(UITableView *)tableView item:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config;
 {
-    static NSString *identifier = @"kZJBaseTableViewControllerCellIdentifier";
+    NSString *identifier = [NSString stringWithFormat:@"kZJBaseTableViewCellIdentifier_%lu", (unsigned long)item.type];
     ZJSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell || ![cell.item isKindOfClass:[item class]]) {
-        if ((item.subTitle && item.detailTitle)) {
+    if (!cell) {
+        if (item.subTitle) {
             cell = [[ZJSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
         } else {
             cell = [[ZJSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
         }
-        cell.item = item;
-        cell.tableViewConfig = config;
-        cell.tag = item.tag;
-    } else {
-        for (UIView *subView in cell.contentView.subviews) {
-            [subView removeFromSuperview];
-        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    cell.item = item;
+    cell.tableViewConfig = config;
+    cell.tag = item.tag;
     
     return cell;
 }
@@ -70,6 +67,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    _item = nil;
+}
+
 - (void)setTableViewConfig:(ZJBaseTableViewConfig *)tableViewConfig
 {
     _tableViewConfig = tableViewConfig;
@@ -83,54 +85,48 @@
     
     if (self.tableViewConfig.cellTitleColor) [self.textLabel setTextColor:self.tableViewConfig.cellTitleColor];
     if (self.tableViewConfig.cellTitleFont) [self.textLabel setFont:self.tableViewConfig.cellTitleFont];
+    if (self.tableViewConfig.cellDetailTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
+    if (self.tableViewConfig.cellDetailTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellDetailTitleFont];
+    if (self.tableViewConfig.cellSubTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
+    if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellSubTitleFont];
     
-    if (self.item.subTitle) {
+    if (self.item.subTitle && self.item.detailTitle) {
         if (self.tableViewConfig.cellSubTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
         if (self.tableViewConfig.cellSubTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellSubTitleFont];
-        if (_subTitleLabel) {
-            if (self.tableViewConfig.cellDetailTitleColor) [_subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
-            if (self.tableViewConfig.cellDetailTitleFont) [_subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
-        }
-    } else {
-        if (self.tableViewConfig.cellDetailTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
-        if (self.tableViewConfig.cellDetailTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellDetailTitleFont];
+        if (self.tableViewConfig.cellDetailTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
+        if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
     }
     
-    if (self.item.type == ZJSettingItemTypeSwitch) {
-        ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
-        if (self.tableViewConfig.switchBgColor) itemT.switchBtn.backgroundColor = self.tableViewConfig.switchBgColor;
-        if (self.tableViewConfig.switchOnTintColor) itemT.switchBtn.onTintColor = self.tableViewConfig.switchOnTintColor;
-        if (self.tableViewConfig.switchThumbTintColor) itemT.switchBtn.thumbTintColor = self.tableViewConfig.switchThumbTintColor;
-    }
+    [self.item updateDiffCinfigWithCell:self config:tableViewConfig];
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    if (_subTitleLabel) {   //有副标题
+        
+    if (self.item.subTitle) {   //有副标题
         [self.textLabel sizeToFit];
         [self.detailTextLabel sizeToFit];
-        CGFloat fontHeight = self.textLabel.font.lineHeight - self.detailTextLabel.font.lineHeight;
+        CGFloat fontHeight = self.textLabel.font.lineHeight - (self.item.detailTitle ? self.detailTextLabel.font.lineHeight : self.subTitleLabel.font.lineHeight);
         if (fontHeight > 0) {   //微调textLabel、detailTextLabel在垂直方向的位置
-            self.textLabel.zj_bottom += fontHeight/2.0;
-            self.detailTextLabel.zj_bottom += fontHeight/2.0;
+            self.textLabel.zj_bottom = self.contentView.zj_height/2.0;
+            self.detailTextLabel.zj_top = self.textLabel.zj_bottom + fontHeight;
+            self.subTitleLabel.zj_top = self.detailTextLabel.zj_top;
         }
         
-        self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
-        CGFloat preRight = self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right;
-        self.subTitleLabel.zj_width = self.contentView.zj_width - preRight - 10.0f;
-        if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator || self.accessoryView) {
-            self.subTitleLabel.zj_right = (self.accessoryView ? self.accessoryView.zj_left : self.contentView.zj_right) - 5.0f;
-        } else {
-            self.subTitleLabel.zj_right = self.contentView.zj_right - 15.0f;
-            if (self.item.type == ZJSettingItemTypeTextFidld) {
-                CGFloat excessWidth = self.subTitleLabel.zj_left - self.contentView.zj_width/2.0;
-                if (excessWidth < 0) {
-                    self.subTitleLabel.zj_left -= excessWidth;
-                    self.subTitleLabel.zj_width += excessWidth;
-                }
+        if (self.item.detailTitle) {    //有详细
+            self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
+            CGFloat preRight = (self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right) + 5.0f;
+            self.subTitleLabel.zj_left = preRight;
+            if (self.accessoryView) {
+                self.subTitleLabel.zj_width = self.accessoryView.zj_left - preRight - 5.0f;
+            } else {
+                self.subTitleLabel.zj_width = self.contentView.zj_right - preRight - 15.0f;
             }
+        } else {
+            self.subTitleLabel.zj_left = self.textLabel.zj_left;
+            self.subTitleLabel.textAlignment = NSTextAlignmentLeft;
+            [self.subTitleLabel sizeToFit];
         }
     } else {
         self.detailTextLabel.zj_right = self.contentView.zj_right - 5.0f;
@@ -141,15 +137,8 @@
         self.titleDetailImgView.zj_left = self.textLabel.zj_right + 5.0f;
         self.titleDetailImgView.zj_centerY = self.textLabel.zj_centerY;
     }
-}
-
-- (void)dealloc
-{
-    _item = nil;
-    if (_customView) {
-        [self.customView removeFromSuperview];
-        _customView = nil;
-    }
+    
+    [self.item layoutDiffSubviewWithCell:self];
 }
 
 #pragma mark - View懒加载
@@ -157,17 +146,11 @@
 - (UILabel *)subTitleLabel
 {
     if (!_subTitleLabel) {
-        if ([self.item isKindOfClass:[ZJSettingTextFieldItem class]]) {
-            _subTitleLabel = (UILabel *)((ZJSettingTextFieldItem *)self.item).detailTextField;
-            _subTitleLabel.zj_height = self.zj_height;
-            self.selectionStyle = UITableViewCellSelectionStyleNone;
-            self.accessoryType = UITableViewCellAccessoryNone;
-        } else {
-            _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.zj_height)];
-            _subTitleLabel.backgroundColor = [UIColor clearColor];
-            _subTitleLabel.textAlignment = NSTextAlignmentRight;
-            _subTitleLabel.numberOfLines = 0;
-        }
+        _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.zj_height)];
+        _subTitleLabel.backgroundColor = [UIColor clearColor];
+        _subTitleLabel.textAlignment = NSTextAlignmentRight;
+        _subTitleLabel.numberOfLines = 0;
+        [self.contentView addSubview:_subTitleLabel];
     }
     
     return _subTitleLabel;
@@ -175,20 +158,23 @@
 
 - (UIImageView *)arrowImgView
 {
-    if (self.item.arrowIcon && ![self.item.arrowIcon zj_isEmpty]) {
-        if (![self.item.arrowIcon isEqualToString:self.arrowIcon]) {
-            if (_arrowImgView) [_arrowImgView removeFromSuperview];
-            UIImage *arrowImg = [UIImage imageNamed:self.item.arrowIcon];
-            if (arrowImg) {
-                _arrowImgView = [[UIImageView alloc] initWithImage:arrowImg];
+    if (!_arrowImgView) {
+        if (self.item.accessoryView) {
+            _arrowImgView = (UIImageView *)self.item.accessoryView;
+        } else if (self.item.arrowIcon && ![self.item.arrowIcon zj_isEmpty]) {
+            if (![self.item.arrowIcon isEqualToString:self.arrowIcon]) {
+                if (_arrowImgView) [_arrowImgView removeFromSuperview];
+                UIImage *arrowImg = [UIImage imageNamed:self.item.arrowIcon];
+                if (arrowImg) {
+                    _arrowImgView = [[UIImageView alloc] initWithImage:arrowImg];
+                }
+            }
+        } else {
+            if (_arrowImgView) {
+                [_arrowImgView removeFromSuperview];
+                _arrowImgView = nil;
             }
         }
-    } else {
-        if (_arrowImgView) {
-            [_arrowImgView removeFromSuperview];
-            _arrowImgView = nil;
-        }
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     return _arrowImgView;
@@ -196,15 +182,15 @@
 
 - (UIImageView *)titleDetailImgView
 {
-    if (self.item.titleDetailIcon && ![self.item.titleDetailIcon zj_isEmpty]) {
-        if (![self.item.titleDetailIcon isEqualToString:self.titleDetailIcon]) {
+    if (self.item.titleHintIcon && ![self.item.titleHintIcon zj_isEmpty]) {
+        if (![self.item.titleHintIcon isEqualToString:self.titleHintIcon]) {
             if (_titleDetailImgView) [_titleDetailImgView removeFromSuperview];
-            _titleDetailImgView = [UIImageView zj_imageWithName:self.item.titleDetailIcon center:CGPointMake(0, 0) scale:1.0];
-            self.titleDetailIcon = self.item.titleDetailIcon;
-            _titleDetailImgView.image = [UIImage imageNamed:self.item.titleDetailIcon];
+            _titleDetailImgView = [UIImageView zj_imageWithName:self.item.titleHintIcon center:CGPointMake(0, 0) scale:1.0];
+            self.titleHintIcon = self.item.titleHintIcon;
+            _titleDetailImgView.image = [UIImage imageNamed:self.item.titleHintIcon];
         }
     } else {
-        self.titleDetailIcon = nil;
+        self.titleHintIcon = nil;
         if (_titleDetailImgView) {
             [_titleDetailImgView removeFromSuperview];
             _titleDetailImgView = nil;
@@ -221,63 +207,24 @@
     _item = item;
     self.textLabel.text = item.title.localized;
     if (self.item.icon && ![self.item.icon zj_isEmpty]) {
-        self.imageView.image = [UIImage imageNamed:_item.icon];
+        self.imageView.image = [UIImage imageNamed:self.item.icon];
     }
+    self.accessoryView = self.arrowImgView;
+    [self addSubview:self.titleDetailImgView];
     
-    if (self.item.type == ZJSettingItemTypeCustomView) {
-        self.imageView.image = nil;
-        self.textLabel.text = nil;
-        if (!self.customView.superview) {
-            [self.contentView addSubview:self.customView];
-        }
-    } else {
-        if (self.item.subTitle && self.item.detailTitle) {
+    if (self.item.subTitle) {
+        if (self.item.detailTitle) {
             self.subTitleLabel.text = self.item.detailTitle;
             self.detailTextLabel.text = self.item.subTitle;
-            [self.subTitleLabel removeFromSuperview];
-            [self.contentView addSubview:self.subTitleLabel];
         } else {
-            self.detailTextLabel.text = self.item.detailTitle;
+            self.subTitleLabel.text = self.item.subTitle;
         }
-        
-        if (self.item.type == ZJSettingItemTypeArrow) {
-           self.accessoryView = self.arrowImgView;
-        } else if (self.item.type == ZJSettingItemTypeLabel) {
-            self.accessoryType = UITableViewCellAccessoryNone;
-            
-            ZJSettingLabelItem *labelItem = (ZJSettingLabelItem *)self.item;
-            if (labelItem.isCenterModel) {
-                [self.subTitleLabel removeFromSuperview];
-                self.textLabel.text = nil;
-                self.detailTextLabel.text = nil;
-                self.imageView.image = nil;
-                
-                self.item.subTitle = nil;
-                if (labelItem.titleColor) self.subTitleLabel.textColor = labelItem.titleColor;
-                if (labelItem.titleFont) self.subTitleLabel.font = labelItem.titleFont;
-                self.subTitleLabel.textAlignment = NSTextAlignmentCenter;
-                self.subTitleLabel.text = self.item.title.localized;
-                [self.contentView addSubview:self.subTitleLabel];
-            } else {
-                self.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
-        } else if (self.item.type == ZJSettingItemTypeSwitch) {
-            self.selectionStyle = UITableViewCellSelectionStyleNone;
-            ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
-            self.accessoryView = itemT.switchBtn;
-            [itemT.switchBtn addTarget:self action:@selector(switchBtnChange:) forControlEvents:UIControlEventValueChanged];
-        }
+        if (!self.subTitleLabel.superview) [self.contentView addSubview:self.subTitleLabel];
+    } else {
+        self.detailTextLabel.text = self.item.detailTitle;
     }
-}
-
-#pragma mark - SwitchBtnAction
-
-- (void)switchBtnChange:(UISwitch *)switchBtn
-{
-    ZJSettingSwitchItem *itemT = (ZJSettingSwitchItem *)self.item;
-    if (itemT.switchBtnBlock) {
-        itemT.switchBtnBlock(switchBtn);
-    }
+    
+    [self.item updateDiffDataWithCell:self];
 }
 
 @end

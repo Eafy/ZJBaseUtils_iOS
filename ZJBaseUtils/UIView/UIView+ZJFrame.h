@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGFloat zj_bottom;
 @property (nonatomic) CGFloat zj_centerX;
 @property (nonatomic) CGFloat zj_centerY;
+@property (nonatomic) CGPoint zj_centerXY;
 @property (nonatomic) CGPoint zj_origin;
 @property (nonatomic) CGSize  zj_size;
 @property (readonly) CGPoint zj_bottomLeft;

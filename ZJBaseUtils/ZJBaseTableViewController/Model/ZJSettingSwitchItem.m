@@ -6,6 +6,7 @@
 //  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 #import "ZJSettingSwitchItem.h"
+#import "ZJBaseTableViewConfig+ZJExt.h"
 
 @implementation ZJSettingSwitchItem
 
@@ -26,15 +27,40 @@
     self.switchBtn.enabled = switchBtnEnable;
 }
 
-#pragma mark -
-
 - (UISwitch *)switchBtn
 {
     if (!_switchBtn) {
         _switchBtn = [[UISwitch alloc] init];
+        [_switchBtn addTarget:self action:@selector(switchBtnChange:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _switchBtn;
+}
+
+- (UIView *)accessoryView
+{
+    if (!super.accessoryView) {
+        super.accessoryView = self.switchBtn;
     }
     
-    return _switchBtn;
+    return super.accessoryView;
+}
+
+#pragma mark - 重载差异化
+
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config
+{
+    if (config.switchBgColor) self.switchBtn.backgroundColor = config.switchBgColor;
+    if (config.switchOnTintColor) self.switchBtn.onTintColor = config.switchOnTintColor;
+    if (config.switchThumbTintColor) self.switchBtn.thumbTintColor = config.switchThumbTintColor;
+}
+
+#pragma mark - SwitchBtnAction
+
+- (void)switchBtnChange:(UISwitch *)switchBtn
+{
+    if (_switchBtnBlock) {
+        self.switchBtnBlock(switchBtn);
+    }
 }
 
 @end

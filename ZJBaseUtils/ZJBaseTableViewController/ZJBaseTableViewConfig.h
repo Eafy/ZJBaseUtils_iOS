@@ -49,6 +49,22 @@ NS_ASSUME_NONNULL_BEGIN
 /// UISwitch背景颜色
 @property (nonatomic,strong) UIColor *switchBgColor;
 
+/*TextField相关设置参数*/
+/// TextField颜色
+@property (nonatomic,strong) UIColor *textFieldTitleColor;
+/// TextField字体
+@property (nonatomic,strong) UIFont *textFieldTitleFont;
+/// TextField提示颜色
+@property (nonatomic,strong) UIColor *textFieldHintColor;
+/// TextField提示字体
+@property (nonatomic,strong) UIFont *textFieldHintFont;
+
+/*RadioBtn相关设置参数*/
+/// RadioBtn颜色
+@property (nonatomic,strong) UIColor *radioBtnTitleColor;
+/// RadioBtn字体
+@property (nonatomic,strong) UIFont *radioBtnTitleFont;
+
 @end
 
 NS_ASSUME_NONNULL_END
