@@ -7,6 +7,8 @@
 //
 
 #import "ZJSettingItem.h"
+#import "ZJSettingTableViewCell.h"
+#import "ZJBaseTableViewConfig+ZJExt.h"
 
 @implementation ZJSettingItem
 
@@ -27,6 +29,17 @@
         _destVC = destVc;
     }
     return self;
+}
+
+#pragma mark -
+
+- (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell {
+}
+
+- (void)layoutDiffSubviewWithCell:(ZJSettingTableViewCell *)cell {
+}
+
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config {
 }
 
 @end

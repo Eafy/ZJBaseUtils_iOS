@@ -17,9 +17,13 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
     ZJSettingItemTypeLabel,         //标签类型
     ZJSettingItemTypeSwitch,        //开关类型
     ZJSettingItemTypeTextFidld,     //文本类型
-    
     ZJSettingItemTypeCustomView,    //自定义类型
+    
+    ZJSettingItemTypeRadio = ZJSettingItemTypeArrow,         //单选/复选类型
 };
+
+@class ZJSettingTableViewCell;
+@class ZJBaseTableViewConfig;
 
 @interface ZJSettingItem : NSObject
 
@@ -51,7 +55,6 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 @property (nonatomic,strong) UIView * _Nullable customView;
 
 #pragma mark - 传递数据区
-
 /// 需要传递的数据
 @property (nonatomic,strong) NSMutableDictionary * _Nullable dataDic;
 /// 需要传递的数据
@@ -72,8 +75,21 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 /// 初始化一个Item模组
 /// @param icon 主图片名称
 /// @param title 主标题
-/// @param destVc 点击的下一个控制器类，JMSettingItemTypeArrow类型才生效
+/// @param destVc 点击的下一个控制器类，ZJSettingItemTypeArrow类型才生效
 - (instancetype _Nonnull)initWithIcon:(NSString *_Nullable)icon title:(NSString *_Nullable)title destClass:(Class _Nullable )destVc;
+
+#pragma mark - 重载差异化
+
+/// 差异化更新数据（子item需要需要重写）
+- (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell;
+
+/// 差异化更新子视图/布局（子item需要需要重写）
+/// @param cell cell示例对象
+- (void)layoutDiffSubviewWithCell:(ZJSettingTableViewCell *)cell;
+
+/// 差异化更新配置数据（子item需要需要重写）
+/// @param config ZJBaseTableViewConfig示例对象
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config;
 
 @end
 

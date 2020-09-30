@@ -101,6 +101,7 @@
 		0CCF75E024EC125900794878 /* ZJScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75DE24EC125900794878 /* ZJScreen.m */; };
 		0CFBF56025230CFA00D55386 /* ZJSettingTextFieldItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CFBF56125230CFA00D55386 /* ZJSettingTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */; };
+		0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +212,7 @@
 		0CCF75DE24EC125900794878 /* ZJScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJScreen.m; sourceTree = "<group>"; };
 		0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSettingTextFieldItem.h; sourceTree = "<group>"; };
 		0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSettingTextFieldItem.m; sourceTree = "<group>"; };
+		0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSettingTableViewCellExt.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 		0C50B876251E4F0C0032CB2F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */,
 				0C50B877251E4F0C0032CB2F /* ZJSettingTableViewCell.h */,
 				0C50B878251E4F0C0032CB2F /* ZJSettingTableViewCell.m */,
 			);
@@ -542,6 +545,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */,
 				0CFBF56025230CFA00D55386 /* ZJSettingTextFieldItem.h in Headers */,
 				0CA0211A251F76D200A9F216 /* ZJModel.h in Headers */,
 				0C50B913251EF53A0032CB2F /* ZJThread.h in Headers */,

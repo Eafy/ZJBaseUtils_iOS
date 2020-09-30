@@ -7,12 +7,21 @@
 //
 
 #import "ZJSettingArrowItem.h"
+#import "ZJSettingTableViewCellExt.h"
 
 @implementation ZJSettingArrowItem
 
 - (ZJSettingItemType)type
 {
     return ZJSettingItemTypeArrow;
+}
+
+#pragma mark - 重载差异化
+
+- (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
+{
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
 }
 
 @end

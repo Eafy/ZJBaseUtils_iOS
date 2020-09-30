@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZJSettingItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class ZJSettingItem;
 
 @interface ZJSettingItemGroup : NSMutableArray
 

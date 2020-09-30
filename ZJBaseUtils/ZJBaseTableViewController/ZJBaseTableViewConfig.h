@@ -49,6 +49,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// UISwitch背景颜色
 @property (nonatomic,strong) UIColor *switchBgColor;
 
+/*TextField相关设置参数*/
+/// TextField颜色
+@property (nonatomic,strong) UIColor *textFieldTitleColor;
+/// TextField字体
+@property (nonatomic,strong) UIFont *textFieldTitleFont;
+/// TextField提示颜色
+@property (nonatomic,strong) UIColor *textFieldHintColor;
+/// TextField提示字体
+@property (nonatomic,strong) UIFont *textFieldHintFont;
+
 @end
 
 NS_ASSUME_NONNULL_END
