@@ -2,8 +2,8 @@
 //  ZJSettingRadioItem.m
 //  ZJSmartUtils
 //
-//  Created by 李治健 on 2020/9/29.
-//  Copyright © 2020 Jimi. All rights reserved.
+//  Created by eafy on 2020/9/29.
+//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
 //
 
 #import "ZJSettingRadioItem.h"
