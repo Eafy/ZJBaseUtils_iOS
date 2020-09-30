@@ -81,6 +81,7 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 #pragma mark - 重载差异化
 
 /// 差异化更新数据（子item需要需要重写）
+/// @param cell cell示例对象
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell;
 
 /// 差异化更新子视图/布局（子item需要需要重写）

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获取一个模板类Cell视图示例
 /// @param tableView UITableView对象
-/// @param item JMSettingItem数据模组
+/// @param item ZJSettingItem数据模组
 /// @param config 全局颜色、字体等配置
 + (instancetype)cellWithTableView:(UITableView *)tableView item:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config;
 

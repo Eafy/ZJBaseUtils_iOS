@@ -30,7 +30,6 @@
             propertyValue = [NSDictionary dictionaryWithDictionary:propertyValue];
         } else if ([propertyValue isKindOfClass:[NSArray class]]) {
             propertyValue = [NSArray arrayWithArray:propertyValue];
-//        } else if ([propertyValue isKindOfClass:[ZJModel class]]) {
         } else if ([[propertyValue class] respondsToSelector:@selector(initWithDic:)]) {
             propertyValue = [propertyValue toDictionary];
         }
