@@ -240,7 +240,7 @@
                                    );
         }
         if (status != 0) {
-            NSLog(@"SecKeyEncrypt fail. Error Code: %d", status);
+            NSLog(@"SecKeyEncrypt fail. Error Code: %d", (int)status);
             ret = nil;
             break;
         }else{
@@ -304,7 +304,7 @@
                                &outlen
                                );
         if (status != 0) {
-            NSLog(@"SecKeyEncrypt fail. Error Code: %d", status);
+            NSLog(@"SecKeyEncrypt fail. Error Code: %d", (int)status);
             ret = nil;
             break;
         }else{

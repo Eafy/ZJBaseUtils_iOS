@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 判断
 
 /// 判断字符串是否为空字符串
-- (BOOL)zj_isEmpty;
+/// @param str 需要判断的字符串
++ (BOOL)zj_isEmpty:(NSString *)str;
 
 ///  验证字符串是否为合法邮箱
 - (BOOL)zj_isValidEmail;
@@ -40,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 判断字符串是否含有Emoji表情
 - (BOOL)zj_isContainsEmoji;
+
 
 #pragma mark - 数据和字符串互转
 

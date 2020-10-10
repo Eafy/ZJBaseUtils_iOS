@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 转换为Json字符串
 - (NSString *)zj_toJsonString;
 
+/// 判断Key是否在字典中为空
+/// @param key key值
+- (id)zj_isValueWithKey:(NSString *)key;
+
 @end
 
 NS_ASSUME_NONNULL_END

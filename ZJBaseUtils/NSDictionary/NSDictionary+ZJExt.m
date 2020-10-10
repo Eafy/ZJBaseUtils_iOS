@@ -22,4 +22,16 @@
     return jsonString;
 }
 
+- (id)zj_isValueWithKey:(NSString *)key
+{
+    id obj = [self objectForKey:key];
+    if (obj) {
+        if (![obj isEqual:[NSNull class]]) {
+            return obj;
+        }
+    }
+    
+    return nil;
+}
+
 @end

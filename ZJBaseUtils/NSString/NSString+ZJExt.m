@@ -18,9 +18,9 @@
 
 #pragma mark -
 
-- (BOOL)zj_isEmpty
++ (BOOL)zj_isEmpty:(NSString *)str
 {
-    return [self isEqualToString:@""];
+    return !str || [str isEqualToString:@""];
 }
 
 - (BOOL)isValidateByRegex:(NSString *)regex

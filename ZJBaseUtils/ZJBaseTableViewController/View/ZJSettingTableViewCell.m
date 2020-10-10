@@ -161,7 +161,7 @@
     if (!_arrowImgView) {
         if (self.item.accessoryView) {
             _arrowImgView = (UIImageView *)self.item.accessoryView;
-        } else if (self.item.arrowIcon && ![self.item.arrowIcon zj_isEmpty]) {
+        } else if (![NSString zj_isEmpty:self.item.arrowIcon]) {
             if (![self.item.arrowIcon isEqualToString:self.arrowIcon]) {
                 if (_arrowImgView) [_arrowImgView removeFromSuperview];
                 UIImage *arrowImg = [UIImage imageNamed:self.item.arrowIcon];
@@ -182,7 +182,7 @@
 
 - (UIImageView *)titleDetailImgView
 {
-    if (self.item.titleHintIcon && ![self.item.titleHintIcon zj_isEmpty]) {
+    if (![NSString zj_isEmpty:self.item.titleHintIcon]) {
         if (![self.item.titleHintIcon isEqualToString:self.titleHintIcon]) {
             if (_titleDetailImgView) [_titleDetailImgView removeFromSuperview];
             _titleDetailImgView = [UIImageView zj_imageWithName:self.item.titleHintIcon center:CGPointMake(0, 0) scale:1.0];
@@ -206,7 +206,7 @@
 {
     _item = item;
     self.textLabel.text = item.title.localized;
-    if (self.item.icon && ![self.item.icon zj_isEmpty]) {
+    if (![NSString zj_isEmpty:self.item.icon]) {
         self.imageView.image = [UIImage imageNamed:self.item.icon];
     }
     self.accessoryView = self.arrowImgView;

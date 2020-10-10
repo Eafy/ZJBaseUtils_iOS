@@ -13,11 +13,11 @@ CGRect ZJScreenFrame() {
 }
 
 CGFloat ZJScreenHeight() {
-    return [ZJScreen height];
+    return [ZJScreen screenHeight];
 }
 
 CGFloat ZJScreenWidth() {
-    return [ZJScreen width];
+    return [ZJScreen screenWidth];
 }
 
 CGFloat ZJStatusBarHeight() {
@@ -115,12 +115,12 @@ singleton_m();
     return ZJScreen.shared.screenFrame;
 }
 
-+ (CGFloat)height {
-    return ZJScreen.shared.screenHeight;
++ (CGFloat)screenWidth {
+    return ZJScreen.shared.screenWidth;
 }
 
-+ (CGFloat)width {
-    return ZJScreen.shared.screenWidth;
++ (CGFloat)screenHeight {
+    return ZJScreen.shared.screenHeight;
 }
 
 + (CGFloat)statusBarHeight {

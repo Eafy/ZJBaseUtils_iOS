@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否正在休眠
 @property (readonly) BOOL zj_isSleep;
+/// 线程信号量
+@property (readonly) NSCondition *zj_condition;
 
 /// 休眠线程
 /// @param ti 休眠时间（秒）

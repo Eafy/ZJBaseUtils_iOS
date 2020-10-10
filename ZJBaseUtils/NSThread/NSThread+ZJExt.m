@@ -12,13 +12,6 @@
 static const void *kZJCustomConditionKey = &kZJCustomConditionKey;
 static const void *kZJCustomIsSleepKey = &kZJCustomIsSleepKey;
 
-@interface NSThread (ZJExt)
-
-/// 线程信号量
-@property (nonatomic, strong) NSCondition *zj_condition;
-
-@end
-
 @implementation NSThread (ZJExt)
 
 - (void)setZj_condition:(NSCondition *)condition

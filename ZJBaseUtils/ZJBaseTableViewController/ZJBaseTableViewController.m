@@ -478,7 +478,7 @@
             } else {
                 CGFloat titleHeight = [item.title zj_sizeWithFont:[UIFont systemFontOfSize:16.0f] maxSize:CGSizeMake(ZJScreenWidth()*0.75, rowHeight)].height;
                 CGFloat detailTitleHeight = 0;
-                if (!item.detailTitle.zj_isEmpty) {
+                if (![NSString zj_isEmpty:item.detailTitle]) {
                     detailTitleHeight = [item.detailTitle zj_sizeWithFont:[UIFont systemFontOfSize:12.0f] maxSize:CGSizeMake(ZJScreenWidth(), rowHeight)].height;
                 }
 
@@ -509,7 +509,7 @@
                 footerHeight = self.tableViewConfig.footerCacheHeight;
             } else {
                 ZJSettingItemGroup *group = self.datasArray[section];
-                if (group.footerTitle && !group.footerTitle.zj_isEmpty) {
+                if (![NSString zj_isEmpty:group.footerTitle]) {
                     CGFloat footerCacheHeight = [group.footerTitle zj_sizeWithFont:[UIFont systemFontOfSize:16.0f] maxSize:CGSizeMake(ZJScreenWidth()-40.0f, 100)].height;
                     if (footerCacheHeight > footerHeight) {
                         self.tableViewConfig.footerCacheHeight = footerHeight = footerCacheHeight;

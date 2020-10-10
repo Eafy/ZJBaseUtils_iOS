@@ -49,9 +49,9 @@ singleton_h();
 
 + (CGRect)screenFrame;
 
-+ (CGFloat)height;
++ (CGFloat)screenWidth;
 
-+ (CGFloat)width;
++ (CGFloat)screenHeight;
 
 + (CGFloat)statusBarHeight;
 

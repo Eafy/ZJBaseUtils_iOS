@@ -193,7 +193,7 @@
         }
     }
     
-    return size;
+    return (NSUInteger)size;
 }
 
 + (NSUInteger)zj_totalDiskSizeOfSystem
