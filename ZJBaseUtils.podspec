@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author       = { "Eafy" => "lizhijian_21@163.com" }
   s.requires_arc = true
   s.ios.deployment_target   = '8.0'
-  s.frameworks = ["UIKit", "GLKit", "AVFoundation", "CoreLocation", "AssetsLibrary", "SystemConfiguration", "Photos", "Security", "CoreText"]
+  s.frameworks = ["UIKit", "GLKit", "AVFoundation", "CoreLocation", "AssetsLibrary", "SystemConfiguration", "Photos", "Security", "CoreText", "CoreServices"]
   #s.xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64 arm64e' }
   #s.pod_target_xcconfig = { 'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)' }
 
