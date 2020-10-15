@@ -49,6 +49,9 @@
     if (properties) {
         free(properties);
     }
+    if (ivar) {
+        free(ivar);
+    }
     
     return dict;
 }
@@ -95,6 +98,9 @@
     
     if (properties) {
         free(properties);
+    }
+    if (ivar) {
+        free(ivar);
     }
     
     return model;
