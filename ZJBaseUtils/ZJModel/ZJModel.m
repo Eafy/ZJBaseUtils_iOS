@@ -99,8 +99,8 @@
     if (properties) {
         free(properties);
     }
-    if (ivar) {
-        free(ivar);
+    if (ivars) {
+        free(ivars);
     }
     
     return model;
