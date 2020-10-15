@@ -35,38 +35,44 @@
         
         [dict setObject:propertyValue forKey:propertyName];
     }
+    if (properties) {
+        free(properties);
+    }
     
     return [dict copy];
 }
 
 + (instancetype)initWithDic:(NSDictionary *)dic
 {
-   id model = [[self alloc] init];
-     
-   unsigned int count = 0;
-   objc_property_t *properties = class_copyPropertyList(self, &count);
-   Ivar *ivars = class_copyIvarList(self, nil);
-
-   for (int i = 0; i < count; i ++) {
-       objc_property_t property = properties[i];
-       NSString *propertyName = [[NSString alloc] initWithCString:property_getName(property)  encoding:NSUTF8StringEncoding];
+    id model = [[self alloc] init];
     
-       id propertyValue = [dic objectForKey:propertyName];
-       if (propertyValue) {
-           NSString *dataType = [NSString stringWithCString:ivar_getTypeEncoding(ivars[i]) encoding:NSUTF8StringEncoding];
-           if (dataType.length > 3) {
-               dataType = [dataType substringWithRange:NSMakeRange(2, dataType.length - 3)];
-               Class cls = objc_getClass([dataType UTF8String]);
-               if ([cls respondsToSelector:@selector(initWithDic:)]) {
-                   propertyValue = [cls initWithDic:propertyValue];
-               }
-           }
-           
-           [model setValue:propertyValue forKey:propertyName];
-       }
-   }
+    unsigned int count = 0;
+    objc_property_t *properties = class_copyPropertyList(self, &count);
+    Ivar *ivars = class_copyIvarList(self, nil);
     
-   return model;
+    for (int i = 0; i < count; i ++) {
+        objc_property_t property = properties[i];
+        NSString *propertyName = [[NSString alloc] initWithCString:property_getName(property)  encoding:NSUTF8StringEncoding];
+        
+        id propertyValue = [dic objectForKey:propertyName];
+        if (propertyValue) {
+            NSString *dataType = [NSString stringWithCString:ivar_getTypeEncoding(ivars[i]) encoding:NSUTF8StringEncoding];
+            if (dataType.length > 3) {
+                dataType = [dataType substringWithRange:NSMakeRange(2, dataType.length - 3)];
+                Class cls = objc_getClass([dataType UTF8String]);
+                if ([cls respondsToSelector:@selector(initWithDic:)]) {
+                    propertyValue = [cls initWithDic:propertyValue];
+                }
+            }
+            
+            [model setValue:propertyValue forKey:propertyName];
+        }
+    }
+    if (properties) {
+        free(properties);
+    }
+    
+    return model;
 }
 
 @end
