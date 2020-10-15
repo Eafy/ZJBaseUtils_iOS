@@ -98,8 +98,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 清除缓存
 /// @param completion 清除结果回调
 /// @param filepPath 需要清楚的文件/文件夹
-+ (void)clearFiles:filepPath completion:(void (^)(BOOL finished))completion;
++ (void)zj_clearFiles:filepPath completion:(void (^)(BOOL finished))completion;
 
+#pragma mark - 
+
+/// 获取文件的mime类型
+/// @param filepath 文件路径
++ (NSString *)zj_mimeTypeForPath:(NSString *)filepath;
 
 @end
 

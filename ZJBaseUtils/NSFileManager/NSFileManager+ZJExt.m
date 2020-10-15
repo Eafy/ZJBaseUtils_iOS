@@ -7,6 +7,7 @@
 //
 
 #import "NSFileManager+ZJExt.h"
+#import <CoreServices/CoreServices.h>
 
 @implementation NSFileManager (ZJExt)
 
@@ -223,7 +224,7 @@
     return size;
 }
 
-+ (void)clearFiles:filepPath completion:(void (^)(BOOL finished))completion
++ (void)zj_clearFiles:filepPath completion:(void (^)(BOOL finished))completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSFileManager *fm = [NSFileManager defaultManager];
@@ -235,6 +236,20 @@
             });
         }
     });
+}
+
+#pragma mark -
+
++ (NSString *)zj_mimeTypeForPath:(NSString *)filepath
+{
+    NSString *fileExtension = [filepath pathExtension];
+    NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExtension, NULL);
+    NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
+    
+    if (contentType) {
+        return contentType;
+    }
+    return @"application/octet-stream";
 }
 
 @end

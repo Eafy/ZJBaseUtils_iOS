@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author       = { "Eafy" => "lizhijian_21@163.com" }
   s.requires_arc = true
   s.ios.deployment_target   = '8.0'
-  s.frameworks = ["UIKit", "GLKit", "AVFoundation", "CoreLocation", "AssetsLibrary", "SystemConfiguration", "Photos", "Security", "CoreText"]
+  s.frameworks = ["UIKit", "GLKit", "AVFoundation", "CoreLocation", "AssetsLibrary", "SystemConfiguration", "Photos", "Security", "CoreText", "CoreServices"]
   s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "#{s.version}"}
   s.ios.vendored_framework   = 'Release/ZJBaseUtils.framework'
 
