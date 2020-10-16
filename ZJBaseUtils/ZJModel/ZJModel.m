@@ -64,6 +64,8 @@
 - (NSMutableDictionary *)toDictionary
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    Class superCls = [ZJModel class];
+    
     unsigned int count = 0;
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     Ivar *ivars = class_copyIvarList([self class], &count);
@@ -92,9 +94,11 @@
                     }
                     propertyValue = ((ZJModelPairs *)propertyValue).value;
                 } else {
-                    propertyValue = [propertyValue toDictionary];
-                    if (!propertyValue) {
-                        continue;
+                    if ([propertyValue isKindOfClass:superCls]) {
+                        propertyValue = [propertyValue toDictionary];
+                        if (!propertyValue) {
+                            continue;
+                        }
                     }
                 }
             }

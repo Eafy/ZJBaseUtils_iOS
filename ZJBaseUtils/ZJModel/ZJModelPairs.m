@@ -17,7 +17,7 @@
 
 + (instancetype)initWithName:(NSString *)name withValue:(id)value
 {
-    ZJModelPairs *model = [[ZJModelPairs alloc] init];
+    ZJModelPairs *model = [[self alloc] init];
     model.name = name;
     model.value = value;
     
