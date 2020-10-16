@@ -72,6 +72,8 @@
 		0CB590DA2515F71C0092E854 /* ZJBaseNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB590D82515F71C0092E854 /* ZJBaseNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB590FD251601610092E854 /* ZJLocalizationTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB590FB251601610092E854 /* ZJLocalizationTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB590FE251601610092E854 /* ZJLocalizationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB590FC251601610092E854 /* ZJLocalizationTool.m */; };
+		0CC5EFD52539420F0083546A /* ZJModelPairs.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC5EFD32539420F0083546A /* ZJModelPairs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CC5EFD62539420F0083546A /* ZJModelPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5EFD42539420F0083546A /* ZJModelPairs.m */; };
 		0CCF759724E8E71000794878 /* NSString+ZJSHA.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF759524E8E71000794878 /* NSString+ZJSHA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CCF759824E8E71000794878 /* NSString+ZJSHA.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF759624E8E71000794878 /* NSString+ZJSHA.m */; };
 		0CCF759B24E8E8C000794878 /* NSString+ZJRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF759924E8E8C000794878 /* NSString+ZJRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -192,6 +194,8 @@
 		0CB590D82515F71C0092E854 /* ZJBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJBaseNavigationController.h; sourceTree = "<group>"; };
 		0CB590FB251601610092E854 /* ZJLocalizationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJLocalizationTool.h; sourceTree = "<group>"; };
 		0CB590FC251601610092E854 /* ZJLocalizationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJLocalizationTool.m; sourceTree = "<group>"; };
+		0CC5EFD32539420F0083546A /* ZJModelPairs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJModelPairs.h; sourceTree = "<group>"; };
+		0CC5EFD42539420F0083546A /* ZJModelPairs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJModelPairs.m; sourceTree = "<group>"; };
 		0CCF759524E8E71000794878 /* NSString+ZJSHA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZJSHA.h"; sourceTree = "<group>"; };
 		0CCF759624E8E71000794878 /* NSString+ZJSHA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZJSHA.m"; sourceTree = "<group>"; };
 		0CCF759924E8E8C000794878 /* NSString+ZJRSA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZJRSA.h"; sourceTree = "<group>"; };
@@ -475,6 +479,8 @@
 				0CA3AE122535BDE1009782ED /* ZJModelFilterGet.m */,
 				0CA3AE152535BDEC009782ED /* ZJModelFilterSet.h */,
 				0CA3AE162535BDEC009782ED /* ZJModelFilterSet.m */,
+				0CC5EFD32539420F0083546A /* ZJModelPairs.h */,
+				0CC5EFD42539420F0083546A /* ZJModelPairs.m */,
 			);
 			path = ZJModel;
 			sourceTree = "<group>";
@@ -583,6 +589,7 @@
 			files = (
 				0CA3AE132535BDE1009782ED /* ZJModelFilterGet.h in Headers */,
 				0CA3AE0125357D1A009782ED /* ZJModelFilter.h in Headers */,
+				0CC5EFD52539420F0083546A /* ZJModelPairs.h in Headers */,
 				0CA3AE172535BDEC009782ED /* ZJModelFilterSet.h in Headers */,
 				0CFBF56F25249A3200D55386 /* ZJSettingRadioItem.h in Headers */,
 				0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */,
@@ -744,6 +751,7 @@
 				0CCF75E024EC125900794878 /* ZJScreen.m in Sources */,
 				0C50B88F251E4F0C0032CB2F /* ZJSettingTableViewCell.m in Sources */,
 				0CA3AE0225357D1A009782ED /* ZJModelFilter.m in Sources */,
+				0CC5EFD62539420F0083546A /* ZJModelPairs.m in Sources */,
 				0C95699324E2EF1000C9A6C5 /* NSFileManager+ZJExt.m in Sources */,
 				0CB590B02515F40E0092E854 /* UIButton+ZJExt.m in Sources */,
 				0CCF75C424EC00EF00794878 /* UIImage+ZJExt.m in Sources */,
