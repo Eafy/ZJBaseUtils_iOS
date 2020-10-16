@@ -87,12 +87,6 @@
                 ZJModelType type = [cls modelType];
                 if (type == ZJModelTypeDisable || type == ZJModelTypeSet) {
                     continue;
-                } else if (type == ZJModelTypePairs) {
-                    propertyName = ((ZJModelPairs *)propertyValue).name;
-                    if (!propertyName) {
-                        continue;
-                    }
-                    propertyValue = ((ZJModelPairs *)propertyValue).value;
                 } else {
                     if ([propertyValue isKindOfClass:superCls]) {
                         propertyValue = [propertyValue toDictionary];
@@ -102,12 +96,6 @@
                     }
                 }
             }
-        }
-        
-        if ([propertyValue isKindOfClass:[NSDictionary class]]) {
-            propertyValue = [NSDictionary dictionaryWithDictionary:propertyValue];
-        } else if ([propertyValue isKindOfClass:[NSArray class]]) {
-            propertyValue = [NSArray arrayWithArray:propertyValue];
         }
         
         [dict setObject:propertyValue forKey:propertyName];
