@@ -19,7 +19,7 @@
 {
     unsigned int count = 0;
     objc_property_t *properties = class_copyPropertyList([self class], &count);
-    Ivar *ivar = class_copyIvarList([self class], &count);
+    Ivar *ivars = class_copyIvarList([self class], &count);
     
     NSString *filterName = [NSString stringWithFormat:@"@\"%s\"", class_getName([ZJModelFilter class])];
     NSString *filterGetName = [NSString stringWithFormat:@"@\"%s\"", class_getName([ZJModelFilterGet class])];
@@ -28,7 +28,7 @@
     for (int i = 0; i < count; i++) {
         objc_property_t property = properties[i];
         NSString *propertyName = [[NSString alloc] initWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
-        NSString *typeName = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivar[i])];
+        NSString *typeName = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivars[i])];
         
         id propertyValue = [self valueForKey:propertyName];
         if (!propertyValue || [typeName isEqualToString:filterName] || [typeName isEqualToString:filterGetName]) {
@@ -49,8 +49,8 @@
     if (properties) {
         free(properties);
     }
-    if (ivar) {
-        free(ivar);
+    if (ivars) {
+        free(ivars);
     }
     
     return dict;
