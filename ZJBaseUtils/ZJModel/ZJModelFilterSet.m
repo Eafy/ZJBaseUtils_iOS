@@ -10,4 +10,9 @@
 
 @implementation ZJModelFilterSet
 
++ (ZJModelType)modelType
+{
+    return ZJModelTypeSet;
+}
+
 @end

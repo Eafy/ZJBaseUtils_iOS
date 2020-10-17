@@ -10,4 +10,9 @@
 
 @implementation ZJModelFilter
 
++ (ZJModelType)modelType
+{
+    return ZJModelTypeDisable;
+}
+
 @end

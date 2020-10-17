@@ -10,19 +10,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    ZJModelTypeGeneral,     //普通的，包含Set和Get功能
+    ZJModelTypeDisable,     //禁用Set和Get功能
+    ZJModelTypeGet,         //禁用Set功能
+    ZJModelTypeSet,         //禁用Get功能
+    ZJModelTypePairs,       //键值对
+} ZJModelType;
+
 @interface ZJModel : NSObject
 
-/// Model转字典
-- (NSMutableDictionary *)toDictionary;
+/// 模型类型
++ (ZJModelType)modelType;
 
 /// 字段转Model
 /// @param dic 数据字典
-+ (instancetype)initWithDic:(NSDictionary *)dic;
++ (instancetype)initWithDic:(NSDictionary * _Nonnull)dic;
 
-/// 名称和值转Model(此方法用来名称和key不对应的情况)
-/// @param name 属性名称
-/// @param value 属性值
-+ (instancetype)initWithName:(NSString *)name value:(id)value;
+#pragma mark -
+
+/// Model转字典
+- (NSMutableDictionary *)toDictionary;
 
 @end
 
