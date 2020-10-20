@@ -69,10 +69,13 @@
     return array;
 }
 
+#pragma mark -
+
 + (BOOL)zj_create:(NSString *)path data:(NSData *)data
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:path]) {
+        [self zj_createDirectory:[self zj_filePrePath:path]];
         return [fileManager createFileAtPath:path contents:data attributes:nil];
     }
 
@@ -171,6 +174,8 @@
     return [NSData dataWithContentsOfFile:filePath];
 }
 
+#pragma mark -
+
 + (NSUInteger)zj_size:(NSString *)path
 {
     unsigned long long size = 0;
@@ -240,7 +245,7 @@
 
 #pragma mark -
 
-+ (NSString *)zj_mimeTypeForPath:(NSString *)filepath
++ (NSString *)zj_mimeType:(NSString *)filepath
 {
     NSString *fileExtension = [filepath pathExtension];
     NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExtension, NULL);
@@ -251,5 +256,18 @@
     }
     return @"application/octet-stream";
 }
+
++ (NSString *)zj_fileName:(NSString *)filepath
+{
+    NSString *fileName = [filepath lastPathComponent];
+    return fileName;
+}
+
++ (NSString *)zj_filePrePath:(NSString *)filepath
+{
+    NSString *fileName = [filepath stringByDeletingLastPathComponent];
+    return fileName;
+}
+
 
 @end

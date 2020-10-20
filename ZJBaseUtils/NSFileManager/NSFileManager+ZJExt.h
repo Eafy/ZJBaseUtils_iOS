@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param path 路径
 + (NSArray<NSString *> *)zj_fileLists:(NSString *)path;
 
+#pragma mark - 
+
 /// 新建文件
 /// @param path 文件路径
 /// @param data 需要写入数据，没有传nil
@@ -81,6 +83,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param filePath 文件路径
 + (NSData *)zj_fileData:(NSString *)filePath;
 
+#pragma mark -
+
 /// 获取一个文件夹以及文件夹下所有文件的大小(字节)
 /// @param path 文件/文件夹路径
 + (NSUInteger)zj_size:(NSString *)path;
@@ -104,7 +108,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获取文件的mime类型
 /// @param filepath 文件路径
-+ (NSString *)zj_mimeTypeForPath:(NSString *)filepath;
++ (NSString *)zj_mimeType:(NSString *)filepath;
+
+/// 获取文件的名称（包含后缀）
+/// @param filepath 文件路径
++ (NSString *)zj_fileName:(NSString *)filepath;
+
+/// 获取文件上级目录
+/// @param filepath 文件路径
++ (NSString *)zj_filePrePath:(NSString *)filepath;
 
 @end
 
