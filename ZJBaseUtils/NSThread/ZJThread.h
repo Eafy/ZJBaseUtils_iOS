@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark -
 
++ (ZJThread *)current;
+
 + (BOOL)isSleep;
 
 + (BOOL)isRunning;

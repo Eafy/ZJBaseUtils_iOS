@@ -65,24 +65,48 @@
 
 #pragma mark -
 
++ (ZJThread *)current
+{
+    NSThread *thread = [NSThread currentThread];
+    if ([thread isKindOfClass:[ZJThread class]]) {
+        return (ZJThread *)thread;
+    }
+    
+    return nil;
+}
+
 + (BOOL)isSleep
 {
-    return [(ZJThread *)[NSThread currentThread] isSleep];
+    ZJThread *thread = [ZJThread current];
+    if ([thread isKindOfClass:[ZJThread class]]) {
+        return [thread isSleep];
+    }
+    return NO;
 }
 
 + (BOOL)isRunning
 {
-    return [(ZJThread *)[NSThread currentThread] isRunning];
+    ZJThread *thread = [ZJThread current];
+    if ([thread isKindOfClass:[ZJThread class]]) {
+        return [thread isRunning];
+    }
+    return NO;
 }
 
 + (void)sleep:(NSTimeInterval)ti
 {
-    [(ZJThread *)[NSThread currentThread] sleep:ti];
+    ZJThread *thread = [ZJThread current];
+    if ([thread isKindOfClass:[ZJThread class]]) {
+        [thread sleep:ti];
+    }
 }
 
 + (void)wakeup
 {
-    [(ZJThread *)[NSThread currentThread] wakeup];
+    ZJThread *thread = [ZJThread current];
+    if ([thread isKindOfClass:[ZJThread class]]) {
+        [thread wakeup];
+    }
 }
 
 @end
