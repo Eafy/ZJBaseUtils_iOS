@@ -18,17 +18,20 @@
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 }
 
-+ (NSString *)zj_documentsPath:(NSString *)fileName isCreate:(BOOL)isCreate
++ (NSString *)zj_documentsPath:(NSString *)fileName isDirectory:(BOOL)isDirectory isCreate:(BOOL)isCreate
 {
     NSString *path = [self zj_documentsPath];
     path = [path stringByAppendingPathComponent:fileName];
     if (isCreate && ![NSFileManager zj_isExist:path]) {
-        if ([NSFileManager zj_create:path data:nil]) {
+        if (isDirectory && [NSFileManager zj_createDirectory:path]) {
+            return path;
+        } else if (!isDirectory && [NSFileManager zj_create:path data:nil]) {
             return path;
         } else {
             return @"";
         }
     }
+    
     return path;
 }
 
@@ -37,17 +40,20 @@
     return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 }
 
-+ (NSString *)zj_cachesPath:(NSString *)fileName isCreate:(BOOL)isCreate
++ (NSString *)zj_cachesPath:(NSString *)fileName isDirectory:(BOOL)isDirectory isCreate:(BOOL)isCreate
 {
     NSString *path = [self zj_cachesPath];
     path = [path stringByAppendingPathComponent:fileName];
     if (isCreate && ![NSFileManager zj_isExist:path]) {
-        if ([NSFileManager zj_create:path data:nil]) {
+        if (isDirectory && [NSFileManager zj_createDirectory:path]) {
+            return path;
+        } else if (!isDirectory && [NSFileManager zj_create:path data:nil]) {
             return path;
         } else {
             return @"";
         }
     }
+    
     return path;
 }
 
@@ -145,6 +151,8 @@
 
 + (NSString *)zj_find:(NSString *)path fileName:(NSString *)fileName isTraversing:(BOOL)isTraversing
 {
+    if (!path || [path isEqualToString:@""]) return nil;
+    
     NSMutableArray *traversingDic = [NSMutableArray array];
     NSArray<NSString *> *array = [self zj_fileLists:path];
     for (NSString *subName in array) {
