@@ -17,18 +17,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取沙盒文档文件夹路径
 + (NSString *)zj_documentsPath;
 
-/// 获取沙盒文档文件夹下文件/文件夹的路径
-/// @param fileName 文件/文件名称
+/// 获取文档下文件/文件夹下文件夹的路径
+/// @param fileName 文件/文件夹名称/路径
+/// @param isDirectory 是否是文件夹
 /// @param isCreate 检测到不存在时是否创建，YES：创建
-+ (NSString *)zj_documentsPath:(NSString *)fileName isCreate:(BOOL)isCreate;
++ (NSString *)zj_documentsPath:(NSString *)fileName isDirectory:(BOOL)isDirectory isCreate:(BOOL)isCreate;
 
 /// 获取沙盒缓存文件夹路径
 + (NSString *)zj_cachesPath;
 
-/// 获取沙盒缓存文件夹下文件/文件夹的路径
-/// @param fileName 文件/文件夹名称
+/// 获取沙盒下文件/文件夹下文件夹的路径
+/// @param filePath 文件/文件夹名称/路径
+/// @param isDirectory 是否是文件夹
 /// @param isCreate 检测到不存在时是否创建，YES：创建
-+ (NSString *)zj_cachesPath:(NSString *)fileName isCreate:(BOOL)isCreate;
++ (NSString *)zj_cachesPath:(NSString *)filePath isDirectory:(BOOL)isDirectory isCreate:(BOOL)isCreate;
 
 /// 检查文件是否存在
 /// @param path 文件路径
