@@ -118,7 +118,9 @@
     if (!isAppend) {
         [self zj_delete:path];
     }
-    if (![self zj_create:path data:nil]) return NO;
+    if (![self zj_isExist:path]) {
+        if (![self zj_create:path data:nil]) return NO;
+    }
 
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
     if (fileHandle) {
