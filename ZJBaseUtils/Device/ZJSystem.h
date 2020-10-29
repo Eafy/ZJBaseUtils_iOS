@@ -49,6 +49,30 @@ extern CGFloat ZJSysVersion(void);
 /// 移除UUID记录
 + (void)removeUUID;
 
+#pragma mark -
+
+/// 跳转系统或者APP
+/// @param url 需打开的URL链接
++ (BOOL)openUrl:(NSString *)url;
+
+/// 打开设置界面
++ (BOOL)openSetting;
+
+/// 麦克风权限（若未申请则会申请）
++ (BOOL)canRecordPermission;
+
+/// 摄像机权限（若未申请则会申请）
++ (BOOL)canCameraPermission;
+
+/// 系统相册权限（若未申请则会申请）
++ (BOOL)canPhotoPermission;
+
+/// 通知权限（若未申请则会申请）
++ (BOOL)canNotificationPermission;
+
+/// 定位权限（若未申请则会申请）
++ (BOOL)canLocationPermission;
+
 @end
 
 NS_ASSUME_NONNULL_END
