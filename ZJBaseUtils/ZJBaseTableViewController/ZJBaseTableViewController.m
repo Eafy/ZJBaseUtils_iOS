@@ -7,7 +7,6 @@
 //
 
 #import "ZJBaseTableViewController.h"
-#import "ZJBaseSettingViewController.h"
 #import "ZJSettingItem.h"
 #import "ZJScreen.h"
 #import "ZJSystem.h"
@@ -400,7 +399,11 @@
 - (void)reloadData
 {
     self.datasArray = [self setupDatas];
-    [self.tableView reloadData];
+    
+    __weak ZJBaseTableViewController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.tableView reloadData];
+    });
 }
 
 #pragma mark - UITableViewDataSource
@@ -439,12 +442,9 @@
             } else if ([item isKindOfClass:[ZJSettingArrowItem class]]) {
                 ZJSettingArrowItem *arrowItem = (ZJSettingArrowItem *)item;
                 if (arrowItem.destVC) {
-                    ZJBaseSettingViewController *vc = [[arrowItem.destVC alloc] init];
+                    ZJBaseTableViewController *vc = [[arrowItem.destVC alloc] init];
                     vc.title = arrowItem.title;
                     
-                    if (item.dataDic && [vc respondsToSelector:@selector(dataDic)]) {
-                        vc.dataDic = item.dataDic;
-                    }
                     if (item.dataObject && [vc respondsToSelector:@selector(dataObject)]) {
                         vc.dataObject = item.dataObject;
                     }
