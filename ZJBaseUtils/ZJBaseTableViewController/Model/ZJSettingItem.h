@@ -55,11 +55,11 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 @property (nonatomic,strong) UIView * _Nullable customView;
 
 #pragma mark - 传递数据区
-/// 需要传递的数据
-@property (nonatomic,strong) NSMutableDictionary * _Nullable dataDic;
-/// 需要传递的数据
+/// 需要传递的数据（一般是对象类）
 @property (nonatomic,strong) id _Nullable dataObject;
-/// 需要传递的数据（指针,如有申请内存请自主释放）
+/// 需要传递的数据（一般是数据类）
+@property (nonatomic,strong) id _Nullable data;
+/// 需要传递的数据（一般是指针数据）
 @property (nonatomic,assign) char * _Nullable pData;
 
 #pragma mark -

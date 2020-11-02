@@ -448,6 +448,9 @@
                     if (item.dataObject && [vc respondsToSelector:@selector(dataObject)]) {
                         vc.dataObject = item.dataObject;
                     }
+                    if (item.data && [vc respondsToSelector:@selector(data)]) {
+                        vc.data = item.data;
+                    }
                     if (item.pData && [vc respondsToSelector:@selector(pData)]) {
                         vc.pData = item.pData;
                     }

@@ -52,9 +52,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 表单全局配置参数
 @property (nonatomic,strong) ZJBaseTableViewConfig *tableViewConfig;
-/// 需要传递的数据（对象）
-@property (nonatomic) id _Nullable dataObject;
-/// 需要传递的数据（指针）
+/// 需要传递的数据（一般是对象类）
+@property (nonatomic,strong) id _Nullable dataObject;
+/// 需要传递的数据（一般是数据类）
+@property (nonatomic,strong) id _Nullable data;
+/// 需要传递的数据（一般是指针数据）
 @property (nonatomic,assign) char * _Nullable pData;
 
 #pragma mark - TableView
