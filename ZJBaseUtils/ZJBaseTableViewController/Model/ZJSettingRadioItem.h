@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 选择/取消回调
 @property (nonatomic,copy) void(^ _Nullable radioBtnBlock)(NSArray * _Nonnull stateArray, NSInteger index, BOOL selected);
 
+/// 更改选择状态（不触发回调）
+/// @param index 索引号
+- (void)changeSelected:(NSUInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END

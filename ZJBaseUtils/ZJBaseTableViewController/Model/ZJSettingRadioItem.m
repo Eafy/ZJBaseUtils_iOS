@@ -83,7 +83,23 @@
     NSInteger count = self.btnArray.count - titleArray.count;
     for (int i=0; i < count; i++) {
         [self.btnArray removeLastObject];
+        [self.stateArray removeLastObject];
     }
+}
+
+- (NSMutableArray<NSNumber *> *)stateArray
+{
+    if (_stateArray.count < self.btnArray.count) {
+        if (!_stateArray) {
+            _stateArray = [NSMutableArray array];
+        }
+        
+        for (int i=(int)self.btnArray.count-(int)_stateArray.count; i>0; i--) {
+            [_stateArray addObject:@NO];
+        }
+    }
+    
+    return _stateArray;
 }
 
 - (void)setNormalIcon:(NSString *)normalIcon
@@ -180,6 +196,25 @@
     }
     if (_radioBtnBlock) {
         self.radioBtnBlock(stateArray, btn.tag, btn.selected);
+    }
+}
+
+- (void)changeSelected:(NSUInteger)index
+{
+    if (self.btnArray.count-1 >= index) {
+        if (self.radioModel) {
+            UIButton *btn = [self.btnArray objectAtIndex:index];
+            if (!btn.selected) {
+                for (int i=0; i<self.btnArray.count; i++) {
+                    btn.selected = i == index;
+                    [self.stateArray replaceObjectAtIndex:index withObject:@(i == index)];
+                }
+            }
+        } else {
+            UIButton *btn = [self.btnArray objectAtIndex:index];
+            btn.selected = YES;
+            [self.stateArray replaceObjectAtIndex:index withObject:@YES];
+        }
     }
 }
 
