@@ -141,7 +141,8 @@
     //这里为了调整所有按钮的位置；
     UIButton *preBtn = nil;
     NSArray *btnArray = self.btnArray.copy;
-    for (UIButton *btn in btnArray) {
+    for (int i=(int)btnArray.count-1; i>=0; i--) {
+        UIButton *btn = [self.btnArray objectAtIndex:i];
         if (preBtn) {
             btn.zj_right = preBtn.zj_left - self.btnSpace;
         } else {

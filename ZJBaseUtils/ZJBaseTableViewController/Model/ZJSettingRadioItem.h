@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 标题数组
 @property (nonatomic,strong) NSArray<NSString *> * _Nullable titleArray;
 /// 状态数组
-@property (nonatomic,strong) NSArray<NSNumber *> * _Nullable stateArray;
+@property (nonatomic,strong) NSMutableArray<NSNumber *> * _Nullable stateArray;
 /// 按钮之间的间隔宽度，默认24.0f
 @property (nonatomic,assign) NSInteger btnSpace;
 /// RadioBtn颜色，默认"#181E28"
