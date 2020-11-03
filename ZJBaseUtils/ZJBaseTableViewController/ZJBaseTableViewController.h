@@ -48,16 +48,30 @@ NS_ASSUME_NONNULL_BEGIN
 /// 自定义导航栏的主题标签
 @property (nonatomic,strong) UILabel *navBarTitleLB;
 
-#pragma mark - TableView
+#pragma mark - 私有数据
 
 /// 表单全局配置参数
 @property (nonatomic,strong) ZJBaseTableViewConfig *tableViewConfig;
+/// 需要传递的数据（一般是对象类）
+@property (nonatomic,strong) id _Nullable dataObject;
+/// 需要传递的数据（一般是数据类）
+@property (nonatomic,strong) id _Nullable data;
+/// 需要传递的数据（一般是指针数据）
+@property (nonatomic,assign) char * _Nullable pData;
+
+#pragma mark - TableView
 
 /// 加载数据，需要重载
 - (NSArray<ZJSettingItemGroup *> *)setupDatas;
 
 /// 刷新数据
 - (void)reloadData;
+
+/// 右键响应
+- (void)navRightBtnAction;
+
+/// 左键响应
+- (void)navLeftBtnAction;
 
 @end
 

@@ -33,6 +33,12 @@ typedef void (^ZJBaseViewCtlReturnAfterCompletion)(void);
 @property (nonatomic,assign) BOOL isShowNavBarView;     //是否显示自定义导航栏视图，当isHideNavBar为YES时生效
 @property (nonatomic,strong) UILabel *navBarTitleLB;
 
+/// 右键响应
+- (void)navRightBtnAction;
+
+/// 左键响应
+- (void)navLeftBtnAction;
+
 @end
 
 NS_ASSUME_NONNULL_END
