@@ -16,7 +16,7 @@ NSString *const kLocalizationLanguageIt = @"it";     //意大利文
 NSString *const kLocalizationLanguageEs = @"es";     //西班牙文
 
 NSString *const kLocalizationLanguage = @"kLocalizationLanguage";
-NSString *const kLocalizationLanguageNotiChanged = "kLocalizationLanguageChanged";    //语言变更通知
+NSString *const kLocalizationLanguageNotiChanged = @"kLocalizationLanguageChanged";    //语言变更通知
 
 @interface ZJLocalizationTool ()
 
@@ -45,7 +45,7 @@ singleton_m();
         return;
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:languageStr forKey:kZJLocalizationLanguage];
+    [[NSUserDefaults standardUserDefaults] setObject:languageStr forKey:kLocalizationLanguage];
     [[NSUserDefaults standardUserDefaults] synchronize];
     self.currentLanguage = [self loadLanguageBundle];
     

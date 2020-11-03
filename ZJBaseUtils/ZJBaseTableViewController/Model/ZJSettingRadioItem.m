@@ -17,6 +17,7 @@
 @interface ZJSettingRadioItem ()
 
 @property (nonatomic,strong) NSMutableArray *btnArray;
+@property (nonatomic,assign) NSUInteger selectIndex;
 
 @end
 
@@ -140,10 +141,9 @@
         width += btn.zj_width;
         preBtn = btn;
         
-        if (self.stateArray.count > i) {
-            [btn setSelected:[[self.stateArray objectAtIndex:i] boolValue]];
-        } else {
-            [btn setSelected:NO];
+        [btn setSelected:[[self.stateArray objectAtIndex:i] boolValue]];
+        if (btn.selected) {
+            self.selectIndex = i;
         }
     }
     self.accessoryView.zj_width = width;
@@ -182,24 +182,35 @@
     [btn setSelected:!btn.selected];
     
     NSArray *btnArray = self.btnArray.copy;
-    NSMutableArray *stateArray = [NSMutableArray array];
     if (self.radioModel) {  //单选模式
         for (UIButton *btnT in btnArray) {
             if (btnT.tag != btn.tag) {
                 [btnT setSelected:!btn.selected];
             }
-            [stateArray addObject:[NSNumber numberWithBool:btnT.selected]];
+            [self.stateArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
         }
     } else {
-        [stateArray addObjectsFromArray:self.stateArray];
-        [stateArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
+        [self.stateArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
     }
+    
     if (_radioBtnBlock) {
-        self.radioBtnBlock(stateArray, btn.tag, btn.selected);
+        BOOL selectedOld = btn.selected;
+        BOOL selectedNew = btn.selected;
+        self.radioBtnBlock(self.stateArray, btn.tag, &selectedNew);
+        if (selectedOld != selectedNew) {
+            btn.selected = selectedNew;
+            [self.stateArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
+            if (self.radioModel) {
+                UIButton * btnT = [self.btnArray objectAtIndex:self.selectIndex];
+                btnT.selected = YES;
+            }
+        } else {
+            self.selectIndex = btn.tag;
+        }
     }
 }
 
-- (void)changeSelected:(NSUInteger)index
+- (void)selected:(NSUInteger)index
 {
     if (self.btnArray.count-1 >= index) {
         if (self.radioModel) {

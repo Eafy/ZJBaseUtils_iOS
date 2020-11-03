@@ -29,12 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIColor *radioBtnTitleColor;
 /// RadioBtn字体，默认14号
 @property (nonatomic,strong) UIFont *radioBtnTitleFont;
-/// 选择/取消回调
-@property (nonatomic,copy) void(^ _Nullable radioBtnBlock)(NSArray * _Nonnull stateArray, NSInteger index, BOOL selected);
+/// 选择/取消回调，stateArray为状态集合，index为触发索引号，selected是否选择，可反向设置
+@property (nonatomic,copy) void(^ _Nullable radioBtnBlock)(NSArray * _Nonnull stateArray, NSInteger index, BOOL *selected);
 
 /// 更改选择状态（不触发回调）
 /// @param index 索引号
-- (void)changeSelected:(NSUInteger)index;
+- (void)selected:(NSUInteger)index;
 
 @end
 
