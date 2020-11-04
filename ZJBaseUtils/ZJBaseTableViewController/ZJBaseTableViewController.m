@@ -398,10 +398,9 @@
 
 - (void)reloadData
 {
-    self.datasArray = [self setupDatas];
-    
     __weak ZJBaseTableViewController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
+        weakSelf.datasArray = [weakSelf setupDatas];
         [weakSelf.tableView reloadData];
     });
 }

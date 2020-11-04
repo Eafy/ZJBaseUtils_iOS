@@ -158,10 +158,10 @@
 
 - (UIImageView *)arrowImgView
 {
-    if (!_arrowImgView) {
-        if (self.item.accessoryView) {
-            _arrowImgView = (UIImageView *)self.item.accessoryView;
-        } else if (![NSString zj_isEmpty:self.item.arrowIcon]) {
+    if (self.item.accessoryView && _arrowImgView != self.item.accessoryView) {
+        _arrowImgView = (UIImageView *)self.item.accessoryView;
+    } else if (self.item.arrowIcon) {
+        if (![NSString zj_isEmpty:self.item.arrowIcon]) {
             if (![self.item.arrowIcon isEqualToString:self.arrowIcon]) {
                 if (_arrowImgView) [_arrowImgView removeFromSuperview];
                 UIImage *arrowImg = [UIImage imageNamed:self.item.arrowIcon];
@@ -169,11 +169,11 @@
                     _arrowImgView = [[UIImageView alloc] initWithImage:arrowImg];
                 }
             }
-        } else {
-            if (_arrowImgView) {
-                [_arrowImgView removeFromSuperview];
-                _arrowImgView = nil;
-            }
+        }
+    } else {
+        if (_arrowImgView) {
+            [_arrowImgView removeFromSuperview];
+            _arrowImgView = nil;
         }
     }
     

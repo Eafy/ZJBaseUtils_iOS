@@ -197,12 +197,13 @@
         BOOL selectedOld = btn.selected;
         BOOL selectedNew = btn.selected;
         self.radioBtnBlock(self.stateArray, btn.tag, &selectedNew);
-        if (selectedOld != selectedNew) {
+        if (selectedOld != selectedNew) {   //外部不接受，还原之前的选项
             btn.selected = selectedNew;
             [self.stateArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
-            if (self.radioModel) {
+            if (self.radioModel) {  //单选框，还原之前的选择
                 UIButton * btnT = [self.btnArray objectAtIndex:self.selectIndex];
                 btnT.selected = YES;
+                [self.stateArray replaceObjectAtIndex:btnT.tag withObject:@YES];
             }
         } else {
             self.selectIndex = btn.tag;

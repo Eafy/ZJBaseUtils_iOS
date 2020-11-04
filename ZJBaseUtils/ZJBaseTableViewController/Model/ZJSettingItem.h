@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 @property (nonatomic,copy) NSString * _Nullable detailTitle;
 /// 右侧箭头图标
 @property (nonatomic,copy) NSString * _Nullable arrowIcon;
-/// 处理点击的事件，走此block会终端默认的操作
+/// 处理点击的事件，走此block会终止后续的操作
 @property (nonatomic,copy) void(^ _Nullable cellOptionBlock)(ZJSettingItem * _Nullable item);
 
 #pragma mark - 自定义区

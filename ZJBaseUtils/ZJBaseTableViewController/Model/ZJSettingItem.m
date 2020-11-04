@@ -31,6 +31,22 @@
     return self;
 }
 
+- (void)dealloc
+{
+    if (_accessoryView) {
+        [self.accessoryView removeFromSuperview];
+        _accessoryView = nil;
+    }
+    if (_customView) {
+        [self.customView removeFromSuperview];
+        _customView = nil;
+    }
+    _dataObject = nil;
+    _data = nil;
+    _pData = nil;
+    _cellOptionBlock = nil;
+}
+
 #pragma mark -
 
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell {
