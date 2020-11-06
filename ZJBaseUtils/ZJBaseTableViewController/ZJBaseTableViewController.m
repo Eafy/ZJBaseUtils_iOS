@@ -96,10 +96,15 @@
 - (UIButton *)navLeftBtn
 {
     if (!_navLeftBtn) {
-        UIImage *leftImg = [UIImage imageNamed:@"icon_nav_back_no"];
         _navLeftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight())];
-        [_navLeftBtn setImage:leftImg forState:UIControlStateNormal];
-        [_navLeftBtn setImage:[UIImage imageNamed:@"icon_nav_back_sel"] forState:UIControlStateHighlighted];
+        UIImage *img = [UIImage imageNamed:@"icon_nav_back_no"];
+        if (img) {
+            [_navLeftBtn setImage:img forState:UIControlStateNormal];
+        }
+        img = [UIImage imageNamed:@"icon_nav_back_sel"];
+        if (img) {
+            [_navLeftBtn setImage:img forState:UIControlStateHighlighted];
+        }
         [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
         [_navLeftBtn setBackgroundColor:[UIColor clearColor]];
         [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -394,11 +399,11 @@
     self.modalPresentationStyle = UIModalPresentationFullScreen;
 }
 
-- (void)setItem:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config
+- (void)setItem:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config dataObject:(id)dataObject data:(id)data pData:(char *)pData
 {
-    _dataObject = item.dataObject;
-    _data = item.data;
-    _pData = item.pData;
+    _dataObject = item.dataObject ? item.dataObject : dataObject;
+    _data = item.data ? item.data : data;
+    _pData = item.pData ? item.pData : pData;
     _tableViewConfig = config;
 }
 
@@ -457,17 +462,17 @@
                     ZJBaseTableViewController *vc = [[item.destVC alloc] init];
                     vc.title = item.title;
                     
-                    if ([vc respondsToSelector:@selector(setItem:config:)]) {
-                        [vc setItem:item config:self.tableViewConfig];
+                    if ([vc respondsToSelector:@selector(setItem:config:dataObject:data:pData:)]) {
+                        [vc setItem:item config:self.tableViewConfig dataObject:self.dataObject data:self.data pData:self.pData];
                     } else {
-                        if (item.dataObject && [vc respondsToSelector:@selector(dataObject)]) {
-                            vc.dataObject = item.dataObject;
+                        if ([vc respondsToSelector:@selector(dataObject)]) {
+                            vc.dataObject = item.dataObject ? item.dataObject : self.dataObject;
                         }
                         if (item.data && [vc respondsToSelector:@selector(data)]) {
-                            vc.data = item.data;
+                            vc.data = item.data ? item.data : self.data;
                         }
                         if (item.pData && [vc respondsToSelector:@selector(pData)]) {
-                            vc.pData = item.pData;
+                            vc.pData = item.pData ? item.pData : self.pData;
                         }
                         if (_tableViewConfig && [vc respondsToSelector:@selector(tableViewConfig)]) {
                             vc.tableViewConfig = self.tableViewConfig;
