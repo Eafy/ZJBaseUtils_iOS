@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/Eafy/ZJBaseUtils_iOS"
   s.license      = { :type => "Apache License 2.0", :file => "LICENSE" }
-  s.author       = { "Eafy" => "lizhijian_21@163.com" }
+  s.author       = 'Eafy'
   s.requires_arc = true
   s.ios.deployment_target   = '8.0'
   s.frameworks = 'GLKit','AVFoundation','CoreLocation','AssetsLibrary','SystemConfiguration','Photos','Security','UIKit','CoreText','CoreServices','UserNotifications'
@@ -26,3 +26,5 @@ end
 #pod lib lint ZJBaseUtils.podspec --verbose --allow-warnings --use-libraries
 #打包指令
 #pod package ZJBaseUtils.podspec --force --no-mangle --exclude-deps --verbose
+#推送命令
+#pod trunk push ZJBaseUtils.podspec --verbose --allow-warnings --use-libraries

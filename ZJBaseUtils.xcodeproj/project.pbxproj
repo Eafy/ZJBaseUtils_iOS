@@ -684,7 +684,7 @@
 			attributes = {
 				CLASSPREFIX = ZJ;
 				LastUpgradeCheck = 1200;
-				ORGANIZATIONNAME = "ZJ<lizhijian_21@163.com>";
+				ORGANIZATIONNAME = ZJ;
 				TargetAttributes = {
 					0C279C4624E2D22E00474649 = {
 						CreatedOnToolsVersion = 11.6;
