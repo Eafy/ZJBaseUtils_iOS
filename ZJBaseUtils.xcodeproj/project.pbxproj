@@ -106,6 +106,7 @@
 		0CCF75DB24EC107400794878 /* ZJSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75D924EC107400794878 /* ZJSystem.m */; };
 		0CCF75DF24EC125900794878 /* ZJScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF75DD24EC125900794878 /* ZJScreen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CCF75E024EC125900794878 /* ZJScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75DE24EC125900794878 /* ZJScreen.m */; };
+		0CE6F6DE255574E9009CE033 /* ZJBaseUtils.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 0CE6F6DD255574E9009CE033 /* ZJBaseUtils.podspec */; };
 		0CFBF56025230CFA00D55386 /* ZJSettingTextFieldItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CFBF56125230CFA00D55386 /* ZJSettingTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */; };
 		0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */; };
@@ -226,6 +227,7 @@
 		0CCF75D924EC107400794878 /* ZJSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJSystem.m; sourceTree = "<group>"; };
 		0CCF75DD24EC125900794878 /* ZJScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJScreen.h; sourceTree = "<group>"; };
 		0CCF75DE24EC125900794878 /* ZJScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJScreen.m; sourceTree = "<group>"; };
+		0CE6F6DD255574E9009CE033 /* ZJBaseUtils.podspec */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZJBaseUtils.podspec; sourceTree = SOURCE_ROOT; };
 		0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSettingTextFieldItem.h; sourceTree = "<group>"; };
 		0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSettingTextFieldItem.m; sourceTree = "<group>"; };
 		0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSettingTableViewCellExt.h; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				0C95693224E2D96900C9A6C5 /* ZJSingleton.h */,
 				0C95695224E2D96900C9A6C5 /* ZJUtilsDef.h */,
 				0C279C4B24E2D22E00474649 /* Info.plist */,
+				0CE6F6DD255574E9009CE033 /* ZJBaseUtils.podspec */,
 			);
 			path = ZJBaseUtils;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CE6F6DE255574E9009CE033 /* ZJBaseUtils.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

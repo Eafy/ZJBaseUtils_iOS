@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZJBaseUtils"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "Provide common、general、basic API and extensions for iOS Platform."
 
   s.description  = <<-DESC
@@ -16,9 +16,10 @@ Pod::Spec.new do |s|
   #s.xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64 arm64e' }
   #s.pod_target_xcconfig = { 'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)' }
 
-  s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "#{s.version}"}
+  s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "v#{s.version}"}
   s.source_files  = "ZJBaseUtils/*.{h,m,mm,c,hpp,cpp}", "ZJBaseUtils/**/*.{h,m,mm,c,hpp,cpp}"
   s.public_header_files = "ZJBaseUtils/*.h", "ZJBaseUtils/**/*.h"
+  s.private_header_files = "ZJBaseUtils/**/ZJSAMKeychain.h"
 
 end
 
