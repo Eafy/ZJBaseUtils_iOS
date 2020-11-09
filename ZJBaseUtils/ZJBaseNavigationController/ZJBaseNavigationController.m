@@ -25,7 +25,7 @@
 {
     [super pushViewController:viewController animated:animated];
     if (self.hideNavBarArray && [self.hideNavBarArray containsObject:[self class]]) {
-        if ([viewController respondsToSelector:@selector(getIsHideNavBar)]) {
+        if ([viewController respondsToSelector:@selector(isHideNavBar)]) {
             [self setNavigationBarHidden:((ZJBaseViewController *)viewController).isHideNavBar animated:YES];
         }
     }
