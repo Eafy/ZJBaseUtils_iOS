@@ -3,7 +3,7 @@
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/9/14.
-//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
+//  Copyright © 2020 ZJ. All rights reserved.
 //
 
 #import "ZJBaseTableViewController.h"
@@ -64,6 +64,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    
+    if (self.tableViewConfig.bgColor) {
+        self.view.backgroundColor = self.tableViewConfig.bgColor;
+    }
+    if (self.tableViewConfig.bgTableViewColor) {
+        self.tableView.backgroundColor = self.tableViewConfig.bgTableViewColor;
+    }
 }
 
 - (void)dealloc {
@@ -86,10 +96,15 @@
 - (UIButton *)navLeftBtn
 {
     if (!_navLeftBtn) {
-        UIImage *leftImg = [UIImage imageNamed:@"icon_nav_back_no"];
         _navLeftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight())];
-        [_navLeftBtn setImage:leftImg forState:UIControlStateNormal];
-        [_navLeftBtn setImage:[UIImage imageNamed:@"icon_nav_back_sel"] forState:UIControlStateHighlighted];
+        UIImage *img = [UIImage imageNamed:@"icon_nav_back_no"];
+        if (img) {
+            [_navLeftBtn setImage:img forState:UIControlStateNormal];
+        }
+        img = [UIImage imageNamed:@"icon_nav_back_sel"];
+        if (img) {
+            [_navLeftBtn setImage:img forState:UIControlStateHighlighted];
+        }
         [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
         [_navLeftBtn setBackgroundColor:[UIColor clearColor]];
         [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -351,17 +366,6 @@
 
 #pragma mark - ZJBaseTableViewController特有接口
 
-- (void)initDefaultData
-{
-    _isLeftSidesliEnable = YES;
-    _tableViewConfig = [[ZJBaseTableViewConfig alloc] init];
-    self.modalPresentationStyle = UIModalPresentationFullScreen;
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView.estimatedRowHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
-    self.tableView.estimatedSectionFooterHeight = 0;
-}
-
 - (instancetype)init
 {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -386,6 +390,21 @@
     }
     
     return self;
+}
+
+- (void)initDefaultData
+{
+    _isLeftSidesliEnable = YES;
+    _tableViewConfig = [[ZJBaseTableViewConfig alloc] init];
+    self.modalPresentationStyle = UIModalPresentationFullScreen;
+}
+
+- (void)setItem:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config dataObject:(id)dataObject data:(id)data pData:(char *)pData
+{
+    _dataObject = item.dataObject ? item.dataObject : dataObject;
+    _data = item.data ? item.data : data;
+    _pData = item.pData ? item.pData : pData;
+    _tableViewConfig = config;
 }
 
 #pragma mark - UITableViewDataLoad
@@ -439,22 +458,25 @@
             if (item.cellOptionBlock != nil) {
                 item.cellOptionBlock(item);
             } else if ([item isKindOfClass:[ZJSettingArrowItem class]]) {
-                ZJSettingArrowItem *arrowItem = (ZJSettingArrowItem *)item;
-                if (arrowItem.destVC) {
-                    ZJBaseTableViewController *vc = [[arrowItem.destVC alloc] init];
-                    vc.title = arrowItem.title;
+                if (item.destVC) {
+                    ZJBaseTableViewController *vc = [[item.destVC alloc] init];
+                    vc.title = item.title;
                     
-                    if (item.dataObject && [vc respondsToSelector:@selector(dataObject)]) {
-                        vc.dataObject = item.dataObject;
-                    }
-                    if (item.data && [vc respondsToSelector:@selector(data)]) {
-                        vc.data = item.data;
-                    }
-                    if (item.pData && [vc respondsToSelector:@selector(pData)]) {
-                        vc.pData = item.pData;
-                    }
-                    if (_tableViewConfig && [vc respondsToSelector:@selector(tableViewConfig)]) {
-                        vc.tableViewConfig = self.tableViewConfig;
+                    if ([vc respondsToSelector:@selector(setItem:config:dataObject:data:pData:)]) {
+                        [vc setItem:item config:self.tableViewConfig dataObject:self.dataObject data:self.data pData:self.pData];
+                    } else {
+                        if ([vc respondsToSelector:@selector(dataObject)]) {
+                            vc.dataObject = item.dataObject ? item.dataObject : self.dataObject;
+                        }
+                        if (item.data && [vc respondsToSelector:@selector(data)]) {
+                            vc.data = item.data ? item.data : self.data;
+                        }
+                        if (item.pData && [vc respondsToSelector:@selector(pData)]) {
+                            vc.pData = item.pData ? item.pData : self.pData;
+                        }
+                        if (_tableViewConfig && [vc respondsToSelector:@selector(tableViewConfig)]) {
+                            vc.tableViewConfig = self.tableViewConfig;
+                        }
                     }
                     
                     [self.navigationController pushViewController:vc animated:YES];

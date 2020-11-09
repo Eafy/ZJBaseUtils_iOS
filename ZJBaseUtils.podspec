@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZJBaseUtils"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "Provide common、general、basic API and extensions for iOS Platform."
 
   s.description  = <<-DESC
@@ -9,16 +9,17 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/Eafy/ZJBaseUtils_iOS"
   s.license      = { :type => "Apache License 2.0", :file => "LICENSE" }
-  s.author       = { "Eafy" => "lizhijian_21@163.com" }
+  s.author       = 'Eafy'
   s.requires_arc = true
   s.ios.deployment_target   = '8.0'
   s.frameworks = 'GLKit','AVFoundation','CoreLocation','AssetsLibrary','SystemConfiguration','Photos','Security','UIKit','CoreText','CoreServices','UserNotifications'
   #s.xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64 arm64e' }
   #s.pod_target_xcconfig = { 'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)' }
 
-  s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "#{s.version}"}
+  s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "v#{s.version}"}
   s.source_files  = "ZJBaseUtils/*.{h,m,mm,c,hpp,cpp}", "ZJBaseUtils/**/*.{h,m,mm,c,hpp,cpp}"
   s.public_header_files = "ZJBaseUtils/*.h", "ZJBaseUtils/**/*.h"
+  s.private_header_files = "ZJBaseUtils/**/ZJSAMKeychain.h"
 
 end
 
@@ -26,3 +27,5 @@ end
 #pod lib lint ZJBaseUtils.podspec --verbose --allow-warnings --use-libraries
 #打包指令
 #pod package ZJBaseUtils.podspec --force --no-mangle --exclude-deps --verbose
+#推送命令
+#pod trunk push ZJBaseUtils.podspec --verbose --allow-warnings --use-libraries

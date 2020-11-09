@@ -3,7 +3,7 @@
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/8/18.
-//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
+//  Copyright © 2020 ZJ. All rights reserved.
 //
 
 #import "ZJScreen.h"

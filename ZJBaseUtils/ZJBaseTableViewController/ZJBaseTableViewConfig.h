@@ -3,7 +3,7 @@
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/9/14.
-//  Copyright © 2020 ZJ<lizhijian_21@163.com>. All rights reserved.
+//  Copyright © 2020 ZJ. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 启动适配器
 @property (nonatomic,assign) BOOL adapterEnable;
+/// 控制器视图背景颜色
+@property (nonatomic,strong) UIColor *bgColor;
+/// TableView视图背景颜色
+@property (nonatomic,strong) UIColor *bgTableViewColor;
 
 /// 所有表单Cell统一的行高（默认54.0f）
 @property (nonatomic,assign) CGFloat rowHeight;
