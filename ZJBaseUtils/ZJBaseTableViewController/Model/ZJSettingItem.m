@@ -44,7 +44,7 @@
     _dataObject = nil;
     _data = nil;
     _pData = nil;
-    _cellOptionBlock = nil;
+    _operationHandle = nil;
 }
 
 #pragma mark -
