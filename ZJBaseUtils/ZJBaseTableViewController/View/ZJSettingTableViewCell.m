@@ -7,7 +7,7 @@
 //
 
 #import "ZJSettingTableViewCellExt.h"
-#import "ZJBaseTableViewConfig+ZJExt.h"
+#import "ZJBaseTVConfig.h"
 #import "UIColor+ZJExt.h"
 #import "ZJSystem.h"
 #import "ZJScreen.h"
@@ -19,7 +19,7 @@
 @interface ZJSettingTableViewCell()
 
 /// 表单全局配置参数
-@property (nonatomic,strong) ZJBaseTableViewConfig *tableViewConfig;
+@property (nonatomic,strong) ZJBaseTVConfig *tableViewConfig;
 
 @property (nonatomic, strong) UIImageView *arrowImgView;
 @property (nonatomic, strong) UIImageView *titleDetailImgView;
@@ -32,7 +32,7 @@
 
 @implementation ZJSettingTableViewCell
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView item:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config;
++ (instancetype)cellWithTableView:(UITableView *)tableView item:(ZJSettingItem *)item config:(ZJBaseTVConfig *)config;
 {
     NSString *identifier = [NSString stringWithFormat:@"kZJBaseTableViewCellIdentifier_%lu", (unsigned long)item.type];
     ZJSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -72,7 +72,7 @@
     _item = nil;
 }
 
-- (void)setTableViewConfig:(ZJBaseTableViewConfig *)tableViewConfig
+- (void)setTableViewConfig:(ZJBaseTVConfig *)tableViewConfig
 {
     _tableViewConfig = tableViewConfig;
     

@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 #import "ZJSettingSwitchItem.h"
-#import "ZJBaseTableViewConfig+ZJExt.h"
+#import "ZJBaseTVConfig.h"
 
 @implementation ZJSettingSwitchItem
 
@@ -47,7 +47,7 @@
 
 #pragma mark - 重载差异化
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
     if (config.switchBgColor) self.switchBtn.backgroundColor = config.switchBgColor;
     if (config.switchOnTintColor) self.switchBtn.onTintColor = config.switchOnTintColor;

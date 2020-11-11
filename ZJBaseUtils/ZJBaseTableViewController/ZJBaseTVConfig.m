@@ -1,19 +1,19 @@
 //
-//  ZJBaseTableViewConfig.m
+//  ZJBaseTVConfig.m
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/9/14.
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTableViewConfig.h"
+#import "ZJBaseTVConfig.h"
 #import "UIColor+ZJExt.h"
 
-@interface ZJBaseTableViewConfig ()
+@interface ZJBaseTVConfig ()
 
 @end
 
-@implementation ZJBaseTableViewConfig
+@implementation ZJBaseTVConfig
 
 - (instancetype)init
 {

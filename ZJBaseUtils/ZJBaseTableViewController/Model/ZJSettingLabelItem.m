@@ -49,7 +49,7 @@
     }
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config {
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config {
     if (self.isCenterModel) {
         if (self.centerTitleColor) cell.subTitleLabel.textColor = self.centerTitleColor;
         if (self.centerTitleFont) cell.subTitleLabel.font = self.centerTitleFont;

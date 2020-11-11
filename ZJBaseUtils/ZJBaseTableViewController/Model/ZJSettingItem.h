@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJBaseTVPrivateData.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +24,7 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 };
 
 @class ZJSettingTableViewCell;
-@class ZJBaseTableViewConfig;
+@class ZJBaseTVConfig;
 
 @interface ZJSettingItem : NSObject
 
@@ -55,12 +56,8 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 @property (nonatomic,strong) UIView * _Nullable customView;
 
 #pragma mark - 传递数据区
-/// 需要传递的数据（一般是对象类）
-@property (nonatomic,strong) id _Nullable dataObject;
-/// 需要传递的数据（一般是数据类）
-@property (nonatomic,strong) id _Nullable data;
-/// 需要传递的数据（一般是指针数据）
-@property (nonatomic,assign) char * _Nullable pData;
+/// 需要传递给下一个控制的数据
+@property (nonatomic,strong) ZJBaseTVPrivateData *privateData;
 
 #pragma mark -
 
@@ -89,8 +86,8 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 - (void)layoutDiffSubviewWithCell:(ZJSettingTableViewCell *)cell;
 
 /// 差异化更新配置数据（子item需要需要重写）
-/// @param config ZJBaseTableViewConfig示例对象
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config;
+/// @param config ZJBaseTVConfig示例对象
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config;
 
 @end
 

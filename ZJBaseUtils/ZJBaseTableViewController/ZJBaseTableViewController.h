@@ -49,15 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel *navBarTitleLB;
 
 #pragma mark - 私有数据
-
-/// 表单全局配置参数
-@property (nonatomic,strong) ZJBaseTableViewConfig *tableViewConfig;
-/// 需要传递的数据（一般是对象类）
-@property (nonatomic,strong) id _Nullable dataObject;
-/// 需要传递的数据（一般是数据类）
-@property (nonatomic,strong) id _Nullable data;
-/// 需要传递的数据（一般是指针数据）
-@property (nonatomic,assign) char * _Nullable pData;
+@property (nonatomic,strong) ZJBaseTVPrivateData *privateData;  //Item或上一个界面透传过来的数据
 
 #pragma mark - TableView
 

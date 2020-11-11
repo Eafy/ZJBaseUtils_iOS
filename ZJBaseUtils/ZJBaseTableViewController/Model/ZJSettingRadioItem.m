@@ -11,7 +11,7 @@
 #import "ZJScreen.h"
 #import "UIButton+ZJExt.h"
 #import "UIColor+ZJExt.h"
-#import "ZJBaseTableViewConfig+ZJExt.h"
+#import "ZJBaseTVConfig.h"
 #import "ZJSettingTableViewCellExt.h"
 
 @interface ZJSettingRadioItem ()
@@ -169,7 +169,7 @@
     }
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
     if (!self.radioBtnTitleColor && config.radioBtnTitleColor) self.radioBtnTitleColor = config.textFieldTitleColor;
     if (!self.radioBtnTitleFont && config.radioBtnTitleFont) self.radioBtnTitleFont = config.textFieldTitleFont;

@@ -94,14 +94,19 @@
 {
     if (!_navLeftBtn) {
         _navLeftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight())];
-        UIImage *img = [UIImage imageNamed:@"icon_nav_back_no"];
-        if (img) {
-            [_navLeftBtn setImage:img forState:UIControlStateNormal];
+        if (![_navLeftBtn imageForState:UIControlStateNormal]) {
+            UIImage *img = [UIImage imageNamed:@"icon_nav_back_no"];
+            if (img) {
+                [_navLeftBtn setImage:img forState:UIControlStateNormal];
+            }
         }
-        img = [UIImage imageNamed:@"icon_nav_back_sel"];
-        if (img) {
-            [_navLeftBtn setImage:img forState:UIControlStateHighlighted];
+        if (![_navLeftBtn imageForState:UIControlStateHighlighted]) {
+            UIImage *img = [UIImage imageNamed:@"icon_nav_back_sel"];
+            if (img) {
+                [_navLeftBtn setImage:img forState:UIControlStateHighlighted];
+            }
         }
+        
         [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
         [_navLeftBtn setBackgroundColor:[UIColor clearColor]];
         [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];

@@ -8,7 +8,7 @@
 
 #import "ZJSettingItem.h"
 #import "ZJSettingTableViewCell.h"
-#import "ZJBaseTableViewConfig+ZJExt.h"
+#import "ZJBaseTVConfig.h"
 
 @implementation ZJSettingItem
 
@@ -41,9 +41,7 @@
         [self.customView removeFromSuperview];
         _customView = nil;
     }
-    _dataObject = nil;
-    _data = nil;
-    _pData = nil;
+    _privateData = nil;
     _operationHandle = nil;
 }
 
@@ -55,7 +53,7 @@
 - (void)layoutDiffSubviewWithCell:(ZJSettingTableViewCell *)cell {
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config {
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config {
 }
 
 @end

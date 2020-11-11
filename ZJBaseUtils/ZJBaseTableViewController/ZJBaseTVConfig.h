@@ -1,5 +1,5 @@
 //
-//  ZJBaseTableViewConfig.h
+//  ZJBaseTVConfig.h
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/9/14.
@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJBaseTableViewConfig : NSObject
+@interface ZJBaseTVConfig : NSObject
+
+/// 缓存Cell行高
+@property (nonatomic,assign) CGFloat rowCacheHeight;
+/// 缓存footer的高度
+@property (nonatomic,assign) CGFloat footerCacheHeight;
+
+#pragma mark -
 
 /// 启动适配器
 @property (nonatomic,assign) BOOL adapterEnable;
