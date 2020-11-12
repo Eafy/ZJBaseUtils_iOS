@@ -26,8 +26,9 @@
 
 - (UIView *)accessoryView
 {
-    if (!super.accessoryView) {
+    if (super.accessoryView.tag != self.type) {
         super.accessoryView = self.detailTextField;
+        super.accessoryView.tag = self.type;
     }
     
     return super.self.detailTextField;
@@ -73,7 +74,7 @@
     self.detailTextField.zj_height = cell.contentView.zj_height/2.0;
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
     if (config.textFieldTitleColor) self.detailTextField.textColor = config.textFieldTitleColor;
     if (config.textFieldTitleFont) self.detailTextField.font = config.textFieldTitleFont;

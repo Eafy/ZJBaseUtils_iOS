@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJBaseTableViewConfig.h"
+#import "ZJBaseTVPrivateData.h"
 #import "ZJSettingItemGroup.h"
 #import "ZJSettingItem.h"
 #import "ZJSettingCustomViewItem.h"
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param tableView UITableView对象
 /// @param item ZJSettingItem数据模组
 /// @param config 全局颜色、字体等配置
-+ (instancetype)cellWithTableView:(UITableView *)tableView item:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config;
++ (instancetype)cellWithTableView:(UITableView *)tableView item:(ZJSettingItem *)item config:(ZJBaseTVConfig *)config;
 
 @end
 

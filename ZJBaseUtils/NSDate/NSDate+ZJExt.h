@@ -95,6 +95,10 @@ extern NSString *const NSDateFormat_Sec;
 /// @param time 要转的时间，单位秒
 + (NSMutableDictionary *)zj_timeDictionary:(NSTimeInterval)time;
 
+/// 将格式化的字符串时间转换为NSDate
+/// @param dateStr 格式化日期
+/// @param formatter 格式化字符串
++ (NSDate *)zj_timeFromString:(NSString *)dateStr formatter:(NSString *)formatter;
 
 @end
 

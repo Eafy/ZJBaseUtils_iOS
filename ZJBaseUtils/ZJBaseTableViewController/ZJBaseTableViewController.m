@@ -13,7 +13,8 @@
 #import "UIView+ZJFrame.h"
 #import "ZJLocalizationTool.h"
 #import "NSString+ZJExt.h"
-#import "ZJBaseTableViewConfig+ZJExt.h"
+#import "ZJBaseTVConfig.h"
+#import "ZJBaseTableView.h"
 
 @interface ZJBaseTableViewController () <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
@@ -63,16 +64,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.modalPresentationStyle = UIModalPresentationFullScreen;
     
-    if (self.tableViewConfig.bgColor) {
-        self.view.backgroundColor = self.tableViewConfig.bgColor;
+    if (self.privateData.config.bgColor) {
+        self.view.backgroundColor = self.privateData.config.bgColor;
     }
-    if (self.tableViewConfig.bgTableViewColor) {
-        self.tableView.backgroundColor = self.tableViewConfig.bgTableViewColor;
+    if (self.privateData.config.bgTableViewColor) {
+        self.tableView.backgroundColor = self.privateData.config.bgTableViewColor;
     }
 }
 
@@ -395,16 +397,14 @@
 - (void)initDefaultData
 {
     _isLeftSidesliEnable = YES;
-    _tableViewConfig = [[ZJBaseTableViewConfig alloc] init];
-    self.modalPresentationStyle = UIModalPresentationFullScreen;
 }
 
-- (void)setItem:(ZJSettingItem *)item config:(ZJBaseTableViewConfig *)config dataObject:(id)dataObject data:(id)data pData:(char *)pData
+- (ZJBaseTVPrivateData *)privateData
 {
-    _dataObject = item.dataObject ? item.dataObject : dataObject;
-    _data = item.data ? item.data : data;
-    _pData = item.pData ? item.pData : pData;
-    _tableViewConfig = config;
+    if (!_privateData) {
+        _privateData = [[ZJBaseTVPrivateData alloc] init];
+    }
+    return _privateData;
 }
 
 #pragma mark - UITableViewDataLoad
@@ -424,30 +424,31 @@
     });
 }
 
+- (NSArray *)datasArray
+{
+    return _datasArray;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.datasArray.count;
+    return [ZJBaseTableView numberOfSectionsInTableView:tableView datasArray:self.datasArray];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    ZJSettingItemGroup *g = self.datasArray[section];
-    return g.items.count;
+    return [ZJBaseTableView tableView:tableView numberOfRowsInSection:section datasArray:self.datasArray];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZJSettingItemGroup *group = self.datasArray[indexPath.section];
-    ZJSettingItem *item = group.items[indexPath.row];
-    ZJSettingTableViewCell *cell = [ZJSettingTableViewCell cellWithTableView:tableView item:item config:self.tableViewConfig];
-
-    return cell;
+    return [ZJBaseTableView tableView:tableView cellForRowAtIndexPath:indexPath datasArray:self.datasArray config:self.privateData.config];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+<<<<<<< HEAD
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];   //立即取消选中
 
     if (indexPath.section < self.datasArray.count) {
@@ -484,86 +485,38 @@
             }
         }
     }
+=======
+    [ZJBaseTableView tableView:tableView didSelectRowAtIndexPath:indexPath datasArray:self.datasArray privateData:self.privateData currentViewController:self];
+>>>>>>> aa4555c4fc90db8155e1ecf11503db01d8b30578
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZJSettingItemGroup *group = self.datasArray[indexPath.section];
-    ZJSettingItem *item = group.items[indexPath.row];
-    
-    CGFloat rowHeight = 54.0f;
-    if (self.tableViewConfig.rowHeight) {
-        rowHeight = self.tableViewConfig.rowHeight;
-    }
-    if (self.tableViewConfig) {
-        if (self.tableViewConfig.adapterEnable) {
-            if (self.tableViewConfig.rowCacheHeight) {
-                return self.tableViewConfig.rowCacheHeight;
-            } else {
-                CGFloat titleHeight = [item.title zj_sizeWithFont:[UIFont systemFontOfSize:16.0f] maxSize:CGSizeMake(ZJScreenWidth()*0.75, rowHeight)].height;
-                CGFloat detailTitleHeight = 0;
-                if (![NSString zj_isEmpty:item.detailTitle]) {
-                    detailTitleHeight = [item.detailTitle zj_sizeWithFont:[UIFont systemFontOfSize:12.0f] maxSize:CGSizeMake(ZJScreenWidth(), rowHeight)].height;
-                }
-
-                if (titleHeight + detailTitleHeight + 10.0f > rowHeight) {
-                    self.tableViewConfig.rowCacheHeight = rowHeight = titleHeight + detailTitleHeight + 10.0f;
-                }
-            }
-        }
-    }
- 
-    return rowHeight;
+    return [ZJBaseTableView tableView:tableView heightForRowAtIndexPath:indexPath datasArray:self.datasArray privateData:self.privateData];
 }
+
+#pragma mark - Header & Footer
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return self.tableViewConfig.sectionHeaderHeight ? self.tableViewConfig.sectionHeaderHeight : 50.0f;
+    return [ZJBaseTableView tableView:tableView heightForHeaderInSection:section privateData:self.privateData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    CGFloat footerHeight = 20.0f;
-    if (self.tableViewConfig.sectionFooterHeight) {
-        footerHeight = self.tableViewConfig.sectionFooterHeight;
-    }
-    if (self.tableViewConfig) {
-        if (self.tableViewConfig.adapterEnable) {
-            if (self.tableViewConfig.footerCacheHeight) {
-                footerHeight = self.tableViewConfig.footerCacheHeight;
-            } else {
-                ZJSettingItemGroup *group = self.datasArray[section];
-                if (![NSString zj_isEmpty:group.footerTitle]) {
-                    CGFloat footerCacheHeight = [group.footerTitle zj_sizeWithFont:[UIFont systemFontOfSize:16.0f] maxSize:CGSizeMake(ZJScreenWidth()-40.0f, 100)].height;
-                    if (footerCacheHeight > footerHeight) {
-                        self.tableViewConfig.footerCacheHeight = footerHeight = footerCacheHeight;
-                    }
-                }
-            }
-        }
-    }
-    
-    if (section == self.datasArray.count - 1) {
-        return footerHeight > 0 ? footerHeight : 20.f;
-    }
-    
-    return 0.1f;
+    return [ZJBaseTableView tableView:tableView heightForFooterInSection:section datasArray:self.datasArray privateData:self.privateData];
 }
-
-#pragma mark - 设置CELL组的标题
 
 //设置组头部标题
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
 {
-    ZJSettingItemGroup *group = self.datasArray[section];
-    return group.headerTitle;
+    return [ZJBaseTableView tableView:tableView titleForHeaderInSection:section datasArray:self.datasArray];
 }
 
 //设置组底部标题
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    ZJSettingItemGroup *group = self.datasArray[section];
-    return group.footerTitle;
+    return [ZJBaseTableView tableView:tableView titleForFooterInSection:section datasArray:self.datasArray];
 }
 
 @end

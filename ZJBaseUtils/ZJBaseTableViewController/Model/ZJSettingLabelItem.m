@@ -39,6 +39,9 @@
         cell.subTitleLabel.textAlignment = NSTextAlignmentCenter;
         cell.subTitleLabel.text = self.title.localized;
     }
+    if (self.isSelection) {
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }
 }
 
 - (void)layoutDiffSubviewWithCell:(ZJSettingTableViewCell *)cell
@@ -49,7 +52,7 @@
     }
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config {
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config {
     if (self.isCenterModel) {
         if (self.centerTitleColor) cell.subTitleLabel.textColor = self.centerTitleColor;
         if (self.centerTitleFont) cell.subTitleLabel.font = self.centerTitleFont;

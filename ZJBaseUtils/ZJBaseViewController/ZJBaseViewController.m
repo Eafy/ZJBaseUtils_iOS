@@ -60,14 +60,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (instancetype)init
 {
     if (self = [super init]) {
         _isLeftSidesliEnable = YES;
-        self.modalPresentationStyle = UIModalPresentationFullScreen;
-        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -94,14 +94,19 @@
 {
     if (!_navLeftBtn) {
         _navLeftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight())];
-        UIImage *img = [UIImage imageNamed:@"icon_nav_back_no"];
-        if (img) {
-            [_navLeftBtn setImage:img forState:UIControlStateNormal];
+        if (![_navLeftBtn imageForState:UIControlStateNormal]) {
+            UIImage *img = [UIImage imageNamed:@"icon_nav_back_no"];
+            if (img) {
+                [_navLeftBtn setImage:img forState:UIControlStateNormal];
+            }
         }
-        img = [UIImage imageNamed:@"icon_nav_back_sel"];
-        if (img) {
-            [_navLeftBtn setImage:img forState:UIControlStateHighlighted];
+        if (![_navLeftBtn imageForState:UIControlStateHighlighted]) {
+            UIImage *img = [UIImage imageNamed:@"icon_nav_back_sel"];
+            if (img) {
+                [_navLeftBtn setImage:img forState:UIControlStateHighlighted];
+            }
         }
+        
         [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
         [_navLeftBtn setBackgroundColor:[UIColor clearColor]];
         [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -178,14 +183,6 @@
 
 #pragma mark -
 
-- (void)setIsShowNavBarView:(BOOL)isShowNavBarView
-{
-    if (self.isHideNavBar && !self.isShowNavBarView && self.isShowNavBarView != isShowNavBarView) {
-        _isShowNavBarView = isShowNavBarView;
-        [self addNavBarBtnForHide];
-    }
-}
-
 - (void)setTitle:(NSString *)title
 {
     super.title = title;
@@ -199,8 +196,9 @@
     _barTitleColor = barTitleColor;
     if (_navBarTitleLB) {
         self.navBarTitleLB.textColor = barTitleColor;
+    } else if (self.navigationController) {
+        [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.barTitleColor, NSForegroundColorAttributeName,nil]];
     }
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.barTitleColor, NSForegroundColorAttributeName,nil]];
 }
 
 - (void)setBarTitleFont:(UIFont *)barTitleFont
@@ -208,8 +206,9 @@
     _barTitleFont = barTitleFont;
     if (_navBarTitleLB) {
         self.navBarTitleLB.font = barTitleFont;
+    } else if (self.navigationController) {
+        [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.barTitleFont, NSFontAttributeName,nil]];
     }
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.barTitleFont, NSFontAttributeName,nil]];
 }
 
 - (void)initNavigationBar
@@ -239,18 +238,72 @@
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 
-- (void)addNavBarBtnForHide
+#pragma mark - 自定义导航栏视图
+
+- (UIView *)navBarBgView
 {
-    self.navLeftBtn.frame = CGRectMake(15, ZJStatusBarHeight(), self.navLeftBtn?self.navLeftBtn.zj_width: (ZJNavBarHeight() + (ZJIsIPad()?30:0)), ZJNavBarHeight());
-    [self.view addSubview:self.navLeftBtn];
+    if (!_navBarBgView) {
+        _navBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJStatusBarHeight() + ZJNavBarHeight())];
+        if (self.barTintColor) {
+            _navBarBgView.backgroundColor = self.barTintColor;
+        } else {
+            _navBarBgView.backgroundColor = [UIColor whiteColor];
+        }
+    }
     
-    self.navRightBtn.frame = CGRectMake(0, ZJStatusBarHeight(), self.navRightBtn?self.navRightBtn.zj_width:(ZJNavBarHeight() + (ZJIsIPad()?30:0)), ZJNavBarHeight());
-    self.navRightBtn.zj_right = ZJScreenWidth() - 15;
-    [self.view addSubview:self.navRightBtn];
-    
-    [self.view addSubview:self.navBarTitleLB];
+    return _navBarBgView;
 }
 
+- (void)addNavBarBtnForHide
+{
+    self.navLeftBtn.zj_left = 15.0f;
+    self.navLeftBtn.zj_top = ZJStatusBarHeight();
+    self.navRightBtn.zj_top = ZJStatusBarHeight();
+    self.navRightBtn.zj_right = ZJScreenWidth() - 15;
+    
+    if (self.isShowNavBarBgView) {
+        [self.view addSubview:self.navBarBgView];
+        
+        if (self.navLeftBtn.superview != self.navBarBgView) {
+            [self.navLeftBtn removeFromSuperview];
+            [self.navRightBtn removeFromSuperview];
+            [self.navBarTitleLB removeFromSuperview];
+            [self.navBarBgView addSubview:self.navLeftBtn];
+            [self.navBarBgView addSubview:self.navRightBtn];
+            [self.navBarBgView addSubview:self.navBarTitleLB];
+        }
+    } else {
+        if (self.navLeftBtn.superview != self.view) {
+            [self.navLeftBtn removeFromSuperview];
+            [self.navRightBtn removeFromSuperview];
+            [self.navBarTitleLB removeFromSuperview];
+            [self.view addSubview:self.navLeftBtn];
+            [self.view addSubview:self.navRightBtn];
+            [self.view addSubview:self.navBarTitleLB];
+        }
+    }
+}
+
+- (void)setIsShowNavBarView:(BOOL)isShowNavBarView
+{
+    if (!self.isHideNavBar) {
+        NSLog(@"The system navigation bar is not hidden, and the custom navigation bar cannot be set!");
+        return;
+    }
+    
+    _isShowNavBarView = isShowNavBarView;
+    if (isShowNavBarView && !_navBarBgView) {   //之前没有添加自定义视图
+        [self addNavBarBtnForHide];
+    }
+    
+    if (_navBarBgView) {
+        self.navBarBgView.hidden = !isShowNavBarView;
+    } else {
+        self.navLeftBtn.hidden = !isShowNavBarView;
+        self.navRightBtn.hidden = !isShowNavBarView;
+        self.navBarTitleLB.hidden = !isShowNavBarView;
+    }
+}
 
 #pragma mark - ButtonAction
 

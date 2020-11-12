@@ -8,15 +8,21 @@
 
 #import "ZJSettingItem.h"
 #import "ZJSettingTableViewCell.h"
-#import "ZJBaseTableViewConfig+ZJExt.h"
+#import "ZJBaseTVConfig.h"
 
 @implementation ZJSettingItem
+
+- (ZJSettingItemType)type
+{
+    return ZJSettingItemTypeNone;
+}
 
 - (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title
 {
     if (self = [super init]) {
         _icon = icon;
         _title = title;
+        _type = [self type];
     }
     return self;
 }
@@ -27,6 +33,7 @@
         _icon = icon;
         _title = title;
         _destVC = destVc;
+        _type = [self type];
     }
     return self;
 }
@@ -41,9 +48,7 @@
         [self.customView removeFromSuperview];
         _customView = nil;
     }
-    _dataObject = nil;
-    _data = nil;
-    _pData = nil;
+    _privateData = nil;
     _operationHandle = nil;
 }
 
@@ -55,7 +60,7 @@
 - (void)layoutDiffSubviewWithCell:(ZJSettingTableViewCell *)cell {
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config {
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config {
 }
 
 @end

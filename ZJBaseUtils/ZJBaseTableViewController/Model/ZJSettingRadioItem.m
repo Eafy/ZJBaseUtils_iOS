@@ -11,7 +11,7 @@
 #import "ZJScreen.h"
 #import "UIButton+ZJExt.h"
 #import "UIColor+ZJExt.h"
-#import "ZJBaseTableViewConfig+ZJExt.h"
+#import "ZJBaseTVConfig.h"
 #import "ZJSettingTableViewCellExt.h"
 
 @interface ZJSettingRadioItem ()
@@ -22,6 +22,7 @@
 @end
 
 @implementation ZJSettingRadioItem
+@synthesize stateArray = _stateArray;
 
 - (ZJSettingItemType)type
 {
@@ -30,8 +31,9 @@
 
 - (UIView *)accessoryView
 {
-    if (!super.accessoryView) {
+    if (super.accessoryView.tag != self.type) {
         super.accessoryView = [[UIView alloc] init];
+        super.accessoryView.tag = self.type;
         if (self.btnSpace == 0) {
             self.btnSpace = 24.0f;
         }
@@ -65,42 +67,59 @@
     return _btnArray;
 }
 
-- (void)setTitleArray:(NSArray<NSString *> *)titleArray
-{
-    _titleArray = titleArray.copy;
-    for (int i=0; i < titleArray.count; i++) {
-        UIButton *btn = nil;
-        if (self.btnArray.count > i) {
-             btn = [self.btnArray objectAtIndex:i];
-        } else {
-            btn = [self createRadioBtn];
-            [self.btnArray addObject:btn];
-        }
-        btn.tag = i;
-        [btn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
-    }
-    
-    //删除多余的按钮
-    NSInteger count = self.btnArray.count - titleArray.count;
-    for (int i=0; i < count; i++) {
-        [self.btnArray removeLastObject];
-        [self.stateArray removeLastObject];
-    }
-}
-
 - (NSMutableArray<NSNumber *> *)stateArray
 {
-    if (_stateArray.count < self.btnArray.count) {
-        if (!_stateArray) {
-            _stateArray = [NSMutableArray array];
-        }
-        
-        for (int i=(int)self.btnArray.count-(int)_stateArray.count; i>0; i--) {
-            [_stateArray addObject:@NO];
-        }
+    if (!_stateArray) {
+        _stateArray = [NSMutableArray array];
     }
     
     return _stateArray;
+}
+
+- (void)setStateArray:(NSMutableArray<NSNumber *> *)stateArray
+{
+    _stateArray = [NSMutableArray arrayWithArray:stateArray];
+    [self clearBtnArray:stateArray.count];
+}
+
+- (void)setTitleArray:(NSArray<NSString *> *)titleArray
+{
+    _titleArray = titleArray.copy;
+    
+    [self clearBtnArray:titleArray.count];
+    
+    for (int i=0; i < titleArray.count; i++) {
+        UIButton *btn = [self.btnArray objectAtIndex:i];
+        [btn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
+    }
+}
+
+- (void)clearBtnArray:(NSUInteger)count
+{
+    if (self.btnArray.count < count) {
+        for (NSUInteger i=0; i < count; i++) {
+            UIButton *btn = nil;
+            if (i >= self.btnArray.count) {
+                btn = [self createRadioBtn];
+                [self.btnArray addObject:btn];
+                btn.tag = i;
+            } else {
+                btn = [self.btnArray objectAtIndex:i];
+            }
+            if (i >= self.stateArray.count) {
+                [self.stateArray addObject:@0];
+            }
+            btn.selected = [[self.stateArray objectAtIndex:i] boolValue];
+        }
+    } else {
+        NSInteger needTotal = self.btnArray.count - count;
+        for (NSUInteger i=0; i < needTotal; i++) {
+            [self.btnArray removeLastObject];
+            if (count + i >= self.stateArray.count) {
+                [self.stateArray removeLastObject];
+            }
+        }
+    }
 }
 
 - (void)setNormalIcon:(NSString *)normalIcon
@@ -169,7 +188,7 @@
     }
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTableViewConfig *)config
+- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
     if (!self.radioBtnTitleColor && config.radioBtnTitleColor) self.radioBtnTitleColor = config.textFieldTitleColor;
     if (!self.radioBtnTitleFont && config.radioBtnTitleFont) self.radioBtnTitleFont = config.textFieldTitleFont;

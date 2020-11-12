@@ -10,9 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^ZJBaseViewCtlReturnBeforeCompletion)(void);
-typedef void (^ZJBaseViewCtlReturnAfterCompletion)(void);
-
 @interface ZJBaseViewController : UIViewController
 
 @property (nonatomic,assign) BOOL isLeftSidesliEnable;    //是否开启左侧边栏右滑返回，默认开启
@@ -26,12 +23,15 @@ typedef void (^ZJBaseViewCtlReturnAfterCompletion)(void);
 @property (nonatomic,strong) UIButton * _Nullable navRightBtn;
 @property (nonatomic,strong) UIButton * _Nullable navLeftBtn;
 /// 返回之前需要执行的Block
-@property (nonatomic,copy) void(^ _Nullable returnBeforeOption)(void);
+@property (nonatomic,copy) void (^ _Nullable returnBeforeOption)(void);
 /// 返回之后需要执行的Block(模态有效)
-@property (nonatomic,copy) void(^ _Nullable returnAfterOption)(void);
+@property (nonatomic,copy) void (^ _Nullable returnAfterOption)(void);
 
+//自定义导航栏
 @property (nonatomic,assign) BOOL isShowNavBarView;     //是否显示自定义导航栏视图，当isHideNavBar为YES时生效
-@property (nonatomic,strong) UILabel *navBarTitleLB;
+@property (nonatomic,assign) BOOL isShowNavBarBgView;    //是否显示自定义导航栏背景视图；
+@property (nonatomic,strong) UIView *navBarBgView;          //自定义导航栏背景视图
+@property (nonatomic,strong) UILabel *navBarTitleLB;        //自定义导航栏的主题标签
 
 /// 右键响应
 - (void)navRightBtnAction;
