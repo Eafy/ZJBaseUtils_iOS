@@ -448,46 +448,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-<<<<<<< HEAD
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];   //立即取消选中
-
-    if (indexPath.section < self.datasArray.count) {
-        ZJSettingItemGroup *group = self.datasArray[indexPath.section];
-        if (indexPath.row < group.items.count) {
-            ZJSettingItem *item = group.items[indexPath.row];
-            
-            if (item.operationHandle != nil) {
-                item.operationHandle(item);
-            } else if ([item isKindOfClass:[ZJSettingArrowItem class]]) {
-                if (item.destVC) {
-                    ZJBaseTableViewController *vc = [[item.destVC alloc] init];
-                    vc.title = item.title;
-                    
-                    if ([vc respondsToSelector:@selector(setItem:config:dataObject:data:pData:)]) {
-                        [vc setItem:item config:self.tableViewConfig dataObject:self.dataObject data:self.data pData:self.pData];
-                    } else {
-                        if ([vc respondsToSelector:@selector(dataObject)]) {
-                            vc.dataObject = item.dataObject ? item.dataObject : self.dataObject;
-                        }
-                        if (item.data && [vc respondsToSelector:@selector(data)]) {
-                            vc.data = item.data ? item.data : self.data;
-                        }
-                        if (item.pData && [vc respondsToSelector:@selector(pData)]) {
-                            vc.pData = item.pData ? item.pData : self.pData;
-                        }
-                        if (_tableViewConfig && [vc respondsToSelector:@selector(tableViewConfig)]) {
-                            vc.tableViewConfig = self.tableViewConfig;
-                        }
-                    }
-                    
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-            }
-        }
-    }
-=======
     [ZJBaseTableView tableView:tableView didSelectRowAtIndexPath:indexPath datasArray:self.datasArray privateData:self.privateData currentViewController:self];
->>>>>>> aa4555c4fc90db8155e1ecf11503db01d8b30578
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
