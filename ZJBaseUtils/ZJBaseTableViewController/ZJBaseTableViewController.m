@@ -455,8 +455,8 @@
         if (indexPath.row < group.items.count) {
             ZJSettingItem *item = group.items[indexPath.row];
             
-            if (item.cellOptionBlock != nil) {
-                item.cellOptionBlock(item);
+            if (item.operationHandle != nil) {
+                item.operationHandle(item);
             } else if ([item isKindOfClass:[ZJSettingArrowItem class]]) {
                 if (item.destVC) {
                     ZJBaseTableViewController *vc = [[item.destVC alloc] init];

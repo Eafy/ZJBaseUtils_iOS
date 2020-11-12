@@ -10,49 +10,17 @@
 
 @implementation NSDate (ZJExt)
 
-NSString *NSDateFormat_yyyy_MM_dd_HH_mm_ss() {
-    return @"yyyy-MM-dd HH:mm:ss";
-}
-
-NSString *NSDateFormat_yyyyMMddHHmmss() {
-    return @"yyyyMMddHHmmss";
-}
-
-NSString *NSDateFormat_yyyy_MM_dd() {
-    return @"yyyy-MM-dd";
-}
-
-NSString *NSDateFormat_dd_MM_yyyy() {
-    return @"dd-MM-yyyy";
-}
- 
-NSString *NSDateFormat_yyyyMMdd() {
-    return @"yyyyMMdd";
-}
-
-NSString *NSDateFormat_Year() {
-    return @"yyyy";
-}
-
-NSString *NSDateFormat_Month() {
-    return @"MM";
-}
-
-NSString *NSDateFormat_Day() {
-    return @"dd";
-}
-
-NSString *NSDateFormat_Hour() {
-    return @"HH";
-}
-
-NSString *NSDateFormat_Min() {
-    return @"mm";
-}
-
-NSString *NSDateFormat_Sec() {
-    return @"ss";
-}
+NSString *const NSDateFormat_yyyy_MM_dd_HH_mm_ss = @"yyyy-MM-dd HH:mm:ss";
+NSString *const NSDateFormat_yyyyMMddHHmmss = @"yyyyMMddHHmmss";
+NSString *const NSDateFormat_yyyy_MM_dd = @"yyyy-MM-dd";
+NSString *const NSDateFormat_dd_MM_yyyy = @"dd-MM-yyyy";
+NSString *const NSDateFormat_yyyyMMdd = @"yyyyMMdd";
+NSString *const NSDateFormat_Year = @"yyyy";
+NSString *const NSDateFormat_Month = @"MM";
+NSString *const NSDateFormat_Day = @"dd";
+NSString *const NSDateFormat_Hour = @"HH";
+NSString *const NSDateFormat_Min = @"mm";
+NSString *const NSDateFormat_Sec = @"ss";
 
 #pragma mark -
 
@@ -109,7 +77,7 @@ NSString *NSDateFormat_Sec() {
 
 - (BOOL)zj_isLeapYear
 {
-    NSUInteger year = [[self zj_toString:NSDateFormat_Year()] integerValue];
+    NSUInteger year = [[self zj_toString:NSDateFormat_Year] integerValue];
     if ((year % 4  == 0 && year % 100 != 0) || year % 400 == 0) {
         return YES;
     }
@@ -121,26 +89,26 @@ NSString *NSDateFormat_Sec() {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    [dateFormat setDateFormat:NSDateFormat_yyyy_MM_dd()];
-    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_yyyy_MM_dd()];
+    [dateFormat setDateFormat:NSDateFormat_yyyy_MM_dd];
+    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_yyyy_MM_dd];
     
-    [dateFormat setDateFormat:NSDateFormat_Year()];
-    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Year()];
+    [dateFormat setDateFormat:NSDateFormat_Year];
+    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Year];
     
-    [dateFormat setDateFormat:NSDateFormat_Month()];
-    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Month()];
+    [dateFormat setDateFormat:NSDateFormat_Month];
+    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Month];
     
-    [dateFormat setDateFormat:NSDateFormat_Day()];
-    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Day()];
+    [dateFormat setDateFormat:NSDateFormat_Day];
+    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Day];
     
-    [dateFormat setDateFormat:NSDateFormat_Hour()];
-    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Hour()];
+    [dateFormat setDateFormat:NSDateFormat_Hour];
+    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Hour];
     
-    [dateFormat setDateFormat:NSDateFormat_Min()];
-    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Min()];
+    [dateFormat setDateFormat:NSDateFormat_Min];
+    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Min];
     
-    [dateFormat setDateFormat:NSDateFormat_Sec()];
-    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Sec()];
+    [dateFormat setDateFormat:NSDateFormat_Sec];
+    [dic setObject:[dateFormat stringFromDate:self] forKey:NSDateFormat_Sec];
     
     return dic;
 }

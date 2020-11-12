@@ -11,37 +11,37 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// 日期格式为 @"yyyy-MM-dd HH:mm:ss"
-extern NSString *NSDateFormat_yyyy_MM_dd_HH_mm_ss(void);
+extern NSString *const NSDateFormat_yyyy_MM_dd_HH_mm_ss;
 
 /// 日期格式为 @"yyyyMMddHHmmss"
-extern NSString *NSDateFormat_yyyyMMddHHmmss(void);
+extern NSString *const NSDateFormat_yyyyMMddHHmmss;
 
 /// 日期格式为 @"yyyy-MM-dd"
-extern NSString *NSDateFormat_yyyy_MM_dd(void);
+extern NSString *const NSDateFormat_yyyy_MM_dd;
 
 /// 日期格式为 @"dd-MM-yyyy"
-extern NSString *NSDateFormat_dd_MM_yyyy(void);
+extern NSString *const NSDateFormat_dd_MM_yyyy;
 
 /// 日期格式为 @"yyyyMMdd"
-extern NSString *NSDateFormat_yyyyMMdd(void);
+extern NSString *const NSDateFormat_yyyyMMdd;
 
 /// 日期格式为 @"yyyy"
-extern NSString *NSDateFormat_Year(void);
+extern NSString *const NSDateFormat_Year;
 
 /// 日期格式为 @"MM"
-extern NSString *NSDateFormat_Month(void);
+extern NSString *const NSDateFormat_Month;
 
 /// 日期格式为 @"dd"
-extern NSString *NSDateFormat_Day(void);
+extern NSString *const NSDateFormat_Day;
 
 /// 日期格式为 @"HH"
-extern NSString *NSDateFormat_Hour(void);
+extern NSString *const NSDateFormat_Hour;
 
 /// 日期格式为 @"mm"
-extern NSString *NSDateFormat_Min(void);
+extern NSString *const NSDateFormat_Min;
 
 /// 日期格式为 @"ss"
-extern NSString *NSDateFormat_Sec(void);
+extern NSString *const NSDateFormat_Sec;
 
 
 @interface NSDate (ZJExt)
