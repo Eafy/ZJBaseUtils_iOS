@@ -186,7 +186,7 @@
     if (indexPath.row >= group.items.count) return 0;
     ZJSettingItem *item = group.items[indexPath.row];
     
-    CGFloat rowHeight = 54.0f;
+    CGFloat rowHeight = 0;
     ZJBaseTVConfig *config = privateData.config;
     if (!config) return rowHeight;
     

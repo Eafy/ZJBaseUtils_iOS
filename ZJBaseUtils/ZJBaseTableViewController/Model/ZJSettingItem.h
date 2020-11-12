@@ -50,6 +50,8 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 
 #pragma mark - 自定义区
 
+/// 自定义icon视图
+@property (nonatomic,strong) UIView * _Nullable iconView;
 /// 自定义arrow视图
 @property (nonatomic,strong) UIView * _Nullable accessoryView;
 /// 自定义Cell视图

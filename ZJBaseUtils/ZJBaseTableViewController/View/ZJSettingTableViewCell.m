@@ -45,8 +45,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    cell.item = item;
     cell.tableViewConfig = config;
+    cell.item = item;
     cell.tag = item.tag;
     
     return cell;
@@ -104,6 +104,16 @@
 {
     [super layoutSubviews];
         
+    CGFloat detailTextSpace = 0;
+    if (self.accessoryView || self.accessoryType != UITableViewCellAccessoryNone) {
+        detailTextSpace = 5.0f;
+    } else {
+        detailTextSpace = 15.0f;
+    }
+    
+    if (self.item.iconView) {
+        self.textLabel.zj_left = self.item.iconView.zj_right + 5.0f;
+    }
     if (self.item.subTitle) {   //有副标题
         [self.textLabel sizeToFit];
         [self.detailTextLabel sizeToFit];
@@ -116,12 +126,12 @@
         
         if (self.item.detailTitle) {    //有详细
             self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
-            CGFloat preRight = (self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right) + 5.0f;
+            CGFloat preRight = (self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right) + 5.0f;  //计算子标题坐标
             self.subTitleLabel.zj_left = preRight;
             if (self.accessoryView) {
-                self.subTitleLabel.zj_width = self.accessoryView.zj_left - preRight - 5.0f;
+                self.subTitleLabel.zj_width = self.accessoryView.zj_left - preRight - detailTextSpace;
             } else {
-                self.subTitleLabel.zj_width = self.contentView.zj_right - preRight - 15.0f;
+                self.subTitleLabel.zj_width = self.contentView.zj_right - preRight - detailTextSpace;
             }
         } else {
             self.subTitleLabel.zj_left = self.textLabel.zj_left;
@@ -129,7 +139,11 @@
             [self.subTitleLabel sizeToFit];
         }
     } else {
-        self.detailTextLabel.zj_right = self.contentView.zj_right - 5.0f;
+         if (self.accessoryView) {
+                   self.detailTextLabel.zj_right = self.accessoryView.zj_right - detailTextSpace;
+               } else {
+                   self.detailTextLabel.zj_right = self.contentView.zj_right - detailTextSpace;
+               }
         self.detailTextLabel.zj_centerY = self.contentView.zj_centerY;
     }
     
@@ -204,14 +218,22 @@
 
 - (void)setItem:(ZJSettingItem *)item
 {
-    _item = item;
     self.textLabel.text = item.title.localized;
-    if (![NSString zj_isEmpty:self.item.icon]) {
-        self.imageView.image = [UIImage imageNamed:self.item.icon];
+    if (!_item.iconView && item.iconView != _item.iconView) {
+        [_item.iconView removeFromSuperview];
+        _item.iconView = nil;
+    }
+    if (![NSString zj_isEmpty:item.icon]) {
+        self.imageView.image = [UIImage imageNamed:item.icon];
+    } else if (item.iconView && item.iconView != _item.iconView) {
+        item.iconView.zj_left = 15.0f;
+        item.iconView.zj_centerY = self.tableViewConfig.rowHeight/2.0;
+        [self.contentView addSubview:item.iconView];
     }
     self.accessoryView = self.arrowImgView;
     [self addSubview:self.titleDetailImgView];
     
+        _item = item;
     if (self.item.subTitle) {
         if (self.item.detailTitle) {
             self.subTitleLabel.text = self.item.detailTitle;
