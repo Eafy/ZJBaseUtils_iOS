@@ -184,7 +184,7 @@
                 }
             }
         }
-    } else {
+    } else if (_arrowImgView != self.item.accessoryView){
         if (_arrowImgView) {
             [_arrowImgView removeFromSuperview];
             _arrowImgView = nil;
@@ -230,10 +230,11 @@
         item.iconView.zj_centerY = self.tableViewConfig.rowHeight/2.0;
         [self.contentView addSubview:item.iconView];
     }
+    _item = item;
+    
     self.accessoryView = self.arrowImgView;
     [self addSubview:self.titleDetailImgView];
     
-        _item = item;
     if (self.item.subTitle) {
         if (self.item.detailTitle) {
             self.subTitleLabel.text = self.item.detailTitle;

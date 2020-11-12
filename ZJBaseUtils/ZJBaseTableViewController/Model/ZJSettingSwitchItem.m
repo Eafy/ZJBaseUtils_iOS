@@ -38,8 +38,9 @@
 
 - (UIView *)accessoryView
 {
-    if (!super.accessoryView) {
+    if (super.accessoryView.tag != self.type) {
         super.accessoryView = self.switchBtn;
+        super.accessoryView.tag = self.type;
     }
     
     return super.accessoryView;

@@ -22,6 +22,7 @@
 @end
 
 @implementation ZJSettingRadioItem
+@synthesize stateArray = _stateArray;
 
 - (ZJSettingItemType)type
 {
@@ -30,8 +31,9 @@
 
 - (UIView *)accessoryView
 {
-    if (!super.accessoryView) {
+    if (super.accessoryView.tag != self.type) {
         super.accessoryView = [[UIView alloc] init];
+        super.accessoryView.tag = self.type;
         if (self.btnSpace == 0) {
             self.btnSpace = 24.0f;
         }
@@ -101,6 +103,15 @@
     }
     
     return _stateArray;
+}
+
+- (void)setStateArray:(NSMutableArray<NSNumber *> *)stateArray
+{
+    if (stateArray) {
+        _stateArray = [NSMutableArray arrayWithArray:stateArray];
+    } else {
+        _stateArray = nil;
+    }
 }
 
 - (void)setNormalIcon:(NSString *)normalIcon

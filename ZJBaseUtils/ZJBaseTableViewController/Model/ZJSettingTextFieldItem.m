@@ -26,8 +26,9 @@
 
 - (UIView *)accessoryView
 {
-    if (!super.accessoryView) {
+    if (super.accessoryView.tag != self.type) {
         super.accessoryView = self.detailTextField;
+        super.accessoryView.tag = self.type;
     }
     
     return super.self.detailTextField;

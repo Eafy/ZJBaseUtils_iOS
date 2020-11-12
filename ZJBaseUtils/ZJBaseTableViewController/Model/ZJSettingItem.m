@@ -12,11 +12,17 @@
 
 @implementation ZJSettingItem
 
+- (ZJSettingItemType)type
+{
+    return ZJSettingItemTypeNone;
+}
+
 - (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title
 {
     if (self = [super init]) {
         _icon = icon;
         _title = title;
+        _type = [self type];
     }
     return self;
 }
@@ -27,6 +33,7 @@
         _icon = icon;
         _title = title;
         _destVC = destVc;
+        _type = [self type];
     }
     return self;
 }
