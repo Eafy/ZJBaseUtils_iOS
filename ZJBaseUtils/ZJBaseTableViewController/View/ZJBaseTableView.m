@@ -77,6 +77,11 @@
     [super reloadData];
 }
 
+- (NSArray *)datasArray
+{
+    return _datasArray;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

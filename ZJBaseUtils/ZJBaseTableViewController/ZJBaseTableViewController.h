@@ -59,6 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 刷新数据
 - (void)reloadData;
 
+/// 已存在数据
+- (NSArray *)datasArray;
+
 /// 右键响应
 - (void)navRightBtnAction;
 

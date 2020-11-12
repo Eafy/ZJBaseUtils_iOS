@@ -14,13 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// Cell的item类型
 typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
     ZJSettingItemTypeNone = 0,      //不识别
-    ZJSettingItemTypeArrow,         //跳转类型
+    ZJSettingItemTypeArrow = 1024,  //跳转类型
     ZJSettingItemTypeLabel,         //标签类型
     ZJSettingItemTypeSwitch,        //开关类型
     ZJSettingItemTypeTextFidld,     //文本类型
+    ZJSettingItemTypeRadio,         //单选/复选类型
     ZJSettingItemTypeCustomView,    //自定义类型
     
-    ZJSettingItemTypeRadio = ZJSettingItemTypeArrow,         //单选/复选类型
+//    ZJSettingItemTypeRadio = ZJSettingItemTypeArrow,         //单选/复选类型
 };
 
 @class ZJSettingTableViewCell;

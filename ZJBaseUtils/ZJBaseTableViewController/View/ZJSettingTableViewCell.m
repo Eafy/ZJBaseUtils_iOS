@@ -184,7 +184,7 @@
                 }
             }
         }
-    } else if (_arrowImgView != self.item.accessoryView){
+    } else if (_arrowImgView != self.item.accessoryView || [NSString zj_isEmpty:self.item.arrowIcon]){
         if (_arrowImgView) {
             [_arrowImgView removeFromSuperview];
             _arrowImgView = nil;

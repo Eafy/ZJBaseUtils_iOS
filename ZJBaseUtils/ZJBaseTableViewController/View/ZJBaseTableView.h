@@ -24,7 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 刷新数据
 - (void)reloadData;
 
-#pragma mark -
+/// 已存在数据
+- (NSArray *)datasArray;
+
+#pragma mark - 提供给ZJBaseTableViewController使用
 
 + (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView datasArray:(NSArray *)datasArray;
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section datasArray:(NSArray *)datasArray;

@@ -187,4 +187,12 @@ NSString *NSDateFormat_Sec() {
     return [date zj_toTimeDictionary];
 }
 
++ (NSDate *)zj_timeFromString:(NSString *)dateStr formatter:(NSString *)formatter
+{
+    NSDateFormatter *formater = [[NSDateFormatter alloc]init];
+    [formater setDateFormat:formatter];
+    NSDate *date = [formater dateFromString:dateStr];
+    return date;
+}
+
 @end

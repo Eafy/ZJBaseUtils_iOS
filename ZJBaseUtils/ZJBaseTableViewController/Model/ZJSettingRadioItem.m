@@ -67,39 +67,10 @@
     return _btnArray;
 }
 
-- (void)setTitleArray:(NSArray<NSString *> *)titleArray
-{
-    _titleArray = titleArray.copy;
-    for (int i=0; i < titleArray.count; i++) {
-        UIButton *btn = nil;
-        if (self.btnArray.count > i) {
-             btn = [self.btnArray objectAtIndex:i];
-        } else {
-            btn = [self createRadioBtn];
-            [self.btnArray addObject:btn];
-        }
-        btn.tag = i;
-        [btn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
-    }
-    
-    //删除多余的按钮
-    NSInteger count = self.btnArray.count - titleArray.count;
-    for (int i=0; i < count; i++) {
-        [self.btnArray removeLastObject];
-        [self.stateArray removeLastObject];
-    }
-}
-
 - (NSMutableArray<NSNumber *> *)stateArray
 {
-    if (_stateArray.count < self.btnArray.count) {
-        if (!_stateArray) {
-            _stateArray = [NSMutableArray array];
-        }
-        
-        for (int i=(int)self.btnArray.count-(int)_stateArray.count; i>0; i--) {
-            [_stateArray addObject:@NO];
-        }
+    if (!_stateArray) {
+        _stateArray = [NSMutableArray array];
     }
     
     return _stateArray;
@@ -107,10 +78,47 @@
 
 - (void)setStateArray:(NSMutableArray<NSNumber *> *)stateArray
 {
-    if (stateArray) {
-        _stateArray = [NSMutableArray arrayWithArray:stateArray];
+    _stateArray = [NSMutableArray arrayWithArray:stateArray];
+    [self clearBtnArray:stateArray.count];
+}
+
+- (void)setTitleArray:(NSArray<NSString *> *)titleArray
+{
+    _titleArray = titleArray.copy;
+    
+    [self clearBtnArray:titleArray.count];
+    
+    for (int i=0; i < titleArray.count; i++) {
+        UIButton *btn = [self.btnArray objectAtIndex:i];
+        [btn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
+    }
+}
+
+- (void)clearBtnArray:(NSUInteger)count
+{
+    if (self.btnArray.count < count) {
+        for (NSUInteger i=0; i < count; i++) {
+            UIButton *btn = nil;
+            if (i >= self.btnArray.count) {
+                btn = [self createRadioBtn];
+                [self.btnArray addObject:btn];
+                btn.tag = i;
+            } else {
+                btn = [self.btnArray objectAtIndex:i];
+            }
+            if (i >= self.stateArray.count) {
+                [self.stateArray addObject:@0];
+            }
+            btn.selected = [[self.stateArray objectAtIndex:i] boolValue];
+        }
     } else {
-        _stateArray = nil;
+        NSInteger needTotal = self.btnArray.count - count;
+        for (NSUInteger i=0; i < needTotal; i++) {
+            [self.btnArray removeLastObject];
+            if (count + i >= self.stateArray.count) {
+                [self.stateArray removeLastObject];
+            }
+        }
     }
 }
 
