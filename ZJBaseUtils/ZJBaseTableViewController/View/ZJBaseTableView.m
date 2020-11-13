@@ -74,6 +74,9 @@
 - (void)reloadData
 {
     self.datasArray = [self setupDatas];
+    if (self.datasArray.count == 0) {
+        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
     [super reloadData];
 }
 
