@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJSettingItemGroup : NSMutableArray
 
-/// 标识
+/// 标识（用户自定义标签Tag）
 @property (nonatomic,assign) NSInteger tag;
 /// 头部标题
 @property (nonatomic,copy) NSString *headerTitle;
