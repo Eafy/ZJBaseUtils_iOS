@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJBaseTarbarItem.h"
-#import "ZJBaseTBConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,11 +27,11 @@ typedef void (^ZJBTBCustomBtnBlock) (UIButton * _Nonnull btn, NSInteger index);
 /// 选中代理
 @property(nonatomic, weak) id _Nullable delegate;
 
-/// 配置
-@property(nonatomic, strong) ZJBaseTBConfig *config;
-
 /// 选中第几个
 @property (nonatomic, assign) NSUInteger selectedIndex;
+
+///全局参数配置
+@property (nonatomic, strong) ZJBaseTabBarConfig *config;
 
 /// 添加句柄
 /// @param item 句柄参数
@@ -43,6 +42,9 @@ typedef void (^ZJBTBCustomBtnBlock) (UIButton * _Nonnull btn, NSInteger index);
 /// @param index 插入第几个位置
 /// @param btnClickBlock 点击回调
 - (void)addCustomBtn:(UIButton *)btn atIndex:(NSInteger)index clickedBlock:(ZJBTBCustomBtnBlock)btnClickBlock;
+
+/// 按钮集合
+- (NSArray *)tabBarButtonArray;
 
 @end
 

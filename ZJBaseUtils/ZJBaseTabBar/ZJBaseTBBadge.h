@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, ZJBTBBadgeStyleType) {
-    ZJBTBBadgeStyleTypePoint, //点
-    ZJBTBBadgeStyleTypeNew, //new
-    ZJBTBBadgeStyleTypeNumber, //number
+    ZJBTBBadgeStyleTypePoint,   //点
+    ZJBTBBadgeStyleTypeNew,     //new
+    ZJBTBBadgeStyleTypeNumber,  //number
 };
 
 /// 动画类型
@@ -34,9 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// badge动画 ，默认：无动画
 @property (nonatomic, assign) ZJBTBConfigBadgeAnimType animType;
 /// badge字体验证，默认：黑色
-@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor *badgeTextColor;
 /// badge背景颜色，默认： #FF4040
-@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *badgeBackgroundColor;
 /// badge大小，仅layout后才生效
 @property (nonatomic, assign) CGSize badgeSize;
 /// badge偏移，仅layout后才生效

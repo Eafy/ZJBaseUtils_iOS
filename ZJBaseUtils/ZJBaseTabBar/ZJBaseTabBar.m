@@ -9,32 +9,34 @@
 #import "ZJBaseTabBar.h"
 #import "ZJBaseTabBarButton.h"
 #import "ZJScreen.h"
-#import "ZJBaseTBConfig.h"
 #import "UIView+ZJFrame.h"
+#import "UIImage+ZJExt.h"
 
 @interface ZJBaseTabBar ()
 
-@property (nonatomic,assign) NSUInteger totalItems;
+/// 按钮总数
+@property (nonatomic, assign) NSUInteger totalItems;
 
-@property (nonatomic,strong) NSMutableArray *tabBarBtnArray;
+@property (nonatomic, strong) NSMutableArray *tabBarBtnArray;
 
 @end
 
 @implementation ZJBaseTabBar
 @dynamic delegate;
 
-- (instancetype)init
-{
-    if (self = [super initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJTabarBarHeight())]) {
-        self.backgroundColor = [UIColor whiteColor];
-    }
-    return self;
-}
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor whiteColor];
+    if (self = [super initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJTabarBarHeight())]) {
+//        UIImage *img = [UIImage zj_imageWithColor:self.backgroundColor size:self.bounds.size];
+        UIImage *img = [UIImage imageNamed:@"img_bg_1"];
+//        UIImage *bgImage = [img stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+        UIImage *bgImage = [img resizableImageWithCapInsets:UIEdgeInsetsMake(10, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
+    //    UIImageView *imgView = [[UIImageView alloc] initWithImage:bgImage];
+        self.backgroundImage = bgImage;
+        self.backgroundColor = [UIColor clearColor];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:self.frame];
+        imgView.image = bgImage;
+        [self addSubview:imgView];
     }
     return self;
 }
@@ -70,24 +72,9 @@
         UIView *view = tempArray[i];
         view.frame = CGRectMake(viewX, viewY, viewW, viewH);
     }
-    
-    self.backgroundColor = self.config.backgroundColor;
-    if (self.config.isClearTopLine) {
-        [self clearTopLine:YES];
-    } else {
-        [self clearTopLine:NO];
-    }
 }
 
 #pragma mark -
-
-- (ZJBaseTBConfig *)config
-{
-    if (!_config) {
-        _config = [[ZJBaseTBConfig alloc] init];
-    }
-    return _config;
-}
 
 - (NSMutableArray *)tabBarBtnArray {
     if (!_tabBarBtnArray) {
@@ -96,11 +83,16 @@
     return _tabBarBtnArray;
 }
 
+- (NSArray *)tabBarButtonArray {
+    return self.tabBarBtnArray;
+}
+
 - (void)addItem:(ZJBaseTarbarItem * _Nullable)item
 {
     ZJBaseTabBarButton *btn = [[ZJBaseTabBarButton alloc] init];
     btn.item = item;
     btn.tag = self.totalItems;
+    btn.config = self.config;
     self.totalItems ++;
     [self.tabBarBtnArray addObject:btn];
     
@@ -124,6 +116,25 @@
     self.totalItems ++;
     
     [self addSubview:btn];
+}
+
+- (void)setConfig:(ZJBaseTabBarConfig *)config
+{
+    if (_config.isClearTopLine != config.isClearTopLine) {
+        _config = config;
+        if (self.config.isClearTopLine) {
+            [self clearTopLine:YES];
+        } else {
+            [self clearTopLine:NO];
+        }
+    } else {
+        _config = config;
+    }
+    
+//    self.backgroundColor = self.config.backgroundColor;
+    for (ZJBaseTabBarButton *btn in self.tabBarBtnArray) {
+        btn.config = config;
+    }
 }
 
 #pragma mark - 

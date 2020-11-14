@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (CABasicAnimation *)zj_opacityAnimatioinWithDurationTimes:(CGFloat)duration;
 
 /// 缩放动画
-+ (CABasicAnimation *)zj_scaleAnimation;
++ (CABasicAnimation *)zj_scaleAnimation:(CGFloat)ratio;
 
 /// 旋转Y轴
 /// @param value 旋转角度

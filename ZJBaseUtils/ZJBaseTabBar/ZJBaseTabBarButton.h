@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 标注
 @property (nonatomic, strong) ZJBaseTBBadge *badge;
 
+///全局参数配置
+@property (nonatomic, strong) ZJBaseTabBarConfig *config;
+
 @end
 
 NS_ASSUME_NONNULL_END

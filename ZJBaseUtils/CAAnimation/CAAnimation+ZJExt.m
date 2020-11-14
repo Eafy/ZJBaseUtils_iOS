@@ -34,10 +34,10 @@
     return animatioin;
 }
 
-+ (CABasicAnimation *)zj_scaleAnimation
++ (CABasicAnimation *)zj_scaleAnimation:(CGFloat)ratio
 {
     CABasicAnimation *animatioin = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    animatioin.toValue = [NSNumber numberWithFloat:1.0f];
+    animatioin.toValue = [NSNumber numberWithFloat:ratio];
     animatioin.duration = 0.3f;
     animatioin.repeatCount = 3;
     animatioin.autoreverses = YES;

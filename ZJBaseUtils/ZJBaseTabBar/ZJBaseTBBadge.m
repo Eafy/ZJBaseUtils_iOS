@@ -25,15 +25,16 @@
 
 - (void)initDefaultData
 {
-    _textColor = [UIColor blackColor];
-    self.backgroundColor = [UIColor zj_colorWithHexString:@"#FF4040"];
+    self.backgroundColor = [UIColor clearColor];
+    _badgeTextColor = [UIColor blackColor];
+    _badgeBackgroundColor = [UIColor zj_colorWithHexString:@"#FF4040"];
 }
 
 - (UILabel *)badgeLB
 {
     if (!_badgeLB) {
         _badgeLB = [[UILabel alloc] initWithFrame:self.bounds];
-        _badgeLB.textColor = self.textColor;
+        _badgeLB.textColor = self.badgeTextColor;
         _badgeLB.font = [UIFont systemFontOfSize:11.f];
         _badgeLB.textAlignment = NSTextAlignmentCenter;
         _badgeLB.layer.cornerRadius = 8.f;
@@ -73,7 +74,7 @@
     } else if (self.animType == ZJBTBConfigBadgeAnimTypeOpacity) { //透明过渡动画
         [self.badgeLB.layer addAnimation:[CAAnimation zj_opacityAnimatioinWithDurationTimes:0.3] forKey:@"opacityAniamtion"];
     } else if (self.animType == ZJBTBConfigBadgeAnimTypeScale) { //缩放动画
-        [self.badgeLB.layer addAnimation:[CAAnimation zj_scaleAnimation] forKey:@"scaleAnimation"];
+        [self.badgeLB.layer addAnimation:[CAAnimation zj_scaleAnimation:1.3f] forKey:@"scaleAnimation"];
     }
 }
 
@@ -83,70 +84,30 @@
 
 #pragma mark -
 
-- (void)setTextColor:(UIColor *)textColor {
-    _textColor = textColor;
-    self.badgeLB.textColor = textColor;
+- (void)setBadgeTextColor:(UIColor *)badgeTextColor {
+    _badgeTextColor = badgeTextColor;
+    self.badgeLB.textColor = badgeTextColor;
 }
 
-- (void)setBackgroundColor:(UIColor *)backgroundColor {
-    _backgroundColor = backgroundColor;
-    super.backgroundColor = backgroundColor;
-    self.badgeLB.backgroundColor = backgroundColor;
+- (void)setBadgeBackgroundColor:(UIColor *)badgeBackgroundColor {
+    _badgeBackgroundColor = badgeBackgroundColor;
+    self.badgeLB.backgroundColor = badgeBackgroundColor;
 }
 
 - (void)setBadgeSize:(CGSize)badgeSize {
     _badgeSize = badgeSize;
-    NSMutableArray *arrM = [self getTabBarButtons];
-    for (ZJBaseTabBarButton *btn in arrM) {
-        btn.badge.badgeLB.zj_size = badgeSize;
-    }
+    self.badgeLB.zj_size = badgeSize;
 }
 
 - (void)setBadgeOffset:(CGPoint)badgeOffset {
     _badgeOffset = badgeOffset;
-    NSMutableArray *arrM = [self getTabBarButtons];
-    for (ZJBaseTabBarButton *btn in arrM) {
-        btn.badge.badgeLB.zj_left += badgeOffset.x;
-        btn.badge.badgeLB.zj_top += badgeOffset.y;
-    }
+    self.badgeLB.zj_left += badgeOffset.x;
+    self.badgeLB.zj_top += badgeOffset.y;
 }
 
 - (void)setBadgeRadius:(CGFloat)badgeRadius {
     _badgeRadius = badgeRadius;
-    NSMutableArray *arrM = [self getTabBarButtons];
-    for (ZJBaseTabBarButton *btn in arrM) {
-        btn.badge.badgeLB.layer.cornerRadius = badgeRadius;
-    }
-}
-
-- (void)badgeRadius:(CGFloat)radius atIndex:(NSInteger)index {
-    ZJBaseTabBarButton *tabBarButton = [self getTabBarButtonAtIndex:index];
-    tabBarButton.badge.badgeLB.layer.cornerRadius = radius;
-}
-
-
-- (void)showPointBadgeAtIndex:(NSInteger)index{
-    ZJBaseTabBarButton *tabBarButton = [self getTabBarButtonAtIndex:index];
-    tabBarButton.badge.hidden = NO;
-    tabBarButton.badge.type = ZJBTBBadgeValueTypePoint;
-}
-
-- (void)showNewBadgeAtIndex:(NSInteger)index {
-    ZJBaseTabBarButton *tabBarButton = [self getTabBarButtonAtIndex:index];
-    tabBarButton.badge.hidden = NO;
-    tabBarButton.badge.badgeLB.text = @"new".localized;
-    tabBarButton.badge.type = ZJBTBBadgeValueTypeNew;
-}
-
-- (void)showNumberBadgeValue:(NSString *)badgeValue AtIndex:(NSInteger)index {
-    ZJBaseTabBarButton *tabBarButton = [self getTabBarButtonAtIndex:index];
-    tabBarButton.badge.hidden = NO;
-    tabBarButton.badge.badgeLB.text = badgeValue;
-    tabBarButton.badge.type = ZJBTBBadgeValueTypeNumber;
-}
-
-- (void)hideBadgeAtIndex:(NSInteger)index {
-    [self getTabBarButtonAtIndex:index].badge.hidden = YES;
+    self.badgeLB.layer.cornerRadius = badgeRadius;
 }
 
 @end
