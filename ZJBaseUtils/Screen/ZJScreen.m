@@ -9,35 +9,39 @@
 #import "ZJScreen.h"
 
 CGRect ZJScreenFrame() {
-    return [ZJScreen screenFrame];
+    return ZJScreen.shared.screenFrame;
 }
 
 CGFloat ZJScreenHeight() {
-    return [ZJScreen screenHeight];
+    return ZJScreen.shared.screenHeight;
 }
 
 CGFloat ZJScreenWidth() {
-    return [ZJScreen screenWidth];
+    return ZJScreen.shared.screenWidth;
 }
 
 CGFloat ZJStatusBarHeight() {
-    return [ZJScreen statusBarHeight];
+    return ZJScreen.shared.statusBarHeight;
 }
 
 CGFloat ZJNavBarHeight() {
-    return [ZJScreen navBarHeight];
+    return ZJScreen.shared.navBarHeight;
+}
+
+CGFloat ZJTabarBarHeight(void) {
+    return ZJScreen.shared.tabarBarHeight;
 }
 
 CGFloat ZJSafeAreaInsetsHeight(void) {
-    return [ZJScreen safeAreaInsetsHeight];
+    return ZJScreen.shared.safeAreaInsetsHeight;
 }
 
 ZJScreenSizeType ZJscreenSizeType() {
-    return [ZJScreen screenSizeType];
+    return ZJScreen.shared.screenSizeType;
 }
 
 BOOL ZJIsIPad() {
-    return [ZJScreen isIPad];
+    return ZJScreen.shared.isIPad;
 }
 
 CGFloat ZJScale() {
@@ -51,23 +55,17 @@ CGFloat ZJScale() {
 @implementation ZJScreen
 singleton_m();
 
-@synthesize screenFrame = _screenFrame;
-@synthesize screenHeight = _screenHeight;
-@synthesize screenWidth = _screenWidth;
-@synthesize statusBarHeight = _statusBarHeight;
-@synthesize navBarHeight = _navBarHeight;
-@synthesize screenSizeType = _screenSizeType;
-@synthesize isIPad = _isIPad;
-
 - (void)initData
 {
     _screenFrame = [UIScreen mainScreen].bounds;
     _screenHeight = self.screenFrame.size.height;
     _screenWidth = self.screenFrame.size.width;
 
-     _navBarHeight = 44.0;
+    _navBarHeight = 44.0;
+    _tabarBarHeight = 49.0f;
     if (self.screenHeight == 1366.0 || self.screenHeight == 1024.0) {
         _navBarHeight = 64.0;
+        _tabarBarHeight = 83.0f;
     }
 
     _safeAreaInsetsHeight = 0;
@@ -108,40 +106,5 @@ singleton_m();
 
     return ZJScreenSizeType8;
 }
-
-#pragma mark -
-
-+ (CGRect)screenFrame {
-    return ZJScreen.shared.screenFrame;
-}
-
-+ (CGFloat)screenWidth {
-    return ZJScreen.shared.screenWidth;
-}
-
-+ (CGFloat)screenHeight {
-    return ZJScreen.shared.screenHeight;
-}
-
-+ (CGFloat)statusBarHeight {
-    return ZJScreen.shared.statusBarHeight;
-}
-
-+ (CGFloat)navBarHeight {
-    return ZJScreen.shared.navBarHeight;
-}
-
-+ (CGFloat)safeAreaInsetsHeight {
-    return ZJScreen.shared.safeAreaInsetsHeight;
-}
-
-+ (ZJScreenSizeType)screenSizeType {
-    return ZJScreen.shared.screenSizeType;
-}
-
-+ (BOOL)isIPad {
-    return ZJScreen.shared.isIPad;
-}
-
 
 @end

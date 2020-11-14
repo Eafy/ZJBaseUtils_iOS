@@ -7,13 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJBaseTarbarItem.h"
+#import "ZJBaseTabBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJBaseTabBarController : UITabBarController
 
-//非xib使用，因viewDidLoad需要加载viewControllers
-- (instancetype)initWithSubViewControllers:(NSArray *)array;
+@property (nonatomic, strong) ZJBaseTabBar *customTabBar;
+
+/// 配置
+@property(nonatomic, strong) ZJBaseTBConfig * config;
+
+- (void)addSubViewItem:(ZJBaseTarbarItem * _Nullable)item;
+
+- (void)addSubViewItems:(NSArray<ZJBaseTarbarItem *> * _Nullable)array;
+
 
 @end
 

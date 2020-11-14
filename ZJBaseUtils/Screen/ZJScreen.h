@@ -27,6 +27,7 @@ extern CGFloat ZJScreenHeight(void);
 extern CGFloat ZJScreenWidth(void);
 extern CGFloat ZJStatusBarHeight(void);
 extern CGFloat ZJNavBarHeight(void);
+extern CGFloat ZJTabarBarHeight(void);
 extern CGFloat ZJSafeAreaInsetsHeight(void);
 extern ZJScreenSizeType ZJscreenSizeType(void);
 extern BOOL ZJIsIPad(void);
@@ -40,28 +41,11 @@ singleton_h();
 @property (nonatomic, assign, readonly) CGFloat screenWidth;    //屏幕宽度
 @property (nonatomic, assign, readonly) CGFloat statusBarHeight;    //状态栏高度
 @property (nonatomic, assign, readonly) CGFloat navBarHeight;       //导航栏高度
+@property (nonatomic, assign, readonly) CGFloat tabarBarHeight;     //TabarBar高度
 @property (nonatomic, assign, readonly) CGFloat safeAreaInsetsHeight;       //安全区域底部高度
 
 @property (nonatomic, assign, readonly) ZJScreenSizeType screenSizeType;    //屏幕尺寸类型
 @property (nonatomic, assign, readonly) BOOL isIPad;    //是否是IPAD
-
-#pragma mark -
-
-+ (CGRect)screenFrame;
-
-+ (CGFloat)screenWidth;
-
-+ (CGFloat)screenHeight;
-
-+ (CGFloat)statusBarHeight;
-
-+ (CGFloat)navBarHeight;
-
-+ (CGFloat)safeAreaInsetsHeight;
-
-+ (ZJScreenSizeType)screenSizeType;
-
-+ (BOOL)isIPad;
 
 @end
 

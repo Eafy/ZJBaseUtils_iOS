@@ -8,77 +8,174 @@
 
 #import "ZJBaseTabBar.h"
 #import "ZJBaseTabBarButton.h"
+#import "ZJScreen.h"
+#import "ZJBaseTBConfig.h"
+#import "UIView+ZJFrame.h"
 
 @interface ZJBaseTabBar ()
-/**
- *  设置之前选中的按钮
- */
-@property (nonatomic, weak) UIButton *selectedBtn;
+
+@property (nonatomic,assign) NSUInteger totalItems;
+
+@property (nonatomic,strong) NSMutableArray *tabBarBtnArray;
+
 @end
 
 @implementation ZJBaseTabBar
+@dynamic delegate;
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)init
 {
-    self = [super initWithFrame:frame];
+    if (self = [super initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJTabarBarHeight())]) {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+    }
     return self;
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat width = self.frame.size.width/self.subviews.count;
-    //设置frame
-    for (int i=0; i<self.subviews.count; i++) {
-        UIButton *btn = self.subviews[i];
-        btn.frame = CGRectMake((width*i), 0, width, self.frame.size.height);
-        //设置按键标识
-        btn.tag = i;
+
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (UIView *tabBarButton in self.subviews) {
+        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+            [tabBarButton removeFromSuperview];
+        }
+        if ([tabBarButton isKindOfClass:[ZJBaseTabBarButton class]] || [tabBarButton isKindOfClass:[UIButton class]]) {
+            [tempArray addObject:tabBarButton];
+        }
+    }
+    
+    for (int i = 0; i < tempArray.count; i++) {
+        UIView *view = tempArray[i];
+        if ([view isKindOfClass:[UIButton class]]) {
+            [tempArray insertObject:view atIndex:view.tag];
+            [tempArray removeLastObject];
+            break;
+        }
+    }
+
+    CGFloat viewW = self.zj_width / self.totalItems;
+    CGFloat viewH = 49;
+    CGFloat viewY = 0;
+    for (int i = 0; i < tempArray.count; i++) {
+        CGFloat viewX = i * viewW;
+        UIView *view = tempArray[i];
+        view.frame = CGRectMake(viewX, viewY, viewW, viewH);
+    }
+    
+    self.backgroundColor = self.config.backgroundColor;
+    if (self.config.isClearTopLine) {
+        [self clearTopLine:YES];
+    } else {
+        [self clearTopLine:NO];
     }
 }
 
-- (void)addTabBarButtonWithNormalImageName:(NSString *)norName andDisableImageName:(NSString *)disName
+#pragma mark -
+
+- (ZJBaseTBConfig *)config
+{
+    if (!_config) {
+        _config = [[ZJBaseTBConfig alloc] init];
+    }
+    return _config;
+}
+
+- (NSMutableArray *)tabBarBtnArray {
+    if (!_tabBarBtnArray) {
+        _tabBarBtnArray = [NSMutableArray array];
+    }
+    return _tabBarBtnArray;
+}
+
+- (void)addItem:(ZJBaseTarbarItem * _Nullable)item
 {
     ZJBaseTabBarButton *btn = [[ZJBaseTabBarButton alloc] init];
-    //设置按键背景图片
-//    [btn setBackgroundImage:[UIImage imageNamed:norName] forState:UIControlStateNormal];
-    //设置选中状态(本身应该是不可用状态，因点击之后设置不可再点击
-//    [btn setBackgroundImage:[UIImage imageNamed:disName] forState:UIControlStateDisabled];
-    [btn setImage:[UIImage imageNamed:norName] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:disName] forState:UIControlStateSelected];
-    //设置高亮状态不调整图片
-    btn.adjustsImageWhenHighlighted = NO;
-    //添加按键到自定义TabBar
-    [self addSubview:btn];
-    //监听按键点击事件
-    [btn addTarget:self action:@selector(tabBarClicked:) forControlEvents:UIControlEventTouchDown];
+    btn.item = item;
+    btn.tag = self.totalItems;
+    self.totalItems ++;
+    [self.tabBarBtnArray addObject:btn];
     
-    //设置默认按键(当前添加的第一个按键）
-    if (self.subviews.count == 1){
-        [self tabBarClicked:btn];
+    [self addSubview:btn];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedBtnTapAction:)];
+    [btn addGestureRecognizer:tap];
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex
+{
+    _selectedIndex = selectedIndex;
+    
+    [self handleSelectedIndex:selectedIndex];
+}
+
+- (void)addCustomBtn:(UIButton *)btn atIndex:(NSInteger)index clickedBlock:(ZJBTBCustomBtnBlock)btnClickBlock
+{
+    btn.tag = index;
+    [btn addTarget:self action:@selector(clickedCustomBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.totalItems ++;
+    
+    [self addSubview:btn];
+}
+
+#pragma mark - 
+
+- (void)clickedBtnTapAction:(UITapGestureRecognizer *)tap
+{
+    [self handleSelectedIndex:tap.view.tag];
+    
+    if ([self.delegate respondsToSelector:@selector(didTabBarSelectedFrom:to:)]) {
+        [self.delegate didTabBarSelectedFrom:self.selectedIndex to:tap.view.tag];
     }
 }
 
-/**
- *  自定义TabBar的按钮点击事件
- */
-- (void)tabBarClicked:(UIButton *)button {
-    //1.先将之前选中的按钮设置为未选中
-    self.selectedBtn.selected = NO;
-    //2.再将当前按钮设置为选中
-    button.selected = YES;
-    
-    //却换视图控制器的事情,应该交给controller来做
-    //最好这样写, 先判断该代理方法是否实现
-    if ([self.delegate respondsToSelector:@selector(tabBar:selectedFrom:to:)]) {
-        [self.delegate tabBar:self selectedFrom:self.selectedBtn.tag to:button.tag];
+- (void)handleSelectedIndex:(NSInteger)selectedIndex
+{
+    for (int i = 0; i < self.tabBarBtnArray.count; i++) {
+        ZJBaseTabBarButton *btn = self.tabBarBtnArray[i];
+        if (i == selectedIndex) {
+            btn.selected = YES;
+        } else {
+            btn.selected = NO;
+        }
+    }
+}
+
+- (void)clearTopLine:(BOOL)isClear
+{
+    UIColor *color = [UIColor clearColor];
+    if (!isClear) {
+        color = self.config.topLineColor;
     }
     
-    //3.最后把当前按钮赋值为之前选中的按钮
-    self.selectedBtn = button;
-    
-    //4.跳转到相应的视图控制器. (通过selectIndex参数来设置选中了那个控制器)
-    //self.selectedIndex = button.tag;
+    CGRect rect = CGRectMake(0, 0, self.zj_width, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self setBackgroundImage:[UIImage new]];
+    [self setShadowImage:img];
 }
+
+- (void)clickedCustomBtnAction:(UIButton *)sender
+{
+    
+}
+
+#pragma mark - 移除系统的UITabBarItem功能
+
+- (NSArray<UITabBarItem *> *)items { return @[];}
+- (void)setItems:(NSArray<UITabBarItem *> *)items {}
+- (void)setItems:(NSArray<UITabBarItem *> *)items animated:(BOOL)animated {}
 
 @end

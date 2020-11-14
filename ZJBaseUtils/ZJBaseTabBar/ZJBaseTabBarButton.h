@@ -7,10 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJBaseTBBadge.h"
+#import "ZJBaseTarbarItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJBaseTabBarButton : UIButton
+@interface ZJBaseTabBarButton : UIView
+
+/// 是有选中
+@property (nonatomic, assign) BOOL selected;
+
+/// 参数配置
+@property (nonatomic, strong) ZJBaseTarbarItem * _Nullable item;
+
+/// 标注
+@property (nonatomic, strong) ZJBaseTBBadge *badge;
 
 @end
 

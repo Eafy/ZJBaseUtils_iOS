@@ -43,6 +43,7 @@
     
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.navigationController.delegate = self;
+    self.isLeftSidesliEnable = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -396,7 +397,6 @@
 
 - (void)initDefaultData
 {
-    _isLeftSidesliEnable = YES;
 }
 
 - (ZJBaseTVPrivateData *)privateData

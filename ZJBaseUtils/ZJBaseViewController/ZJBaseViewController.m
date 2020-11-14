@@ -38,6 +38,7 @@
     
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.navigationController.delegate = self;
+    self.isLeftSidesliEnable = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -62,14 +63,6 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.modalPresentationStyle = UIModalPresentationFullScreen;
     self.view.backgroundColor = [UIColor whiteColor];
-}
-
-- (instancetype)init
-{
-    if (self = [super init]) {
-        _isLeftSidesliEnable = YES;
-    }
-    return self;
 }
 
 - (void)dealloc {
