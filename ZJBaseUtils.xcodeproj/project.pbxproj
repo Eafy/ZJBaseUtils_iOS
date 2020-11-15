@@ -64,7 +64,7 @@
 		0C9569A224E4326D00C9A6C5 /* NSData+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9569A024E4326D00C9A6C5 /* NSData+ZJExt.m */; };
 		0C9D9A8B255F98BE0026C980 /* ZJBaseTBBadge.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9D9A89255F98BE0026C980 /* ZJBaseTBBadge.h */; };
 		0C9D9A8C255F98BE0026C980 /* ZJBaseTBBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9D9A8A255F98BE0026C980 /* ZJBaseTBBadge.m */; };
-		0C9D9A93255F995D0026C980 /* CAAnimation+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9D9A91255F995D0026C980 /* CAAnimation+ZJExt.h */; };
+		0C9D9A93255F995D0026C980 /* CAAnimation+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9D9A91255F995D0026C980 /* CAAnimation+ZJExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C9D9A94255F995D0026C980 /* CAAnimation+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9D9A92255F995D0026C980 /* CAAnimation+ZJExt.m */; };
 		0C9D9AAD256018110026C980 /* ZJBaseTabBarConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9D9AAB256018110026C980 /* ZJBaseTabBarConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C9D9AAE256018110026C980 /* ZJBaseTabBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9D9AAC256018110026C980 /* ZJBaseTabBarConfig.m */; };
@@ -312,7 +312,6 @@
 			isa = PBXGroup;
 			children = (
 				0C9D9A90255F994B0026C980 /* CAAnimation */,
-				0C9D9A8F255F99370026C980 /* New Group */,
 				0C4C9428255ED264008CED51 /* ZJBaseTabBar */,
 				0CA02117251F765600A9F216 /* ZJModel */,
 				0C50B8B5251E52430032CB2F /* ZJBaseViewController */,
@@ -524,13 +523,6 @@
 			path = NSData;
 			sourceTree = "<group>";
 		};
-		0C9D9A8F255F99370026C980 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		0C9D9A90255F994B0026C980 /* CAAnimation */ = {
 			isa = PBXGroup;
 			children = (
@@ -659,6 +651,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C9D9A93255F995D0026C980 /* CAAnimation+ZJExt.h in Headers */,
 				0C9D9AAD256018110026C980 /* ZJBaseTabBarConfig.h in Headers */,
 				0C720666255BEEE0005789C7 /* ZJBaseTVPrivateData.h in Headers */,
 				0CA3AE132535BDE1009782ED /* ZJModelFilterGet.h in Headers */,
@@ -689,7 +682,6 @@
 				0C9569A124E4326D00C9A6C5 /* NSData+ZJExt.h in Headers */,
 				0CCF759B24E8E8C000794878 /* NSString+ZJRSA.h in Headers */,
 				0CCF75AF24E9221300794878 /* NSString+ZJJSON.h in Headers */,
-				0C9D9A93255F995D0026C980 /* CAAnimation+ZJExt.h in Headers */,
 				0CCF75B424E9232700794878 /* NSDictionary+ZJExt.h in Headers */,
 				0CCF75B924E9238D00794878 /* NSThread+ZJExt.h in Headers */,
 				0C95699C24E42F4100C9A6C5 /* NSString+ZJExt.h in Headers */,

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJBaseTarbarItem.h"
 #import "ZJBaseTabBar.h"
 
 NS_ASSUME_NONNULL_BEGIN

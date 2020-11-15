@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import <ZJBaseUtils/ZJModel.h>
+#import "ZJModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

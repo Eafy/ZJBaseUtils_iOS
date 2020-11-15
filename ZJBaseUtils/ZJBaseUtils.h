@@ -8,7 +8,6 @@
 
 #import "ZJUtilsDef.h"
 #import "ZJSingleton.h"
-#import "NSArray+ZJExt.h"
 #import "NSDate+ZJExt.h"
 #import "NSFileManager+ZJExt.h"
 #import "NSObject+ZJExt.h"
@@ -23,25 +22,32 @@
 #import "NSData+ZJRSA.h"
 #import "NSData+ZJAESDES.h"
 #import "NSDictionary+ZJExt.h"
+#import "NSArray+ZJExt.h"
 #import "NSThread+ZJExt.h"
+#import "CAAnimation+ZJExt.h"
+
 #import "UIColor+ZJExt.h"
 #import "UIImage+ZJExt.h"
+
 #import "UIView+ZJExt.h"
 #import "UIView+ZJFrame.h"
 #import "UIView+ZJGesture.h"
-#import "UIViewController+ZJExt.h"
-#import "UIImageView+ZJExt.h"
 #import "UIButton+ZJExt.h"
+#import "UIImageView+ZJExt.h"
+#import "UIViewController+ZJExt.h"
 
+#import "ZJModelFilter.h"
+#import "ZJModelFilterGet.h"
+#import "ZJModelFilterSet.h"
+#import "ZJModelPairs.h"
+
+#import "ZJThread.h"
 #import "ZJSystem.h"
 #import "ZJScreen.h"
-#import "ZJThread.h"
-#import "ZJModel.h"
 #import "ZJLocalizationTool.h"
 
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"
 #import "ZJBaseTableViewController.h"
-
 #import "ZJBaseTabBarController.h"
 
