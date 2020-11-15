@@ -30,8 +30,11 @@ typedef void (^ZJBTBCustomBtnBlock) (UIButton * _Nonnull btn, NSInteger index);
 /// 选中第几个
 @property (nonatomic, assign) NSUInteger selectedIndex;
 
-///全局参数配置
+/// 全局参数配置
 @property (nonatomic, strong) ZJBaseTabBarConfig *config;
+
+/// 自定义背景视图
+@property (nonatomic, strong) UIView *backgroundView;
 
 /// 添加句柄
 /// @param item 句柄参数

@@ -18,6 +18,7 @@
 @end
 
 @implementation ZJBaseTabBarButton
+@synthesize selected = _selected;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -49,12 +50,10 @@
     CGFloat badgeW = 24;
     self.badge.frame = CGRectMake(badgeX, badgeY, badgeW, badgeH);
     
-    if (self.tag == self.config.scaleIndex) {
-        [self scaleAnimation];
+    if (self.isCenter) {
+//        [self raisedEffectAnimation];
     }
 }
-
-#pragma mark -
 
 - (void)scaleAnimation
 {
@@ -74,10 +73,23 @@
     [self.imageView.layer addAnimation:groupAnimation forKey:@"groupAnimation"];
 }
 
+- (void)raisedEffectAnimation
+{
+    UIControl *roundView = [[UIControl alloc] initWithFrame:CGRectMake(self.imageView.zj_left -5, self.imageView.zj_top - 5, self.imageView.zj_width + 10, self.imageView.zj_top * 2*-1)];
+    roundView.tag = 123456;
+    roundView.layer.cornerRadius = roundView.zj_width * 0.5 - 10;
+    roundView.clipsToBounds = YES;
+    roundView.backgroundColor = [UIColor whiteColor];
+//    [roundView addTarget:self action:@selector(tapControl:) forControlEvents:UIControlEventTouchUpInside];
+    [self insertSubview:roundView atIndex:0];
+}
+
+#pragma mark -
 
 - (void)setSelected:(BOOL)selected
 {
     if (_selected == selected) return;
+    super.selected = selected;
     
     _selected = selected;
     if (selected) {
@@ -87,9 +99,7 @@
         if (self.config.animType == ZJBTBConfigAnimTypeRotationY) {
              [self.imageView.layer addAnimation:[CAAnimation zj_rotationYAnimation:360] forKey:@"rotateAnimation"];
         } else if (self.config.animType == ZJBTBConfigAnimTypeScale) {
-            if (self.config.scaleIndex < 0) {
-                [self scaleAnimation];
-            }
+            [self scaleAnimation];
         } else if (self.config.animType == ZJBTBConfigAnimTypeBoundsMin) {
             [self.imageView.layer addAnimation:[CAAnimation zj_boundsAnimation:CGPointMake(12, 12)] forKey:@"min"];
         } else if (self.config.animType == ZJBTBConfigAnimTypeBoundsMax) {
@@ -98,9 +108,7 @@
     } else {
         self.titleLB.textColor = self.config.norTitleColor;
         self.imageView.image = [UIImage imageNamed:self.item.norImageName];
-        if (self.config.scaleIndex < 0 || self.tag != self.config.scaleIndex) {
-            [self.imageView.layer removeAllAnimations];
-        }
+        [self.imageView.layer removeAllAnimations];
     }
 }
 
@@ -121,8 +129,13 @@
     
     CGSize imageSize = self.config.imageSize;
     CGFloat imageY = self.config.imageOffset;
-    if (self.config.animType == ZJBTBConfigLayoutTypeImage) {
+    if (self.config.layoutType == ZJBTBConfigLayoutTypeImage) {
         imageY = self.zj_height * 0.5 - imageSize.height * 0.5;
+    }
+    
+    if (self.config.effectType == ZJBTBConfigSelectEffectTypeRaised && self.isCenter) {
+        imageSize = CGSizeMake(self.config.centerImageSize.width, self.config.centerImageSize.height);
+        imageY = self.config.centerImageOffset;
     }
     CGFloat iamgeX = self.zj_width * 0.5 - imageSize.width * 0.5;
     self.imageView.frame = CGRectMake(iamgeX, imageY, imageSize.width, imageSize.height);
@@ -134,7 +147,7 @@
     self.titleLB.frame = CGRectMake(titleX, titleY, titleW, titleH);
     self.titleLB.font = [UIFont systemFontOfSize:self.config.titleFont];
     self.titleLB.textColor = self.selected ? self.config.selTitleColor : self.config.norTitleColor;
-    self.titleLB.hidden = self.config.animType == ZJBTBConfigLayoutTypeImage;
+    self.titleLB.hidden = self.config.layoutType == ZJBTBConfigLayoutTypeImage;
 }
 
 @end

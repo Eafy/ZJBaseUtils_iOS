@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 自定义Tabbar，仅提供修改参数
 @property (nonatomic, strong) ZJBaseTabBar *customTabBar;
 
-///全局参数配置（必须要在加载之前配置）
+/// 全局参数配置（必须要在加载之前配置）
 @property (nonatomic, strong) ZJBaseTabBarConfig *config;
 
 /// 更新了config的内部参数，必须刷新

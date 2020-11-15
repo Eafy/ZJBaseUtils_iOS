@@ -24,8 +24,11 @@
        _titleOffset = 2.f;
        _imageOffset = 2.f;
        
-       _imageScaleRatio = 1.53f;
-       _scaleIndex = -1;
+       _imageScaleRatio = 1.30f;
+       _centerImageSize = CGSizeMake(40.0, 40.0);
+       _centerImageOffset = -20.0f;
+       
+       _effectType = ZJBTBConfigSelectEffectTypeNormal;
    }
    return self;
 }

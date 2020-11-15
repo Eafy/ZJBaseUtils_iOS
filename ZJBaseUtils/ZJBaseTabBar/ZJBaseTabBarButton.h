@@ -12,10 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJBaseTabBarButton : UIView
-
-/// 是有选中
-@property (nonatomic, assign) BOOL selected;
+@interface ZJBaseTabBarButton : UIControl
 
 /// 参数配置
 @property (nonatomic, strong) ZJBaseTarbarItem * _Nullable item;
@@ -23,8 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 标注
 @property (nonatomic, strong) ZJBaseTBBadge *badge;
 
-///全局参数配置
+/// 全局参数配置
 @property (nonatomic, strong) ZJBaseTabBarConfig *config;
+
+/// 是否中心按钮
+@property (nonatomic, assign) BOOL isCenter;
 
 @end
 

@@ -25,12 +25,20 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigAnimType) {
     ZJBTBConfigAnimTypeScale,           //缩放动画
 };
 
+/// 凸起效果
+typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
+    ZJBTBConfigSelectEffectTypeNormal,          //无效果
+    ZJBTBConfigSelectEffectTypeRaised,          //凸起
+};
+
 @interface ZJBaseTabBarConfig : NSObject
 
 /// 布局类型
 @property (nonatomic, assign) ZJBTBConfigLayoutType layoutType;
 /// 动画类型
 @property (nonatomic, assign) ZJBTBConfigAnimType animType;
+/// 凸起效果类型
+@property (nonatomic, assign) ZJBTBConfigSelectEffectType effectType;
 
 /// 是否清除tabBar顶部线条颜色，默认YES
 @property (nonatomic, assign) BOOL isClearTopLine;
@@ -52,10 +60,16 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigAnimType) {
 /// 图片的偏移值 (图片距离顶部的距离 默认 2.f)
 @property (nonatomic, assign) CGFloat imageOffset;
 
-/// 图片缩放时的大小 ，默认 ：1.53
+#pragma mark - 动画参数
+
+/// 图片缩放时的大小 ，默认 ：1.30
 @property (nonatomic, assign) CGFloat imageScaleRatio;
-/// 固定的按钮进行缩放，缩放模式生效，当设置之后，其他按钮缩放失效
-@property (nonatomic, assign) NSInteger scaleIndex;
+
+
+/// ZJBTBConfigAnimTypeCenterRaised模式图片大小，默认 ：(40*40)
+@property (nonatomic, assign) CGSize centerImageSize;
+/// ZJBTBConfigAnimTypeCenterRaised模式图片偏移，默认 ：-20
+@property (nonatomic, assign) CGFloat centerImageOffset;
 
 @end
 
