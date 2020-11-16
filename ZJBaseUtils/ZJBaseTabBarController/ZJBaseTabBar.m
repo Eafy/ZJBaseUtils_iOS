@@ -11,6 +11,7 @@
 #import "ZJScreen.h"
 #import "UIView+ZJFrame.h"
 #import "UIImage+ZJExt.h"
+#import "UIColor+ZJExt.h"
 
 @interface ZJBaseTabBar ()
 
@@ -31,17 +32,6 @@
 {
     if (self = [super initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJTabarBarHeight())]) {
         _centerTag = -1;
-//        UIImage *img = [UIImage zj_imageWithColor:[UIColor whiteColor] size:self.bounds.size];
-//        UIImage *img = [UIImage imageNamed:@"img_bg_1"];
-//        self.backgroundColor = [UIColor clearColor];
-//        UIImage *bgImage = [img stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-//        UIImage *bgImage = [img resizableImageWithCapInsets:UIEdgeInsetsMake(10, 0, 30, 60) resizingMode:UIImageResizingModeStretch];
-    //    UIImageView *imgView = [[UIImageView alloc] initWithImage:bgImage];
-        
-//        UIImage *bgImage = [img resizableImageWithCapInsets:UIEdgeInsetsMake(20, self.bounds.size.width/2.0 - 10, 0, self.bounds.size.width/2.0 + 10) resizingMode:UIImageResizingModeStretch];
-//        UIImageView *imgView = [[UIImageView alloc] initWithFrame:self.frame];
-//        imgView.image = bgImage;
-//        [self addSubview:imgView];
     }
     return self;
 }
@@ -137,16 +127,8 @@
 
 - (void)setConfig:(ZJBaseTabBarConfig *)config
 {
-    if (_config.isClearTopLine != config.isClearTopLine) {
-        _config = config;
-        if (self.config.isClearTopLine) {
-            [self clearTopLine:YES];
-        } else {
-            [self clearTopLine:NO];
-        }
-    } else {
-        _config = config;
-    }
+    _config = config;
+    [self handleTopLine];
     
     for (ZJBaseTabBarButton *btn in self.tabBarBtnArray) {
         btn.config = config;
@@ -165,9 +147,14 @@
     _backgroundView = backgroundView;
     if (_backgroundView) {
         self.backgroundColor = [UIColor clearColor];
+        self.backgroundImage = [UIImage new];
+        
+        _backgroundView.contentMode = UIViewContentModeTop;
+        _backgroundView.frame = self.bounds;
         [self insertSubview:_backgroundView atIndex:0];
     } else {
         self.backgroundColor = self.config.backgroundColor;
+        [self handleTopLine];
     }
 }
 
@@ -196,22 +183,24 @@
     }
 }
 
-- (void)clearTopLine:(BOOL)isClear
+- (void)handleTopLine
 {
-    UIColor *color = [UIColor clearColor];
-    if (!isClear) {
-        color = self.config.topLineColor;
+    if (self.config.topLineConfig.type == ZJBTBConfigTopLineTypeColor) {
+        UIColor *color = [UIColor clearColor];
+        if (self.config.topLineConfig.shadowColor) {
+            color = self.config.topLineConfig.shadowColor;
+        }
+        self.shadowImage = [UIImage zj_imageWithColor:color size:CGSizeMake(self.zj_width, self.config.topLineConfig.lineWidth)];;
+    } else if (self.config.topLineConfig.type == ZJBTBConfigTopLineTypeShadow) {
+        self.shadowImage = [UIImage new];
+        self.layer.shadowColor = self.config.topLineConfig.shadowColor.CGColor;
+        self.layer.shadowOffset = self.config.topLineConfig.shadowOffset;
+        self.layer.shadowOpacity = self.config.topLineConfig.shadowOpacity;
+        self.layer.shadowRadius = self.config.topLineConfig.shadowRadius;
+        self.layer.shadowPath = self.config.topLineConfig.shadowPath;
+    } else if (self.config.topLineConfig.type == ZJBTBConfigTopLineTypeClear) {
+        self.shadowImage = [UIImage new];
     }
-    
-    CGRect rect = CGRectMake(0, 0, self.zj_width, 1);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self setBackgroundImage:[UIImage new]];
-    [self setShadowImage:img];
 }
 
 - (void)clickedCustomBtnAction:(UIButton *)sender

@@ -14,8 +14,8 @@
 - (instancetype)init
 {
    if (self = [super init]) {
-       _isClearTopLine = YES;
-       _topLineColor = [UIColor lightGrayColor];
+       _topLineConfig = [[ZJBaseTabBarTopLineConfig alloc] init];
+       
        _backgroundColor = [UIColor whiteColor];
        _norTitleColor = [UIColor grayColor];
        _selTitleColor = [UIColor blackColor];

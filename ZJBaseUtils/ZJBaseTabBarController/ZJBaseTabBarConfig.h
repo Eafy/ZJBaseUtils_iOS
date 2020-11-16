@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJBaseTabBarTopLineConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,10 +41,9 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
 /// 凸起效果类型
 @property (nonatomic, assign) ZJBTBConfigSelectEffectType effectType;
 
-/// 是否清除tabBar顶部线条颜色，默认YES
-@property (nonatomic, assign) BOOL isClearTopLine;
-/// TabBar顶部线条颜色，默认亮灰色
-@property (nonatomic, strong) UIColor *topLineColor;
+/// tabBar顶部线条样式配置
+@property (nonatomic, strong) ZJBaseTabBarTopLineConfig *topLineConfig;
+
 /// TabBar的背景颜色，默认白色
 @property (nonatomic, strong) UIColor *backgroundColor;
 
