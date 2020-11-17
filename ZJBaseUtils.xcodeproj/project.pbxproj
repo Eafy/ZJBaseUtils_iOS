@@ -42,6 +42,12 @@
 		0C50B8C8251E53CC0032CB2F /* ZJError.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C50B8C6251E53CC0032CB2F /* ZJError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C50B913251EF53A0032CB2F /* ZJThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C50B911251EF53A0032CB2F /* ZJThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C50B914251EF53A0032CB2F /* ZJThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50B912251EF53A0032CB2F /* ZJThread.m */; };
+		0C64972A2563AE9D0052DBCA /* ZJPHAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C6497282563AE9D0052DBCA /* ZJPHAsset.h */; };
+		0C64972B2563AE9D0052DBCA /* ZJPHAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6497292563AE9D0052DBCA /* ZJPHAsset.m */; };
+		0C64972E2563AEC60052DBCA /* PHAsset+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C64972C2563AEC60052DBCA /* PHAsset+ZJExt.h */; };
+		0C64972F2563AEC60052DBCA /* PHAsset+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C64972D2563AEC60052DBCA /* PHAsset+ZJExt.m */; };
+		0C6497322563B37D0052DBCA /* ZJPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C6497302563B37D0052DBCA /* ZJPhoto.h */; };
+		0C6497332563B37D0052DBCA /* ZJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6497312563B37D0052DBCA /* ZJPhoto.m */; };
 		0C68EDD62562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C68EDD42562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C68EDD72562806400D3CF9F /* ZJBaseTabBarTopLineConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C68EDD52562806400D3CF9F /* ZJBaseTabBarTopLineConfig.m */; };
 		0C720666255BEEE0005789C7 /* ZJBaseTVPrivateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C720664255BEEE0005789C7 /* ZJBaseTVPrivateData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -182,6 +188,12 @@
 		0C50B8C6251E53CC0032CB2F /* ZJError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJError.h; sourceTree = "<group>"; };
 		0C50B911251EF53A0032CB2F /* ZJThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJThread.h; sourceTree = "<group>"; };
 		0C50B912251EF53A0032CB2F /* ZJThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJThread.m; sourceTree = "<group>"; };
+		0C6497282563AE9D0052DBCA /* ZJPHAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJPHAsset.h; sourceTree = "<group>"; };
+		0C6497292563AE9D0052DBCA /* ZJPHAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJPHAsset.m; sourceTree = "<group>"; };
+		0C64972C2563AEC60052DBCA /* PHAsset+ZJExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAsset+ZJExt.h"; sourceTree = "<group>"; };
+		0C64972D2563AEC60052DBCA /* PHAsset+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+ZJExt.m"; sourceTree = "<group>"; };
+		0C6497302563B37D0052DBCA /* ZJPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJPhoto.h; sourceTree = "<group>"; };
+		0C6497312563B37D0052DBCA /* ZJPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJPhoto.m; sourceTree = "<group>"; };
 		0C68EDD42562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJBaseTabBarTopLineConfig.h; sourceTree = "<group>"; };
 		0C68EDD52562806400D3CF9F /* ZJBaseTabBarTopLineConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJBaseTabBarTopLineConfig.m; sourceTree = "<group>"; };
 		0C720664255BEEE0005789C7 /* ZJBaseTVPrivateData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJBaseTVPrivateData.h; sourceTree = "<group>"; };
@@ -315,6 +327,7 @@
 		0C279C4924E2D22E00474649 /* ZJBaseUtils */ = {
 			isa = PBXGroup;
 			children = (
+				0C6497272563ADF10052DBCA /* PHPhoto */,
 				0C9D9A90255F994B0026C980 /* CAAnimation */,
 				0C4C9428255ED264008CED51 /* ZJBaseTabBarController */,
 				0CA02117251F765600A9F216 /* ZJModel */,
@@ -442,6 +455,19 @@
 				0CB590BB2515F4680092E854 /* ZJBaseViewController.m */,
 			);
 			path = ZJBaseViewController;
+			sourceTree = "<group>";
+		};
+		0C6497272563ADF10052DBCA /* PHPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				0C6497282563AE9D0052DBCA /* ZJPHAsset.h */,
+				0C6497292563AE9D0052DBCA /* ZJPHAsset.m */,
+				0C64972C2563AEC60052DBCA /* PHAsset+ZJExt.h */,
+				0C64972D2563AEC60052DBCA /* PHAsset+ZJExt.m */,
+				0C6497302563B37D0052DBCA /* ZJPhoto.h */,
+				0C6497312563B37D0052DBCA /* ZJPhoto.m */,
+			);
+			path = PHPhoto;
 			sourceTree = "<group>";
 		};
 		0C95691924E2D8FB00C9A6C5 /* Device */ = {
@@ -658,6 +684,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C68EDD62562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h in Headers */,
+				0C64972A2563AE9D0052DBCA /* ZJPHAsset.h in Headers */,
 				0C9D9A93255F995D0026C980 /* CAAnimation+ZJExt.h in Headers */,
 				0C9D9AAD256018110026C980 /* ZJBaseTabBarConfig.h in Headers */,
 				0C720666255BEEE0005789C7 /* ZJBaseTVPrivateData.h in Headers */,
@@ -671,6 +698,7 @@
 				0CA0211A251F76D200A9F216 /* ZJModel.h in Headers */,
 				0C50B913251EF53A0032CB2F /* ZJThread.h in Headers */,
 				0C50B8B0251E516A0032CB2F /* UIImageView+ZJExt.h in Headers */,
+				0C6497322563B37D0052DBCA /* ZJPhoto.h in Headers */,
 				0CB590FD251601610092E854 /* ZJLocalizationTool.h in Headers */,
 				0CB590DA2515F71C0092E854 /* ZJBaseNavigationController.h in Headers */,
 				0CB590CB2515F5D30092E854 /* NSString+ZJIMGExt.h in Headers */,
@@ -717,6 +745,7 @@
 				0C50B891251E4F0C0032CB2F /* ZJBaseTVConfig.h in Headers */,
 				0CCF75A724E91C3600794878 /* NSString+ZJAESDES.h in Headers */,
 				0CCF75AB24E91F7000794878 /* NSString+ZJMD5.h in Headers */,
+				0C64972E2563AEC60052DBCA /* PHAsset+ZJExt.h in Headers */,
 				0C95691C24E2D8FB00C9A6C5 /* ZJSAMKeychain.h in Headers */,
 				0C279C5824E2D22F00474649 /* ZJBaseUtils.h in Headers */,
 			);
@@ -827,6 +856,7 @@
 				0CFBF56E25249A3200D55386 /* ZJSettingRadioItem.m in Sources */,
 				0CCF75CD24EC075600794878 /* UIView+ZJGesture.m in Sources */,
 				0CA3AE182535BDEC009782ED /* ZJModelFilterSet.m in Sources */,
+				0C64972B2563AE9D0052DBCA /* ZJPHAsset.m in Sources */,
 				0C50B914251EF53A0032CB2F /* ZJThread.m in Sources */,
 				0C4C9433255ED31F008CED51 /* ZJBaseTabBarButton.m in Sources */,
 				0CCF75E024EC125900794878 /* ZJScreen.m in Sources */,
@@ -852,6 +882,7 @@
 				0C95699D24E42F4100C9A6C5 /* NSString+ZJExt.m in Sources */,
 				0CB590FE251601610092E854 /* ZJLocalizationTool.m in Sources */,
 				0CB590CA2515F5D30092E854 /* NSString+ZJIMGExt.m in Sources */,
+				0C6497332563B37D0052DBCA /* ZJPhoto.m in Sources */,
 				0C50B88C251E4F0C0032CB2F /* ZJSettingItemGroup.m in Sources */,
 				0C720667255BEEE0005789C7 /* ZJBaseTVPrivateData.m in Sources */,
 				0CCF75AC24E91F7000794878 /* NSString+ZJMD5.m in Sources */,
@@ -875,6 +906,7 @@
 				0C68EDD72562806400D3CF9F /* ZJBaseTabBarTopLineConfig.m in Sources */,
 				0CA3AE142535BDE1009782ED /* ZJModelFilterGet.m in Sources */,
 				0C50B887251E4F0C0032CB2F /* ZJSettingSwitchItem.m in Sources */,
+				0C64972F2563AEC60052DBCA /* PHAsset+ZJExt.m in Sources */,
 				0C50B881251E4F0C0032CB2F /* ZJSettingLabelItem.m in Sources */,
 				0CB590D92515F71C0092E854 /* ZJBaseNavigationController.m in Sources */,
 				0C50B87D251E4F0C0032CB2F /* ZJBaseTVConfig.m in Sources */,
