@@ -33,6 +33,7 @@
 #import "UIView+ZJFrame.h"
 #import "UIView+ZJGesture.h"
 #import "UIButton+ZJExt.h"
+#import "UIButton+ZJGradient.h"
 #import "UIImageView+ZJExt.h"
 #import "UIViewController+ZJExt.h"
 

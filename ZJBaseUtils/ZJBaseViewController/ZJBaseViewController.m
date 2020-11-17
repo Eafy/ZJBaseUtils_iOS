@@ -298,6 +298,22 @@
     }
 }
 
+#pragma mark -
+
+- (void)setBackgroundImgName:(NSString *)backgroundImgName
+{
+    _backgroundImgName = backgroundImgName;
+    if (backgroundImgName) {
+        UIImage *img = [UIImage imageNamed:backgroundImgName];
+        if (img) {
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+            imgView.image = img;
+            imgView.contentMode = UIViewContentModeScaleAspectFill;
+            [self.view insertSubview:imgView atIndex:0];
+        }
+    }
+}
+
 #pragma mark - ButtonAction
 
 //进入子视图

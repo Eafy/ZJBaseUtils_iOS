@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIView *navBarBgView;          //自定义导航栏背景视图
 @property (nonatomic,strong) UILabel *navBarTitleLB;        //自定义导航栏的主题标签
 
+/// 设置背景图片
+@property (nonatomic,copy) NSString *backgroundImgName;
+
 /// 右键响应
 - (void)navRightBtnAction;
 
