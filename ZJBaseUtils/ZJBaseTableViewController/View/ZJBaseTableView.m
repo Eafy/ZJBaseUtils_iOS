@@ -73,11 +73,18 @@
 
 - (void)reloadData
 {
-    self.datasArray = [self setupDatas];
-    if (self.datasArray.count == 0) {
-        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    }
-    [super reloadData];
+    __weak ZJBaseTableView *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (weakSelf.datasArray.count == 0) {
+            weakSelf.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        }
+    });
+}
+
+- (void)updateData
+{
+    [self setupDatas];
+    [self reloadData];
 }
 
 - (NSArray *)datasArray

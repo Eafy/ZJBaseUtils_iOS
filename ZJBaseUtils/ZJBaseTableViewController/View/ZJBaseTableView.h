@@ -21,8 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 加载数据，需要重载
 - (NSArray<ZJSettingItemGroup *> *)setupDatas;
 
-/// 刷新数据
+/// 加载数据
 - (void)reloadData;
+
+/// 更新数据
+- (void)updateData;
 
 /// 已存在数据
 - (NSArray *)datasArray;

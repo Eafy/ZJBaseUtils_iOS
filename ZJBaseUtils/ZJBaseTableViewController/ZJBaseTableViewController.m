@@ -419,12 +419,16 @@
 {
     __weak ZJBaseTableViewController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        weakSelf.datasArray = [weakSelf setupDatas];
         if (weakSelf.datasArray.count == 0) {
             weakSelf.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         }
-        [weakSelf.tableView reloadData];
     });
+}
+
+- (void)updateData
+{
+    [self setupDatas];
+    [self reloadData];
 }
 
 - (NSArray *)datasArray
