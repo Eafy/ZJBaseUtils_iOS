@@ -45,6 +45,7 @@
 #import "ZJSystem.h"
 #import "ZJScreen.h"
 #import "ZJLocalizationTool.h"
+#import "ZJPhoto.h"
 
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"
