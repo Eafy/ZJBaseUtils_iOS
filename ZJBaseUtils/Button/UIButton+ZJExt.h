@@ -29,6 +29,9 @@ typedef NS_ENUM(NSUInteger, ZJButtonEdgeInsetsStyle) {
 /// @param labelPoint titleLabel左上角顶点位置
 - (void)zj_layoutWithEdgeInsets:(CGPoint)imgPoint labelPoint:(CGPoint)labelPoint;
 
+/// 清除布局
+- (void)zj_layoutClear;
+
 @end
 
 NS_ASSUME_NONNULL_END
