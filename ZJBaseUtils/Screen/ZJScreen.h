@@ -47,6 +47,11 @@ singleton_h();
 @property (nonatomic, assign, readonly) ZJScreenSizeType screenSizeType;    //屏幕尺寸类型
 @property (nonatomic, assign, readonly) BOOL isIPad;    //是否是IPAD
 
+/// 缩放标准类型，默认ZJScreenSizeType8
+@property (nonatomic, assign) ZJScreenSizeType scaleStandard;
+/// 缩放基准长度
+@property (nonatomic, assign, readonly) CGFloat scaleStandardLength;
+
 @end
 
 NS_ASSUME_NONNULL_END

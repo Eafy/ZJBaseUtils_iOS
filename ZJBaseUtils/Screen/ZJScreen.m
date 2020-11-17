@@ -48,7 +48,7 @@ CGFloat ZJScale() {
     if (ZJIsIPad()) {
         return ZJScreenHeight()/667.0 + 0.5;
     } else {
-        return ZJScreenWidth()/375.f;
+        return ZJScreenHeight()/ZJScreen.shared.scaleStandardLength;
     }
 }
 
@@ -82,6 +82,8 @@ singleton_m();
         _statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
         _isIPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     }
+    
+    self.scaleStandard = ZJScreenSizeType8;
 }
 
 #pragma mark -
@@ -105,6 +107,34 @@ singleton_m();
     }
 
     return ZJScreenSizeType8;
+}
+
+- (void)setScaleStandard:(ZJScreenSizeType)scaleStandard
+{
+    _scaleStandard = scaleStandard;
+    switch (scaleStandard) {
+        case ZJScreenSizeType4S:
+            _scaleStandardLength = 480;
+            break;
+        case ZJScreenSizeType5S:
+            _scaleStandardLength = 568;
+            break;
+        case ZJScreenSizeType8:
+            _scaleStandardLength = 667;
+            break;
+        case ZJScreenSizeType8P:
+            _scaleStandardLength = 736;
+            break;
+        case ZJScreenSizeTypeX:
+            _scaleStandardLength = 812;
+            break;
+        case ZJScreenSizeTypeXr:
+            _scaleStandardLength = 896;
+            break;
+        default:
+            _scaleStandardLength = 667;
+            break;
+    }
 }
 
 @end
