@@ -247,7 +247,14 @@
         self.detailTextLabel.text = self.item.detailTitle;
     }
     
+    // 更新差异化数据
     [self.item updateDiffDataWithCell:self];
+    
+    if (self.item.isSelection) {
+        self.selectionStyle = UITableViewCellSelectionStyleDefault;
+    } else {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
 }
 
 @end

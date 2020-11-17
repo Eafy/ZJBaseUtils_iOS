@@ -18,8 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIColor *centerTitleColor;
 /// 中心主标题字体
 @property (nonatomic,strong) UIFont *centerTitleFont;
-/// 是否可点击
-@property (nonatomic,assign) BOOL isSelection;
 
 @end
 

@@ -96,28 +96,25 @@
 
 - (void)clearBtnArray:(NSUInteger)count
 {
-    if (self.btnArray.count < count) {
-        for (NSUInteger i=0; i < count; i++) {
-            UIButton *btn = nil;
-            if (i >= self.btnArray.count) {
-                btn = [self createRadioBtn];
-                [self.btnArray addObject:btn];
-                btn.tag = i;
-            } else {
-                btn = [self.btnArray objectAtIndex:i];
-            }
-            if (i >= self.stateArray.count) {
-                [self.stateArray addObject:@0];
-            }
-            btn.selected = [[self.stateArray objectAtIndex:i] boolValue];
+    for (NSUInteger i=0; i < count; i++) {
+        UIButton *btn = nil;
+        if (i >= self.btnArray.count) {
+            btn = [self createRadioBtn];
+            [self.btnArray addObject:btn];
+            btn.tag = i;
+        } else {
+            btn = [self.btnArray objectAtIndex:i];
         }
-    } else {
-        NSInteger needTotal = self.btnArray.count - count;
-        for (NSUInteger i=0; i < needTotal; i++) {
-            [self.btnArray removeLastObject];
-            if (count + i >= self.stateArray.count) {
-                [self.stateArray removeLastObject];
-            }
+        if (i >= self.stateArray.count) {
+            [self.stateArray addObject:@0];
+        }
+        btn.selected = [[self.stateArray objectAtIndex:i] boolValue];
+    }
+    
+    for (NSUInteger i=count; i<self.btnArray.count; i++) {
+        [self.btnArray removeLastObject];
+        if (i < self.stateArray.count) {
+            [self.stateArray removeLastObject];
         }
     }
 }

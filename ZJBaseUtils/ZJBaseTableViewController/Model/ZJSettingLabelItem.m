@@ -39,9 +39,6 @@
         cell.subTitleLabel.textAlignment = NSTextAlignmentCenter;
         cell.subTitleLabel.text = self.title.localized;
     }
-    if (self.isSelection) {
-        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-    }
 }
 
 - (void)layoutDiffSubviewWithCell:(ZJSettingTableViewCell *)cell

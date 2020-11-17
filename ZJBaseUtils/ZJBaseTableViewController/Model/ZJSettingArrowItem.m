@@ -21,7 +21,7 @@
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
 {
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    self.isSelection = YES;
 }
 
 @end

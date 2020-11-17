@@ -49,6 +49,9 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 /// 处理点击的事件，走此block会终止后续的操作
 @property (nonatomic,copy) void(^ _Nullable operationHandle)(ZJSettingItem * _Nullable item);
 
+/// 是否可点击，Arrow默认可点击
+@property (nonatomic,assign) BOOL isSelection;
+
 #pragma mark - 自定义区
 
 /// 自定义icon视图
