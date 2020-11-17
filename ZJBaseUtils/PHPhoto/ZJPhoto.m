@@ -126,6 +126,30 @@ singleton_m();
     return asset;
 }
 
+- (UIImage *)firstFrameWithVideoAsset:(AVAsset *)asset
+{
+    if (!asset) return nil;
+    AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
+    generator.appliesPreferredTrackTransform = YES;
+    NSError *error = nil;
+    CGImageRef img = [generator copyCGImageAtTime:CMTimeMake(0, 60) actualTime:NULL error:&error];
+    if (!error && img && img!=0x0) {
+        UIImage *image = [UIImage imageWithCGImage:img];
+        CGImageRelease(img);
+        return image;
+    }
+    
+    return nil;
+}
+
+- (UIImage *)firstFrameWithVideoURL:(NSURL *)url
+{
+    if (!url) return nil;
+    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:opts];
+    return [self firstFrameWithVideoAsset:asset];
+}
+
 - (void)saveImage:(UIImage *_Nonnull)image toAlbum:(NSString *_Nullable)album handler:(ZJAlbumSaveHandler _Nullable)handler
 {
     __block NSString *localIdentifier = nil;
@@ -211,19 +235,8 @@ singleton_m();
         if (asset) {
             [[PHCachingImageManager defaultManager] requestAVAssetForVideo:asset options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
                 if (asset) {
-                    AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
-                    generator.appliesPreferredTrackTransform = YES;
-                    __block CMTimeValue time = asset.duration.value/asset.duration.timescale;
-                    __block UIImage *image = nil;
-                    for (int i=0; i<time; i++) {
-                        NSError *error = nil;
-                        CGImageRef img = [generator copyCGImageAtTime:CMTimeMake(i, 30) actualTime:NULL error:&error];
-                        if (!error && img && img!=0x0) {
-                            image = [UIImage imageWithCGImage:img];
-                            break;
-                        }
-                    }
-                    
+                    UIImage *image = [self firstFrameWithVideoAsset:asset];
+                    CMTimeValue time = asset.duration.value/asset.duration.timescale;
                     handler(asset, image, time);
                 } else {
                     handler(nil, nil, 0);

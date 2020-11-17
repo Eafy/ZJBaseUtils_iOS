@@ -40,7 +40,15 @@ singleton_h();
 
 /// 通过路径查找PHAsset
 /// @param path localIdentifier或assets-library
-- (PHAsset *)findAssetFromPath:(NSString *)path;
+- (PHAsset * _Nullable)findAssetFromPath:(NSString *)path;
+
+/// 获取视频的首帧图片
+/// @param asset AVAsset对象
+- (UIImage * _Nullable)firstFrameWithVideoAsset:(AVAsset * _Nonnull)asset;
+
+/// 获取视频的首帧图片
+/// @param url 地址
+- (UIImage * _Nullable)firstFrameWithVideoURL:(NSURL * _Nonnull)url;
 
 /// 保存图片到系统相册
 /// @param image 需要写入的图片
