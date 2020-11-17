@@ -46,7 +46,7 @@ BOOL ZJIsIPad() {
 
 CGFloat ZJScale() {
     if (ZJIsIPad()) {
-        return ZJNavBarHeight()/ZJScreenWidth();
+        return ZJScreenHeight()/667.0 + 0.5;
     } else {
         return ZJScreenWidth()/375.f;
     }
