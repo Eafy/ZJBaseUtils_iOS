@@ -99,6 +99,8 @@
 		0CB590DA2515F71C0092E854 /* ZJBaseNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB590D82515F71C0092E854 /* ZJBaseNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB590FD251601610092E854 /* ZJLocalizationTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB590FB251601610092E854 /* ZJLocalizationTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB590FE251601610092E854 /* ZJLocalizationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB590FC251601610092E854 /* ZJLocalizationTool.m */; };
+		0CC127C8256507C900C33366 /* ZJSystem+WiFi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC127C6256507C900C33366 /* ZJSystem+WiFi.m */; };
+		0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC127C7256507C900C33366 /* ZJSystem+WiFi.h */; };
 		0CC5EFD52539420F0083546A /* ZJModelPairs.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC5EFD32539420F0083546A /* ZJModelPairs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CC5EFD62539420F0083546A /* ZJModelPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5EFD42539420F0083546A /* ZJModelPairs.m */; };
 		0CCF759724E8E71000794878 /* NSString+ZJSHA.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF759524E8E71000794878 /* NSString+ZJSHA.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -249,6 +251,8 @@
 		0CB590D82515F71C0092E854 /* ZJBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJBaseNavigationController.h; sourceTree = "<group>"; };
 		0CB590FB251601610092E854 /* ZJLocalizationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJLocalizationTool.h; sourceTree = "<group>"; };
 		0CB590FC251601610092E854 /* ZJLocalizationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJLocalizationTool.m; sourceTree = "<group>"; };
+		0CC127C6256507C900C33366 /* ZJSystem+WiFi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZJSystem+WiFi.m"; sourceTree = "<group>"; };
+		0CC127C7256507C900C33366 /* ZJSystem+WiFi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZJSystem+WiFi.h"; sourceTree = "<group>"; };
 		0CC5EFD32539420F0083546A /* ZJModelPairs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJModelPairs.h; sourceTree = "<group>"; };
 		0CC5EFD42539420F0083546A /* ZJModelPairs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJModelPairs.m; sourceTree = "<group>"; };
 		0CCF759524E8E71000794878 /* NSString+ZJSHA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZJSHA.h"; sourceTree = "<group>"; };
@@ -489,6 +493,8 @@
 				0CB590FC251601610092E854 /* ZJLocalizationTool.m */,
 				0C50B8C6251E53CC0032CB2F /* ZJError.h */,
 				0C50B8C5251E53CC0032CB2F /* ZJError.m */,
+				0CC127C7256507C900C33366 /* ZJSystem+WiFi.h */,
+				0CC127C6256507C900C33366 /* ZJSystem+WiFi.m */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -742,6 +748,7 @@
 				0C50B883251E4F0C0032CB2F /* ZJSettingArrowItem.h in Headers */,
 				0CCF75BE24E9285A00794878 /* UIColor+ZJExt.h in Headers */,
 				0C50B87E251E4F0C0032CB2F /* ZJBaseTableViewController.h in Headers */,
+				0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */,
 				0CCF75C824EC03BB00794878 /* UIView+ZJExt.h in Headers */,
 				0C50B889251E4F0C0032CB2F /* ZJSettingLabelItem.h in Headers */,
 				0C72066A255BEFE4005789C7 /* ZJBaseTableView.h in Headers */,
@@ -897,6 +904,7 @@
 				0C95699D24E42F4100C9A6C5 /* NSString+ZJExt.m in Sources */,
 				0C7172D72563FB0600950EE5 /* UIImage+ZJGradient.m in Sources */,
 				0CB590FE251601610092E854 /* ZJLocalizationTool.m in Sources */,
+				0CC127C8256507C900C33366 /* ZJSystem+WiFi.m in Sources */,
 				0CB590CA2515F5D30092E854 /* NSString+ZJIMGExt.m in Sources */,
 				0C6497332563B37D0052DBCA /* ZJPhoto.m in Sources */,
 				0C50B88C251E4F0C0032CB2F /* ZJSettingItemGroup.m in Sources */,
