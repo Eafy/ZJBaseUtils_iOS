@@ -27,6 +27,7 @@ extern CGFloat ZJScreenHeight(void);
 extern CGFloat ZJScreenWidth(void);
 extern CGFloat ZJStatusBarHeight(void);
 extern CGFloat ZJNavBarHeight(void);
+extern CGFloat ZJNavAndStatusBarHeight(void);
 extern CGFloat ZJTabarBarHeight(void);
 extern CGFloat ZJSafeAreaInsetsHeight(void);
 extern ZJScreenSizeType ZJscreenSizeType(void);
