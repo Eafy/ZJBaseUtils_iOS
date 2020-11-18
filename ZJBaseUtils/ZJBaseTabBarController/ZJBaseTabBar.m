@@ -162,6 +162,21 @@
 
         _backgroundView.frame = CGRectMake(0, 0, self.zj_width, ZJTabarBarHeight());
         _backgroundView.contentMode = UIViewContentModeTop;
+        
+        //适配不同的屏幕，导致图片大小和背景不一致
+        if ([backgroundView isKindOfClass:[UIImageView class]]) {
+            CGFloat width = _backgroundView.bounds.size.width - ((UIImageView *)backgroundView).image.size.width;
+            if (width > 0) {
+                width += 50;    //防止图片切了圆角
+                UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width/2, _backgroundView.zj_height)];
+                view.backgroundColor = self.config.backgroundColor;
+                [_backgroundView addSubview:view];
+                view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width/2, _backgroundView.zj_height)];
+                view.zj_right = _backgroundView.zj_width;
+                view.backgroundColor = self.config.backgroundColor;
+                [_backgroundView addSubview:view];
+            }
+        }
         [self insertSubview:backgroundView atIndex:0];
     } else {
         self.backgroundColor = self.config.backgroundColor;
