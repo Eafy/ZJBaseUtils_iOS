@@ -82,6 +82,17 @@
         UIView *view = tempArray[i];
         view.frame = CGRectMake(viewX, viewY, viewW, viewH);
     }
+    
+    //隐藏顶部线条
+    if (self.config.topLineConfig.type == ZJBTBConfigTopLineTypeShadow) {
+        if (@available(iOS 13.0, *)) {
+            [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
+                    obj.hidden = YES;
+                }
+            }];
+        }
+    }
 }
 
 #pragma mark -
@@ -146,12 +157,12 @@
     }
     _backgroundView = backgroundView;
     if (_backgroundView) {
-        self.backgroundColor = [UIColor clearColor];
         self.backgroundImage = [UIImage new];
-        
+        self.backgroundColor = [UIColor clearColor];
+
+        _backgroundView.frame = CGRectMake(0, 0, self.zj_width, ZJTabarBarHeight());
         _backgroundView.contentMode = UIViewContentModeTop;
-        _backgroundView.frame = self.bounds;
-        [self insertSubview:_backgroundView atIndex:0];
+        [self insertSubview:backgroundView atIndex:0];
     } else {
         self.backgroundColor = self.config.backgroundColor;
         [self handleTopLine];
@@ -190,9 +201,14 @@
         if (self.config.topLineConfig.shadowColor) {
             color = self.config.topLineConfig.shadowColor;
         }
-        self.shadowImage = [UIImage zj_imageWithColor:color size:CGSizeMake(self.zj_width, self.config.topLineConfig.lineWidth)];;
+        if (@available(iOS 13.0, *)) {
+            self.standardAppearance.shadowImage = [UIImage zj_imageWithColor:color size:CGSizeMake(self.zj_width, self.config.topLineConfig.lineWidth)];
+        } else {
+            self.shadowImage = [UIImage zj_imageWithColor:color size:CGSizeMake(self.zj_width, self.config.topLineConfig.lineWidth)];
+        }
     } else if (self.config.topLineConfig.type == ZJBTBConfigTopLineTypeShadow) {
         self.shadowImage = [UIImage new];
+        
         self.layer.shadowColor = self.config.topLineConfig.shadowColor.CGColor;
         self.layer.shadowOffset = self.config.topLineConfig.shadowOffset;
         self.layer.shadowOpacity = self.config.topLineConfig.shadowOpacity;

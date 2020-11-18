@@ -41,6 +41,14 @@ CGFloat ZJSafeAreaInsetsHeight(void) {
     return ZJScreen.shared.safeAreaInsetsHeight;
 }
 
+CGFloat ZJSafeAreaTop(void) {
+    return ZJScreen.shared.safeAreaTop;
+}
+
+CGFloat ZJSafeAreaBottom(void) {
+    return ZJScreen.shared.safeAreaBottom;
+}
+
 ZJScreenSizeType ZJscreenSizeType() {
     return ZJScreen.shared.screenSizeType;
 }
@@ -57,6 +65,16 @@ CGFloat ZJScale() {
     }
 }
 
+@interface ZJScreen ()
+
+@property (nonatomic, assign) CGFloat statusBarHeight;    //状态栏高度
+@property (nonatomic, assign) CGFloat tabarBarHeight;     //TabarBar高度
+@property (nonatomic, assign) CGFloat safeAreaInsetsHeight;       //安全区域底部高度
+@property (nonatomic, assign) CGFloat safeAreaTop;     //安全区域底部顶部高度=状态栏高度
+@property (nonatomic, assign) CGFloat safeAreaBottom;  //安全区域底部底部高度-34.0
+
+@end
+
 @implementation ZJScreen
 singleton_m();
 
@@ -67,28 +85,76 @@ singleton_m();
     _screenWidth = self.screenFrame.size.width;
 
     _navBarHeight = 44.0;
-    _tabarBarHeight = 49.0f;
-    if (self.screenHeight == 1366.0 || self.screenHeight == 1024.0) {
-        _navBarHeight = 64.0;
-        _tabarBarHeight = 83.0f;
-    }
-
-    _safeAreaInsetsHeight = 0;
-    if (@available(iOS 11.0, *)) {
-        UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
-        _safeAreaInsetsHeight = safeAreaInsets.bottom - safeAreaInsets.top;
-    }
-    
     if (@available(iOS 13.0, *)) {
-        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
-        _statusBarHeight = statusBarManager.statusBarFrame.size.height;
         _isIPad = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
     } else {
-        _statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
         _isIPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     }
     
     self.scaleStandard = ZJScreenSizeType8;
+}
+
+- (CGFloat)statusBarHeight
+{
+    if (_statusBarHeight == 0) {
+        if (@available(iOS 13.0, *)) {
+            UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+            _statusBarHeight = statusBarManager.statusBarFrame.size.height;
+        } else {
+            _statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+        }
+    }
+    
+    return _statusBarHeight;
+}
+
+- (CGFloat)tabarBarHeight
+{
+    if (_tabarBarHeight == 0) {
+        if (@available(iOS 11.0, *)) {
+            UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+            _tabarBarHeight = safeAreaInsets.bottom + 49.0;
+        } else {
+            _tabarBarHeight = 49.0;
+        }
+    }
+    
+    return _tabarBarHeight;
+}
+
+- (CGFloat)safeAreaInsetsHeight
+{
+    if (_safeAreaInsetsHeight == 0) {
+        if (@available(iOS 11.0, *)) {
+            UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+            _safeAreaInsetsHeight = safeAreaInsets.bottom + safeAreaInsets.top;
+        }
+    }
+    return _safeAreaInsetsHeight;
+}
+
+- (CGFloat)safeAreaTop
+{
+    if (_safeAreaTop == 0) {
+        if (@available(iOS 11.0, *)) {
+            UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+            _safeAreaTop = safeAreaInsets.top - 20.0f;
+        }
+    }
+    
+    return _safeAreaTop;
+}
+
+- (CGFloat)safeAreaBottom
+{
+    if (_safeAreaBottom == 0) {
+        if (@available(iOS 11.0, *)) {
+            UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+            _safeAreaBottom = safeAreaInsets.bottom;
+        }
+    }
+    
+    return _safeAreaBottom;
 }
 
 #pragma mark -
