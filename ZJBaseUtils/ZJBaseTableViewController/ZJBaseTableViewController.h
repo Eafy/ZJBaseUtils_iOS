@@ -53,17 +53,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - TableView
 
+@property (nonatomic,strong,readonly) NSArray * _Nullable datasArray;
+
 /// 加载数据，需要重载
 - (NSArray<ZJSettingItemGroup *> *)setupDatas;
 
-/// 加载数据
+/// 加载数据(不刷新源数据)
 - (void)reloadData;
 
 /// 更新数据
 - (void)updateData;
-
-/// 已存在数据
-- (NSArray *)datasArray;
 
 /// 右键响应
 - (void)navRightBtnAction;

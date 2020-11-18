@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJBaseTableView : UITableView
 
+@property (nonatomic,strong,readonly) NSArray * _Nullable datasArray;
+
 /// Item或上一个界面透传过来的数据
 @property (nonatomic,strong) ZJBaseTVPrivateData *privateData;
 
@@ -21,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 加载数据，需要重载
 - (NSArray<ZJSettingItemGroup *> *)setupDatas;
 
-/// 加载数据
+/// 加载数据(不刷新源数据)
 - (void)reloadData;
 
 /// 更新数据

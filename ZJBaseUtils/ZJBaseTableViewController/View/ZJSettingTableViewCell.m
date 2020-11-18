@@ -226,7 +226,9 @@
     if (![NSString zj_isEmpty:item.icon]) {
         self.imageView.image = [UIImage imageNamed:item.icon];
     } else if (item.iconView && item.iconView != _item.iconView) {
+        self.imageView.image = nil;
         item.iconView.zj_left = 15.0f;
+        item.iconView.zj_width = item.iconView.zj_height + 10.0f;
         item.iconView.zj_centerY = self.tableViewConfig.rowHeight/2.0;
         [self.contentView addSubview:item.iconView];
     }

@@ -28,7 +28,8 @@ CGFloat ZJNavBarHeight() {
     return ZJScreen.shared.navBarHeight;
 }
 
-CGFloat ZJNavAndStatusBarHeight(void) {
+CGFloat ZJNavStatusBarHeight(void)
+{
     return ZJStatusBarHeight() + ZJNavBarHeight();
 }
 
