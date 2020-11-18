@@ -417,6 +417,9 @@
 
 - (void)reloadData
 {
+    if (self.datasArray.count == 0) {
+        self.datasArray = [self setupDatas];
+    }
     __weak ZJBaseTableViewController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         if (weakSelf.datasArray.count == 0 && !weakSelf.tableView.tableFooterView) {
