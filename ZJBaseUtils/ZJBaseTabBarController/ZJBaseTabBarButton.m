@@ -145,7 +145,7 @@
     CGFloat titleW = self.zj_width - 8;
     CGFloat titleY = self.zj_height - titleH - self.config.titleOffset;
     self.titleLB.frame = CGRectMake(titleX, titleY, titleW, titleH);
-    self.titleLB.font = [UIFont systemFontOfSize:self.config.titleFont];
+    self.titleLB.font = self.selected ? self.config.selTitleFont : self.config.nolTitleFont;
     self.titleLB.textColor = self.selected ? self.config.selTitleColor : self.config.norTitleColor;
     self.titleLB.hidden = self.config.layoutType == ZJBTBConfigLayoutTypeImage;
 }
