@@ -93,7 +93,6 @@
     
     _selected = selected;
     if (selected) {
-        self.titleLB.textColor = self.config.selTitleColor;
         self.imageView.image = [UIImage imageNamed:self.item.selImageName];
         
         if (self.config.animType == ZJBTBConfigAnimTypeRotationY) {
@@ -106,10 +105,12 @@
             [self.imageView.layer addAnimation:[CAAnimation zj_boundsAnimation:CGPointMake(46, 46)] forKey:@"max"];
         }
     } else {
-        self.titleLB.textColor = self.config.norTitleColor;
-        self.imageView.image = [UIImage imageNamed:self.item.norImageName];
         [self.imageView.layer removeAllAnimations];
+        self.imageView.image = [UIImage imageNamed:self.item.norImageName];
     }
+    
+    self.titleLB.textColor = self.selected ? self.config.selTitleColor : self.config.norTitleColor;
+    self.titleLB.font = self.selected ? self.config.selTitleFont : self.config.nolTitleFont;
 }
 
 - (void)setItem:(ZJBaseTarbarItem *)item
