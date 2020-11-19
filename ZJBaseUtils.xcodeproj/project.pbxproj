@@ -143,6 +143,10 @@
 		0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */; };
 		0CFBF56E25249A3200D55386 /* ZJSettingRadioItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFBF56C25249A3200D55386 /* ZJSettingRadioItem.m */; };
 		0CFBF56F25249A3200D55386 /* ZJSettingRadioItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF56D25249A3200D55386 /* ZJSettingRadioItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CFF856F256644FE0000E9C9 /* ZJBaseViewController+Present.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF856D256644FD0000E9C9 /* ZJBaseViewController+Present.m */; };
+		0CFF8570256644FE0000E9C9 /* ZJBaseViewController+Present.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFF856E256644FE0000E9C9 /* ZJBaseViewController+Present.h */; };
+		0CFF8573256645040000E9C9 /* ZJBaseTableViewController+Present.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFF8571256645040000E9C9 /* ZJBaseTableViewController+Present.h */; };
+		0CFF8574256645040000E9C9 /* ZJBaseTableViewController+Present.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF8572256645040000E9C9 /* ZJBaseTableViewController+Present.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,6 +299,10 @@
 		0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSettingTableViewCellExt.h; sourceTree = "<group>"; };
 		0CFBF56C25249A3200D55386 /* ZJSettingRadioItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSettingRadioItem.m; sourceTree = "<group>"; };
 		0CFBF56D25249A3200D55386 /* ZJSettingRadioItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSettingRadioItem.h; sourceTree = "<group>"; };
+		0CFF856D256644FD0000E9C9 /* ZJBaseViewController+Present.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZJBaseViewController+Present.m"; sourceTree = "<group>"; };
+		0CFF856E256644FE0000E9C9 /* ZJBaseViewController+Present.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZJBaseViewController+Present.h"; sourceTree = "<group>"; };
+		0CFF8571256645040000E9C9 /* ZJBaseTableViewController+Present.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZJBaseTableViewController+Present.h"; sourceTree = "<group>"; };
+		0CFF8572256645040000E9C9 /* ZJBaseTableViewController+Present.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZJBaseTableViewController+Present.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,6 +412,8 @@
 		0C50B861251E4F0C0032CB2F /* ZJBaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0CFF8571256645040000E9C9 /* ZJBaseTableViewController+Present.h */,
+				0CFF8572256645040000E9C9 /* ZJBaseTableViewController+Present.m */,
 				0C50B865251E4F0C0032CB2F /* ZJBaseTableViewController.h */,
 				0C50B862251E4F0C0032CB2F /* ZJBaseTableViewController.m */,
 				0C50B867251E4F0C0032CB2F /* Model */,
@@ -465,6 +475,8 @@
 			children = (
 				0CB590BA2515F4680092E854 /* ZJBaseViewController.h */,
 				0CB590BB2515F4680092E854 /* ZJBaseViewController.m */,
+				0CFF856E256644FE0000E9C9 /* ZJBaseViewController+Present.h */,
+				0CFF856D256644FD0000E9C9 /* ZJBaseViewController+Present.m */,
 			);
 			path = ZJBaseViewController;
 			sourceTree = "<group>";
@@ -617,8 +629,8 @@
 		0CB590D62515F71C0092E854 /* ZJBaseNavigationController */ = {
 			isa = PBXGroup;
 			children = (
-				0CB590D72515F71C0092E854 /* ZJBaseNavigationController.m */,
 				0CB590D82515F71C0092E854 /* ZJBaseNavigationController.h */,
+				0CB590D72515F71C0092E854 /* ZJBaseNavigationController.m */,
 			);
 			path = ZJBaseNavigationController;
 			sourceTree = "<group>";
@@ -709,6 +721,7 @@
 				0CA3AE0125357D1A009782ED /* ZJModelFilter.h in Headers */,
 				0CC5EFD52539420F0083546A /* ZJModelPairs.h in Headers */,
 				0CA3AE172535BDEC009782ED /* ZJModelFilterSet.h in Headers */,
+				0CFF8570256644FE0000E9C9 /* ZJBaseViewController+Present.h in Headers */,
 				0CFBF56F25249A3200D55386 /* ZJSettingRadioItem.h in Headers */,
 				0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */,
 				0CFBF56025230CFA00D55386 /* ZJSettingTextFieldItem.h in Headers */,
@@ -752,6 +765,7 @@
 				0CCF75C824EC03BB00794878 /* UIView+ZJExt.h in Headers */,
 				0C50B889251E4F0C0032CB2F /* ZJSettingLabelItem.h in Headers */,
 				0C72066A255BEFE4005789C7 /* ZJBaseTableView.h in Headers */,
+				0CFF8573256645040000E9C9 /* ZJBaseTableViewController+Present.h in Headers */,
 				0C4C942C255ED29D008CED51 /* ZJBaseTabBar.h in Headers */,
 				0C4C9432255ED31F008CED51 /* ZJBaseTabBarButton.h in Headers */,
 				0C50B884251E4F0C0032CB2F /* ZJSettingItemGroup.h in Headers */,
@@ -879,6 +893,7 @@
 				0CA3AE182535BDEC009782ED /* ZJModelFilterSet.m in Sources */,
 				0C64972B2563AE9D0052DBCA /* ZJPHAsset.m in Sources */,
 				0C50B914251EF53A0032CB2F /* ZJThread.m in Sources */,
+				0CFF856F256644FE0000E9C9 /* ZJBaseViewController+Present.m in Sources */,
 				0C4C9433255ED31F008CED51 /* ZJBaseTabBarButton.m in Sources */,
 				0CCF75E024EC125900794878 /* ZJScreen.m in Sources */,
 				0C50B88F251E4F0C0032CB2F /* ZJSettingTableViewCell.m in Sources */,
@@ -906,6 +921,7 @@
 				0CB590FE251601610092E854 /* ZJLocalizationTool.m in Sources */,
 				0CC127C8256507C900C33366 /* ZJSystem+WiFi.m in Sources */,
 				0CB590CA2515F5D30092E854 /* NSString+ZJIMGExt.m in Sources */,
+				0CFF8574256645040000E9C9 /* ZJBaseTableViewController+Present.m in Sources */,
 				0C6497332563B37D0052DBCA /* ZJPhoto.m in Sources */,
 				0C50B88C251E4F0C0032CB2F /* ZJSettingItemGroup.m in Sources */,
 				0C720667255BEEE0005789C7 /* ZJBaseTVPrivateData.m in Sources */,

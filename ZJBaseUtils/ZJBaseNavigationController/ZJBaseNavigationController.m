@@ -8,12 +8,40 @@
 
 #import "ZJBaseNavigationController.h"
 #import "ZJBaseViewController.h"
+#import "ZJBaseTableViewController.h"
 
 @interface ZJBaseNavigationController ()
 
 @end
 
 @implementation ZJBaseNavigationController
+
++ (void)handleJumpWithNavigationController:(UINavigationController *)navCtl viewController:(UIViewController *)viewCtl
+{
+    //判断是否是基础导航控制器
+    if ([navCtl isKindOfClass:[ZJBaseNavigationController class]]) {
+        ZJBaseNavigationController *nav = (ZJBaseNavigationController *)navCtl;    //目标控制器
+        
+        //判断是否是基础视图控制器、基础表单控制器
+        if ([viewCtl isKindOfClass:[ZJBaseViewController class]] ||
+            [viewCtl isKindOfClass:[ZJBaseTableViewController class]]) {
+            ZJBaseViewController *vc = (ZJBaseViewController *)viewCtl;    //目标控制器
+            
+            if (nav.navBackImgName) {
+                UIImage *img = [vc.navLeftBtn imageForState:UIControlStateNormal];
+                if (!img) {
+                    [vc.navLeftBtn setImage:[UIImage imageNamed:nav.navBackImgName] forState:UIControlStateNormal];
+                }
+            }
+            
+            if (nav.backgroundColor) {
+                vc.view.backgroundColor = nav.backgroundColor;
+            }
+        }
+    }
+}
+
+#pragma mark -
 
 - (void)viewDidLoad {
     [super viewDidLoad];
