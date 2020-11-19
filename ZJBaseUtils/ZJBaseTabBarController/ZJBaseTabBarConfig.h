@@ -53,8 +53,10 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
 @property (nonatomic, strong) UIColor *selTitleColor;
 /// 图片的size ，默认 ：(26*26)
 @property (nonatomic, assign) CGSize imageSize;
-/// 标题文字大小 ，默认：12.f
-@property (nonatomic, assign) CGFloat titleFont;
+/// 标题未选中文字大小 ，默认：12.f，常规
+@property (nonatomic, strong) UIFont *nolTitleFont;
+/// 标题选中文字大小 ，默认：12.f，粗体
+@property (nonatomic, strong) UIFont *selTitleFont;
 /// 标题的偏移值 (标题距离底部的距离 默认 2.f)
 @property (nonatomic, assign) CGFloat titleOffset;
 /// 图片的偏移值 (图片距离顶部的距离 默认 2.f)

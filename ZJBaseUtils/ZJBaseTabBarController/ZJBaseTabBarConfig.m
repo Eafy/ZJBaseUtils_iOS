@@ -20,7 +20,8 @@
        _norTitleColor = [UIColor grayColor];
        _selTitleColor = [UIColor blackColor];
        _imageSize = CGSizeMake(26, 26);
-       _titleFont = 12.f;
+       _nolTitleFont = [UIFont systemFontOfSize:12.0f];
+       _selTitleFont = [UIFont boldSystemFontOfSize:12.0f];
        _titleOffset = 2.f;
        _imageOffset = 2.f;
        
