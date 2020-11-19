@@ -30,7 +30,7 @@ CGFloat ZJNavBarHeight() {
 
 CGFloat ZJNavStatusBarHeight(void)
 {
-    return ZJStatusBarHeight() + ZJNavBarHeight();
+    return ZJScreen.shared.navStatusBarHeight;
 }
 
 CGFloat ZJTabarBarHeight(void) {
@@ -106,6 +106,11 @@ singleton_m();
     }
     
     return _statusBarHeight;
+}
+
+- (CGFloat)navStatusBarHeight
+{
+    return ZJScreen.shared.navBarHeight + ZJScreen.shared.statusBarHeight;
 }
 
 - (CGFloat)tabarBarHeight

@@ -44,6 +44,7 @@ singleton_h();
 @property (nonatomic, assign, readonly) CGFloat screenWidth;    //屏幕宽度
 @property (nonatomic, assign, readonly) CGFloat statusBarHeight;    //状态栏高度
 @property (nonatomic, assign, readonly) CGFloat navBarHeight;       //导航栏高度
+@property (nonatomic, assign, readonly) CGFloat navStatusBarHeight; //导航栏和状态栏高度
 @property (nonatomic, assign, readonly) CGFloat tabarBarHeight;     //TabarBar高度
 @property (nonatomic, assign, readonly) CGFloat safeAreaInsetsHeight;  //安全区域底部总高度(44.0+34.0)
 @property (nonatomic, assign, readonly) CGFloat safeAreaTop;     //安全区域底部顶部高度=24.0
