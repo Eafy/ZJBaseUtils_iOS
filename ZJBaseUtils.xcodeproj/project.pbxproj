@@ -100,7 +100,7 @@
 		0CB590FD251601610092E854 /* ZJLocalizationTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB590FB251601610092E854 /* ZJLocalizationTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB590FE251601610092E854 /* ZJLocalizationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB590FC251601610092E854 /* ZJLocalizationTool.m */; };
 		0CC127C8256507C900C33366 /* ZJSystem+WiFi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC127C6256507C900C33366 /* ZJSystem+WiFi.m */; };
-		0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC127C7256507C900C33366 /* ZJSystem+WiFi.h */; };
+		0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC127C7256507C900C33366 /* ZJSystem+WiFi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CC5EFD52539420F0083546A /* ZJModelPairs.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC5EFD32539420F0083546A /* ZJModelPairs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CC5EFD62539420F0083546A /* ZJModelPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5EFD42539420F0083546A /* ZJModelPairs.m */; };
 		0CCF759724E8E71000794878 /* NSString+ZJSHA.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF759524E8E71000794878 /* NSString+ZJSHA.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -761,7 +761,6 @@
 				0C50B883251E4F0C0032CB2F /* ZJSettingArrowItem.h in Headers */,
 				0CCF75BE24E9285A00794878 /* UIColor+ZJExt.h in Headers */,
 				0C50B87E251E4F0C0032CB2F /* ZJBaseTableViewController.h in Headers */,
-				0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */,
 				0CCF75C824EC03BB00794878 /* UIView+ZJExt.h in Headers */,
 				0C50B889251E4F0C0032CB2F /* ZJSettingLabelItem.h in Headers */,
 				0C72066A255BEFE4005789C7 /* ZJBaseTableView.h in Headers */,
@@ -777,6 +776,7 @@
 				0C50B891251E4F0C0032CB2F /* ZJBaseTVConfig.h in Headers */,
 				0C7172DC2563FE8500950EE5 /* UIButton+ZJGradient.h in Headers */,
 				0C64972E2563AEC60052DBCA /* PHAsset+ZJExt.h in Headers */,
+				0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */,
 				0C7172D62563FB0600950EE5 /* UIImage+ZJGradient.h in Headers */,
 				0C9D9A8B255F98BE0026C980 /* ZJBaseTBBadge.h in Headers */,
 				0CCF75A724E91C3600794878 /* NSString+ZJAESDES.h in Headers */,

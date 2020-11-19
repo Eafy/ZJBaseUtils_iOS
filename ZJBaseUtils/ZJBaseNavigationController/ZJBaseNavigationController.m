@@ -34,7 +34,7 @@
                 }
             }
             
-            if (nav.backgroundColor) vc.view.backgroundColor = nav.backgroundColor;
+//            if (nav.backgroundColor) vc.view.backgroundColor = nav.backgroundColor;
             if (nav.barTintColor) vc.barTintColor = nav.barTintColor;
             if (nav.barTitleColor) vc.barTitleColor = nav.barTitleColor;
             if (nav.barTitleFont) vc.barTitleFont = nav.barTitleFont;
