@@ -188,7 +188,7 @@
             vc.title = item.title;
             
             if ([vc respondsToSelector:@selector(privateData)]) {
-                vc.privateData = item.privateData;
+                vc.privateData = item.privateData ? item.privateData : privateData;
             }
             
             [currentViewController.navigationController pushViewController:vc animated:YES];
