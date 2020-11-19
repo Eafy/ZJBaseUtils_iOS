@@ -28,6 +28,7 @@
 
 #import "UIColor+ZJExt.h"
 #import "UIImage+ZJExt.h"
+#import "UIImage+ZJQR.h"
 
 #import "UIView+ZJExt.h"
 #import "UIView+ZJFrame.h"
