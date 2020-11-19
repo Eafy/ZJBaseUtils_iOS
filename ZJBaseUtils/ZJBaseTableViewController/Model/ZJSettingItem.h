@@ -93,7 +93,7 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 
 /// 差异化更新配置数据（子item需要需要重写）
 /// @param config ZJBaseTVConfig示例对象
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config;
+- (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config;
 
 @end
 

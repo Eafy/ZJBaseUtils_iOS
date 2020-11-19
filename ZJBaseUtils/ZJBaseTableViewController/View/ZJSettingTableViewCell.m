@@ -97,7 +97,7 @@
         if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
     }
     
-    [self.item updateDiffCinfigWithCell:self config:tableViewConfig];
+    [self.item updateDiffConfigWithCell:self config:tableViewConfig];
 }
 
 - (void)layoutSubviews
@@ -184,7 +184,7 @@
                 }
             }
         }
-    } else if (_arrowImgView != self.item.accessoryView || [NSString zj_isEmpty:self.item.arrowIcon]){
+    } else if (_arrowImgView != self.item.accessoryView && [NSString zj_isEmpty:self.item.arrowIcon]){
         if (_arrowImgView) {
             [_arrowImgView removeFromSuperview];
             _arrowImgView = nil;

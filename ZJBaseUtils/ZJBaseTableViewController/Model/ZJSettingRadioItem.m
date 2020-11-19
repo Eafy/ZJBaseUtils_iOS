@@ -185,7 +185,7 @@
     }
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
+- (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
     if (!self.radioBtnTitleColor && config.radioBtnTitleColor) self.radioBtnTitleColor = config.textFieldTitleColor;
     if (!self.radioBtnTitleFont && config.radioBtnTitleFont) self.radioBtnTitleFont = config.textFieldTitleFont;

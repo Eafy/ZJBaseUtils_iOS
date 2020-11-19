@@ -60,7 +60,7 @@
 - (void)layoutDiffSubviewWithCell:(ZJSettingTableViewCell *)cell {
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config {
+- (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config {
 }
 
 @end

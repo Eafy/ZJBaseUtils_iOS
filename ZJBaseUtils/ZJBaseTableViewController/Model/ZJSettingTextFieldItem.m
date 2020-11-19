@@ -45,6 +45,18 @@
         _detailTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _detailTextField.returnKeyType = UIReturnKeyDone;
         _detailTextField.delegate = self;
+        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        if (self.placeholderColor) {
+            [dic setValue:self.placeholderColor forKey:NSForegroundColorAttributeName];
+        }
+        if (self.placeholderFont) {
+            [dic setValue:self.placeholderFont forKey:NSFontAttributeName];
+        }
+        if (dic.count > 0) {
+            NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.placeholder attributes:dic];
+            _detailTextField.attributedPlaceholder = attrString;
+        }
     }
     
     return _detailTextField;
@@ -66,15 +78,27 @@
     return self.detailTextField.text;
 }
 
+- (void)setClearBtnImgName:(NSString *)clearBtnImgName
+{
+    if (!clearBtnImgName || [clearBtnImgName isEqualToString:@""]) {
+        return;
+    }
+    
+    _clearBtnImgName = clearBtnImgName;
+    UIButton *button = [self.detailTextField valueForKey:@"_clearButton"];
+    [button setImage:[UIImage imageNamed:clearBtnImgName] forState:UIControlStateNormal];
+//    elf.detailTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+}
+
 #pragma mark - 重载差异化
 
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
 {
-    self.detailTextField.zj_width = cell.contentView.zj_width/3.0;
+    self.detailTextField.zj_width = cell.zj_width - cell.textLabel.zj_width - 50;
     self.detailTextField.zj_height = cell.contentView.zj_height/2.0;
 }
 
-- (void)updateDiffCinfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
+- (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
     if (config.textFieldTitleColor) self.detailTextField.textColor = config.textFieldTitleColor;
     if (config.textFieldTitleFont) self.detailTextField.font = config.textFieldTitleFont;
