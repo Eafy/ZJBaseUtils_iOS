@@ -87,13 +87,13 @@
     _clearBtnImgName = clearBtnImgName;
     UIButton *button = [self.detailTextField valueForKey:@"_clearButton"];
     [button setImage:[UIImage imageNamed:clearBtnImgName] forState:UIControlStateNormal];
-//    elf.detailTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 #pragma mark - 重载差异化
 
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
 {
+    [cell.textLabel sizeToFit];
     self.detailTextField.zj_width = cell.zj_width - cell.textLabel.zj_width - 50;
     self.detailTextField.zj_height = cell.contentView.zj_height/2.0;
 }
