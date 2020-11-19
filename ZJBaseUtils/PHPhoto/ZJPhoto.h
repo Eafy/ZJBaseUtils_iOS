@@ -2,7 +2,7 @@
 //  ZJPhoto.h
 //  ZJBaseUtils
 //
-//  Created by lizhijian on 2020/11/17.
+//  Created by eafy on 2020/11/17.
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
