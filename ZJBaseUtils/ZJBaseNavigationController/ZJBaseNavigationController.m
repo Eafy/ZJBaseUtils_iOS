@@ -52,6 +52,8 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    [ZJBaseNavigationController handleJumpWithNavigationController:self viewController:viewController];
+    
     [super pushViewController:viewController animated:animated];
     if (self.hideNavBarArray && [self.hideNavBarArray containsObject:[self class]]) {
         if ([viewController respondsToSelector:@selector(isHideNavBar)]) {

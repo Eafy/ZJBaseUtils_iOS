@@ -13,7 +13,7 @@
 
 - (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion
 {
-    if ([viewControllerToPresent isKindOfClass:[UINavigationController class]]) {
+    if ([viewControllerToPresent isKindOfClass:[ZJBaseNavigationController class]]) {
         UINavigationController *nav = (UINavigationController *)viewControllerToPresent;
         [ZJBaseNavigationController handleJumpWithNavigationController:nav viewController:nav.topViewController];
     }
