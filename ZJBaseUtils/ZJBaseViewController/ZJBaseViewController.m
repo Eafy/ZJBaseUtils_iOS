@@ -236,7 +236,7 @@
 - (UIView *)navBarBgView
 {
     if (!_navBarBgView) {
-        _navBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJStatusBarHeight() + ZJNavBarHeight())];
+        _navBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJNavStatusBarHeight())];
         if (self.barTintColor) {
             _navBarBgView.backgroundColor = self.barTintColor;
         } else {
@@ -255,6 +255,8 @@
     self.navRightBtn.zj_right = ZJScreenWidth() - 15;
     
     if (self.isShowNavBarBgView) {
+        self.navBarBgView.frame = CGRectMake(0, 0, ZJScreenWidth(), ZJNavStatusBarHeight());
+        self.navBarBgView.userInteractionEnabled = YES;
         [self.view addSubview:self.navBarBgView];
         
         if (self.navLeftBtn.superview != self.navBarBgView) {
