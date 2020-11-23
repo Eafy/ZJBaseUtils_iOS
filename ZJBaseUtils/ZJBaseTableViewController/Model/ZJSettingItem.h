@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
     ZJSettingItemTypeSwitch,        //开关类型
     ZJSettingItemTypeTextFidld,     //文本类型
     ZJSettingItemTypeRadio,         //单选/复选类型
+    ZJSettingItemTypeRatingStar,    //星级评分
     ZJSettingItemTypeCustomView,    //自定义类型
     
 //    ZJSettingItemTypeRadio = ZJSettingItemTypeArrow,         //单选/复选类型

@@ -16,6 +16,7 @@
 #import "ZJSettingLabelItem.h"
 #import "ZJSettingTextFieldItem.h"
 #import "ZJSettingRadioItem.h"
+#import "ZJSettingScoreItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
