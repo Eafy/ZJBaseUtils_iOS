@@ -23,10 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param s 虚线间的空隙大小
 - (void)zj_drawDashLineWithStartPoint:(CGPoint)sPoint endPoint:(CGPoint)ePoint color:(UIColor *)color w:(CGFloat)w s:(CGFloat)s;
 
-/// 画圆角
+/// 画圆角（非离屏渲染，需要已layout）
 /// @param cornerRadii 圆角大小
 /// @param corners 哪个角
 - (void)zj_drawCircularWithCornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)corners;
+
+/// 画所有圆角（非离屏渲染，需要已layout）
+/// @param radius 弧度
+- (void)zj_cornerRadius:(CGFloat)radius;
 
 /// 画虚/实线边框
 /// @param width 宽度
