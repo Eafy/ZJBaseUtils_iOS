@@ -60,9 +60,9 @@
 		0C720667255BEEE0005789C7 /* ZJBaseTVPrivateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C720665255BEEE0005789C7 /* ZJBaseTVPrivateData.m */; };
 		0C72066A255BEFE4005789C7 /* ZJBaseTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C720668255BEFE4005789C7 /* ZJBaseTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C72066B255BEFE4005789C7 /* ZJBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C720669255BEFE4005789C7 /* ZJBaseTableView.m */; };
-		0C91FF99256BCB5600F30981 /* ZJPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C91FF97256BCB5600F30981 /* ZJPickerView.h */; };
+		0C91FF99256BCB5600F30981 /* ZJPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C91FF97256BCB5600F30981 /* ZJPickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C91FF9A256BCB5600F30981 /* ZJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C91FF98256BCB5600F30981 /* ZJPickerView.m */; };
-		0C91FF9D256BCB7100F30981 /* ZJPickerItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C91FF9B256BCB7100F30981 /* ZJPickerItem.h */; };
+		0C91FF9D256BCB7100F30981 /* ZJPickerItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C91FF9B256BCB7100F30981 /* ZJPickerItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C91FF9E256BCB7100F30981 /* ZJPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C91FF9C256BCB7100F30981 /* ZJPickerItem.m */; };
 		0C95691C24E2D8FB00C9A6C5 /* ZJSAMKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C95691A24E2D8FB00C9A6C5 /* ZJSAMKeychain.h */; };
 		0C95691D24E2D8FB00C9A6C5 /* ZJSAMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C95691B24E2D8FB00C9A6C5 /* ZJSAMKeychain.m */; };
@@ -150,7 +150,7 @@
 		0CEB8C64256B632100BFD910 /* ZJRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEB8C62256B632100BFD910 /* ZJRatingView.m */; };
 		0CEB8C67256B632E00BFD910 /* ZJRatingStarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CEB8C65256B632E00BFD910 /* ZJRatingStarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CEB8C68256B632E00BFD910 /* ZJRatingStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEB8C66256B632E00BFD910 /* ZJRatingStarView.m */; };
-		0CEB8CA1256B9C3700BFD910 /* ZJSettingStepperItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CEB8C9F256B9C3700BFD910 /* ZJSettingStepperItem.h */; };
+		0CEB8CA1256B9C3700BFD910 /* ZJSettingStepperItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CEB8C9F256B9C3700BFD910 /* ZJSettingStepperItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CEB8CA2256B9C3700BFD910 /* ZJSettingStepperItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEB8CA0256B9C3700BFD910 /* ZJSettingStepperItem.m */; };
 		0CEB8CB0256B9D2B00BFD910 /* icon_stepper_decrease_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEB8CA4256B9D2B00BFD910 /* icon_stepper_decrease_normal@3x.png */; };
 		0CEB8CB1256B9D2B00BFD910 /* icon_stepper_increase_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEB8CA5256B9D2B00BFD910 /* icon_stepper_increase_selected@3x.png */; };
@@ -821,7 +821,6 @@
 				0C68EDD62562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h in Headers */,
 				0C1B8B522566BF750057B513 /* UIImage+ZJQR.h in Headers */,
 				0C9D9A93255F995D0026C980 /* CAAnimation+ZJExt.h in Headers */,
-				0C91FF9D256BCB7100F30981 /* ZJPickerItem.h in Headers */,
 				0C9D9AAD256018110026C980 /* ZJBaseTabBarConfig.h in Headers */,
 				0C720666255BEEE0005789C7 /* ZJBaseTVPrivateData.h in Headers */,
 				0CA3AE132535BDE1009782ED /* ZJModelFilterGet.h in Headers */,
@@ -856,7 +855,6 @@
 				0CCF75B424E9232700794878 /* NSDictionary+ZJExt.h in Headers */,
 				0CCF75B924E9238D00794878 /* NSThread+ZJExt.h in Headers */,
 				0C95699C24E42F4100C9A6C5 /* NSString+ZJExt.h in Headers */,
-				0C91FF99256BCB5600F30981 /* ZJPickerView.h in Headers */,
 				0CB590BC2515F4680092E854 /* ZJBaseViewController.h in Headers */,
 				0C95698624E2D96A00C9A6C5 /* ZJUtilsDef.h in Headers */,
 				0C50B885251E4F0C0032CB2F /* ZJSettingItem.h in Headers */,
@@ -876,7 +874,6 @@
 				0C4C942C255ED29D008CED51 /* ZJBaseTabBar.h in Headers */,
 				0C4C9432255ED31F008CED51 /* ZJBaseTabBarButton.h in Headers */,
 				0C50B884251E4F0C0032CB2F /* ZJSettingItemGroup.h in Headers */,
-				0CEB8CA1256B9C3700BFD910 /* ZJSettingStepperItem.h in Headers */,
 				0C4C9438255ED351008CED51 /* ZJBaseTabBarController.h in Headers */,
 				0C64972A2563AE9D0052DBCA /* ZJPHAsset.h in Headers */,
 				0C50B8C8251E53CC0032CB2F /* ZJError.h in Headers */,
@@ -886,8 +883,11 @@
 				0CEB8C63256B632100BFD910 /* ZJRatingView.h in Headers */,
 				0CEB8C5E256B62A300BFD910 /* ZJSettingScoreItem.h in Headers */,
 				0C7172DC2563FE8500950EE5 /* UIButton+ZJGradient.h in Headers */,
+				0C91FF9D256BCB7100F30981 /* ZJPickerItem.h in Headers */,
 				0CEB8C67256B632E00BFD910 /* ZJRatingStarView.h in Headers */,
 				0C64972E2563AEC60052DBCA /* PHAsset+ZJExt.h in Headers */,
+				0C91FF99256BCB5600F30981 /* ZJPickerView.h in Headers */,
+				0CEB8CA1256B9C3700BFD910 /* ZJSettingStepperItem.h in Headers */,
 				0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */,
 				0C7172D62563FB0600950EE5 /* UIImage+ZJGradient.h in Headers */,
 				0C9D9A8B255F98BE0026C980 /* ZJBaseTBBadge.h in Headers */,

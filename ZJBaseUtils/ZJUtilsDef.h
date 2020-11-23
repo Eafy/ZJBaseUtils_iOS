@@ -38,6 +38,11 @@
 #endif
 #endif
 
+#ifndef weakSelfDef
+#define weakSelfDef
+#define weakSelf(a) __weak a *weakSelf = self;
+#endif
+
 #ifndef NSLonglong
 typedef long long NSLonglong;
 #endif

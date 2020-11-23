@@ -131,6 +131,15 @@
     return [NSString stringWithString:mutableString];
 }
 
++ (NSString *)zj_stringFromLowercaseBytes:(unsigned char *)bytes length:(NSUInteger)length
+{
+    NSMutableString *mutableString = @"".mutableCopy;
+    for (int i = 0; i < length; i++) {
+        [mutableString appendFormat:@"%02x", bytes[i]];
+    }
+    return [NSString stringWithString:mutableString];
+}
+
 + (NSString *)zj_stringRandomWithSize:(NSUInteger)size
 {
     if (size == 0) return @"";
