@@ -18,6 +18,10 @@ Pod::Spec.new do |s|
   s.source_files  = "ZJBaseUtils/*.{h,m,mm,c,hpp,cpp}", "ZJBaseUtils/**/*.{h,m,mm,c,hpp,cpp}"
   s.public_header_files = "ZJBaseUtils/*.h", "ZJBaseUtils/**/*.h"
   s.private_header_files = "ZJBaseUtils/**/ZJSAMKeychain.h"
+  
+  s.resource_bundles = {
+    'ZJBaseUtils' => ['ZJBaseUtils/Resources/*.png']
+  }
 
 end
 
