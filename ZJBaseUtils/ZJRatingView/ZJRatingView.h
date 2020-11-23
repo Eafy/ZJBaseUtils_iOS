@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, ZJRatingStyle) {
 /// @param starSpace 星星间隔
 - (instancetype)initWithStarCount:(NSInteger)starCount andSpace:(CGFloat)starSpace;
 
-/// 评分（手动设置的评分不回调）
+/// 评分：0~10.0
 @property (nonatomic,assign) CGFloat score;
 
 /// 评分回调

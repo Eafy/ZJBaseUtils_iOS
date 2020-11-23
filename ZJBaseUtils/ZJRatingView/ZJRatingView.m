@@ -92,6 +92,9 @@
         if (!self.isTouchLayout) {
             self.frontStarView.frame = self.bounds;
             [self.frontStarView updateViewConstrains];
+            
+            //初始评分
+            [self strokeWithTransformPoint:CGPointMake(self.frame.size.width * self.firstScore/10.0, self.frame.size.height) score:self.firstScore];
         }
     } else {
         self.backColorLayer.frame = self.bounds;
@@ -101,15 +104,9 @@
         self.backColorLayer.path = path.CGPath;
         self.backColorLayer.lineWidth = self.frame.size.height;
         self.backColorLayer.mask = self.maskView.layer;
-        self.backColorLayer.strokeEnd = 0;
+        self.backColorLayer.strokeEnd = self.firstScore / 10.0;
     }
     self.isTouchLayout = NO;
-    
-    if (self.firstScore > 0) {
-        CGFloat firstScore = self.firstScore;
-        self.firstScore = 0;
-        [self strokeWithTransformPoint:CGPointMake(self.frame.size.width * firstScore/10.0, self.frame.size.height) score:firstScore];
-    }
 }
 
 - (ZJRatingStarView *)maskView
