@@ -29,6 +29,9 @@
 /// 不是点击触发的布局
 @property (nonatomic,assign) BOOL isTouchLayout;
 
+/// 初始评分：10.0
+@property (nonatomic,assign) CGFloat firstScore;
+
 @end
 
 @implementation ZJRatingView
@@ -57,6 +60,18 @@
             _frontStarView = nil;
         }
     }
+}
+
+- (void)setScore:(CGFloat)score
+{
+    if (score < 0) {
+        _score = 0;
+    } else if (score > 10) {
+        _score = 10.0;
+    } else {
+        _score = score;
+    }
+    self.firstScore = score;
 }
 
 - (void)layoutSubviews
@@ -89,6 +104,12 @@
         self.backColorLayer.strokeEnd = 0;
     }
     self.isTouchLayout = NO;
+    
+    if (self.firstScore > 0) {
+        CGFloat firstScore = self.firstScore;
+        self.firstScore = 0;
+        [self strokeWithTransformPoint:CGPointMake(self.frame.size.width * firstScore/10.0, self.frame.size.height) score:firstScore];
+    }
 }
 
 - (ZJRatingStarView *)maskView
@@ -107,12 +128,8 @@
     CGPoint touchPoint = [touch locationInView:self];
     CGPoint newPoint = [self convertPoint:touchPoint toView:self.maskView];
 
-    __block ZJRatingView *weakSelf = self;
     [self.maskView transformPointWithTouchPoint:newPoint completion:^(CGPoint transformPoint, CGFloat score) {
-        [self strokeWithTransformPoint:transformPoint];
-        if (weakSelf.scoreHandle) {
-            weakSelf.scoreHandle(score);
-        }
+        [self strokeWithTransformPoint:transformPoint score:score];
     }];
 }
 
@@ -122,16 +139,12 @@
     CGPoint touchPoint = [touch locationInView:self];
     CGPoint newPoint = [self convertPoint:touchPoint toView:self.maskView];
 
-    __block ZJRatingView *weakSelf = self;
     [self.maskView transformPointWithTouchPoint:newPoint completion:^(CGPoint transformPoint, CGFloat score) {
-        [self strokeWithTransformPoint:transformPoint];
-        if (weakSelf.scoreHandle) {
-            weakSelf.scoreHandle(score);
-        }
+        [self strokeWithTransformPoint:transformPoint score:score];
     }];
 }
 
-- (void)strokeWithTransformPoint:(CGPoint)point
+- (void)strokeWithTransformPoint:(CGPoint)point score:(CGFloat)score
 {
     CGPoint newPoint = [self convertPoint:point fromView:self.maskView];
     if (self.isImageMode) {
@@ -141,6 +154,11 @@
         self.frontStarView.clipsToBounds = YES;
     } else {
         self.backColorLayer.strokeEnd = newPoint.x/self.frame.size.width;
+    }
+    
+    _score = score;
+    if (_scoreHandle) {
+        self.scoreHandle(score);
     }
 }
 

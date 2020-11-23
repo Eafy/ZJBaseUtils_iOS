@@ -80,7 +80,7 @@
     }
 }
 
-- (CGPoint)transformPointWithTouchPoint:(CGPoint)touchPoint completion:(void(^)(CGPoint transformPoint, NSInteger score))completion
+- (CGPoint)transformPointWithTouchPoint:(CGPoint)touchPoint completion:(void(^)(CGPoint transformPoint, CGFloat score))completion
 {
     if (self.starCount == 0) return CGPointZero;
     
