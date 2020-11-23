@@ -17,6 +17,7 @@
 #import "ZJSettingTextFieldItem.h"
 #import "ZJSettingRadioItem.h"
 #import "ZJSettingScoreItem.h"
+#import "ZJSettingStepperItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

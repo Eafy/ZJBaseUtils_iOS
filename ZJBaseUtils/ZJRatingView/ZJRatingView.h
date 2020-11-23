@@ -31,7 +31,10 @@ typedef NS_ENUM(NSInteger, ZJRatingStyle) {
 #pragma mark -
 
 /// 星星的默认背景图片
-@property (nonatomic,copy) NSString *imgBackgroundName;
+@property (nonatomic,strong) UIImage *defaultImage;
+
+/// 星星的前置图片，不写默认画笔模式，否则使用图片模式
+@property (nonatomic,strong) UIImage *frontImage;
 
 /// 画笔模式的填充背景颜色，默认使用grayColor
 @property (nonatomic,strong) UIColor *brushBgColor;
@@ -39,8 +42,6 @@ typedef NS_ENUM(NSInteger, ZJRatingStyle) {
 /// 画笔模式的填充颜色，默认使用redColor
 @property (nonatomic,strong) UIColor *brushColor;
 
-/// 星星的前置图片，不写默认画笔模式，否则使用图片模式
-@property (nonatomic,copy) NSString *imgFrontName;
 
 @end
 

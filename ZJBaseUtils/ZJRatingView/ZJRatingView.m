@@ -8,6 +8,7 @@
 
 #import "ZJRatingView.h"
 #import "ZJRatingStarView.h"
+#import "ZJBaseUtils.h"
 
 @interface ZJRatingView ()
 
@@ -41,16 +42,18 @@
     if (self = [super init]) {
         self.starCount = starCount;
         self.starSpace = starSpace;
+        self.defaultImage = [ZJBaseUtils imageNamed:@"icon_rating_star_normal"];
+        self.frontImage = [ZJBaseUtils imageNamed:@"icon_rating_star_highlighted"];
         self.backgroundColor = [UIColor clearColor];
     }
     
     return self;
 }
 
-- (void)setImgFrontName:(NSString *)imgFrontName
+- (void)setFrontImage:(UIImage *)frontImage
 {
-    _imgFrontName = imgFrontName;
-    if (imgFrontName) {
+    _frontImage = frontImage;
+    if (frontImage) {
         _isImageMode = YES;
     } else {
         _isImageMode = NO;
@@ -59,6 +62,14 @@
             [self.frontStarView removeFromSuperview];
             _frontStarView = nil;
         }
+    }
+}
+
+- (void)setDefaultImage:(UIImage *)defaultImage
+{
+    _defaultImage = defaultImage;
+    if (_maskView) {
+        self.maskView.defaultImage = defaultImage;
     }
 }
 
@@ -113,7 +124,7 @@
 {
     if (!_maskView) {
         _maskView = [[ZJRatingStarView alloc] initWithStarCount:self.starCount andSpace:self.starSpace];
-        _maskView.starImgName = self.imgBackgroundName;
+        _maskView.defaultImage = self.defaultImage;
     }
     
     return _maskView;
@@ -181,7 +192,7 @@
     if (!_frontStarView) {
         _frontStarView = [[ZJRatingStarView alloc] initWithStarCount:self.starCount andSpace:self.starSpace];
         _frontStarView.backgroundColor = [UIColor clearColor];
-        _frontStarView.starImgName = self.imgFrontName;
+        _frontStarView.defaultImage = self.frontImage;
         
         [self addSubview:self.maskView];
         [self addSubview:self.frontStarView];

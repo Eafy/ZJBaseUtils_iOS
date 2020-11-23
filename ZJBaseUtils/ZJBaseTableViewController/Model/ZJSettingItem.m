@@ -23,6 +23,7 @@
         _icon = icon;
         _title = title;
         _type = [self type];
+        [self defaultData];
     }
     return self;
 }
@@ -34,6 +35,7 @@
         _title = title;
         _destVC = destVc;
         _type = [self type];
+        [self defaultData];
     }
     return self;
 }
@@ -53,6 +55,9 @@
 }
 
 #pragma mark -
+
+- (void)defaultData {
+}
 
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell {
 }

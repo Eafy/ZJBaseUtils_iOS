@@ -24,3 +24,16 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#pragma mark - 使用方式
+
+//ZJSettingScoreItem *item1 = [[ZJSettingScoreItem alloc] initWithIcon:nil title:@"评分".localized destClass:nil];
+//item1.starCount = 5;
+//item1.starSpace = 15.0f;
+//item1.scoreStarView.defaultImage = [UIImage imageNamed:@"icon_rating_star_normal"]; //不设置使用默认图片
+//item1.scoreStarView.frontImage = [UIImage imageNamed:@"icon_rating_star_highlighted"];  //不设置使用默认图片
+//item1.scoreStarView.score = 5;
+//item1.scoreStarView.scoreHandle = ^(CGFloat score) {
+//    NSLog(@"----->%f", score);
+//};
+//[itemArray addObject:item1];

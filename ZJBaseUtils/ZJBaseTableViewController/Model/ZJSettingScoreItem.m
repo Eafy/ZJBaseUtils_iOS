@@ -58,7 +58,7 @@
 {
     [cell.textLabel sizeToFit];
     if (self.scoreStarView.zj_width == 0) {
-        CGFloat width = [UIImage imageNamed:self.scoreStarView.imgBackgroundName].size.width*self.starCount + self.starSpace * (self.starCount - 1);
+        CGFloat width = self.scoreStarView.defaultImage.size.width*self.starCount + self.starSpace * (self.starCount - 1);
         self.scoreStarView.zj_width = width;
     }
     self.scoreStarView.zj_height = cell.zj_height/3*2;

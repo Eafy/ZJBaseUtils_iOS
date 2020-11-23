@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJRatingStarView : UIView
 
-/// 星星的默认图片
-@property (nonatomic,copy) NSString *starImgName;
+/// 星星的默认背景图片
+@property (nonatomic,strong) UIImage *defaultImage;
 
 /// 初始化✨视图
 /// @param starCount 星星个数

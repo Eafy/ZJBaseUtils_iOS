@@ -47,8 +47,8 @@
 {
     UIImageView *item = nil;
     for (int i =0; i<self.starCount; i++) {
-        if (self.starImgName) {
-            item = [[UIImageView alloc] initWithImage:[UIImage imageNamed:self.starImgName]];
+        if (self.defaultImage) {
+            item = [[UIImageView alloc] initWithImage:self.defaultImage];
         } else {
             item = [[UIImageView alloc] init];
         }
@@ -58,11 +58,11 @@
     }
 }
 
-- (void)setStarImgName:(NSString *)starImgName
+- (void)setDefaultImage:(UIImage *)defaultImage
 {
-    _starImgName = starImgName;
+    _defaultImage = defaultImage;
     for (UIImageView *item in self.starItemArray) {
-        item.image = [UIImage imageNamed:starImgName];
+        item.image = defaultImage;
     }
 }
 

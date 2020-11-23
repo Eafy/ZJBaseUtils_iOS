@@ -54,3 +54,16 @@
 #import "ZJBaseTableViewController.h"
 #import "ZJBaseTabBarController.h"
 
+
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface ZJBaseUtils : NSObject
+
+/// 获取bundle包内默认图片
+/// @param imageName 图片名称
++ (nullable UIImage *)imageNamed:(NSString * _Nullable)imageName;
+
+@end
+
+NS_ASSUME_NONNULL_END

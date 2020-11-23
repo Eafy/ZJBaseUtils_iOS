@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
     ZJSettingItemTypeTextFidld,     //文本类型
     ZJSettingItemTypeRadio,         //单选/复选类型
     ZJSettingItemTypeRatingStar,    //星级评分
+    ZJSettingItemTypeStepper,       //步进器
     ZJSettingItemTypeCustomView,    //自定义类型
     
 //    ZJSettingItemTypeRadio = ZJSettingItemTypeArrow,         //单选/复选类型
@@ -83,6 +84,9 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 - (instancetype _Nonnull)initWithIcon:(NSString *_Nullable)icon title:(NSString *_Nullable)title destClass:(Class _Nullable )destVc;
 
 #pragma mark - 重载差异化
+
+/// 默认初始化数据
+- (void)defaultData;
 
 /// 差异化更新数据（子item需要需要重写）
 /// @param cell cell示例对象
