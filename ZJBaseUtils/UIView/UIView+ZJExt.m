@@ -54,6 +54,10 @@
     self.layer.mask = maskLayer;
 }
 
+- (void)zj_cornerRadius:(CGFloat)radius
+{
+    [self zj_drawCircularWithCornerRadii:CGSizeMake(radius, radius) rectCorner:UIRectCornerAllCorners];
+}
 
 - (void)zj_drawBorderWithWidth:(CGFloat)width cornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)rectCorner length:(CGFloat)length space:(CGFloat)space strokeColor:(UIColor *)strokeColor
 {

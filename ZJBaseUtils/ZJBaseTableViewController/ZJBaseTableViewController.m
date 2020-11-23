@@ -35,6 +35,9 @@
     self.isLeftSideslipBack = NO;
     
     [self initNavigationBar];
+    if (self.isShowNavBarView) {
+        [self addNavBarBtnForHide];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
