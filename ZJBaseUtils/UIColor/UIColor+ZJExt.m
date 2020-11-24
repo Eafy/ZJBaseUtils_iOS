@@ -27,6 +27,9 @@ UIColor *ZJColorFromRrgWithAlpha(NSInteger rgb, CGFloat alpha) {
 UIColor *ZJColorFromHex(NSString *str) {
     return [UIColor zj_colorWithHexString:str];
 }
+UIColor *ZJColorFromAHex(NSString *str) {
+    return [UIColor zj_colorWithAHexString:str];
+}
 
 UIColor *ZJColorRandom() {
     return [UIColor zj_colorRandom];
@@ -34,7 +37,7 @@ UIColor *ZJColorRandom() {
 
 @implementation UIColor (ZJExt)
 
-+ (UIColor *)zj_colorWithHexString:(NSString *)hexString
++ (UIColor *)zj_colorWithHexString:(NSString *)hexString isAHex:(BOOL)isAHex
 {
     //去除空格
     NSString *cString = [[hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
@@ -52,6 +55,7 @@ UIColor *ZJColorRandom() {
     range.length = 2;
     if (cString.length == 8) {
         //r
+        range.location = isAHex ? 6 : 0;
         NSString *rString = [cString substringWithRange:range];
         //g
         range.location = 2;
@@ -60,7 +64,7 @@ UIColor *ZJColorRandom() {
         range.location = 4;
         NSString *bString = [cString substringWithRange:range];
         //a
-        range.location = 6;
+        range.location = isAHex ? 0 : 6;
         NSString *aString = [cString substringWithRange:range];
 
         [[NSScanner scannerWithString:aString] scanHexInt:&a];
@@ -85,6 +89,16 @@ UIColor *ZJColorRandom() {
 
         return [UIColor colorWithRed:(r / 255.0f) green:(g / 255.0f) blue:(b / 255.0f) alpha:1.0];
     }
+}
+
++ (UIColor *)zj_colorWithHexString:(NSString *)hexString
+{
+    return [self zj_colorWithHexString:hexString isAHex:NO];
+}
+
++ (UIColor *)zj_colorWithAHexString:(NSString *)hexString
+{
+    return [self zj_colorWithHexString:hexString isAHex:YES];
 }
 
 + (UIColor *)zj_color:(NSInteger)r g:(NSInteger)g b:(NSInteger)b {
