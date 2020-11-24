@@ -86,15 +86,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param color2 特别色
 /// @param specialStrings 要添加颜色的字符串数组（必须为strTemp中的字符串）
 /// @param lineSpace 行高
-/// @param fontSize 字体大小
+/// @param font 字体
 /// @param alignment 字符对齐方式
-- (NSMutableAttributedString *)zj_toColor:(UIColor *)color1
-                                  specialColor:(UIColor *)color2
-                                specialStrings:(NSArray *)specialStrings
-                                   lineSpacing:(CGFloat)lineSpace
-                                      fontSize:(CGFloat)fontSize
-                                     alignment:(NSTextAlignment)alignment;
+- (NSMutableAttributedString *)zj_stringWithColor:(UIColor *)color1 specialColor:(UIColor *)color2 specialStrings:(NSArray *)specialStrings lineSpacing:(CGFloat)lineSpace font:(UIFont *)font alignment:(NSTextAlignment)alignment;
 
+/// 给文字设置字体和颜色藐视
+/// @param color 颜色
+/// @param font 字体
+- (NSMutableAttributedString *)zj_stringWithColor:(UIColor *)color font:(UIFont *)font;
 
 /// 去掉字符串中首尾的空格
 - (NSString *)zj_removeBlank;

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)initWithFrame:(CGRect)frame itemsArray:(NSArray<ZJPickerItem *> *)itemsArray;
 
+- (instancetype)initWithFrame:(CGRect)frame;
+
 /// 数据代理
 @property (nonatomic,weak) id<ZJPickerViewDelegate> delegate;
 
@@ -47,18 +49,27 @@ NS_ASSUME_NONNULL_BEGIN
 /// 取消标题颜色
 @property (nonatomic,strong) UIFont *cancelTitleFont;
 
+/// 顶部视图高度，默认56
+@property (nonatomic,assign) CGFloat topViewHeight;
+/// 按钮2遍的偏移量，默认15
+@property (nonatomic,assign) CGFloat btnOffset;
+
+/// 选择行背景颜色，默认透明
+@property (nonatomic,assign) UIColor *rowBackgroundColor;
+/// 行文字颜色，默认黑色
+@property (nonatomic,strong) UIColor *rowTitleColor;
+/// 行文字大小，默认常规18
+@property (nonatomic,assign) UIFont *rowTitleFont;
+/// 选择框上下线条的颜色，默认：#DCE0E8
+@property (nonatomic,strong) UIColor *rowLineColor;
+///  选择框上下线条的高度，默认0.5
+@property (nonatomic,assign) CGFloat rowLineHeight;
 
 /// 上面遮罩层颜色，默认HEXA：#181E28B2
 @property (nonatomic,strong) UIColor *maskColor;
 
-/// 顶部左边及右边圆角，默认
+/// 顶部左边及右边圆角
 @property (nonatomic,assign) CGFloat cornerRadius;
-
-/// 选择框上下线条的颜色，默认：#DCE0E8
-@property (nonatomic,strong) UIColor *pickerLineColor;
-
-///  选择框上下线条的frame
-@property (nonatomic,assign) CGRect pickerLineFrame;
 
 /// 显示
 - (void)show;
@@ -81,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param pickerView 选择器
 /// @param rows 已选择行数索引列表
 /// @param titles 已选择行数的标题列表
-- (void)pickerView:(ZJPickerView *)pickerView didConfirmWithRows:(NSArray *)rows titles:(NSArray *)titles;
+- (void)pickerView:(ZJPickerView *)pickerView didConfirmWithRows:(NSArray<NSNumber *> *)rows titles:(NSArray<NSString *> *)titles;
 
 @optional
 

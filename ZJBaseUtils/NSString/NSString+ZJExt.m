@@ -252,21 +252,22 @@
     return emojiStr;
 }
 
-- (NSMutableAttributedString *)zj_toColor:(UIColor *)color1
-                                  specialColor:(UIColor *)color2
-                                specialStrings:(NSArray *)specialStrings
-                                   lineSpacing:(CGFloat)lineSpace
-                                      fontSize:(CGFloat)fontSize
-                                     alignment:(NSTextAlignment)alignment
+- (NSMutableAttributedString *)zj_stringWithColor:(UIColor *)color1 specialColor:(UIColor *)color2 specialStrings:(NSArray *)specialStrings lineSpacing:(CGFloat)lineSpace font:(UIFont *)font alignment:(NSTextAlignment)alignment
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = alignment;
     paragraphStyle.maximumLineHeight = 60;  //最大的行高
     paragraphStyle.lineSpacing = lineSpace;  //行自定义行高度
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:self attributes:@{NSForegroundColorAttributeName:color1, NSFontAttributeName:[UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName:paragraphStyle}];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:self attributes:@{NSForegroundColorAttributeName:color1, NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle}];
     for (NSString *specialString in specialStrings) {
         [str addAttribute:NSForegroundColorAttributeName value:color2 range:[self rangeOfString:specialString]];
     }
+    return str;
+}
+
+- (NSMutableAttributedString *)zj_stringWithColor:(UIColor *)color font:(UIFont *)font
+{
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:self attributes:@{NSForegroundColorAttributeName:color, NSFontAttributeName:font}];
     return str;
 }
 

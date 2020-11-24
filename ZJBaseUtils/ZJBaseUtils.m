@@ -35,7 +35,7 @@ static NSString *_defaultBundleImagePath = nil;
 + (NSBundle *)bundleWithBundleName:(NSString *)bundleName {
     
     NSURL *associateBundleURL = nil;
-    if (!bundleName) {
+    if (bundleName) {
         if ([bundleName containsString:@".bundle"]) {
             bundleName = [bundleName componentsSeparatedByString:@".bundle"].firstObject;
         }
