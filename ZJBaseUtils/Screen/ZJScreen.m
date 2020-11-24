@@ -213,4 +213,14 @@ singleton_m();
     }
 }
 
+#pragma mark -
+
++ (UIWindow *)keyWindow
+{
+    UIWindow *keyWindow = [[[UIApplication sharedApplication].windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow *win1, UIWindow *win2) {
+        return win1.windowLevel < win2.windowLevel || !win1.isOpaque;
+    }] lastObject];
+    return keyWindow;
+}
+
 @end

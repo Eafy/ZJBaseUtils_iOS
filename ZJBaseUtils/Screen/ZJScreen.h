@@ -58,6 +58,9 @@ singleton_h();
 /// 缩放基准长度
 @property (nonatomic, assign, readonly) CGFloat scaleStandardLength;
 
+/// 获取当前的KeyWindow窗口
++ (UIWindow * _Nullable)keyWindow;
+
 @end
 
 NS_ASSUME_NONNULL_END
