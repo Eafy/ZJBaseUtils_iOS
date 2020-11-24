@@ -45,10 +45,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 数据和字符串互转
 
-/// 数据转为字符串
+/// 数据转为字符串（默认大写）
 /// @param bytes 数据
 /// @param length 长度
 + (NSString *)zj_stringFromBytes:(unsigned char *)bytes length:(NSUInteger)length;
+
+/// 数据转为字符串（默认小写）
+/// @param bytes 数据
+/// @param length 长度
++ (NSString *)zj_stringFromLowercaseBytes:(unsigned char *)bytes length:(NSUInteger)length;
 
 /// 随机获取字符串
 /// @param size 生成字符串的长度
