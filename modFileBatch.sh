@@ -1,12 +1,13 @@
 #!/bin/sh
 
-#越特殊的替换越需要放前面
+#原始字符串，越特殊的替换越需要放前面
 modifySrcArray=(
-"ZJSmartUtilsDef"
-"ZJSmartUtils"
+"ZJBaseUtilsDef"
+"ZJBaseUtils"
 "zj_"
 "ZJ"
 )
+#替换后的字符串，和前面一一对应
 modifyDstArray=(
 "JMSmartUtilsDef"
 "JMSmartUtils"
