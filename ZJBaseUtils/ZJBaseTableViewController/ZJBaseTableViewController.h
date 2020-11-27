@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否显示自定义导航栏背景视图；
 @property (nonatomic,assign) BOOL isShowNavBarBgView;
 /// 自定义导航栏背景视图
-@property (nonatomic,strong) UIView *navBarBgView;
+@property (nonatomic,strong) UIImageView *navBarBgView;
 /// 自定义导航栏的主题标签
 @property (nonatomic,strong) UILabel *navBarTitleLB;
 

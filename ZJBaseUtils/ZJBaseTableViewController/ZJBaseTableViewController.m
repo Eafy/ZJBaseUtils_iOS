@@ -249,10 +249,10 @@
 
 #pragma mark - 自定义导航栏视图
 
-- (UIView *)navBarBgView
+- (UIImageView *)navBarBgView
 {
     if (!_navBarBgView) {
-        _navBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJStatusBarHeight() + ZJNavBarHeight())];
+        _navBarBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ZJScreenWidth(), ZJStatusBarHeight() + ZJNavBarHeight())];
         if (self.barTintColor) {
             _navBarBgView.backgroundColor = self.barTintColor;
         } else {

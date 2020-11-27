@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 //自定义导航栏
 @property (nonatomic,assign) BOOL isShowNavBarView;     //是否显示自定义导航栏视图，当isHideNavBar为YES时生效
 @property (nonatomic,assign) BOOL isShowNavBarBgView;    //是否显示自定义导航栏背景视图；
-@property (nonatomic,strong) UIView *navBarBgView;          //自定义导航栏背景视图
+@property (nonatomic,strong) UIImageView *navBarBgView;          //自定义导航栏背景视图
 @property (nonatomic,strong) UILabel *navBarTitleLB;        //自定义导航栏的主题标签
 
 /// 设置背景图片
