@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param lineSpace 行高
 /// @param font 字体
 /// @param alignment 字符对齐方式
-- (NSMutableAttributedString *)zj_stringWithColor:(UIColor *)color1 specialColor:(UIColor *)color2 specialStrings:(NSArray *)specialStrings lineSpacing:(CGFloat)lineSpace font:(UIFont *)font alignment:(NSTextAlignment)alignment;
+- (NSMutableAttributedString *)zj_stringWithColor:(UIColor *)color1 specialColor:(UIColor * _Nullable)color2 specialStrings:(NSArray * _Nullable)specialStrings lineSpacing:(CGFloat)lineSpace font:(UIFont *)font alignment:(NSTextAlignment)alignment;
 
 /// 给文字设置字体和颜色藐视
 /// @param color 颜色

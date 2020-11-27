@@ -47,8 +47,10 @@ static NSString *_defaultBundleImagePath = nil;
             associateBundleURL = [associateBundleURL URLByAppendingPathComponent:bundleName];
             associateBundleURL = [associateBundleURL URLByAppendingPathExtension:@"framework"];
             
-            NSBundle *associateBunle = [NSBundle bundleWithURL:associateBundleURL];
-            associateBundleURL = [associateBunle URLForResource:bundleName withExtension:@"bundle"];
+            if (associateBundleURL) {
+                NSBundle *associateBunle = [NSBundle bundleWithURL:associateBundleURL];
+                associateBundleURL = [associateBunle URLForResource:bundleName withExtension:@"bundle"];
+            }
         }
     }
     

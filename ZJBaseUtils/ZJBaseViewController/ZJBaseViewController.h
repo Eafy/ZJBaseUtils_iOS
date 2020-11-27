@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 设置背景图片
 @property (nonatomic,copy) NSString *backgroundImgName;
+/// 背景颜色
+@property (nonatomic,strong) UIColor *backgroundColor;
 
 /// 右键响应
 - (void)navRightBtnAction;

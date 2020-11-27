@@ -34,7 +34,8 @@
                 }
             }
             
-//            if (nav.backgroundColor) vc.view.backgroundColor = nav.backgroundColor;
+            if (nav.backgroundImgName) vc.backgroundImgName = nav.backgroundImgName;
+            if (nav.backgroundColor) vc.backgroundColor = nav.backgroundColor;
             if (nav.barTintColor) vc.barTintColor = nav.barTintColor;
             if (nav.barTitleColor) vc.barTitleColor = nav.barTitleColor;
             if (nav.barTitleFont) vc.barTitleFont = nav.barTitleFont;
@@ -58,6 +59,30 @@
     if (self.hideNavBarArray && [self.hideNavBarArray containsObject:[self class]]) {
         if ([viewController respondsToSelector:@selector(isHideNavBar)]) {
             [self setNavigationBarHidden:((ZJBaseViewController *)viewController).isHideNavBar animated:YES];
+        }
+    }
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    _backgroundColor = backgroundColor;
+    if (self.viewControllers.count == 1) {
+        ZJBaseViewController *viewCtl = self.viewControllers[0];
+        if ([viewCtl isKindOfClass:[ZJBaseViewController class]] ||
+        [viewCtl isKindOfClass:[ZJBaseTableViewController class]]) {
+            viewCtl.backgroundColor = backgroundColor;
+        }
+    }
+}
+
+- (void)setBackgroundImgName:(NSString *)backgroundImgName
+{
+    _backgroundImgName = backgroundImgName;
+    if (self.viewControllers.count == 1) {
+        ZJBaseViewController *viewCtl = self.viewControllers[0];
+        if ([viewCtl isKindOfClass:[ZJBaseViewController class]] ||
+        [viewCtl isKindOfClass:[ZJBaseTableViewController class]]) {
+            viewCtl.backgroundImgName = backgroundImgName;
         }
     }
 }

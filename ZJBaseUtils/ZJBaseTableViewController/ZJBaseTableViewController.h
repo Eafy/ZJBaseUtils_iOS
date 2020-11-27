@@ -48,6 +48,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 自定义导航栏的主题标签
 @property (nonatomic,strong) UILabel *navBarTitleLB;
 
+/// 设置背景图片
+@property (nonatomic,copy) NSString *backgroundImgName;
+/// 背景颜色
+@property (nonatomic,strong) UIColor *backgroundColor;
+
 #pragma mark - 私有数据
 @property (nonatomic,strong) ZJBaseTVPrivateData *privateData;  //Item或上一个界面透传过来的数据
 

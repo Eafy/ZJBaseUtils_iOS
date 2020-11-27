@@ -12,16 +12,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJBaseNavigationController : UINavigationController
 
-@property (nonatomic, assign) NSArray<Class> *hideNavBarArray;
+@property (nonatomic,assign) NSArray<Class> *hideNavBarArray;
 
+/// 设置背景图片
+@property (nonatomic,copy) NSString *backgroundImgName;
 /// 子控制器的背景颜色
-@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic,strong) UIColor *backgroundColor;
 
 /// 返回按钮名称
-@property (nonatomic, strong) NSString *navBackImgName;
+@property (nonatomic,strong) NSString *navBackImgName;
 
 /// 是否显示返回按钮标题，默认NO
-@property (nonatomic, assign) BOOL isShowNavBackTitle;
+@property (nonatomic,assign) BOOL isShowNavBackTitle;
 
 //系统导航栏
 @property (nonatomic,strong) UIColor *barTintColor;     //导航栏背景颜色

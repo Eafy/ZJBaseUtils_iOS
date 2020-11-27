@@ -13,7 +13,10 @@
 
 @interface ZJBaseViewController ()  <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic,assign) BOOL isLeftSideslipBack;     //是左侧边栏右滑返回
+ /// 是左侧边栏右滑返回
+@property (nonatomic,assign) BOOL isLeftSideslipBack;
+
+@property (nonatomic,strong) UIImageView *backgroundImgView;
 
 @end
 
@@ -62,7 +65,11 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.modalPresentationStyle = UIModalPresentationFullScreen;
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.view.backgroundColor = self.backgroundColor ? self.backgroundColor : [UIColor whiteColor];
+    if (_backgroundImgName && !_backgroundImgView) {
+        self.backgroundImgName = _backgroundImgName;
+    }
 }
 
 - (void)dealloc {
@@ -305,14 +312,22 @@
 - (void)setBackgroundImgName:(NSString *)backgroundImgName
 {
     _backgroundImgName = backgroundImgName;
-    if (backgroundImgName) {
+    if (backgroundImgName && [self isViewLoaded]) {
         UIImage *img = [UIImage imageNamed:backgroundImgName];
         if (img) {
-            UIImageView *imgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-            imgView.image = img;
-            imgView.contentMode = UIViewContentModeScaleAspectFill;
-            [self.view insertSubview:imgView atIndex:0];
+            _backgroundImgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+            _backgroundImgView.image = img;
+            _backgroundImgView.contentMode = UIViewContentModeScaleAspectFill;
+            [self.view insertSubview:_backgroundImgView atIndex:0];
         }
+    }
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    _backgroundColor = backgroundColor;
+    if ([self isViewLoaded]) {
+        self.view.backgroundColor = backgroundColor;
     }
 }
 

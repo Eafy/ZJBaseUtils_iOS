@@ -19,6 +19,8 @@
 @interface ZJBaseTableViewController () <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,assign) BOOL isLeftSideslipBack;     //是左侧边栏右滑返回
+@property (nonatomic,strong) UIImageView *backgroundImgView;
+
 @property (nonatomic,strong) NSArray * _Nullable datasArray;      //TableView数据源
 
 @end
@@ -79,6 +81,11 @@
     }
     if (self.privateData.config.bgTableViewColor) {
         self.tableView.backgroundColor = self.privateData.config.bgTableViewColor;
+    }
+    
+    self.view.backgroundColor = self.backgroundColor ? self.backgroundColor : [UIColor whiteColor];
+    if (_backgroundImgName && !_backgroundImgView) {
+        self.backgroundImgName = _backgroundImgName;
     }
 }
 
@@ -304,6 +311,30 @@
         self.navLeftBtn.hidden = !isShowNavBarView;
         self.navRightBtn.hidden = !isShowNavBarView;
         self.navBarTitleLB.hidden = !isShowNavBarView;
+    }
+}
+
+#pragma mark -
+
+- (void)setBackgroundImgName:(NSString *)backgroundImgName
+{
+    _backgroundImgName = backgroundImgName;
+    if (backgroundImgName && [self isViewLoaded]) {
+        UIImage *img = [UIImage imageNamed:backgroundImgName];
+        if (img) {
+            _backgroundImgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+            _backgroundImgView.image = img;
+            _backgroundImgView.contentMode = UIViewContentModeScaleAspectFill;
+            [self.view insertSubview:_backgroundImgView atIndex:0];
+        }
+    }
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    _backgroundColor = backgroundColor;
+    if ([self isViewLoaded]) {
+        self.view.backgroundColor = backgroundColor;
     }
 }
 

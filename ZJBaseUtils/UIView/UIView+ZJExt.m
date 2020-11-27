@@ -75,4 +75,11 @@
     [self.layer addSublayer:borderLayer];
 }
 
+- (void)zj_drawBorderWithWidth:(CGFloat)width color:(UIColor *)color
+{
+    self.layer.borderColor = color.CGColor;
+    self.layer.borderWidth = width;
+    self.layer.masksToBounds = YES;
+}
+
 @end

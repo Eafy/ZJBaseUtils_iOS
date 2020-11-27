@@ -40,7 +40,7 @@
 
 #ifndef weakSelfDef
 #define weakSelfDef
-#define weakSelf(a) __weak a *weakSelf = self;
+#define weakSelf(a) __weak typeof(a) weakSelf = a;
 #endif
 
 #ifndef NSLonglong
