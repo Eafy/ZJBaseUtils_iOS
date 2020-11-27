@@ -54,6 +54,66 @@
     self.layer.mask = maskLayer;
 }
 
+- (void)zj_drawCircularWithTopLeftRadius:(CGFloat)topLeftRadius rightUpRadius:(CGFloat)rightUpRadius rightDownRadius:(CGFloat)rightDownRadius leftDownRadius:(CGFloat)leftDownRadius
+{
+    CGFloat width = self.bounds.size.width;
+    CGFloat height = self.bounds.size.height;
+    
+    //笔画停留位置点
+    CGPoint leftUpPoint = CGPointMake(0, topLeftRadius);
+    CGPoint rightUpPoint = CGPointMake(width-topLeftRadius-rightUpRadius, 0);
+    CGPoint rightDownPoint = CGPointMake(width, height-rightUpRadius-rightDownRadius);
+    CGPoint leftDownPoint = CGPointMake(width-rightDownRadius-leftDownRadius, height);
+    
+    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+    for (int i=0; i<4; i++) {
+        CGPoint center = CGPointMake(0, 0);
+        CGFloat startAngle = 0;
+        CGFloat endAngle = 0;
+        
+        CGFloat radius = topLeftRadius;
+        if (i == 0) {
+            center.x = radius;
+            center.y = radius;
+            startAngle = M_PI;
+            endAngle = M_PI * 1.5;
+            [bezierPath moveToPoint:CGPointZero];
+            [bezierPath moveToPoint:leftUpPoint];   //移动笔画到对应位置
+            [bezierPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];   //画弧线
+        } else if (i == 1) {
+            radius = rightUpRadius;
+            center.x = width - radius;
+            center.y = radius;
+            startAngle = M_PI * 1.5;
+            endAngle = 0;
+            [bezierPath addLineToPoint:rightUpPoint];   //画线条
+            [bezierPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
+        } else if (i == 2) {
+            radius = rightDownRadius;
+            center.x = width - radius;
+            center.y = height - radius;
+            startAngle = 0;
+            endAngle = M_PI * 0.5;
+            [bezierPath addLineToPoint:rightDownPoint];
+            [bezierPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
+        } else if (i == 3) {
+            radius = leftDownRadius;
+            center.x = radius;
+            center.y = height - radius;
+            startAngle = M_PI * 0.5;
+            endAngle = M_PI;
+            [bezierPath addLineToPoint:leftDownPoint];
+            [bezierPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
+            [bezierPath addLineToPoint:leftUpPoint];
+            [bezierPath closePath]; //结束画线
+        }
+    }
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = bezierPath.CGPath;
+    self.layer.mask = maskLayer;
+}
+
 - (void)zj_cornerRadius:(CGFloat)radius
 {
     [self zj_drawCircularWithCornerRadii:CGSizeMake(radius, radius) rectCorner:UIRectCornerAllCorners];
