@@ -21,7 +21,7 @@
         
         _rowHeight = 56.0f;
         
-         _cellTitleColor = ZJColorFromHex(@"#181E28");
+        _cellTitleColor = ZJColorFromHex(@"#181E28");
         _cellSubTitleColor = ZJColorFromHex(@"#8690A9");
         _cellDetailTitleColor = ZJColorFromHex(@"#5A6482");
         
