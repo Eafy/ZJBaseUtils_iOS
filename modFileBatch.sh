@@ -1,17 +1,20 @@
 #!/bin/sh
 
-#原始字符串，越特殊的替换越需要放前面
+#越特殊的替换越需要放前面
 modifySrcArray=(
-"ZJBaseUtilsDef"
+"ZJUtilsDef"
 "ZJBaseUtils"
+#"2020 ZJ"
 "zj_"
+"Zj_"
 "ZJ"
 )
-#替换后的字符串，和前面一一对应
 modifyDstArray=(
 "JMSmartUtilsDef"
 "JMSmartUtils"
+#"2020 Jimi"
 "jm_"
+"Jm_"
 "JM"
 )
 
@@ -112,4 +115,4 @@ function traverseFolder() {
 }
 
 #执行遍历修改文件
-traverseFolder $1
+traverseFolder ./ZJBaseUtils
