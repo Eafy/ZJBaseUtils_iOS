@@ -21,7 +21,7 @@
     return image;
 }
 
-- (void)zj_drawDashLineWithStartPoint:(CGPoint)sPoint endPoint:(CGPoint)ePoint color:(UIColor *)color w:(CGFloat)w s:(CGFloat)s
+- (void)zj_dottedLineWithStartPoint:(CGPoint)sPoint endPoint:(CGPoint)ePoint color:(UIColor *_Nonnull )color width:(CGFloat)width space:(CGFloat)space
 {
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     [shapeLayer setBounds:self.bounds];
@@ -30,10 +30,10 @@
     // 设置虚线颜色为blackColor [shapeLayer setStrokeColor:[[UIColor blackColor] CGColor]];
     [shapeLayer setStrokeColor:[color CGColor]];
     // 3.0f设置虚线的宽度
-    [shapeLayer setLineWidth:w];
+    [shapeLayer setLineWidth:width];
     [shapeLayer setLineJoin:kCALineJoinRound];
     // 3=线的宽度 1=每条线的间距
-    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:w],[NSNumber numberWithFloat:s],nil]];
+    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:width],[NSNumber numberWithFloat:space],nil]];
     // Setup the path
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, sPoint.x, sPoint.y);
@@ -45,7 +45,32 @@
     [[self layer] addSublayer:shapeLayer];
 }
 
-- (void)zj_drawCircularWithCornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)corners
+- (void)zj_borderWithWidth:(CGFloat)width cornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)rectCorner length:(CGFloat)length space:(CGFloat)space strokeColor:(UIColor *)strokeColor
+{
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:rectCorner cornerRadii:cornerRadii];
+    CAShapeLayer *borderLayer = [CAShapeLayer layer];
+    borderLayer.frame = self.bounds;
+    borderLayer.path = bezierPath.CGPath;
+    borderLayer.fillColor = [UIColor clearColor].CGColor;
+    [borderLayer setLineWidth:width];
+    if (space > 0) {
+        [borderLayer setLineJoin:kCALineJoinRound];
+        [borderLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:length],[NSNumber numberWithFloat:space],nil]];
+    }
+    borderLayer.strokeColor = strokeColor.CGColor;
+    [self.layer addSublayer:borderLayer];
+}
+
+- (void)zj_borderWithWidth:(CGFloat)width color:(UIColor *)color
+{
+    self.layer.borderColor = color.CGColor;
+    self.layer.borderWidth = width;
+    self.layer.masksToBounds = YES;
+}
+
+#pragma mark - 
+
+- (void)zj_cornerWithRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)corners
 {
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:cornerRadii];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
@@ -54,7 +79,7 @@
     self.layer.mask = maskLayer;
 }
 
-- (void)zj_drawCircularWithTopLeftRadius:(CGFloat)topLeftRadius rightUpRadius:(CGFloat)rightUpRadius rightDownRadius:(CGFloat)rightDownRadius leftDownRadius:(CGFloat)leftDownRadius
+- (CAShapeLayer *)zj_cornerWithTopLeftRadius:(CGFloat)topLeftRadius rightUpRadius:(CGFloat)rightUpRadius rightDownRadius:(CGFloat)rightDownRadius leftDownRadius:(CGFloat)leftDownRadius
 {
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
@@ -108,38 +133,40 @@
             [bezierPath closePath]; //结束画线
         }
     }
+    
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.bounds;
     maskLayer.path = bezierPath.CGPath;
     self.layer.mask = maskLayer;
+    
+    return maskLayer;
 }
 
-- (void)zj_cornerRadius:(CGFloat)radius
+- (void)zj_cornerWithRadius:(CGFloat)radius
 {
-    [self zj_drawCircularWithCornerRadii:CGSizeMake(radius, radius) rectCorner:UIRectCornerAllCorners];
+    [self zj_cornerWithRadii:CGSizeMake(radius, radius) rectCorner:UIRectCornerAllCorners];
 }
 
-- (void)zj_drawBorderWithWidth:(CGFloat)width cornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)rectCorner length:(CGFloat)length space:(CGFloat)space strokeColor:(UIColor *)strokeColor
-{
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:rectCorner cornerRadii:cornerRadii];
-    CAShapeLayer *borderLayer = [CAShapeLayer layer];
-    borderLayer.frame = self.bounds;
-    borderLayer.path = bezierPath.CGPath;
-    borderLayer.fillColor = [UIColor clearColor].CGColor;
-    [borderLayer setLineWidth:width];
-    if (space > 0) {
-        [borderLayer setLineJoin:kCALineJoinRound];
-        [borderLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:length],[NSNumber numberWithFloat:space],nil]];
-    }
-    borderLayer.strokeColor = strokeColor.CGColor;
-    [self.layer addSublayer:borderLayer];
-}
+#pragma mark -
 
-- (void)zj_drawBorderWithWidth:(CGFloat)width color:(UIColor *)color
+- (void)zj_shadowWithOpacity:(float)shadowOpacity shadowRadius:(CGFloat)shadowRadius andCornerRadius:(CGFloat)cornerRadius
 {
-    self.layer.borderColor = color.CGColor;
-    self.layer.borderWidth = width;
+    
+    CAShapeLayer *shadowLayer = [self zj_cornerWithTopLeftRadius:cornerRadius rightUpRadius:cornerRadius rightDownRadius:cornerRadius leftDownRadius:cornerRadius];
+    shadowLayer.frame = self.layer.frame;
+    
+    shadowLayer.shadowColor = [UIColor blackColor].CGColor; //shadowColor阴影颜色
+    shadowLayer.shadowOffset = CGSizeMake(0, 0);    //shadowOffset阴影偏移，默认(0, -3),
+    shadowLayer.shadowOpacity = shadowOpacity;  //阴影透明度，默认0
+    shadowLayer.shadowRadius = shadowRadius;    //阴影半径，默认3
+    
+    //////// cornerRadius /////////
+    self.layer.cornerRadius = cornerRadius;
     self.layer.masksToBounds = YES;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    
+    [self.superview.layer insertSublayer:shadowLayer below:self.layer];
 }
 
 @end

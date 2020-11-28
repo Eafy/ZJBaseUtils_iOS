@@ -280,7 +280,7 @@
 {
     _cornerRadius = cornerRadius;
     if (cornerRadius >= 0) {
-        [self.backView zj_drawCircularWithCornerRadii:CGSizeMake(cornerRadius, cornerRadius) rectCorner:(UIRectCornerTopLeft | UIRectCornerTopRight)];
+        [self.backView zj_cornerWithRadii:CGSizeMake(cornerRadius, cornerRadius) rectCorner:(UIRectCornerTopLeft | UIRectCornerTopRight)];
     }
 }
 
