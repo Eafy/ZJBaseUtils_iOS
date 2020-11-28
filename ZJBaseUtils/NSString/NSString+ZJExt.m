@@ -157,6 +157,17 @@
     return [[NSString alloc] initWithBytes:data length:size encoding:NSUTF8StringEncoding];
 }
 
++ (NSString *)zj_numberRandomWithSize:(NSUInteger)size
+{
+    if (size == 0) return @"";
+    
+    char data[size];
+    for (int i=0; i<size; i++) {
+        data[i] = (char)('0' + (arc4random_uniform(10)));
+    }
+    return [[NSString alloc] initWithBytes:data length:size encoding:NSUTF8StringEncoding];
+}
+
 - (NSData *)zj_toData
 {
     NSString *string = [self lowercaseString];
