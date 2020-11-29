@@ -10,11 +10,6 @@
 
 @implementation UIView (ZJGradient)
 
-/// 颜色渐变
-/// @param colors 渐变颜色的数组
-/// @param percents 渐变颜色的占比数组
-/// @param opacity 透明度
-/// @param type 渐变色的方向
 - (void)zj_gradientWithColors:(NSArray<UIColor *> *_Nonnull)colors percents:(NSArray<NSNumber *> *_Nonnull)percents opacity:(CGFloat)opacity type:(ZJGradientType)type
 {
     
