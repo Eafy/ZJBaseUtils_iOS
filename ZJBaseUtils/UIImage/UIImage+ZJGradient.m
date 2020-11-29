@@ -63,4 +63,71 @@
     return image;
 }
 
++ (UIImage *)zj_gradientRadialWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint startRadius:(CGFloat)startRadius endRadius:(CGFloat)endRadius colors:(NSArray *)colors percents:(NSArray *)percents
+{
+    CGFloat *locations = malloc(sizeof(CGFloat) * colors.count);
+    NSMutableArray *colorArray = [NSMutableArray array];
+    for (int i=0; i<colors.count; i++) {
+        UIColor *color = [colors objectAtIndex:i];
+        [colorArray addObject:(id)color.CGColor];
+        if (i < percents.count) {
+            locations[i] = [percents[i] floatValue];
+        } else {
+            locations[i] = 1.0;
+        }
+    }
+    
+    CGFloat x1 = endPoint.x - startPoint.x + startRadius + endRadius;
+    CGFloat y1 = endPoint.y - startPoint.y + startRadius + endRadius;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(x1, y1), YES, 1.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)colorArray, locations);
+    
+    CGContextDrawRadialGradient(context, gradient, startPoint, startRadius, endPoint, endRadius, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGGradientRelease(gradient);
+    CGContextRestoreGState(context);
+    CGColorSpaceRelease(colorSpace);
+    UIGraphicsEndImageContext();
+    free(locations);
+    
+    return image;
+}
+
++ (UIImage *)zj_gradientRadialWithSize:(CGSize)size radius:(CGFloat)radius colors:(NSArray *)colors percents:(NSArray *)percents
+{
+    CGFloat *locations = malloc(sizeof(CGFloat) * colors.count);
+    NSMutableArray *colorArray = [NSMutableArray array];
+    for (int i=0; i<colors.count; i++) {
+        UIColor *color = [colors objectAtIndex:i];
+        [colorArray addObject:(id)color.CGColor];
+        if (i < percents.count) {
+            locations[i] = [percents[i] floatValue];
+        } else {
+            locations[i] = 1.0;
+        }
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(size, YES, 1.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)colorArray, locations);
+    
+    CGContextDrawRadialGradient(context, gradient, CGPointMake(size.width/2, size.height/2), 0, CGPointMake(size.width/2, size.height/2), radius, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGGradientRelease(gradient);
+    CGContextRestoreGState(context);
+    CGColorSpaceRelease(colorSpace);
+    UIGraphicsEndImageContext();
+    free(locations);
+    
+    return image;
+}
+
 @end

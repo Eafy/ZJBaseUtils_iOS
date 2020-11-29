@@ -53,6 +53,7 @@
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"
 #import "ZJBaseTableViewController.h"
+#import "ZJBaseTableView.h"
 #import "ZJBaseTabBarController.h"
 
 
