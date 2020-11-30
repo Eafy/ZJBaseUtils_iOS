@@ -21,20 +21,17 @@
     return image;
 }
 
-- (void)zj_dottedLineWithStartPoint:(CGPoint)sPoint endPoint:(CGPoint)ePoint color:(UIColor *_Nonnull )color width:(CGFloat)width space:(CGFloat)space
+- (void)zj_dottedLineWithStartPoint:(CGPoint)sPoint endPoint:(CGPoint)ePoint color:(UIColor *_Nonnull )color size:(CGSize)size space:(CGFloat)space
 {
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     [shapeLayer setBounds:self.bounds];
     [shapeLayer setPosition:self.center];
     [shapeLayer setFillColor:[[UIColor clearColor] CGColor]];
-    // 设置虚线颜色为blackColor [shapeLayer setStrokeColor:[[UIColor blackColor] CGColor]];
     [shapeLayer setStrokeColor:[color CGColor]];
-    // 3.0f设置虚线的宽度
-    [shapeLayer setLineWidth:width];
+    [shapeLayer setLineWidth:size.height];
     [shapeLayer setLineJoin:kCALineJoinRound];
-    // 3=线的宽度 1=每条线的间距
-    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:width],[NSNumber numberWithFloat:space],nil]];
-    // Setup the path
+    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:size.width],[NSNumber numberWithFloat:space],nil]];
+
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, sPoint.x, sPoint.y);
     CGPathAddLineToPoint(path, NULL, ePoint.x, ePoint.y);

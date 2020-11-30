@@ -19,9 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param sPoint 起始点
 /// @param ePoint 终点
 /// @param color 虚线颜色
-/// @param width 一个虚线的宽
+/// @param size 虚线的宽高
 /// @param space 虚线间的空隙大小
-- (void)zj_dottedLineWithStartPoint:(CGPoint)sPoint endPoint:(CGPoint)ePoint color:(UIColor *_Nonnull )color width:(CGFloat)width space:(CGFloat)space;
+- (void)zj_dottedLineWithStartPoint:(CGPoint)sPoint endPoint:(CGPoint)ePoint color:(UIColor *_Nonnull )color size:(CGSize)size space:(CGFloat)space;
 
 /// 画虚/实线边框（非离屏渲染，需要已layout）
 /// @param width 宽度
