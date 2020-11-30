@@ -38,6 +38,7 @@
 #import "UIButton+ZJGradient.h"
 #import "UIImageView+ZJExt.h"
 #import "UIViewController+ZJExt.h"
+#import "ZJTextField.h"
 
 #import "ZJModelFilter.h"
 #import "ZJModelFilterGet.h"
