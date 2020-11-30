@@ -50,7 +50,7 @@
     borderLayer.path = bezierPath.CGPath;
     borderLayer.fillColor = [UIColor clearColor].CGColor;
     [borderLayer setLineWidth:width];
-    if (space > 0) {
+    if (space > 0 && length > 0) {
         [borderLayer setLineJoin:kCALineJoinRound];
         [borderLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:length],[NSNumber numberWithFloat:space],nil]];
     }

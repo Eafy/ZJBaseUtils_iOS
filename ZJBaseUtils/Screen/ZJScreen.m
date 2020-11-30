@@ -220,6 +220,11 @@ singleton_m();
     UIWindow *keyWindow = [[[UIApplication sharedApplication].windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow *win1, UIWindow *win2) {
         return win1.windowLevel < win2.windowLevel || !win1.isOpaque;
     }] lastObject];
+    
+    if (!keyWindow) {
+        keyWindow = [UIApplication sharedApplication].delegate.window;
+    }
+    
     return keyWindow;
 }
 

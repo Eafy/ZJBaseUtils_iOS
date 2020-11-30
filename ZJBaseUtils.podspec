@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZJBaseUtils"
-  s.version      = "1.1.0-beta3"
+  s.version      = "1.1.0-beta4"
   s.summary      = "Provide common、general、basic API and extensions for iOS Platform."
 
   s.description  = <<-DESC

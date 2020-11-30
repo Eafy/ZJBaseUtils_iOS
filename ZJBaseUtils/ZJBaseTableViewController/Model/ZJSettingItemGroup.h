@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 底部标题
 @property (nonatomic,copy) NSString *footerTitle;
 /// 当前分组中所有行的数据（保存的是SettingItem模型）
-@property (nonatomic,strong) NSArray<ZJSettingItem *> *items;
+@property (nonatomic,strong) NSMutableArray<ZJSettingItem *> *items;
 
 @end
 

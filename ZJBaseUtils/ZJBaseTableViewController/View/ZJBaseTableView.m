@@ -65,10 +65,16 @@
 
 #pragma mark - UITableViewDataLoad
 
+- (NSArray *)datasArray {
+    if (!_datasArray) {
+        _datasArray = [NSArray array];
+    }
+    return _datasArray;
+}
+
 - (NSArray *)setupDatas
 {
-    NSArray *datasArray = [NSArray array];
-    return datasArray;
+    return self.datasArray;
 }
 
 - (void)reloadData
@@ -89,10 +95,6 @@
 {
     self.datasArray = [self setupDatas];
     [self reloadData];
-}
-- (NSArray *)datasArray
-{
-    return _datasArray;
 }
 
 #pragma mark - UITableViewDataSource

@@ -59,6 +59,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param size 生成字符串的长度
 + (NSString *)zj_stringRandomWithSize:(NSUInteger)size;
 
+/// 随机数字
+/// @param size 生成字符串的长度
++ (NSString *)zj_numberRandomWithSize:(NSUInteger)size;
+
 /// 将16进制字符串转为NSData
 - (NSData *)zj_toData;
 
