@@ -288,12 +288,12 @@
 
 - (void)setIsShowNavBarView:(BOOL)isShowNavBarView
 {
+    _isShowNavBarView = isShowNavBarView;
     if (!self.isHideNavBar) {
-        NSLog(@"The system navigation bar is not hidden, and the custom navigation bar cannot be set!");
+        NSLog(@"The system navigation bar is not hidden, and the custom navigation bar cannot be set!\nIt will be set again when the view controller is displayed.");
         return;
     }
     
-    _isShowNavBarView = isShowNavBarView;
     if (isShowNavBarView && !_navBarBgView) {   //之前没有添加自定义视图
         [self addNavBarBtnForHide];
     }
