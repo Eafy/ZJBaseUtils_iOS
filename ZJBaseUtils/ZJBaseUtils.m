@@ -13,23 +13,6 @@ static NSString *_defaultBundleImagePath = nil;
 
 @implementation ZJBaseUtils
 
-+ (nullable UIImage *)imageNamed:(NSString * _Nullable)imageName
-{
-    if (!_defaultBundleImagePath) {
-        NSBundle *bundle = [self bundleWithBundleName:NSStringFromClass([self class])];
-        if (!bundle) {
-            _defaultBundleImagePath = @"";
-            return nil;
-        }
-        _defaultBundleImagePath = bundle.bundlePath;
-    } else if (_defaultBundleImagePath.length == 0) {
-        return nil;
-    }
-    
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@", _defaultBundleImagePath, imageName];
-    return [[UIImage alloc] initWithContentsOfFile:filePath];
-}
-
 /// 获取pod方式下的资源包路径
 /// @param bundleName 资源包名称
 + (NSBundle *)bundleWithBundleName:(NSString *)bundleName {
@@ -60,6 +43,56 @@ static NSString *_defaultBundleImagePath = nil;
     } else {
         return [NSBundle bundleWithURL:associateBundleURL];
     }
+}
+
++ (nullable NSString *)imageNamePath:(NSString * _Nullable)imageName
+{
+    if (!imageName) return nil;
+    
+    if (!_defaultBundleImagePath) {
+        NSBundle *bundle = [self bundleWithBundleName:NSStringFromClass([self class])];
+        if (!bundle) {
+            _defaultBundleImagePath = @"";
+            return nil;
+        }
+        _defaultBundleImagePath = bundle.bundlePath;
+    } else if (_defaultBundleImagePath.length == 0) {
+        return nil;
+    }
+    
+    return [NSString stringWithFormat:@"%@/%@", _defaultBundleImagePath, imageName];
+}
+
++ (nullable UIImage *)imageNamed:(NSString * _Nullable)imageName
+{
+    NSString *filePath = [self imageNamePath:imageName];
+    if (filePath) {
+        return [[UIImage alloc] initWithContentsOfFile:filePath];
+    }
+    return nil;
+}
+
++ (nullable NSString *)imageNamedPathWithBundle:(NSString *)bundleName imageName:(NSString * _Nullable)imageName
+{
+    if (!imageName) return nil;
+    
+    NSBundle *bundle = [self bundleWithBundleName:bundleName];
+    if (!bundle) {
+        return nil;
+    } else if (bundle.bundlePath.length == 0) {
+        return nil;
+    }
+    
+    return [NSString stringWithFormat:@"%@/%@", bundle.bundlePath, imageName];
+}
+
++ (nullable UIImage *)imageNamedWithBundle:(NSString *)bundleName imageName:(NSString * _Nullable)imageName
+{
+    NSString *filePath = [self imageNamedPathWithBundle:bundleName imageName:imageName];
+    if (filePath) {
+        return [[UIImage alloc] initWithContentsOfFile:filePath];
+    }
+    return nil;
 }
 
 @end

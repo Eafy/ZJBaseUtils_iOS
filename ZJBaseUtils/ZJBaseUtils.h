@@ -64,9 +64,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJBaseUtils : NSObject
 
+/// 获取bundle包内默认路径
+/// @param imageName 图片名称
++ (nullable NSString *)imageNamePath:(NSString * _Nullable)imageName;
+
 /// 获取bundle包内默认图片
 /// @param imageName 图片名称
 + (nullable UIImage *)imageNamed:(NSString * _Nullable)imageName;
+
+/// 获取bundle包内默认路径
+/// @param bundleName bundle名称
+/// @param imageName 图片名称
++ (nullable NSString *)imageNamedPathWithBundle:(NSString *)bundleName imageName:(NSString * _Nullable)imageName;
+
+/// 获取bundle包内默认图片
+/// @param bundleName bundle名称
+/// @param imageName 图片名称
++ (nullable UIImage *)imageNamedWithBundle:(NSString *)bundleName imageName:(NSString * _Nullable)imageName;
 
 @end
 
