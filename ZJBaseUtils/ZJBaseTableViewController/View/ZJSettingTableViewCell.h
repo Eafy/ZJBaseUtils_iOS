@@ -18,6 +18,7 @@
 #import "ZJSettingRadioItem.h"
 #import "ZJSettingScoreItem.h"
 #import "ZJSettingStepperItem.h"
+#import "ZJSettingButtonItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 基础数据模型
 @property (nonatomic,strong,readonly) ZJSettingItem *item;
+
+/// 切角类型（UIRectCorner），默认无
+@property (nonatomic,assign) NSInteger cornerType;
+
+/// 是否显示线条
+@property (nonatomic, assign) BOOL isShowLine;
 
 /// 获取一个模板类Cell视图示例
 /// @param tableView UITableView对象

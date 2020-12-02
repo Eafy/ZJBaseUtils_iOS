@@ -28,6 +28,17 @@
         _cellTitleFont = [UIFont systemFontOfSize:16.0f];
         _cellSubTitleFont = [UIFont systemFontOfSize:12.0f];
         _cellDetailTitleFont = [UIFont systemFontOfSize:13.0f];
+        
+        _marginLeft = 15.f;
+        _marginRight = 10.f;
+        _arrowLeftSpace = 5.f;
+        _iconLeftSpace = 0;
+        _iconRightSpace = 5.f;
+        _arrowLeftSpace = 5.f;
+        _arrowRightSpace = 5.f;
+        
+        _lineColor = [UIColor lightGrayColor];
+        _lineHeight = .5f;
     }
     
     return self;

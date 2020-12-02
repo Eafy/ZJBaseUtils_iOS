@@ -187,8 +187,8 @@
 
 - (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
-    if (!self.radioBtnTitleColor && config.radioBtnTitleColor) self.radioBtnTitleColor = config.textFieldTitleColor;
-    if (!self.radioBtnTitleFont && config.radioBtnTitleFont) self.radioBtnTitleFont = config.textFieldTitleFont;
+    if (!self.radioBtnTitleColor && config.radioBtnTitleColor) self.radioBtnTitleColor = config.cellDetailTitleColor;
+    if (!self.radioBtnTitleFont && config.radioBtnTitleFont) self.radioBtnTitleFont = config.cellDetailTitleFont;
 }
 
 #pragma mark -

@@ -5,6 +5,7 @@
 //  Created by eafy on 2020/9/14.
 //  Copyright © 2020 ZJ. All rights reserved.
 //
+
 #import "ZJSettingSwitchItem.h"
 #import "ZJBaseTVConfig.h"
 
@@ -15,16 +16,16 @@
     return ZJSettingItemTypeSwitch;
 }
 
-- (void)setSwitchBtnValue:(BOOL)switchBtnValue
+- (void)setValue:(BOOL)value
 {
-    _switchBtnValue = switchBtnValue;
-    self.switchBtn.on = switchBtnValue;
+    _value = value;
+    self.switchBtn.on = value;
 }
 
-- (void)setSwitchBtnEnable:(BOOL)switchBtnEnable
+- (void)setEnable:(BOOL)enable
 {
-    _switchBtnEnable = switchBtnEnable;
-    self.switchBtn.enabled = switchBtnEnable;
+    _enable = enable;
+    self.switchBtn.enabled = enable;
 }
 
 - (UISwitch *)switchBtn

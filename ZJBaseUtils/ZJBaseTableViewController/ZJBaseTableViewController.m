@@ -413,7 +413,7 @@
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+    if (self = [super initWithStyle:style]) {
         [self initDefaultData];
     }
     

@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// SwitchBtn操作之后的响应
 @property (nonatomic,copy) void(^ _Nullable switchBtnBlock)(UISwitch * _Nonnull switchBtn);
 /// SwitchBtn的值
-@property (nonatomic,assign) BOOL switchBtnValue;
+@property (nonatomic,assign) BOOL value;
 /// SwitchBtn的使能
-@property (nonatomic,assign) BOOL switchBtnEnable;
+@property (nonatomic,assign) BOOL enable;
 /// UISwitch开关
 @property (nonatomic,strong) UISwitch * _Nullable switchBtn;
 

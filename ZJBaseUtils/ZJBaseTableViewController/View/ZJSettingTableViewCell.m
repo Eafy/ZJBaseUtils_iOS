@@ -15,6 +15,7 @@
 #import "NSString+ZJExt.h"
 #import "ZJLocalizationTool.h"
 #import "UIImageView+ZJExt.h"
+#import "UIView+ZJExt.h"
 
 @interface ZJSettingTableViewCell()
 
@@ -23,6 +24,10 @@
 
 @property (nonatomic, strong) UIImageView *arrowImgView;
 @property (nonatomic, strong) UIImageView *titleDetailImgView;
+/// 背景视图
+@property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) UIView *multiArrowView;
+@property (nonatomic, strong) UIView *lineView;
 
 //缓存数据
 @property (nonatomic, copy) NSString *arrowIcon;
@@ -45,9 +50,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    
+    cell.isShowLine = tableView.separatorStyle == UITableViewCellSeparatorStyleNone;
     cell.tableViewConfig = config;
-    cell.item = item;
+    cell.multiArrowView = nil;
     cell.tag = item.tag;
+    cell.cornerType = 0;
+    cell.item = item;
     
     return cell;
 }
@@ -76,7 +85,11 @@
 {
     _tableViewConfig = tableViewConfig;
     
-    if (self.tableViewConfig.cellBgColor) self.backgroundColor = self.tableViewConfig.cellBgColor;
+    if (tableViewConfig.cornerRadius > 0) { //圆角模式
+        self.backgroundColor = [UIColor clearColor];
+    } else {
+        if (self.tableViewConfig.cellBgColor) self.backgroundColor = self.tableViewConfig.cellBgColor;
+    }
     if (self.tableViewConfig.cellSelectedBgColor) {
         UIView *selectView = [[UIView alloc] init];
         selectView.backgroundColor = self.tableViewConfig.cellSelectedBgColor;
@@ -103,17 +116,34 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-        
-    CGFloat detailTextSpace = 0;
-    if (self.accessoryView || self.accessoryType != UITableViewCellAccessoryNone) {
-        detailTextSpace = 5.0f;
-    } else {
-        detailTextSpace = 15.0f;
+    if (self.tableViewConfig.cornerRadius > 0) {
+        self.bgView.frame = CGRectMake(self.tableViewConfig.marginLeft, 0, self.zj_width-self.tableViewConfig.marginLeft-self.tableViewConfig.marginRight, self.zj_height);
+        if (self.cornerType != 0) {
+            [self.bgView zj_cornerWithRadii:CGSizeMake(self.tableViewConfig.cornerRadius, self.tableViewConfig.cornerRadius) rectCorner:self.cornerType];
+        }
     }
     
-    if (self.item.iconView) {
-        self.textLabel.zj_left = self.item.iconView.zj_right + 5.0f;
+    CGFloat detailTextSpace = 0;
+    if (self.accessoryView || self.accessoryType != UITableViewCellAccessoryNone) {
+        detailTextSpace = self.tableViewConfig.arrowLeftSpace;
+    } else {
+        detailTextSpace = self.tableViewConfig.marginRight;
     }
+    
+    if (self.item.iconView) {   //设置icon位置
+        self.item.iconView.zj_left = self.tableViewConfig.iconLeftSpace + self.tableViewConfig.marginLeft;
+        self.textLabel.zj_left = self.item.iconView.zj_right + self.tableViewConfig.iconRightSpace;
+    } else if (self.imageView.image) {
+        self.imageView.zj_left = self.tableViewConfig.iconLeftSpace + self.tableViewConfig.marginLeft;
+        self.textLabel.zj_left = self.imageView.zj_right + self.tableViewConfig.iconRightSpace;
+    } else {
+        self.textLabel.zj_left = self.tableViewConfig.marginLeft + self.tableViewConfig.iconLeftSpace;
+    }
+    
+    if (self.accessoryView) {
+        self.accessoryView.zj_right = self.zj_width - self.tableViewConfig.marginRight - self.tableViewConfig.arrowRightSpace;
+    }
+    
     if (self.item.subTitle) {   //有副标题
         [self.textLabel sizeToFit];
         [self.detailTextLabel sizeToFit];
@@ -126,7 +156,7 @@
         
         if (self.item.detailTitle) {    //有详细
             self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
-            CGFloat preRight = (self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right) + 5.0f;  //计算子标题坐标
+            CGFloat preRight = (self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right) + self.tableViewConfig.iconRightSpace;  //计算子标题坐标
             self.subTitleLabel.zj_left = preRight;
             if (self.accessoryView) {
                 self.subTitleLabel.zj_width = self.accessoryView.zj_left - preRight - detailTextSpace;
@@ -147,8 +177,38 @@
         self.detailTextLabel.zj_centerY = self.contentView.zj_centerY;
     }
     
+    //移除不相同的左侧多视图模式
+    if (_multiArrowView && _multiArrowView != self.item.multiArrowView) {
+        [_multiArrowView removeFromSuperview];
+        _multiArrowView = nil;
+    }
+    
+    //添加左侧多视图模式
+    if (self.item.multiArrowView && !self.item.multiArrowView.superview) {
+        _multiArrowView = self.item.multiArrowView;
+        [self.contentView addSubview:_multiArrowView];
+        
+        if (self.multiArrowView.zj_height > self.zj_height) {
+            self.multiArrowView.zj_height = self.zj_height - 2;
+        }
+        self.multiArrowView.zj_centerY = self.contentView.zj_centerY;
+        self.multiArrowView.zj_right = self.accessoryView ? self.accessoryView.zj_left - self.tableViewConfig.arrowLeftSpace : self.contentView.zj_right - self.tableViewConfig.marginRight - self.tableViewConfig.arrowLeftSpace;
+        if (!self.accessoryView && self.accessoryType != UITableViewCellAccessoryNone) {
+            self.multiArrowView.zj_right = self.contentView.zj_right - self.tableViewConfig.arrowLeftSpace;
+        }
+    }
+    
+    if (self.isShowLine) {
+        self.lineView.zj_left = self.tableViewConfig.iconLeftSpace + self.tableViewConfig.marginLeft;
+        self.lineView.zj_width = self.zj_width - self.tableViewConfig.marginRight - self.tableViewConfig.arrowRightSpace - self.lineView.zj_left;
+        self.lineView.zj_top = self.contentView.zj_height - self.lineView.zj_height;
+    } else if (_lineView) {
+        [_lineView removeFromSuperview];
+        _lineView = nil;
+    }
+    
     if (_titleDetailImgView) {
-        self.titleDetailImgView.zj_left = self.textLabel.zj_right + 5.0f;
+        self.titleDetailImgView.zj_left = self.textLabel.zj_right + self.tableViewConfig.iconRightSpace;
         self.titleDetailImgView.zj_centerY = self.textLabel.zj_centerY;
     }
     
@@ -214,11 +274,34 @@
     return _titleDetailImgView;
 }
 
+- (UIView *)bgView
+{
+    if (!_bgView) {
+        _bgView = [[UIView alloc] init];
+        _bgView.backgroundColor = self.tableViewConfig.cellBgColor;
+        [self.contentView insertSubview:_bgView atIndex:0];
+    }
+    return _bgView;
+}
+
+- (UIView *)lineView
+{
+    if (!_lineView && self.isShowLine) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, self.tableViewConfig.lineHeight)];
+        _lineView.backgroundColor = self.tableViewConfig.lineColor;
+        [self.contentView addSubview:_lineView];
+    }
+    return _lineView;
+}
+
 #pragma mark - 设置cell数据
 
 - (void)setItem:(ZJSettingItem *)item
 {
     self.textLabel.text = item.title.localized;
+    if (item.titleAttributed) {
+        self.textLabel.attributedText = item.titleAttributed;
+    }
     if (!_item.iconView && item.iconView != _item.iconView) {
         [_item.iconView removeFromSuperview];
         _item.iconView = nil;
@@ -250,6 +333,11 @@
     }
     
     // 更新差异化数据
+    [self.textLabel sizeToFit];
+    [self.detailTextLabel sizeToFit];
+    if (_subTitleLabel) {
+        [self.subTitleLabel sizeToFit];
+    }
     [self.item updateDiffDataWithCell:self];
     
     if (self.item.isSelection) {
@@ -257,6 +345,11 @@
     } else {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+}
+
+- (void)setIsShowLine:(BOOL)isShowLine
+{
+    _isShowLine = isShowLine;
 }
 
 @end

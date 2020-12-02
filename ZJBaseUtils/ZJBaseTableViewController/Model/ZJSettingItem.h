@@ -17,10 +17,11 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
     ZJSettingItemTypeArrow = 1024,  //跳转类型
     ZJSettingItemTypeLabel,         //标签类型
     ZJSettingItemTypeSwitch,        //开关类型
-    ZJSettingItemTypeTextFidld,     //文本类型
+    ZJSettingItemTypeTextField,     //文本类型
     ZJSettingItemTypeRadio,         //单选/复选类型
     ZJSettingItemTypeRatingStar,    //星级评分
     ZJSettingItemTypeStepper,       //步进器
+    ZJSettingItemTypeButton,       //图片/按钮类型
     ZJSettingItemTypeCustomView,    //自定义类型
     
 //    ZJSettingItemTypeRadio = ZJSettingItemTypeArrow,         //单选/复选类型
@@ -40,6 +41,8 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 @property (nonatomic,copy) NSString * _Nullable icon;
 /// 左边主标题
 @property (nonatomic,copy) NSString * _Nullable title;
+/// 多功能描述主标题
+@property (nonatomic,copy) NSAttributedString * _Nullable titleAttributed;
 /// 主标题右侧图标
 @property (nonatomic,copy) NSString * _Nullable titleHintIcon;
 /// 左边副标题
@@ -51,8 +54,13 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 /// 处理点击的事件，走此block会终止后续的操作
 @property (nonatomic,copy) void(^ _Nullable operationHandle)(ZJSettingItem * _Nullable item);
 
+#pragma mark - Cell控制配置
+
 /// 是否可点击，Arrow默认可点击
 @property (nonatomic,assign) BOOL isSelection;
+
+/// 右侧多视图，即第Arrow左侧视图
+@property (nonatomic,strong) UIView *multiArrowView;
 
 #pragma mark - 自定义区
 
@@ -67,7 +75,7 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 /// 需要传递给下一个控制的数据
 @property (nonatomic,strong) ZJBaseTVPrivateData *privateData;
 
-#pragma mark -
+#pragma mark - 初始化接口
 
 /// 指向的下一个视图控制器类
 @property (nonatomic,assign) Class _Nullable destVC;

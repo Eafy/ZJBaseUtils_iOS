@@ -56,7 +56,6 @@
 
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
 {
-    [cell.textLabel sizeToFit];
     if (self.scoreStarView.zj_width == 0) {
         CGFloat width = self.scoreStarView.defaultImage.size.width*self.starCount + self.starSpace * (self.starCount - 1);
         self.scoreStarView.zj_width = width;

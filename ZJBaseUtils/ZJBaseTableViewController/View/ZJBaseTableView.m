@@ -169,6 +169,23 @@
     if (indexPath.row >= group.items.count) return nil;
     ZJSettingItem *item = group.items[indexPath.row];
     ZJSettingTableViewCell *cell = [ZJSettingTableViewCell cellWithTableView:tableView item:item config:config];
+    
+    if (config.cornerRadius > 0 || tableView.separatorStyle == UITableViewCellSeparatorStyleNone) {
+        NSInteger count = [self tableView:tableView numberOfRowsInSection:indexPath.section datasArray:datasArray];
+        
+        if (config.cornerRadius > 0) {
+            if (count == 1) {
+                cell.cornerType = UIRectCornerAllCorners;
+            } else if (indexPath.row == 0) {
+                cell.cornerType = UIRectCornerTopLeft | UIRectCornerTopRight;
+            } else if (indexPath.row == count - 1) {
+                cell.cornerType = UIRectCornerBottomLeft | UIRectCornerBottomRight;
+            }
+        }
+        if (tableView.separatorStyle == UITableViewCellSeparatorStyleNone) {
+            cell.isShowLine = (indexPath.row != count - 1);
+        }
+    }
 
     return cell;
 }

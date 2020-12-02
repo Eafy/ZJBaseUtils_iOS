@@ -17,6 +17,30 @@ NS_ASSUME_NONNULL_BEGIN
 /// 缓存footer的高度
 @property (nonatomic,assign) CGFloat footerCacheHeight;
 
+/// Group圆角，当UITableViewStylePlain模式生效
+@property (nonatomic,assign) CGFloat cornerRadius;
+
+/// 背景视图左边的间距，默认15
+@property (nonatomic,assign) CGFloat marginLeft;
+
+/// 背景视图有边的间距，默认10
+@property (nonatomic,assign) CGFloat marginRight;
+
+/// 头视图左边距，默认0，即不设置
+@property (nonatomic,assign) CGFloat iconLeftSpace;
+/// 头视图右边距，默认5
+@property (nonatomic,assign) CGFloat iconRightSpace;
+
+/// 箭头左边间距，默认5，仅右侧多视图时生效
+@property (nonatomic,assign) CGFloat arrowLeftSpace;
+/// 箭头右边间距，默认5，需要设置ZJSettingItem:-arrowIcon视图参数，否则无效
+@property (nonatomic,assign) CGFloat arrowRightSpace;
+
+/// 线条的颜色，默认lightGrayColor
+@property (nonatomic,strong) UIColor *lineColor;
+/// 线条高度，默认0.5
+@property (nonatomic,assign) CGFloat lineHeight;
+
 #pragma mark -
 
 /// 启动适配器
@@ -59,16 +83,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIColor *switchThumbTintColor;
 /// UISwitch背景颜色
 @property (nonatomic,strong) UIColor *switchBgColor;
-
-/*TextField相关设置参数*/
-/// TextField颜色
-@property (nonatomic,strong) UIColor *textFieldTitleColor;
-/// TextField字体
-@property (nonatomic,strong) UIFont *textFieldTitleFont;
-/// TextField提示颜色
-@property (nonatomic,strong) UIColor *textFieldHintColor;
-/// TextField提示字体
-@property (nonatomic,strong) UIFont *textFieldHintFont;
 
 /*RadioBtn相关设置参数*/
 /// RadioBtn颜色
