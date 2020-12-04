@@ -172,7 +172,7 @@
         if (self.accessoryView) {
             self.detailTextLabel.zj_right = self.accessoryView.zj_left - detailTextSpace;
         } else {
-            self.detailTextLabel.zj_right = self.contentView.zj_right - detailTextSpace;
+            self.detailTextLabel.zj_right = self.contentView.zj_right - detailTextSpace - self.tableViewConfig.arrowRightSpace;
         }
         self.detailTextLabel.zj_centerY = self.contentView.zj_centerY;
     }

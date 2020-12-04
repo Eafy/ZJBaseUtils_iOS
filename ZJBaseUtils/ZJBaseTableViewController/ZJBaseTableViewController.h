@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 下一个控制器
 @property (nonatomic,strong) UIViewController * _Nullable nextViewController;
 
+/// 安全区域设置
+@property (nonatomic,assign) UIScrollViewContentInsetAdjustmentBehavior insetAdjustmentBehavior API_AVAILABLE(ios(11.0),tvos(11.0));
+
 /*系统导航栏*/
 /// 是否隐藏导航栏
 @property (nonatomic,assign) BOOL isHideNavBar;
@@ -31,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*导航栏按钮*/
 /// 右侧按钮
 @property (nonatomic,strong) UIButton * _Nullable navRightBtn;
-/// 坐厕按钮
+/// 左侧按钮
 @property (nonatomic,strong) UIButton * _Nullable navLeftBtn;
 /// 返回之前需要执行的Block
 @property (nonatomic,copy) void(^ _Nullable returnBeforeBlock)(void);

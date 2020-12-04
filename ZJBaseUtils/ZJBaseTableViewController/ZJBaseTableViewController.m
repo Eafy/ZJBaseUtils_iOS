@@ -194,6 +194,11 @@
 
 #pragma mark -
 
+- (void)setInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentBehavior)insetAdjustmentBehavior
+{
+    self.tableView.contentInsetAdjustmentBehavior = insetAdjustmentBehavior;
+}
+
 - (void)setTitle:(NSString *)title
 {
     super.title = title;

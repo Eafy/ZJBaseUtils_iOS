@@ -15,8 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取WiFi名称
 + (NSString *)fetchSSIDInfo;
 
-/// 获取网关IP
-+ (NSString *)gatewayIpForWiFi;
+/// 获取本机IP
++ (NSString *)localIP;
+
++ (NSString *)gatewayIPFromWiFi;
 
 @end
 
