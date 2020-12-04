@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param value 旋转角度
 + (CABasicAnimation *)zj_rotationYAnimation:(CGFloat)value;
 
+/// 旋转Z轴
+/// @param value 旋转角度
++ (CABasicAnimation *)zj_rotationZAnimation:(CGFloat)value;
+
 /// 旋转bounds
 /// @param point 方向值
 + (CABasicAnimation *)zj_boundsAnimation:(CGPoint)point;

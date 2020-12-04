@@ -51,6 +51,13 @@
     return animation;
 }
 
++ (CABasicAnimation *)zj_rotationZAnimation:(CGFloat)value
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    animation.toValue = [NSNumber numberWithFloat:Angle2Radian(value)];
+    return animation;
+}
+
 + (CABasicAnimation *)zj_boundsAnimation:(CGPoint)point
 {
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"bounds.size"];
