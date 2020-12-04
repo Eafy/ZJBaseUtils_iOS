@@ -15,6 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 将字符串转成NSArray或NSDictionary对象
 - (id)zj_toJsonObj;
 
+/// 转字典
+- (NSDictionary * _Nullable)zj_toDictionary;
+
+/// 转数组
+- (NSArray * _Nullable)zj_toArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

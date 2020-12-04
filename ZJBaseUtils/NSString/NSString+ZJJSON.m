@@ -22,4 +22,28 @@
     return result;
 }
 
+- (NSDictionary *)zj_toDictionary
+{
+    if (!self) return nil;
+    
+    id result = [self zj_toJsonObj];
+    if (result && [result isKindOfClass:[NSDictionary class]]) {
+        return result;
+    }
+    
+    return nil;
+}
+
+- (NSArray *)zj_toArray
+{
+    if (!self) return nil;
+    
+    id result = [self zj_toJsonObj];
+    if (result && [result isKindOfClass:[NSArray class]]) {
+        return result;
+    }
+    
+    return nil;
+}
+
 @end
