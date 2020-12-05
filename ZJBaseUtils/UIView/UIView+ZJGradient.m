@@ -29,20 +29,20 @@
     CGPoint end;
     switch (type) {
         case ZJGradientTypeFromTopToBottom:
-            start = CGPointMake(self.bounds.size.width/2, 0.0);
-            end = CGPointMake(self.bounds.size.width/2, self.bounds.size.height);
+            start = CGPointMake(0.5, 0.0);
+            end = CGPointMake(0.5, 1);
             break;
         case ZJGradientTypeFromLeftToRight:
-            start = CGPointMake(0.0, self.bounds.size.height/2);
-            end = CGPointMake(self.bounds.size.width, self.bounds.size.height/2);
+            start = CGPointMake(0.0, 0.5);
+            end = CGPointMake(1, 0.5);
             break;
         case ZJGradientTypeFromLeftTopToRightBottom:
             start = CGPointMake(0.0, 0.0);
-            end = CGPointMake(self.bounds.size.width, self.bounds.size.height);
+            end = CGPointMake(1, 1);
             break;
         case ZJGradientTypeFromLeftBottomToRightTop:
-            start = CGPointMake(0.0, self.bounds.size.height);
-            end = CGPointMake(self.bounds.size.width, 0.0);
+            start = CGPointMake(0.0, 1);
+            end = CGPointMake(1, 0.0);
             break;
         default:
             break;
