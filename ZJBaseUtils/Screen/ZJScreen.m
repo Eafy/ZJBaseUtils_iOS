@@ -217,10 +217,15 @@ singleton_m();
 
 + (UIWindow *)keyWindow
 {
-    UIWindow *keyWindow = [[[UIApplication sharedApplication].windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow *win1, UIWindow *win2) {
-        return win1.windowLevel < win2.windowLevel || !win1.isOpaque;
-    }] lastObject];
+    NSArray *windowArray = [[UIApplication sharedApplication].windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow *win1, UIWindow *win2) {
+        if (win1.isKeyWindow) {
+            return true;
+        } else {
+            return win1.windowLevel < win2.windowLevel || !win1.isOpaque;
+        }
+    }];
     
+    UIWindow *keyWindow = [windowArray lastObject];
     if (!keyWindow) {
         keyWindow = [UIApplication sharedApplication].delegate.window;
     }
