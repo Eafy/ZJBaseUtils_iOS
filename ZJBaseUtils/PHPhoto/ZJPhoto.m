@@ -8,6 +8,14 @@
 
 #import "ZJPhoto.h"
 #import "PHAsset+ZJExt.h"
+#import "NSFileManager+ZJExt.h"
+#import <AVFoundation/AVFoundation.h>
+
+@interface ZJPhoto ()
+
+@property (nonatomic,strong) AVAssetExportSession *saveSession;
+
+@end
 
 @implementation ZJPhoto
 singleton_m();
@@ -312,26 +320,74 @@ singleton_m();
 
 - (void)copyPhotoOrVideo:(NSString *_Nonnull)url savePath:(NSString *_Nonnull)savePath handler:(ZJAlbumOperateHandler _Nullable)handler
 {
-    if (url && ![url isEqualToString:@""]) {
-        PHAsset *asset = [self findAssetFromPath:url];
-        
-        if (asset) {
-            [[PHCachingImageManager defaultManager] requestAVAssetForVideo:asset options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
-                if (asset) {
-                    NSError *error;
-                    AVURLAsset *urlAsset = (AVURLAsset *)asset;
-                    NSURL *fileURL = [NSURL fileURLWithPath:savePath];
-                    if ([[NSFileManager defaultManager] copyItemAtURL:urlAsset.URL toURL:fileURL error:&error]) {
-                        if (handler) {
-                            handler(YES, savePath, error);
-                        }
-                    } else if (handler){
-                        handler(NO, savePath, error);
+    if (url && ![url isEqualToString:@""] && savePath && ![savePath isEqualToString:@""]) {
+        if ([url hasPrefix:@"file:///"]) {
+            NSURL *readUrl = [NSURL fileURLWithPath:url];
+            NSURL *saveUrl = [NSURL fileURLWithPath:savePath];
+            if (_saveSession) {
+                [self.saveSession cancelExport];
+                _saveSession = nil;
+            }
+            
+            AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:readUrl options:nil];
+            self.saveSession = [[AVAssetExportSession alloc] initWithAsset:urlAsset presetName:AVAssetExportPresetHighestQuality];
+            self.saveSession.outputURL = saveUrl;
+            NSString *mimeType = [NSFileManager zj_mimeType:url];
+            if ([mimeType containsString:@"image"]) {
+                if (@available(iOS 11.0, *)) {
+                    self.saveSession.outputFileType = AVFileTypeJPEG;
+                } else {
+                    BOOL ret = false;
+                    UIImage *img = [UIImage imageWithContentsOfFile:url];
+                    if (img) {
+                        ret = [UIImagePNGRepresentation(img) writeToFile:savePath atomically:YES];
+                    }
+                    if (handler) {
+                        handler(ret, ret ? savePath : nil, nil);
                     }
                 }
+            } else {
+                self.saveSession.outputFileType = AVFileTypeMPEG4;
+            }
+            
+            __weak ZJPhoto *weakSelf = self;
+            [self.saveSession exportAsynchronouslyWithCompletionHandler:^(void) {
+                if (weakSelf.saveSession.status == AVAssetExportSessionStatusCancelled) {
+                    return;
+                }
+                
+                BOOL ret = weakSelf.saveSession.status == AVAssetExportSessionStatusCompleted;
+                if (ret) {
+                    NSLog(@"Save file to Sandbox:%ld path:%@", (long)weakSelf.saveSession.status, savePath);
+                } else {
+                    NSLog(@"Save file to Sandbox path:%@ error:%@", savePath, weakSelf.saveSession.error);
+                }
+                if (handler) {
+                    handler(ret, ret ? savePath : nil, weakSelf.saveSession.error);
+                }
+                weakSelf.saveSession = nil;
             }];
-        } else if (handler){
-            handler(NO, savePath, nil);
+        } else {
+            PHAsset *asset = [self findAssetFromPath:url];
+            
+            if (asset) {
+                [[PHCachingImageManager defaultManager] requestAVAssetForVideo:asset options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+                    if (asset) {
+                        NSError *error;
+                        AVURLAsset *urlAsset = (AVURLAsset *)asset;
+                        NSURL *fileURL = [NSURL fileURLWithPath:savePath];
+                        if ([[NSFileManager defaultManager] copyItemAtURL:urlAsset.URL toURL:fileURL error:&error]) {
+                            if (handler) {
+                                handler(YES, savePath, error);
+                            }
+                        } else if (handler){
+                            handler(NO, savePath, error);
+                        }
+                    }
+                }];
+            } else if (handler){
+                handler(NO, savePath, nil);
+            }
         }
     } else if (handler) {
         handler(NO, savePath, nil);
