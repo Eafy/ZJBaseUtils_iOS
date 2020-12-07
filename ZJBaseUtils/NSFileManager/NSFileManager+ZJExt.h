@@ -103,8 +103,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 清除缓存
 /// @param completion 清除结果回调
-/// @param filepPath 需要清楚的文件/文件夹
-+ (void)zj_clearFiles:filepPath completion:(void (^)(BOOL finished))completion;
+/// @param filepPaths 需要清楚的文件/文件夹列表
++ (void)zj_clearFiles:(NSArray *)filepPaths completion:(void (^)(BOOL finished))completion;
 
 #pragma mark - 
 

@@ -17,6 +17,15 @@
     return ZJSettingItemTypeNone;
 }
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _type = [self type];
+        [self defaultData];
+    }
+    return self;
+}
+
 - (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title
 {
     if (self = [super init]) {

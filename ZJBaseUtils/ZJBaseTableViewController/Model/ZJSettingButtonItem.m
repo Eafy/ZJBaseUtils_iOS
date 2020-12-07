@@ -13,16 +13,16 @@
 
 @interface ZJSettingButtonItem()
 
-@property (nonatomic,assign) CGSize size;
-
 @end
 
 @implementation ZJSettingButtonItem
 
-- (ZJSettingItemType)type
-{
-    _enable = YES;
+- (ZJSettingItemType)type {
     return ZJSettingItemTypeButton;
+}
+
+- (void)defaultData {
+    _enable = YES;
 }
 
 - (UIButton *)detailBtn
@@ -54,41 +54,35 @@
     self.detailBtn.enabled = enable;
 }
 
-- (void)setDetailTitle:(NSString *)detailTitle
-{
-    super.detailTitle = detailTitle;
-    [self.detailBtn setTitle:super.detailTitle forState:UIControlStateNormal];
-}
-
 - (void)setImageName:(NSString *)imageName
 {
     _imageName = imageName;
     UIImage *img = imageName?[UIImage imageNamed:imageName]:nil;
     [self.detailBtn setImage:img forState:UIControlStateNormal];
-    
-    self.size = img ? img.size : CGSizeZero;
 }
 
 #pragma mark - 重载差异化
 
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
 {
-    if (CGSizeEqualToSize(self.size, CGSizeZero)) {
-        self.size = [self.detailBtn imageForState:UIControlStateNormal].size;
+    CGSize size = self.detailBtn.zj_size;
+    if (CGSizeEqualToSize(size, CGSizeZero)) {
+        size = [self.detailBtn imageForState:UIControlStateNormal].size;
+        if (size.height == 0 || size.height > cell.contentView.zj_height) {
+            size.height = cell.contentView.zj_height;
+        }
+        if (size.width == 0) {
+            size.width = size.height * 2;
+        }
+        
+        self.detailBtn.zj_width = size.width;
+        self.detailBtn.zj_height = size.height;
     }
-    
-    if (self.size.height == 0 || self.size.height > cell.contentView.zj_height) {
-        _size.height = cell.contentView.zj_height;
-    }
-    
-    self.detailBtn.zj_width = self.size.height * 2;
-    self.detailBtn.zj_height = self.size.height;
 }
 
 - (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
-    if (!self.titleColor && config.cellDetailTitleColor) [self.detailBtn setTitleColor:config.cellDetailTitleColor forState:UIControlStateNormal];
-    if (!self.titleFont && config.cellDetailTitleFont) self.detailBtn.titleLabel.font = config.cellDetailTitleFont;
+ 
 }
 
 #pragma mark - btnAction

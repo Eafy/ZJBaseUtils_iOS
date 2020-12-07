@@ -14,15 +14,16 @@
 
 @implementation ZJSettingLabelItem
 
-- (ZJSettingItemType)type
-{
-    if (!self.centerTitleColor)  self.centerTitleColor = ZJColorFromRGB(0xF02359);
-    if (!self.centerTitleFont) self.centerTitleFont = [UIFont boldSystemFontOfSize:16.0f];
+- (ZJSettingItemType)type {
     return ZJSettingItemTypeLabel;
 }
 
-- (void)setIsCenterModel:(BOOL)isCenterModel
-{
+- (void)defaultData {
+    if (!self.centerTitleColor)  self.centerTitleColor = ZJColorFromRGB(0xF02359);
+    if (!self.centerTitleFont) self.centerTitleFont = [UIFont boldSystemFontOfSize:16.0f];
+}
+
+- (void)setIsCenterModel:(BOOL)isCenterModel {
     _isCenterModel = isCenterModel;
 }
 

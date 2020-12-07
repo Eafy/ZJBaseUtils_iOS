@@ -42,7 +42,6 @@
     NSString *identifier = [NSString stringWithFormat:@"kZJBaseTableViewCellIdentifier_%lu", (unsigned long)item.type];
     ZJSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        [tableView registerClass:[ZJSettingTableViewCell class] forCellReuseIdentifier:identifier];
         if (item.subTitle) {
             cell = [[ZJSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
         } else {

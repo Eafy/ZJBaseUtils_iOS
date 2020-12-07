@@ -11,17 +11,17 @@
 
 @implementation ZJSettingArrowItem
 
-- (ZJSettingItemType)type
-{
+- (ZJSettingItemType)type {
     return ZJSettingItemTypeArrow;
+}
+
+- (void)defaultData {
+    self.isSelection = YES;
 }
 
 #pragma mark - 重载差异化
 
-- (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
-{
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.isSelection = YES;
+- (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell {
 }
 
 @end

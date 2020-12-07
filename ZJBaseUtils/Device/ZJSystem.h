@@ -33,6 +33,20 @@ extern CGFloat ZJSysVersion(void);
 
 @interface ZJSystem : NSObject
 
+/// 项目名称
++ (NSString *)projectName;
+
+/// App名称
++ (NSString *)appName;
+
+/// App版本
++ (NSString *)appVersion;
+
+/// App编译版本
++ (NSString *)appBuildVersion;
+
+#pragma mark -
+
 /// 获取当前系统语言字符串
 + (NSString *)currentLanguage;
 

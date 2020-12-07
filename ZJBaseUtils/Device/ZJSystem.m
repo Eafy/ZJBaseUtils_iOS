@@ -21,6 +21,28 @@ extern CGFloat ZJSysVersion(void) {
 
 @implementation ZJSystem
 
++ (NSString *)projectName {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+}
+
++ (NSString *)appName {
+    NSString *appName = NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", nil);
+    if (!appName) {
+        appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleExecutableKey];
+    }
+    return appName;
+}
+
++ (NSString *)appVersion {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+}
+
++ (NSString *)appBuildVersion {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+}
+
+#pragma mark -
+
 + (NSString *)currentLanguage
 {
     NSString *preferredLang = [[NSLocale preferredLanguages] objectAtIndex:0];

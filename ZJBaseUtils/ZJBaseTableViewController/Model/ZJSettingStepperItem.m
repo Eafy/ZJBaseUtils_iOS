@@ -19,15 +19,15 @@
 
 @implementation ZJSettingStepperItem
 
+- (ZJSettingItemType)type
+{
+    return ZJSettingItemTypeStepper;
+}
+
 - (void)defaultData {
     self.stepMin = 0;
     self.stepMax = 100;
     self.stepCount = 0;
-}
-
-- (ZJSettingItemType)type
-{
-    return ZJSettingItemTypeStepper;
 }
 
 - (UIView *)accessoryView

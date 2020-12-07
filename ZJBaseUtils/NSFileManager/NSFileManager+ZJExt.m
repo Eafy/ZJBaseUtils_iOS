@@ -239,17 +239,22 @@
     return size;
 }
 
-+ (void)zj_clearFiles:filepPath completion:(void (^)(BOOL finished))completion
++ (void)zj_clearFiles:(NSArray *)filepPaths completion:(void (^)(BOOL finished))completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSFileManager *fm = [NSFileManager defaultManager];
-        __block NSError *error = nil;
-        if ([fm fileExistsAtPath:filepPath]) {
-            __block BOOL ret = [fm removeItemAtPath:filepPath error:&error];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completion(ret && !error);
-            });
+        __block BOOL ret = NO;
+        for (NSString *filepPath in filepPaths) {
+            if ([fm fileExistsAtPath:filepPath]) {
+                BOOL retT = [fm removeItemAtPath:filepPath error:nil];
+                if (retT) {
+                    ret = retT;
+                }
+            }
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(ret);
+        });
     });
 }
 
