@@ -52,7 +52,9 @@
 - (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
     if (config.switchBgColor) self.switchBtn.backgroundColor = config.switchBgColor;
-    if (config.switchOnTintColor) self.switchBtn.onTintColor = config.switchOnTintColor;
+    if (config.switchOnTintColor) {
+        self.switchBtn.onTintColor = config.switchOnTintColor;
+    }
     if (config.switchThumbTintColor) self.switchBtn.thumbTintColor = config.switchThumbTintColor;
 }
 

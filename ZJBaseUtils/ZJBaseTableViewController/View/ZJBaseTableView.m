@@ -72,13 +72,26 @@
     return _datasArray;
 }
 
-- (NSArray *)setupDatas
+- (NSArray<ZJSettingItemGroup *> *)setupDatas
 {
     return self.datasArray;
 }
 
+- (ZJSettingItem *)itemWithSection:(NSUInteger)section row:(NSUInteger)row
+{
+    if (section >= self.datasArray.count) return nil;
+    ZJSettingItemGroup *group = [self.datasArray objectAtIndex:section];
+    if (row >= group.items.count) return nil;
+    
+    ZJSettingItem *item = [group.items objectAtIndex:row];
+    return item;
+}
+
 - (void)reloadData
 {
+    if (!self.privateData.config.lineColor) {
+        self.privateData.config.lineColor = self.backgroundColor;
+    }
     if (self.datasArray.count == 0) {
         self.datasArray = [self setupDatas];
     }
@@ -203,7 +216,13 @@
         item.operationHandle(item);
     } else if ([item isKindOfClass:[ZJSettingArrowItem class]]) {
         if (item.destVC && currentViewController) {
-            ZJBaseTableViewController *vc = [[item.destVC alloc] init];
+            ZJBaseTableViewController *vc = nil;
+            if ([item.destVC isSubclassOfClass:[ZJBaseTableViewController class]]) {
+                vc = [[item.destVC alloc] initWithStyle:tableView.style];
+                vc.tableView.separatorStyle = tableView.separatorStyle;
+            } else {
+                vc = [[item.destVC alloc] init];
+            }
             vc.title = item.title;
             
             if ([vc respondsToSelector:@selector(privateData)]) {

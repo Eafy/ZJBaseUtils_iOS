@@ -51,7 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 顶部视图高度，默认56
 @property (nonatomic,assign) CGFloat topViewHeight;
-/// 按钮2遍的偏移量，默认15
+/// 顶部视图底部线条的颜色，默认透明
+@property (nonatomic,assign) UIColor *topViewLineColor;
+/// 按钮2边的偏移量，默认15
 @property (nonatomic,assign) CGFloat btnOffset;
 
 /// 选择行背景颜色，默认透明
@@ -62,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) UIFont *rowTitleFont;
 /// 选择框上下线条的颜色，默认：#DCE0E8
 @property (nonatomic,strong) UIColor *rowLineColor;
-///  选择框上下线条的高度，默认0.5
+///  选择框上下线条的高度，默认1.0
 @property (nonatomic,assign) CGFloat rowLineHeight;
 
 /// 上面遮罩层颜色，默认HEXA：#181E28B2

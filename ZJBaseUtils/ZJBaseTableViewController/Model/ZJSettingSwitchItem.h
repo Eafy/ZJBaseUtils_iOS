@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// SwitchBtn的使能
 @property (nonatomic,assign) BOOL enable;
 /// UISwitch开关
-@property (nonatomic,strong) UISwitch * _Nullable switchBtn;
+@property (nonatomic,strong) UISwitch *switchBtn;
 
 @end
 

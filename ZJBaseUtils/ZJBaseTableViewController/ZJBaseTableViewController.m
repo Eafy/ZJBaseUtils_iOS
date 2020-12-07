@@ -35,6 +35,7 @@
     
     [self.navigationController setNavigationBarHidden:self.isHideNavBar animated:YES];
     self.isLeftSideslipBack = NO;
+    self.isVisible = YES;
     
     [self initNavigationBar];
     if (self.isShowNavBarView) {
@@ -54,6 +55,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.isVisible = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -455,13 +457,27 @@
     return _datasArray;
 }
 
-- (NSArray *)setupDatas
+- (NSArray<ZJSettingItemGroup *> *)setupDatas
 {
     return self.datasArray;
 }
 
+- (ZJSettingItem *)itemWithSection:(NSUInteger)section row:(NSUInteger)row
+{
+    if (section >= self.datasArray.count) return nil;
+    ZJSettingItemGroup *group = [self.datasArray objectAtIndex:section];
+    if (row >= group.items.count) return nil;
+    
+    ZJSettingItem *item = [group.items objectAtIndex:row];
+    return item;
+}
+
 - (void)reloadData
 {
+    if (!self.privateData.config.lineColor) {
+        self.privateData.config.lineColor = self.tableView.backgroundColor;
+    }
+    
     if (self.datasArray.count == 0) {
         self.datasArray = [self setupDatas];
     }

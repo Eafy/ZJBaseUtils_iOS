@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 加载数据，需要重载
 - (NSArray<ZJSettingItemGroup *> *)setupDatas;
 
+/// 获取Item
+/// @param section 第几段
+/// @param row 第几行
+- (ZJSettingItem * _Nullable)itemWithSection:(NSUInteger)section row:(NSUInteger)row;
+
 /// 加载数据(不刷新源数据)
 - (void)reloadData;
 

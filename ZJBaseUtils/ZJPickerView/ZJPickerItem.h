@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZJPickerItem : NSObject
 
 /// 显示内容数组
-@property (nonatomic,strong) NSArray<NSString *> *titleArray;
+@property (nonatomic,strong) NSMutableArray<NSString *> *titleArray;
 
 /// 默认选中的索引
 @property (nonatomic,assign) NSUInteger selectIndex;

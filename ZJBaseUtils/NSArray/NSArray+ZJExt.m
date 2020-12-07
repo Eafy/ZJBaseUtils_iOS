@@ -71,12 +71,8 @@
 
 - (NSArray *)zj_reverseArray
 {
-    NSMutableArray *reverseArray = [NSMutableArray array];
-    NSEnumerator *enumerator = [self reverseObjectEnumerator];
-    for (id element in enumerator) {
-        [reverseArray addObject:element];
-    }
-    return reverseArray;
+    NSArray *resultArray = [[self reverseObjectEnumerator] allObjects];
+    return resultArray;
 }
 
 

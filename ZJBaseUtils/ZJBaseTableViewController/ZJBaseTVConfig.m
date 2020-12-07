@@ -37,7 +37,6 @@
         _arrowLeftSpace = 5.f;
         _arrowRightSpace = 5.f;
         
-        _lineColor = [UIColor lightGrayColor];
         _lineHeight = .5f;
     }
     

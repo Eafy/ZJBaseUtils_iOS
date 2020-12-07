@@ -13,6 +13,7 @@
 #import "UIColor+ZJExt.h"
 #import "ZJBaseTVConfig.h"
 #import "ZJSettingTableViewCellExt.h"
+#import "ZJBaseUtils.h"
 
 @interface ZJSettingRadioItem ()
 
@@ -47,7 +48,9 @@
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100.0f, 44.0f)];
     btn.contentMode = UIViewContentModeRight;
     if (self.normalIcon) [btn setImage:[UIImage imageNamed:self.normalIcon] forState:UIControlStateNormal];
+    else [btn setImage:[ZJBaseUtils imageNamed:@"icon_radio_normal"] forState:UIControlStateNormal];
     if (self.selectIcon) [btn setImage:[UIImage imageNamed:self.selectIcon] forState:UIControlStateSelected];
+    else [btn setImage:[ZJBaseUtils imageNamed:@"icon_radio_selected"] forState:UIControlStateNormal];
     if (self.radioBtnTitleColor) [btn setTitleColor:self.radioBtnTitleColor forState:UIControlStateNormal];
     else [btn setTitleColor:ZJColorFromHex(@"#181E28") forState:UIControlStateNormal];
     if (self.radioBtnTitleFont) btn.titleLabel.font = self.radioBtnTitleFont;
@@ -229,20 +232,20 @@
 
 - (void)selected:(NSUInteger)index
 {
-    if (self.btnArray.count-1 >= index) {
-        if (self.radioModel) {
-            UIButton *btn = [self.btnArray objectAtIndex:index];
-            if (!btn.selected) {
-                for (int i=0; i<self.btnArray.count; i++) {
-                    btn.selected = i == index;
-                    [self.stateArray replaceObjectAtIndex:index withObject:@(i == index)];
-                }
+    if (index >= self.btnArray.count) return;
+    
+    if (self.radioModel) {
+        UIButton *btn = [self.btnArray objectAtIndex:index];
+        if (!btn.selected) {
+            for (int i=0; i<self.btnArray.count; i++) {
+                btn.selected = i == index;
+                [self.stateArray replaceObjectAtIndex:index withObject:@(i == index)];
             }
-        } else {
-            UIButton *btn = [self.btnArray objectAtIndex:index];
-            btn.selected = YES;
-            [self.stateArray replaceObjectAtIndex:index withObject:@YES];
         }
+    } else {
+        UIButton *btn = [self.btnArray objectAtIndex:index];
+        btn.selected = YES;
+        [self.stateArray replaceObjectAtIndex:index withObject:@YES];
     }
 }
 

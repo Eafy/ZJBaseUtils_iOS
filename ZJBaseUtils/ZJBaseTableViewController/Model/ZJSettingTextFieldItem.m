@@ -99,8 +99,20 @@
 
 - (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
-    if (!self.placeholderColor && config.cellDetailTitleColor) self.detailTextField.textColor = config.cellDetailTitleColor;
-    if (!self.placeholderFont && config.cellDetailTitleFont) self.detailTextField.font = config.cellDetailTitleFont;
+    if (config.cellDetailTitleColor) self.detailTextField.textColor = config.cellDetailTitleColor;
+    if (config.cellDetailTitleFont) self.detailTextField.font = config.cellDetailTitleFont;
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (!self.placeholderColor && config.textFieldPlaceholderColor) {
+        [dic setValue:config.textFieldPlaceholderColor forKey:NSForegroundColorAttributeName];
+    }
+    if (!self.placeholderFont && config.textFieldPlaceholderFont) {
+        [dic setValue:config.textFieldPlaceholderFont forKey:NSFontAttributeName];
+    }
+    if (self.placeholder && dic.count > 0) {
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.placeholder attributes:dic];
+        self.detailTextField.attributedPlaceholder = attrString;
+    }
 }
 
 #pragma mark - UITextFieldDelegate

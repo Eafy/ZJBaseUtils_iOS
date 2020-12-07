@@ -42,6 +42,7 @@
     NSString *identifier = [NSString stringWithFormat:@"kZJBaseTableViewCellIdentifier_%lu", (unsigned long)item.type];
     ZJSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
+        [tableView registerClass:[ZJSettingTableViewCell class] forCellReuseIdentifier:identifier];
         if (item.subTitle) {
             cell = [[ZJSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
         } else {
@@ -109,8 +110,6 @@
         if (self.tableViewConfig.cellDetailTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
         if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
     }
-    
-    [self.item updateDiffConfigWithCell:self config:tableViewConfig];
 }
 
 - (void)layoutSubviews
@@ -172,7 +171,7 @@
         if (self.accessoryView) {
             self.detailTextLabel.zj_right = self.accessoryView.zj_left - detailTextSpace;
         } else {
-            self.detailTextLabel.zj_right = self.contentView.zj_right - detailTextSpace - self.tableViewConfig.arrowRightSpace;
+            self.detailTextLabel.zj_right = self.contentView.zj_right - detailTextSpace - (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator ? 0 : self.tableViewConfig.arrowRightSpace);
         }
         self.detailTextLabel.zj_centerY = self.contentView.zj_centerY;
     }
@@ -339,6 +338,7 @@
         [self.subTitleLabel sizeToFit];
     }
     [self.item updateDiffDataWithCell:self];
+    [self.item updateDiffConfigWithCell:self config:self.tableViewConfig];
     
     if (self.item.isSelection) {
         self.selectionStyle = UITableViewCellSelectionStyleDefault;

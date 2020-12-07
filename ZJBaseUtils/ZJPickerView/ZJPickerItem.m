@@ -10,4 +10,12 @@
 
 @implementation ZJPickerItem
 
+- (NSMutableArray<NSString *> *)titleArray
+{
+    if (!_titleArray) {
+        _titleArray = [NSMutableArray array];
+    }
+    return _titleArray;
+}
+
 @end

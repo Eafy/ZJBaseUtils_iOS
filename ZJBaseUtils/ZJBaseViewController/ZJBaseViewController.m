@@ -28,6 +28,7 @@
     
     [self.navigationController setNavigationBarHidden:self.isHideNavBar animated:YES];
     self.isLeftSideslipBack = NO;
+    self.isVisible = YES;
     
     [self initNavigationBar];
     if (self.isShowNavBarView) {
@@ -47,6 +48,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    self.isVisible = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated

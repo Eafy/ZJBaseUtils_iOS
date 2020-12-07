@@ -31,6 +31,8 @@
 @property (nonatomic,strong) UIButton *okBtn;
 /// 取消按钮
 @property (nonatomic,strong) UIButton *cancelBtn;
+/// 顶部线条
+@property (nonatomic,strong) UIView *topLineView;
 
 @property (nonatomic,assign) BOOL isRowLineSet;
 
@@ -56,6 +58,7 @@
         [self.backView addSubview:self.titleLB];
         [self.backView addSubview:self.okBtn];
         [self.backView addSubview:self.cancelBtn];
+        [self.backView addSubview:self.topLineView];
     }
     
     return self;
@@ -79,7 +82,8 @@
     _rowTitleColor = [UIColor blackColor];
     _rowTitleFont = [UIFont systemFontOfSize:18];
     _rowBackgroundColor = [UIColor clearColor];
-    _rowLineHeight = 0.5;
+    _rowLineHeight = 1.0;
+    _topViewLineColor = [UIColor clearColor];
 }
 
 - (void)layoutSubviews
@@ -163,6 +167,16 @@
     }
     
     return _backView;
+}
+
+- (UIView *)topLineView
+{
+    if (!_topLineView) {
+        _topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topViewHeight - 0.5, self.bounds.size.width, 0.5)];
+        _topLineView.backgroundColor = self.topViewLineColor;
+    }
+    
+    return _topLineView;
 }
 
 - (UIView *)maskView
@@ -290,11 +304,18 @@
     self.okBtn.zj_height = topViewHeight;
     self.cancelBtn.zj_height = topViewHeight;
     self.titleLB.zj_height = topViewHeight;
+    self.topLineView.zj_bottom = topViewHeight;
     
     for (UIPickerView *pickerView in self.pickerViewArray) {
         pickerView.zj_top = self.okBtn.zj_height;
         pickerView.zj_height = self.backView.zj_height - topViewHeight;
     }
+}
+
+- (void)setTopViewLineColor:(UIColor *)topViewLineColor
+{
+    _topViewLineColor = topViewLineColor;
+    self.topLineView.backgroundColor = topViewLineColor;
 }
 
 - (void)setBtnOffset:(CGFloat)btnOffset
