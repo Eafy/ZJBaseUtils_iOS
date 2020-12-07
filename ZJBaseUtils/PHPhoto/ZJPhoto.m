@@ -321,52 +321,13 @@ singleton_m();
 - (void)copyPhotoOrVideo:(NSString *_Nonnull)url savePath:(NSString *_Nonnull)savePath handler:(ZJAlbumOperateHandler _Nullable)handler
 {
     if (url && ![url isEqualToString:@""] && savePath && ![savePath isEqualToString:@""]) {
+        NSString *outDir = [savePath stringByDeletingLastPathComponent];
+        [NSFileManager zj_createDirectory:outDir];
+        NSLog(@"Save file path: %@", url);
+        NSLog(@"Out file path: %@", savePath);
+        
         if ([url hasPrefix:@"file:///"]) {
-            NSURL *readUrl = [NSURL fileURLWithPath:url];
-            NSURL *saveUrl = [NSURL fileURLWithPath:savePath];
-            if (_saveSession) {
-                [self.saveSession cancelExport];
-                _saveSession = nil;
-            }
-            
-            AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:readUrl options:nil];
-            self.saveSession = [[AVAssetExportSession alloc] initWithAsset:urlAsset presetName:AVAssetExportPresetHighestQuality];
-            self.saveSession.outputURL = saveUrl;
-            NSString *mimeType = [NSFileManager zj_mimeType:url];
-            if ([mimeType containsString:@"image"]) {
-                if (@available(iOS 11.0, *)) {
-                    self.saveSession.outputFileType = AVFileTypeJPEG;
-                } else {
-                    BOOL ret = false;
-                    UIImage *img = [UIImage imageWithContentsOfFile:url];
-                    if (img) {
-                        ret = [UIImagePNGRepresentation(img) writeToFile:savePath atomically:YES];
-                    }
-                    if (handler) {
-                        handler(ret, ret ? savePath : nil, nil);
-                    }
-                }
-            } else {
-                self.saveSession.outputFileType = AVFileTypeMPEG4;
-            }
-            
-            __weak ZJPhoto *weakSelf = self;
-            [self.saveSession exportAsynchronouslyWithCompletionHandler:^(void) {
-                if (weakSelf.saveSession.status == AVAssetExportSessionStatusCancelled) {
-                    return;
-                }
-                
-                BOOL ret = weakSelf.saveSession.status == AVAssetExportSessionStatusCompleted;
-                if (ret) {
-                    NSLog(@"Save file to Sandbox:%ld path:%@", (long)weakSelf.saveSession.status, savePath);
-                } else {
-                    NSLog(@"Save file to Sandbox path:%@ error:%@", savePath, weakSelf.saveSession.error);
-                }
-                if (handler) {
-                    handler(ret, ret ? savePath : nil, weakSelf.saveSession.error);
-                }
-                weakSelf.saveSession = nil;
-            }];
+            [self copyPhotoOrVideoUseSession:url savePath:savePath handler:handler];
         } else {
             PHAsset *asset = [self findAssetFromPath:url];
             
@@ -394,5 +355,72 @@ singleton_m();
     }
 }
 
+#pragma mark -
+
+- (void)copyPhotoOrVideoUseSession:(NSString *_Nonnull)url savePath:(NSString *_Nonnull)savePath handler:(ZJAlbumOperateHandler _Nullable)handler
+{
+    NSURL *readUrl = [NSURL fileURLWithPath:url];
+    NSURL *saveUrl = [NSURL fileURLWithPath:savePath];
+    if (_saveSession) {
+        [self.saveSession cancelExport];
+        _saveSession = nil;
+    }
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:readUrl options:nil];
+    AVFileType fileType = AVFileTypeMPEG4;
+    
+    NSString *mimeType = [NSFileManager zj_mimeType:url];
+    if ([mimeType containsString:@"image"]) {
+        if (@available(iOS 11.0, *)) {
+            fileType = AVFileTypeJPEG;
+        } else {
+            BOOL ret = false;
+            UIImage *img = [UIImage imageWithContentsOfFile:url];
+            if (img) {
+                ret = [UIImagePNGRepresentation(img) writeToFile:savePath atomically:YES];
+            }
+            if (handler) {
+                handler(ret, ret ? savePath : nil, nil);
+            }
+            return;
+        }
+    } else {
+        AVMutableComposition *mainComposition = [[AVMutableComposition alloc] init];
+        AVMutableCompositionTrack *compositionVideoTrack = [mainComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+                    
+        int timeScale = 100000;
+        Float64 seconds = CMTimeGetSeconds([urlAsset duration]) - 0.001;
+        NSUInteger videoDurationI = (NSUInteger) (seconds * timeScale);
+        CMTime videoDuration = CMTimeMake(videoDurationI, timeScale);
+        CMTimeRange videoTimeRange = CMTimeRangeMake(kCMTimeZero, videoDuration);
+                    
+        NSArray<AVAssetTrack *> *videoTracks = [urlAsset tracksWithMediaType:AVMediaTypeVideo];
+        AVAssetTrack *videoTrack = [videoTracks objectAtIndex:0];
+
+        [compositionVideoTrack insertTimeRange:videoTimeRange ofTrack:videoTrack atTime:kCMTimeZero error:nil];
+        urlAsset = (AVURLAsset *)mainComposition;
+    }
+    
+    self.saveSession = [AVAssetExportSession exportSessionWithAsset:urlAsset presetName:AVAssetExportPresetHighestQuality];
+    self.saveSession.outputURL = saveUrl;
+    self.saveSession.shouldOptimizeForNetworkUse = YES;
+    
+    __weak ZJPhoto *weakSelf = self;
+    [self.saveSession exportAsynchronouslyWithCompletionHandler:^(void) {
+        if (weakSelf.saveSession.status == AVAssetExportSessionStatusCancelled) {
+            return;
+        }
+        
+        BOOL ret = weakSelf.saveSession.status == AVAssetExportSessionStatusCompleted;
+        if (ret) {
+            NSLog(@"Save file to sandbox success:%ld path:%@", (long)weakSelf.saveSession.status, savePath);
+        } else {
+            NSLog(@"Save file to sandbox error:%@ path:%@", weakSelf.saveSession.error, savePath);
+        }
+        if (handler) {
+            handler(ret, ret ? savePath : nil, weakSelf.saveSession.error);
+        }
+        weakSelf.saveSession = nil;
+    }];
+}
 
 @end
