@@ -33,7 +33,7 @@
         _detailBtn.backgroundColor = [UIColor clearColor];
         _detailBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         _detailBtn.contentMode = UIViewContentModeScaleAspectFit;
-        [_detailBtn addTarget:self action:@selector(clickedDetailBtnAction:) forControlEvents:UIControlEventValueChanged];
+        [_detailBtn addTarget:self action:@selector(clickedDetailBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _detailBtn;
 }
