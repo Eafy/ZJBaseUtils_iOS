@@ -402,6 +402,7 @@ singleton_m();
     
     self.saveSession = [AVAssetExportSession exportSessionWithAsset:urlAsset presetName:AVAssetExportPresetHighestQuality];
     self.saveSession.outputURL = saveUrl;
+    self.saveSession.outputFileType = fileType;
     self.saveSession.shouldOptimizeForNetworkUse = YES;
     
     __weak ZJPhoto *weakSelf = self;
