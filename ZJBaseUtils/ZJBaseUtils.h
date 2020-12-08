@@ -51,6 +51,7 @@
 #import "ZJLocalizationTool.h"
 #import "ZJPhoto.h"
 #import "ZJPickerView.h"
+#import "ZJSlider.h"
 
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"

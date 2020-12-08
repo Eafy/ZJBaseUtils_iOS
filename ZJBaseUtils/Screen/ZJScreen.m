@@ -217,20 +217,22 @@ singleton_m();
 
 + (UIWindow *)keyWindow
 {
-    NSArray *windowArray = [[UIApplication sharedApplication].windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow *win1, UIWindow *win2) {
-        if (win1.isKeyWindow) {
-            return true;
-        } else {
-            return win1.windowLevel < win2.windowLevel || !win1.isOpaque;
-        }
-    }];
+    UIWindow *keyWindow = [UIApplication sharedApplication].delegate.window;
+    if (keyWindow) return keyWindow;
     
-    UIWindow *keyWindow = [windowArray lastObject];
-    if (!keyWindow) {
-        keyWindow = [UIApplication sharedApplication].delegate.window;
+    NSEnumerator *frontToBackWindows = [UIApplication.sharedApplication.windows reverseObjectEnumerator];
+    for (UIWindow *window in frontToBackWindows) {
+        BOOL isMainScreen = window.screen == UIScreen.mainScreen;
+        BOOL isVisible = !window.hidden && window.alpha > 0;
+        BOOL isLevelNormal = window.windowLevel == UIWindowLevelNormal;
+        BOOL isKeyWindow = window.isKeyWindow;
+            
+        if (isMainScreen && isVisible && isLevelNormal && isKeyWindow) {
+            return window;
+        }
     }
     
-    return keyWindow;
+    return nil;
 }
 
 @end

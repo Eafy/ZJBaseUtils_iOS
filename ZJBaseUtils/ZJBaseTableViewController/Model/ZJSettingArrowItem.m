@@ -22,6 +22,9 @@
 #pragma mark - 重载差异化
 
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell {
+    if (self.isSelection && !self.arrowIcon) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
 }
 
 @end
