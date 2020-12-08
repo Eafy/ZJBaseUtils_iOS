@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C1B8B522566BF750057B513 /* UIImage+ZJQR.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C1B8B502566BF750057B513 /* UIImage+ZJQR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C1B8B532566BF750057B513 /* UIImage+ZJQR.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1B8B512566BF750057B513 /* UIImage+ZJQR.m */; };
+		0C268846257FA51E00171010 /* ZJSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C268844257FA51E00171010 /* ZJSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C268847257FA51E00171010 /* ZJSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C268845257FA51E00171010 /* ZJSlider.m */; };
 		0C279C5124E2D22F00474649 /* ZJBaseUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C279C4724E2D22E00474649 /* ZJBaseUtils.framework */; };
 		0C279C5624E2D22F00474649 /* ZJBaseUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C279C5524E2D22F00474649 /* ZJBaseUtilsTests.m */; };
 		0C279C5824E2D22F00474649 /* ZJBaseUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C279C4A24E2D22E00474649 /* ZJBaseUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -184,6 +186,8 @@
 /* Begin PBXFileReference section */
 		0C1B8B502566BF750057B513 /* UIImage+ZJQR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZJQR.h"; sourceTree = "<group>"; };
 		0C1B8B512566BF750057B513 /* UIImage+ZJQR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZJQR.m"; sourceTree = "<group>"; };
+		0C268844257FA51E00171010 /* ZJSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSlider.h; sourceTree = "<group>"; };
+		0C268845257FA51E00171010 /* ZJSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSlider.m; sourceTree = "<group>"; };
 		0C279C4724E2D22E00474649 /* ZJBaseUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZJBaseUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C279C4A24E2D22E00474649 /* ZJBaseUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJBaseUtils.h; sourceTree = "<group>"; };
 		0C279C4B24E2D22E00474649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -369,6 +373,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C268843257FA51E00171010 /* ZJSlider */ = {
+			isa = PBXGroup;
+			children = (
+				0C268844257FA51E00171010 /* ZJSlider.h */,
+				0C268845257FA51E00171010 /* ZJSlider.m */,
+			);
+			path = ZJSlider;
+			sourceTree = "<group>";
+		};
 		0C279C3D24E2D22E00474649 = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +404,7 @@
 		0C279C4924E2D22E00474649 /* ZJBaseUtils */ = {
 			isa = PBXGroup;
 			children = (
+				0C268843257FA51E00171010 /* ZJSlider */,
 				0C843CC02575036D00B48DED /* ZJTextField */,
 				0C91FF96256BCB3E00F30981 /* ZJPickerView */,
 				0CEB8C60256B631200BFD910 /* ZJRatingView */,
@@ -803,6 +817,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C268846257FA51E00171010 /* ZJSlider.h in Headers */,
 				0C98FD702577A5EC005C9DB4 /* ZJSettingButtonItem.h in Headers */,
 				0C843CC42575036E00B48DED /* ZJTextField.h in Headers */,
 				0C68EDD62562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h in Headers */,
@@ -1003,6 +1018,7 @@
 				0CEB8C5F256B62A300BFD910 /* ZJSettingScoreItem.m in Sources */,
 				0CA3AE0225357D1A009782ED /* ZJModelFilter.m in Sources */,
 				0CC5EFD62539420F0083546A /* ZJModelPairs.m in Sources */,
+				0C268847257FA51E00171010 /* ZJSlider.m in Sources */,
 				0C95699324E2EF1000C9A6C5 /* NSFileManager+ZJExt.m in Sources */,
 				0CB590B02515F40E0092E854 /* UIButton+ZJExt.m in Sources */,
 				0C7172DD2563FE8500950EE5 /* UIButton+ZJGradient.m in Sources */,

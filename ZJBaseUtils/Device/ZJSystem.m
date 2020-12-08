@@ -21,6 +21,10 @@ extern CGFloat ZJSysVersion(void) {
 
 @implementation ZJSystem
 
++ (BOOL)isSimulator {
+    return TARGET_IPHONE_SIMULATOR | TARGET_OS_SIMULATOR;
+}
+
 + (NSString *)projectName {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
 }

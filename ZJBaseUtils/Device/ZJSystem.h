@@ -33,6 +33,9 @@ extern CGFloat ZJSysVersion(void);
 
 @interface ZJSystem : NSObject
 
+/// 是否是模拟器
++ (BOOL)isSimulator;
+
 /// 项目名称
 + (NSString *)projectName;
 

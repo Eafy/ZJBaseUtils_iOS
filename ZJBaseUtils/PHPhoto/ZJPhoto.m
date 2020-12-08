@@ -10,6 +10,7 @@
 #import "PHAsset+ZJExt.h"
 #import "NSFileManager+ZJExt.h"
 #import <AVFoundation/AVFoundation.h>
+#import "ZJSystem.h"
 
 @interface ZJPhoto ()
 
@@ -326,6 +327,11 @@ singleton_m();
         NSLog(@"Save file path: %@", url);
         NSLog(@"Out file path: %@", savePath);
         
+        if (ZJSystem.isSimulator) {
+            handler(YES, url, nil);
+            return;
+        }
+        
         if ([url hasPrefix:@"file:///"]) {
             [self copyPhotoOrVideoUseSession:url savePath:savePath handler:handler];
         } else {
@@ -394,6 +400,12 @@ singleton_m();
         CMTimeRange videoTimeRange = CMTimeRangeMake(kCMTimeZero, videoDuration);
                     
         NSArray<AVAssetTrack *> *videoTracks = [urlAsset tracksWithMediaType:AVMediaTypeVideo];
+        if (videoTracks.count == 0) {
+            if (handler) {
+                handler(NO, nil, nil);
+            }
+            return;
+        }
         AVAssetTrack *videoTrack = [videoTracks objectAtIndex:0];
 
         [compositionVideoTrack insertTimeRange:videoTimeRange ofTrack:videoTrack atTime:kCMTimeZero error:nil];
