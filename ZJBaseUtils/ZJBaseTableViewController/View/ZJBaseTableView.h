@@ -23,11 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 加载数据，需要重载
 - (NSArray<ZJSettingItemGroup *> *)setupDatas;
 
-/// 获取Item
-/// @param section 第几段
-/// @param row 第几行
-- (ZJSettingItem * _Nullable)itemWithSection:(NSUInteger)section row:(NSUInteger)row;
-
 /// 加载数据(不刷新源数据)
 - (void)reloadData;
 
@@ -36,6 +31,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 已存在数据
 - (NSArray *)datasArray;
+
+#pragma mark - 
+
+/// 获取Item
+/// @param section 第几段
+/// @param row 第几行
+- (ZJSettingItem * _Nullable)itemWithSection:(NSUInteger)section row:(NSUInteger)row;
+
+/// 获取Cell
+/// @param section 第几段
+/// @param row 第几行
+- (UITableViewCell *)cellWithSection:(NSUInteger)section row:(NSUInteger)row;
 
 #pragma mark - 提供给ZJBaseTableViewController使用
 

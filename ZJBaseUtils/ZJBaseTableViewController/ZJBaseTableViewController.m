@@ -78,6 +78,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.modalPresentationStyle = UIModalPresentationFullScreen;
     
+    self.tableView.separatorStyle = self.privateData.separatorStyle;
     if (self.privateData.config.bgColor) {
         self.view.backgroundColor = self.privateData.config.bgColor;
     }
@@ -462,16 +463,6 @@
     return self.datasArray;
 }
 
-- (ZJSettingItem *)itemWithSection:(NSUInteger)section row:(NSUInteger)row
-{
-    if (section >= self.datasArray.count) return nil;
-    ZJSettingItemGroup *group = [self.datasArray objectAtIndex:section];
-    if (row >= group.items.count) return nil;
-    
-    ZJSettingItem *item = [group.items objectAtIndex:row];
-    return item;
-}
-
 - (void)reloadData
 {
     if (!self.privateData.config.lineColor) {
@@ -494,6 +485,23 @@
 {
     self.datasArray = [self setupDatas];
     [self reloadData];
+}
+
+#pragma mark -
+
+- (ZJSettingItem *)itemWithSection:(NSUInteger)section row:(NSUInteger)row
+{
+    if (section >= self.datasArray.count) return nil;
+    ZJSettingItemGroup *group = [self.datasArray objectAtIndex:section];
+    if (row >= group.items.count) return nil;
+    
+    ZJSettingItem *item = [group.items objectAtIndex:row];
+    return item;
+}
+
+- (UITableViewCell *)cellWithSection:(NSUInteger)section row:(NSUInteger)row
+{
+    return [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
 }
 
 #pragma mark - UITableViewDataSource

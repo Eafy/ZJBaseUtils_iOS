@@ -8,8 +8,9 @@
 
 #import "ZJSlider.h"
 #import <CoreGraphics/CoreGraphics.h>
-#import <ZJBaseUtils/UIView+ZJExt.h>
-#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import "UIView+ZJExt.h"
+#import "UIView+ZJFrame.h"
+#import "UIView+ZJShadow.h"
 #import "UIColor+ZJExt.h"
 
 @interface ZJSlider()
@@ -60,6 +61,8 @@
         [self addSubview:self.selectedView];
         [self addSubview:self.thumbLeftImgView];
         [self addSubview:self.thumbRightImgView];
+        
+        [self setSubFrame:self.frame];
     }
     return self;
 }
@@ -68,7 +71,7 @@
 {
     if (!_bgLineView) {
         _bgLineView = [[UIView alloc] init];
-        _bgLineView.backgroundColor = self.leverDisabledColor;
+        _bgLineView.backgroundColor = self.leverColor;
         _bgLineView.userInteractionEnabled = NO;
     }
     return _bgLineView;
@@ -135,10 +138,8 @@
 
 #pragma mark -
 
-- (void)setFrame:(CGRect)frame
+- (void)setSubFrame:(CGRect)frame
 {
-    super.frame = frame;
-    
     self.bgLineView.frame = CGRectMake(0, self.zj_height - self.padding/2 - self.lineHeight, frame.size.width, self.lineHeight);
     [self.bgLineView zj_cornerWithRadii:CGSizeMake(self.bgLineView.zj_height/2, self.bgLineView.zj_height/2) rectCorner:UIRectCornerAllCorners];
     
@@ -147,11 +148,11 @@
     
     self.thumbLeftImgView.frame = CGRectMake(0, 0, self.padding, self.padding);
     self.thumbLeftImgView.zj_centerY = self.bgLineView.zj_centerY;
-    [self.thumbLeftImgView zj_cornerWithRadii:CGSizeMake(self.thumbLeftImgView.zj_height/2, self.thumbLeftImgView.zj_height/2) rectCorner:UIRectCornerAllCorners];
+    [self.thumbLeftImgView zj_shadowWithOpacity:0.3 shadowRadius:3 andCornerRadius:self.thumbLeftImgView.zj_height/2];
 
     self.thumbRightImgView.frame = CGRectMake(0, 0, self.padding, self.padding);
     self.thumbRightImgView.zj_centerY = self.bgLineView.zj_centerY;
-    [self.thumbRightImgView zj_cornerWithRadii:CGSizeMake(self.thumbRightImgView.zj_height/2, self.thumbRightImgView.zj_height/2) rectCorner:UIRectCornerAllCorners];
+    [self.thumbRightImgView zj_shadowWithOpacity:0.3 shadowRadius:3 andCornerRadius:self.thumbRightImgView.zj_height/2];
     
     if (self.isShowSign) {
         self.signCountLeftLB.zj_height = 20;
@@ -206,9 +207,8 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    if (self.zj_width && self.bgLineView.zj_width == 0) {
-        self.frame = self.frame;
-        [self setNeedsLayout];
+    if (self.zj_width && self.bgLineView.zj_width != self.zj_width) {
+        [self setSubFrame:self.frame];
     }
     
     self.thumbLeftImgView.zj_centerX = [self xForValue:self.selectedMinValue];
@@ -227,17 +227,17 @@
         self.signCountRightLB.zj_centerX = self.thumbRightImgView.zj_centerX;
         
         if (self.isShowShapingSign) {
-            self.signCountLeftLB.text = [NSString stringWithFormat:@"%ld", (NSInteger)(self.selectedMinValue)];
+            self.signCountLeftLB.text = [NSString stringWithFormat:@"%ld", (long)(self.selectedMinValue)];
         } else {
-            self.signCountLeftLB.text = [NSString stringWithFormat:@"%0.02f", self.selectedMinValue];
+            self.signCountLeftLB.text = [NSString stringWithFormat:@"%.2f", self.selectedMinValue];
         }
         [self.signCountLeftLB sizeToFit];
         
         if (self.isRangeMode) {
             if (self.isShowShapingSign) {
-                self.signCountRightLB.text = [NSString stringWithFormat:@"%ld", (NSInteger)(self.selectedMaxValue)];
+                self.signCountRightLB.text = [NSString stringWithFormat:@"%ld", (long)(self.selectedMaxValue)];
             } else {
-                self.signCountRightLB.text = [NSString stringWithFormat:@"%0.02f", self.selectedMaxValue];
+                self.signCountRightLB.text = [NSString stringWithFormat:@"%.2f", self.selectedMaxValue];
             }
             [self.signCountRightLB sizeToFit];
         }
@@ -271,11 +271,13 @@
     CGPoint touchPoint = [touch locationInView:self];
     if (self.minTumbOn) {
         self.thumbLeftImgView.center = CGPointMake(MAX([self xForValue:self.minValue], MIN(touchPoint.x - self.distanceFromCenter, [self xForValue:self.isRangeMode?(self.selectedMaxValue- self.minRange):self.maxValue])), self.thumbLeftImgView.zj_centerY);
+        
         self.selectedMinValue = [self valueForX:self.thumbLeftImgView.zj_centerX];
     }
     
     if (self.maxTumbOn) {
         self.thumbRightImgView.center = CGPointMake(MIN([self xForValue:self.maxValue], MAX(touchPoint.x - self.distanceFromCenter, [self xForValue:self.selectedMinValue + self.minRange])), self.thumbRightImgView.zj_centerY);
+        
         self.selectedMaxValue = [self valueForX:self.thumbRightImgView.zj_centerX];
     }
     [self setNeedsLayout];
@@ -286,6 +288,10 @@
 }
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    if (!self.isRangeMode && !self.minTumbOn && !self.maxTumbOn) {   //这个支持单点
+        self.minTumbOn = self.maxTumbOn = YES;
+        [self continueTrackingWithTouch:touch withEvent:event];
+    }
     self.minTumbOn = NO;
     self.maxTumbOn = NO;
 }

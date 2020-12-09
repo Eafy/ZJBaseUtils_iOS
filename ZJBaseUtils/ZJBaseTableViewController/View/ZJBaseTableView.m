@@ -77,16 +77,6 @@
     return self.datasArray;
 }
 
-- (ZJSettingItem *)itemWithSection:(NSUInteger)section row:(NSUInteger)row
-{
-    if (section >= self.datasArray.count) return nil;
-    ZJSettingItemGroup *group = [self.datasArray objectAtIndex:section];
-    if (row >= group.items.count) return nil;
-    
-    ZJSettingItem *item = [group.items objectAtIndex:row];
-    return item;
-}
-
 - (void)reloadData
 {
     if (!self.privateData.config.lineColor) {
@@ -108,6 +98,23 @@
 {
     self.datasArray = [self setupDatas];
     [self reloadData];
+}
+
+#pragma mark - 
+
+- (ZJSettingItem *)itemWithSection:(NSUInteger)section row:(NSUInteger)row
+{
+    if (section >= self.datasArray.count) return nil;
+    ZJSettingItemGroup *group = [self.datasArray objectAtIndex:section];
+    if (row >= group.items.count) return nil;
+    
+    ZJSettingItem *item = [group.items objectAtIndex:row];
+    return item;
+}
+
+- (UITableViewCell *)cellWithSection:(NSUInteger)section row:(NSUInteger)row
+{
+    return [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -217,9 +224,11 @@
     } else if ([item isKindOfClass:[ZJSettingArrowItem class]]) {
         if (item.destVC && currentViewController) {
             ZJBaseTableViewController *vc = nil;
+            BOOL isTableView = NO;
+            
             if ([item.destVC isSubclassOfClass:[ZJBaseTableViewController class]]) {
                 vc = [[item.destVC alloc] initWithStyle:tableView.style];
-                vc.tableView.separatorStyle = tableView.separatorStyle;
+                isTableView = YES;
             } else {
                 vc = [[item.destVC alloc] init];
             }
@@ -227,6 +236,9 @@
             
             if ([vc respondsToSelector:@selector(privateData)]) {
                 vc.privateData = item.privateData ? item.privateData : privateData;
+                if (isTableView) {
+                    vc.privateData.separatorStyle = tableView.separatorStyle;
+                }
             }
             
             [currentViewController.navigationController pushViewController:vc animated:YES];

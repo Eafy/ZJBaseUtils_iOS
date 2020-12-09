@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJBaseTVPrivateData : NSObject
 
+/// 拷贝一份私有数据，仅config重新复制，其他引用
+//- (ZJBaseTVPrivateData *)copyPrivateData;
+
+#pragma mark -
+
 /// 表单全局配置参数
 @property (nonatomic,strong) ZJBaseTVConfig *config;
 /// 需要传递的数据（一般是对象类）
@@ -21,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) id _Nullable data;
 /// 需要传递的数据（一般是指针数据）
 @property (nonatomic,assign) char * _Nullable pData;
+
+#pragma mark -
+
+@property (nonatomic,assign) UITableViewCellSeparatorStyle separatorStyle;
 
 @end
 

@@ -134,7 +134,7 @@
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.bounds;
     maskLayer.path = bezierPath.CGPath;
-    self.layer.mask = maskLayer;
+//    self.layer.mask = maskLayer;
     
     return maskLayer;
 }
@@ -142,28 +142,6 @@
 - (void)zj_cornerWithRadius:(CGFloat)radius
 {
     [self zj_cornerWithRadii:CGSizeMake(radius, radius) rectCorner:UIRectCornerAllCorners];
-}
-
-#pragma mark -
-
-- (void)zj_shadowWithOpacity:(float)shadowOpacity shadowRadius:(CGFloat)shadowRadius andCornerRadius:(CGFloat)cornerRadius
-{
-    
-    CAShapeLayer *shadowLayer = [self zj_cornerWithTopLeftRadius:cornerRadius rightUpRadius:cornerRadius rightDownRadius:cornerRadius leftDownRadius:cornerRadius];
-    shadowLayer.frame = self.layer.frame;
-    
-    shadowLayer.shadowColor = [UIColor blackColor].CGColor; //shadowColor阴影颜色
-    shadowLayer.shadowOffset = CGSizeMake(0, 0);    //shadowOffset阴影偏移，默认(0, -3),
-    shadowLayer.shadowOpacity = shadowOpacity;  //阴影透明度，默认0
-    shadowLayer.shadowRadius = shadowRadius;    //阴影半径，默认3
-    
-    //////// cornerRadius /////////
-    self.layer.cornerRadius = cornerRadius;
-    self.layer.masksToBounds = YES;
-    self.layer.shouldRasterize = YES;
-    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    
-    [self.superview.layer insertSublayer:shadowLayer below:self.layer];
 }
 
 @end

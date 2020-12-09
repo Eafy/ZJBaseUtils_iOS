@@ -8,12 +8,39 @@
 
 #import "ZJBaseTVConfig.h"
 #import "UIColor+ZJExt.h"
+#import <objc/runtime.h>
 
 @interface ZJBaseTVConfig ()
 
 @end
 
 @implementation ZJBaseTVConfig
+
+- (id)copyWithZone:(struct _NSZone *)zone {
+    Class class = [self class];
+    id obj = [[class allocWithZone:zone] init];
+    while (class != [NSObject class]) {
+        unsigned int count;
+        Ivar *ivar = class_copyIvarList(class, &count);
+        for (int i = 0; i < count; i++) {
+            Ivar iv = ivar[i];
+            const char *name = ivar_getName(iv);
+            NSString *strName = [NSString stringWithUTF8String:name];
+            id value = [[self valueForKey:strName] copy];
+            [obj setValue:value forKey:strName];
+        }
+        free(ivar);
+        
+        class = class_getSuperclass(class);
+    }
+    return obj;
+}
+
+- (id)mutableCopyWithZone:(struct _NSZone *)zone {
+    return [self copyWithZone:zone];
+}
+
+#pragma mark - 
 
 - (instancetype)init
 {

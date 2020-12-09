@@ -30,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) void (^ _Nullable returnBeforeOption)(void);
 /// 返回之后需要执行的Block(模态有效)
 @property (nonatomic,copy) void (^ _Nullable returnAfterOption)(void);
+/// 右键响应
+- (void)navRightBtnAction;
+/// 左键响应
+- (void)navLeftBtnAction;
 
 //自定义导航栏
 @property (nonatomic,assign) BOOL isShowNavBarView;     //是否显示自定义导航栏视图，当isHideNavBar为YES时生效
@@ -41,12 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *backgroundImgName;
 /// 背景颜色
 @property (nonatomic,strong) UIColor *backgroundColor;
-
-/// 右键响应
-- (void)navRightBtnAction;
-
-/// 左键响应
-- (void)navLeftBtnAction;
 
 @end
 

@@ -42,6 +42,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) void(^ _Nullable returnBeforeBlock)(void);
 /// 返回之后需要执行的Block(模态有效)
 @property (nonatomic,copy) void(^ _Nullable returnAfterBlock)(void);
+/// 右键响应
+- (void)navRightBtnAction;
+/// 左键响应
+- (void)navLeftBtnAction;
 
 /*自定义导航栏*/
 /// 是否显示自定义导航栏视图，当isHideNavBar为YES时生效
@@ -68,22 +72,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// 加载数据，需要重载
 - (NSArray<ZJSettingItemGroup *> *)setupDatas;
 
-/// 获取Item
-/// @param section 第几段
-/// @param row 第几行
-- (ZJSettingItem * _Nullable)itemWithSection:(NSUInteger)section row:(NSUInteger)row;
-
 /// 加载数据(不刷新源数据)
 - (void)reloadData;
 
 /// 更新数据
 - (void)updateData;
 
-/// 右键响应
-- (void)navRightBtnAction;
+#pragma mark -
 
-/// 左键响应
-- (void)navLeftBtnAction;
+/// 获取Item
+/// @param section 第几段
+/// @param row 第几行
+- (ZJSettingItem * _Nullable)itemWithSection:(NSUInteger)section row:(NSUInteger)row;
+
+/// 获取Cell
+/// @param section 第几段
+/// @param row 第几行
+- (UITableViewCell *)cellWithSection:(NSUInteger)section row:(NSUInteger)row;
 
 @end
 

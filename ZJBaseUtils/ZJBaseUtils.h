@@ -34,6 +34,7 @@
 #import "UIView+ZJFrame.h"
 #import "UIView+ZJGesture.h"
 #import "UIView+ZJGradient.h"
+#import "UIView+ZJShadow.h"
 #import "UIButton+ZJExt.h"
 #import "UIButton+ZJGradient.h"
 #import "UIImageView+ZJExt.h"
@@ -52,6 +53,7 @@
 #import "ZJPhoto.h"
 #import "ZJPickerView.h"
 #import "ZJSlider.h"
+#import "ZJTextView.h"
 
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"

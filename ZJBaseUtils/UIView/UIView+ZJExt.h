@@ -56,10 +56,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param radius 弧度
 - (void)zj_cornerWithRadius:(CGFloat)radius;
 
-#pragma mark - 阴影
-
-- (void)zj_shadowWithOpacity:(float)shadowOpacity shadowRadius:(CGFloat)shadowRadius andCornerRadius:(CGFloat)cornerRadius;
-
 @end
 
 NS_ASSUME_NONNULL_END

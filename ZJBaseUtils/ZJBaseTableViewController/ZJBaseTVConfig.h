@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Group圆角，当UITableViewStylePlain模式生效
 @property (nonatomic,assign) CGFloat cornerRadius;
 
+#pragma mark -
+
 /// 背景视图左边的间距，默认15
 @property (nonatomic,assign) CGFloat marginLeft;
 
