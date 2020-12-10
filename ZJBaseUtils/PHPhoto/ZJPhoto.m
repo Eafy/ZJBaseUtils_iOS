@@ -327,11 +327,6 @@ singleton_m();
         NSLog(@"Save file path: %@", url);
         NSLog(@"Out file path: %@", savePath);
         
-        if (ZJSystem.isSimulator) {
-            handler(YES, url, nil);
-            return;
-        }
-        
         if ([url hasPrefix:@"file:///"]) {
             [self copyPhotoOrVideoUseSession:url savePath:savePath handler:handler];
         } else {
@@ -367,6 +362,11 @@ singleton_m();
 {
     NSURL *readUrl = [NSURL fileURLWithPath:url];
     NSURL *saveUrl = [NSURL fileURLWithPath:savePath];
+    if (ZJSystem.isSimulator) {
+        handler(YES, url, nil);
+        return;
+    }
+    
     if (_saveSession) {
         [self.saveSession cancelExport];
         _saveSession = nil;
