@@ -40,6 +40,7 @@
 #import "UIImageView+ZJExt.h"
 #import "UIViewController+ZJExt.h"
 #import "ZJTextField.h"
+#import "ZJAlertView.h"
 
 #import "ZJModelFilter.h"
 #import "ZJModelFilterGet.h"
