@@ -56,7 +56,7 @@
     [self setNeedsDisplay];
 }
 
-- (void)setPlaceholderWithText:(NSString *)str color:(UIColor *)color font:(UIFont * _Nullable)font
+- (void)placeholderWithText:(NSString *)str color:(UIColor *)color font:(UIFont * _Nullable)font
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (color) {

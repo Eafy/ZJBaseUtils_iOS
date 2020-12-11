@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param str 字符串
 /// @param color 颜色
 /// @param font 字体
-- (void)setPlaceholderWithText:(NSString *)str color:(UIColor * _Nullable)color font:(UIFont * _Nullable)font;
+- (void)placeholderWithText:(NSString *)str color:(UIColor * _Nullable)color font:(UIFont * _Nullable)font;
 
 @end
 
