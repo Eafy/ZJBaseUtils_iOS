@@ -395,7 +395,7 @@
             } else {
                 bottom += 40;
             }
-            if (size.width >= self.messageLB.jm_width - 1) {
+            if (size.width >= self.messageLB.zj_width - 1) {
                 self.messageLB.textAlignment = NSTextAlignmentLeft;
             } else {
                 self.messageLB.textAlignment = NSTextAlignmentCenter;
