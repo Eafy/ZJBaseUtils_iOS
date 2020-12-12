@@ -45,6 +45,20 @@ extern CGFloat ZJSysVersion(void) {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
 }
 
++ (NSInteger)versionToNumber:(NSString *)version {
+    if (!version) return 0;
+    NSInteger versionValue = 0;
+    NSInteger indexIn = 1;
+    
+    NSArray *versionArray = [version componentsSeparatedByString:@"."];
+    for (int i=0; i<versionArray.count; i++) {
+        NSString *ver = [versionArray objectAtIndex:(versionArray.count-1-i)];
+        indexIn *= 1000;
+        versionValue += [ver integerValue] * indexIn;
+    }
+    return versionValue;
+}
+
 #pragma mark -
 
 + (NSString *)currentLanguage

@@ -212,8 +212,11 @@
 - (void)setCustomView:(UIView *)customView {
     if (_alertView && _alertView.superview) {
         [_alertView removeFromSuperview];
+        _style = ZJAlertViewStyleDefault;
     }
+    _style = ZJAlertViewStyleCustom;
     _alertView = customView;
+    [self.maskView addSubview:_alertView];
 }
 
 - (void)setTitle:(NSString *)title {
