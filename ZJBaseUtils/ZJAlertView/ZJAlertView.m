@@ -209,6 +209,13 @@
     _style = style;
 }
 
+- (void)setCustomView:(UIView *)customView {
+    if (_alertView && _alertView.superview) {
+        [_alertView removeFromSuperview];
+    }
+    _alertView = customView;
+}
+
 - (void)setTitle:(NSString *)title {
     _title = title;
     if (title) {
@@ -353,6 +360,11 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
+    if (self.style == ZJAlertViewStyleCustom) {
+        self.alertView.center = self.center;
+        return;
+    }
     CGFloat bottom = 0;
     
     if (_titleImgView) {

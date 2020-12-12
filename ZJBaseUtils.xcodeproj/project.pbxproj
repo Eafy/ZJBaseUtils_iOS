@@ -392,9 +392,9 @@
 		0C2587E9258234EA00985486 /* ZJAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				0C2587EC258234EA00985486 /* ZJAlertAction.h */,
 				0C2587EA258234EA00985486 /* ZJAlertAction.m */,
 				0C2587EB258234EA00985486 /* ZJAlertView.h */,
-				0C2587EC258234EA00985486 /* ZJAlertAction.h */,
 				0C2587ED258234EA00985486 /* ZJAlertView.m */,
 			);
 			path = ZJAlertView;

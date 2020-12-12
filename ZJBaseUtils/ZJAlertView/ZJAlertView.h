@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, ZJAlertViewStyle) {
     ZJAlertViewStyleDefault = 0,    //普通样式
-    ZJAlertViewStyleTextField       //输入框样式
+    ZJAlertViewStyleTextField,       //输入框样式
+    
+    ZJAlertViewStyleCustom          //自定义样式，即使用自定义的View进行显示
 };
 
 typedef NS_ENUM(NSInteger, ZJAlertViewAnimationStyle) {
@@ -27,6 +29,8 @@ typedef NS_ENUM(NSInteger, ZJAlertViewAnimationStyle) {
 @property (nonatomic,assign) ZJAlertViewStyle style;
 /// 动画样式
 @property (nonatomic,assign) ZJAlertViewAnimationStyle animationStyle;
+/// 自定义视图
+@property (nonatomic,strong) UIView *customView;
 
 /// 标题
 @property (nonatomic,copy) NSString * _Nullable title;
