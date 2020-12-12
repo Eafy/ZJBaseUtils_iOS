@@ -266,6 +266,11 @@
     self.alertView.layer.cornerRadius = cornerRadius;
 }
 
+- (void)setMaskAlpha:(CGFloat)maskAlpha {
+    _maskAlpha = maskAlpha;
+    self.maskView.backgroundColor = ZJColorFromRrgWithAlpha(0x0, maskAlpha);
+}
+
 - (void)setTitleColor:(UIColor *)titleColor {
     _titleColor = titleColor;
     self.titleLB.textColor = titleColor;
@@ -390,6 +395,12 @@
             } else {
                 bottom += 40;
             }
+            if (size.width >= self.messageLB.jm_width - 1) {
+                self.messageLB.textAlignment = NSTextAlignmentLeft;
+            } else {
+                self.messageLB.textAlignment = NSTextAlignmentCenter;
+            }
+            
             self.messageLB.zj_top = bottom;
             self.messageLB.zj_height = size.height;
             bottom = self.messageLB.zj_bottom;
@@ -487,9 +498,9 @@
     self.alpha = 0;
     [ZJScreen.keyWindow addSubview:self];
     if (self.animationStyle == ZJAlertViewStyleAnimation2) {
-        [self showAnimation2WithLayer:self.maskView.layer durationTime:0.3];
+        [self showAnimation2WithLayer:self.alertView.layer durationTime:0.3];
     } else {
-        [self showAnimation1WithLayer:self.maskView.layer durationTime:0.3];
+        [self showAnimation1WithLayer:self.alertView.layer durationTime:0.3];
     }
     
     @weakify(self);
@@ -502,9 +513,9 @@
 - (void)dismiss
 {
     if (self.animationStyle == ZJAlertViewStyleAnimation2) {
-        [self hideAnimation2WithLayer:self.maskView.layer durationTime:0.25];
+        [self hideAnimation2WithLayer:self.alertView.layer durationTime:0.25];
     } else {
-        [self hideAnimation1WithLayer:self.maskView.layer durationTime:0.25];
+        [self hideAnimation1WithLayer:self.alertView.layer durationTime:0.25];
     }
     
     @weakify(self);

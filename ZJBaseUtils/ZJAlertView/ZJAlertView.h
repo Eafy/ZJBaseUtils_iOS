@@ -41,6 +41,8 @@ typedef NS_ENUM(NSInteger, ZJAlertViewAnimationStyle) {
 
 /// 圆角，默认8.0
 @property (nonatomic,assign) CGFloat cornerRadius;
+/// 背景遮罩透明度，默认透明
+@property (nonatomic,assign) CGFloat maskAlpha;
 /// 标题颜色：0x181E28
 @property (nonatomic,strong) UIColor *titleColor;
 /// 标题字体：常规16
