@@ -65,6 +65,10 @@ static NSString *_defaultBundleImagePath = nil;
 
 + (nullable UIImage *)imageNamed:(NSString * _Nullable)imageName
 {
+    if (!imageName) return nil;
+    UIImage *img = [UIImage imageNamed:imageName];
+    if (img) return img;
+    
     NSString *filePath = [self imageNamePath:imageName];
     if (filePath) {
         return [[UIImage alloc] initWithContentsOfFile:filePath];

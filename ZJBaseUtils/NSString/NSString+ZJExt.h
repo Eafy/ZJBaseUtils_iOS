@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param alignment 字符对齐方式
 - (NSMutableAttributedString *)zj_stringWithColor:(UIColor *)color1 specialColor:(UIColor * _Nullable)color2 specialStrings:(NSArray * _Nullable)specialStrings lineSpacing:(CGFloat)lineSpace font:(UIFont *)font alignment:(NSTextAlignment)alignment;
 
-/// 给文字设置字体和颜色藐视
+/// 给文字设置字体和颜色描述
 /// @param color 颜色
 /// @param font 字体
 - (NSMutableAttributedString *)zj_stringWithColor:(UIColor *)color font:(UIFont *)font;

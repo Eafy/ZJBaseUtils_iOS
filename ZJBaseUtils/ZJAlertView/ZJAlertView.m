@@ -74,6 +74,7 @@
 {
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         super.backgroundColor = [UIColor clearColor];
+        _cornerRadius = 8;
         
         [self addSubview:self.maskView];
     }
@@ -111,7 +112,7 @@
         CGFloat width = 280.0/375*ZJScreenWidth();
         _alertView = [[UIView alloc] initWithFrame:CGRectMake((ZJScreenWidth()-width)/2, 0, width, 0)];
         _alertView.backgroundColor = [UIColor whiteColor];
-        _alertView.layer.cornerRadius = 8;
+        _alertView.layer.cornerRadius = self.cornerRadius;
         _alertView.layer.masksToBounds = YES;
         [self.maskView addSubview:_alertView];
     }
@@ -235,8 +236,9 @@
     _message = message;
     if (message) {
         self.messageLB.text = self.message;
-        if (!self.messageLB.superview)
+        if (!self.messageLB.superview) {
             [self.alertView addSubview:self.messageLB];
+        }
     } else if (_messageLB) {
         [self.messageLB removeFromSuperview];
         _messageLB = nil;
@@ -439,17 +441,17 @@
             ZJAlertAction *btn2 = [self.btnArray objectAtIndex:1];
             btn2.frame = CGRectMake(self.alertView.zj_width/2-0.25, bottom, self.alertView.zj_width/2-0.5, 44);
             
-            bottom += 44;
+            bottom = btn1.zj_bottom;
             break;
         } else {
             bottom += 16;
             UIView *line1 = [self.lineViewArray objectAtIndex:i];
             line1.frame = CGRectMake(0, bottom, self.alertView.zj_width, 0.5);
-            bottom += 0.5;
+            bottom = line1.zj_bottom;
                 
             ZJAlertAction *btn = [self.btnArray objectAtIndex:i];
             btn.frame = CGRectMake(0, bottom, self.alertView.zj_width, 44);
-            bottom += 44;
+            bottom = btn.zj_bottom;
         }
     }
     

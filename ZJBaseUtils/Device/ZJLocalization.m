@@ -1,12 +1,12 @@
 //
-//  ZJLocalizationTool.h
+//  ZJLocalization.h
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/8/18.
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJLocalizationTool.h"
+#import "ZJLocalization.h"
 
 NSString *const kLocalizationLanguageEn = @"en";     //英文
 NSString *const kLocalizationLanguageZh_Hans = @"zh-Hans";     //简体中文
@@ -18,14 +18,14 @@ NSString *const kLocalizationLanguageEs = @"es";     //西班牙文
 NSString *const kLocalizationLanguage = @"kLocalizationLanguage";
 NSString *const kLocalizationLanguageNotiChanged = @"kLocalizationLanguageChanged";    //语言变更通知
 
-@interface ZJLocalizationTool ()
+@interface ZJLocalization ()
 
 @property (nonatomic,strong) NSBundle *bundle;
 @property (nonatomic,copy) NSString *currentLanguage;
 
 @end
 
-@implementation ZJLocalizationTool
+@implementation ZJLocalization
 singleton_m();
 
 - (void)initData {
@@ -80,7 +80,7 @@ singleton_m();
 @implementation NSString (ZJLocalization)
 
 - (NSString *)localized {
-    return [ZJLocalizationTool.shared valueWithKey:self];
+    return [ZJLocalization.shared valueWithKey:self];
 }
 
 @end

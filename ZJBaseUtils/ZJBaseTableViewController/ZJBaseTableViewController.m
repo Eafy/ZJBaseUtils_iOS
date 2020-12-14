@@ -11,7 +11,7 @@
 #import "ZJScreen.h"
 #import "ZJSystem.h"
 #import "UIView+ZJFrame.h"
-#import "ZJLocalizationTool.h"
+#import "ZJLocalization.h"
 #import "NSString+ZJExt.h"
 #import "ZJBaseTVConfig.h"
 #import "ZJBaseTableView.h"

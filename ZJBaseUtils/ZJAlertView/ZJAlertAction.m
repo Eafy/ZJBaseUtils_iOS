@@ -8,26 +8,10 @@
 
 #import "ZJAlertAction.h"
 #import "UIColor+ZJExt.h"
-#import "UIView+ZJExt.h"
 
 @implementation ZJAlertAction
 
 #pragma mark -
-
-- (void)setStyle:(UIAlertActionStyle)style
-{
-    _style = style;
-    if (style == UIAlertActionStyleDefault) {
-        self.titleColor = ZJColorFromRGB(0x3D7DFF);
-        self.titleFont = [UIFont boldSystemFontOfSize:16];
-    } else if (style == UIAlertActionStyleCancel) {
-        self.titleColor = ZJColorFromRGB(0x5A6482);
-        self.titleFont = [UIFont systemFontOfSize:16];
-    } else {
-        self.titleColor = ZJColorFromRGB(0xF45C5C);
-        self.titleFont = [UIFont systemFontOfSize:16];
-    }
-}
 
 - (void)setTitle:(NSString *)title
 {
@@ -58,6 +42,8 @@
     btn.title = title;
     btn.style = style;
     btn.handler = handler;
+    btn.titleColor = ZJColorFromRGB(0x3D7DFF);
+    btn.titleFont = [UIFont boldSystemFontOfSize:16];
     return btn;
 }
 
@@ -66,11 +52,17 @@
 }
 
 + (instancetype)actionCancelWithTitle:(nullable NSString *)title handler:(void (^ __nullable)(ZJAlertAction *action))handler {
-    return [ZJAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:handler];
+    ZJAlertAction *btn = [ZJAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:handler];
+    btn.titleColor = ZJColorFromRGB(0x5A6482);
+    btn.titleFont = [UIFont systemFontOfSize:16];
+    return btn;
 }
 
 + (instancetype)actionDestructiveWithTitle:(nullable NSString *)title handler:(void (^ __nullable)(ZJAlertAction *action))handler {
-    return [ZJAlertAction actionWithTitle:title style:UIAlertActionStyleDestructive handler:handler];
+    ZJAlertAction *btn = [ZJAlertAction actionWithTitle:title style:UIAlertActionStyleDestructive handler:handler];
+    btn.titleColor = ZJColorFromRGB(0xF45C5C);
+    btn.titleFont = [UIFont systemFontOfSize:16];
+    return btn;
 }
 
 @end

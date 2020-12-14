@@ -13,7 +13,7 @@
 #import "ZJScreen.h"
 #import "UIView+ZJFrame.h"
 #import "NSString+ZJExt.h"
-#import "ZJLocalizationTool.h"
+#import "ZJLocalization.h"
 #import "UIImageView+ZJExt.h"
 #import "UIView+ZJExt.h"
 

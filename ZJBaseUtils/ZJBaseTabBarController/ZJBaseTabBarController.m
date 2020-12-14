@@ -9,7 +9,7 @@
 #import "ZJBaseTabBarController.h"
 #import "ZJBaseTabBar.h"
 #import "ZJBaseTabBarButton.h"
-#import "ZJLocalizationTool.h"
+#import "ZJLocalization.h"
 
 @interface ZJBaseTabBarController () <ZJBaseTabBarDelegate>
 

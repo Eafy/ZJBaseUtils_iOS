@@ -1,5 +1,5 @@
 //
-//  ZJLocalizationTool.h
+//  ZJLocalization.h
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/8/18.
@@ -20,7 +20,7 @@ extern NSString *const kLocalizationLanguageEs;     //西班牙文
 
 extern NSString *const kLocalizationLanguageNotiChanged;    //语言变更通知
 
-@interface ZJLocalizationTool : NSObject
+@interface ZJLocalization : NSObject
 singleton_h();
 
 /// 设置本地语言包

@@ -9,7 +9,7 @@
 #import "ZJSettingLabelItem.h"
 #import "ZJSettingTableViewCellExt.h"
 #import "UIColor+ZJExt.h"
-#import "ZJLocalizationTool.h"
+#import "ZJLocalization.h"
 #import "UIView+ZJFrame.h"
 
 @implementation ZJSettingLabelItem
