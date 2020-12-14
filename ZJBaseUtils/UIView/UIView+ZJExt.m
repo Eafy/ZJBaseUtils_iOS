@@ -134,7 +134,7 @@
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.bounds;
     maskLayer.path = bezierPath.CGPath;
-//    self.layer.mask = maskLayer;
+    self.layer.mask = maskLayer;
     
     return maskLayer;
 }

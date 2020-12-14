@@ -373,8 +373,6 @@
     CGFloat bottom = 0;
     
     if (_titleImgView) {
-        //        CGSize size = self.titleImgView.image.size;
-        //        CGFloat height = size.height > 64 ? 64 : size.height;
         self.titleImgView.zj_top = _titleLB ? 32 : 40;
         self.titleImgView.zj_size = _titleLB ? CGSizeMake(50, 50) : CGSizeMake(64, 64);
         bottom = self.titleImgView.zj_bottom;

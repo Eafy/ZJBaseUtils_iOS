@@ -23,8 +23,6 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
     ZJSettingItemTypeStepper,       //步进器
     ZJSettingItemTypeButton,       //图片/按钮类型
     ZJSettingItemTypeCustomView,    //自定义类型
-    
-//    ZJSettingItemTypeRadio = ZJSettingItemTypeArrow,         //单选/复选类型
 };
 
 @class ZJSettingTableViewCell;
