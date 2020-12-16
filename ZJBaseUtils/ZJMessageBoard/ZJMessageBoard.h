@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel *titleLB;
 /// 默认(18, 16, 0, 16)
 @property (nonatomic,assign) UIEdgeInsets titleEdgeInsets;
+/// 是否自动调整宽高，默认NO
+@property (nonatomic,assign) BOOL isAutoFrame;
 
 /// 留言内容输入栏
 @property (nonatomic,strong) ZJTextView *msgTextView;
@@ -27,6 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否隐藏计数统计
 @property (nonatomic,assign) BOOL isHideCount;
+/// 统计字数正常颜色，默认：0x8690A9
+@property (nonatomic,strong) UIColor *countColor;
+/// 统计字数特殊颜色，默认：0xF45C5C
+@property (nonatomic,strong) UIColor *countSpecialColor;
+/// 统计字数正常字体，常规14
+@property (nonatomic,strong) UIFont *countFont;
+/// 是否最大值才警告，默认YES
+@property (nonatomic,assign) BOOL isCountMaxWarning;
 
 @end
 

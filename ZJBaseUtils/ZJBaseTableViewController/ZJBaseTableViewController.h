@@ -34,14 +34,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIFont *barTitleFont;
 
 /*导航栏按钮*/
-/// 右侧按钮
+/// 导航栏右键按钮
 @property (nonatomic,strong) UIButton * _Nullable navRightBtn;
-/// 左侧按钮
+/// 导航栏左键按钮
 @property (nonatomic,strong) UIButton * _Nullable navLeftBtn;
+/// 页面退出返回给上层控制器的数据
+@property (nonatomic,strong) id _Nullable returnBeforeData;
 /// 返回之前需要执行的Block
-@property (nonatomic,copy) void(^ _Nullable returnBeforeBlock)(void);
-/// 返回之后需要执行的Block(模态有效)
-@property (nonatomic,copy) void(^ _Nullable returnAfterBlock)(void);
+@property (nonatomic,copy) void (^ _Nullable returnBeforeOption)(id _Nullable data);
+/// 返回之后需要执行的Block
+@property (nonatomic,copy) void (^ _Nullable returnAfterOption)(void);
 /// 右键响应
 - (void)navRightBtnAction;
 /// 左键响应

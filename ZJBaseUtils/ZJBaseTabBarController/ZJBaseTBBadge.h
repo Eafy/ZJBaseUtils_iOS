@@ -33,9 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// badge动画 ，默认：无动画
 @property (nonatomic, assign) ZJBTBConfigBadgeAnimType animType;
-/// badge字体验证，默认：黑色
+/// badge字体验证，默认：白色
 @property (nonatomic, strong) UIColor *badgeTextColor;
-/// badge背景颜色，默认： #FF4040
+/// badge背景颜色，默认： 0xFF4040
 @property (nonatomic, strong) UIColor *badgeBackgroundColor;
 /// badge大小，仅layout后才生效
 @property (nonatomic, assign) CGSize badgeSize;

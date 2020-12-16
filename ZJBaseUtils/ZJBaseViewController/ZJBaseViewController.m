@@ -11,7 +11,7 @@
 #import "ZJSystem.h"
 #import "UIView+ZJFrame.h"
 
-@interface ZJBaseViewController ()  <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
+@interface ZJBaseViewController () <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
  /// 是左侧边栏右滑返回
 @property (nonatomic,assign) BOOL isLeftSideslipBack;
@@ -85,7 +85,7 @@
     _navRightBtn = nil;
     _navLeftBtn = nil;
     _returnBeforeOption = nil;
-    _returnAfterOption = nil;
+    _returnBeforeData = nil;
     
     _isLeftSideslipBack = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -350,8 +350,8 @@
 - (void)navLeftBtnAction
 {
     [self.view endEditing:YES];
-    if (_returnAfterOption) {
-        self.returnAfterOption();
+    if (_returnBeforeOption) {
+        self.returnBeforeOption(self.returnBeforeData);
     }
     [self releaseCtlData];
     

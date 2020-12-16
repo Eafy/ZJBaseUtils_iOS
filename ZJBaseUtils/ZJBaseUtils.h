@@ -18,6 +18,7 @@
 #import "NSString+ZJMD5.h"
 #import "NSString+ZJJSON.h"
 #import "NSString+ZJIMGExt.h"
+#import "NSMutableAttributedString+ZJExt.h"
 #import "NSData+ZJExt.h"
 #import "NSData+ZJRSA.h"
 #import "NSData+ZJAESDES.h"
@@ -57,6 +58,8 @@
 #import "ZJAlertView.h"
 #import "ZJSheetView.h"
 #import "ZJMessageBoard.h"
+#import "ZJRedDotView.h"
+#import "ZJStepsView.h"
 
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"

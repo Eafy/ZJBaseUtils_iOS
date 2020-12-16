@@ -24,13 +24,13 @@
 - (void)zj_dottedLineWithStartPoint:(CGPoint)sPoint endPoint:(CGPoint)ePoint color:(UIColor *_Nonnull )color size:(CGSize)size space:(CGFloat)space
 {
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    [shapeLayer setBounds:self.bounds];
-    [shapeLayer setPosition:self.center];
+    [shapeLayer setBounds:CGRectMake(sPoint.x, sPoint.x, ePoint.x-sPoint.x, ePoint.y-sPoint.y)];
+    [shapeLayer setPosition:CGPointMake((ePoint.x-sPoint.x)/2, (ePoint.y-sPoint.y)/2)];
     [shapeLayer setFillColor:[[UIColor clearColor] CGColor]];
     [shapeLayer setStrokeColor:[color CGColor]];
     [shapeLayer setLineWidth:size.height];
     [shapeLayer setLineJoin:kCALineJoinRound];
-    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:size.width],[NSNumber numberWithFloat:space],nil]];
+    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:size.width], [NSNumber numberWithFloat:space],nil]];
 
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, sPoint.x, sPoint.y);

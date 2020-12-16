@@ -10,6 +10,7 @@
 #import "CAAnimation+ZJExt.h"
 #import "UIView+ZJFrame.h"
 #import "UIColor+ZJExt.h"
+#import "NSString+ZJExt.h"
 
 @implementation ZJBaseTBBadge
 
@@ -26,8 +27,8 @@
 - (void)initDefaultData
 {
     self.backgroundColor = [UIColor clearColor];
-    _badgeTextColor = [UIColor blackColor];
-    _badgeBackgroundColor = [UIColor zj_colorWithHexString:@"#FF4040"];
+    self.badgeTextColor = [UIColor whiteColor];
+    self.badgeBackgroundColor = ZJColorFromRGB(0xFF4040);
 }
 
 - (UILabel *)badgeLB
@@ -35,38 +36,39 @@
     if (!_badgeLB) {
         _badgeLB = [[UILabel alloc] initWithFrame:self.bounds];
         _badgeLB.textColor = self.badgeTextColor;
-        _badgeLB.font = [UIFont systemFontOfSize:11.f];
+        _badgeLB.font = [UIFont systemFontOfSize:12.f];
         _badgeLB.textAlignment = NSTextAlignmentCenter;
-        _badgeLB.layer.cornerRadius = 8.f;
-        _badgeLB.layer.masksToBounds = YES;
     }
     return _badgeLB;
 }
 
-#pragma mark -
-
-- (void)setType:(ZJBTBBadgeStyleType)type
+- (void)layoutSubviews
 {
-    _type = type;
-    if (type == ZJBTBBadgeStyleTypePoint) {
-        self.badgeLB.zj_size = CGSizeMake(10, 10);
-        self.badgeLB.layer.cornerRadius = 5.f;
+    [super layoutSubviews];
+    
+    self.badgeLB.layer.cornerRadius = self.badgeLB.zj_height/2;
+    self.badgeLB.layer.masksToBounds = YES;
+    if (self.type == ZJBTBBadgeStyleTypePoint) {
+        self.badgeLB.zj_size = CGSizeMake(6, 6);
         self.badgeLB.zj_left = 0;
         self.badgeLB.zj_top = self.zj_height * 0.5 - self.badgeLB.zj_height * 0.5;
-    } else if (type == ZJBTBBadgeStyleTypeNew) {
+    } else if (self.type == ZJBTBBadgeStyleTypeNew) {
         self.badgeLB.zj_size = CGSizeMake(self.zj_width, self.zj_height);
-    } else if (type == ZJBTBBadgeStyleTypeNumber) {
+    } else if (self.type == ZJBTBBadgeStyleTypeNumber) {
         CGSize size = CGSizeZero;
-        CGFloat radius = 8.f;
         if (self.badgeLB.text.length <= 1) {
             size = CGSizeMake(self.zj_height, self.zj_height);
-            radius = self.zj_height * 0.5;
         } else if (self.badgeLB.text.length > 1) {
-            size = self.bounds.size;
-            radius = 8.f;
+            size = [self.badgeLB.text zj_sizeWithFont:self.badgeLB.font maxSize:CGSizeZero];
+            if (size.width > self.zj_width) {
+                size.width = self.zj_width;
+            }
+            if (size.width + self.badgeLB.layer.cornerRadius <= self.zj_width) {
+                size.width += self.badgeLB.layer.cornerRadius;
+            }
         }
-        self.badgeLB.zj_size = size;
-        self.badgeLB.layer.cornerRadius = radius;
+        self.badgeLB.zj_height = self.zj_height;
+        self.badgeLB.zj_width = size.width;
     }
 
     if (self.animType == ZJBTBConfigBadgeAnimTypeShake) {   //抖动
@@ -77,6 +79,8 @@
         [self.badgeLB.layer addAnimation:[CAAnimation zj_scaleAnimation:1.3f] forKey:@"scaleAnimation"];
     }
 }
+
+#pragma mark -
 
 - (CGSize)sizeWithAttribute:(NSString *)text {
     return [text sizeWithAttributes:@{NSFontAttributeName:self.badgeLB.font}];

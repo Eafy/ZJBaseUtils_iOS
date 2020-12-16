@@ -101,7 +101,8 @@
     _nextViewController = nil;
     _navRightBtn = nil;
     _navLeftBtn = nil;
-    _returnBeforeBlock = nil;
+    _returnBeforeOption = nil;
+    _returnBeforeData = nil;
     
     _isLeftSideslipBack = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -362,14 +363,14 @@
 - (void)navLeftBtnAction
 {
     [self.view endEditing:YES];
-    if (_returnAfterBlock) {
-        self.returnAfterBlock();
+    if (_returnBeforeOption) {
+        self.returnBeforeOption(self.returnBeforeData);
     }
     [self releaseCtlData];
     
     if (!self.isLeftSideslipBack) {
         if (self.navigationController.viewControllers.count == 1) {
-            [self dismissViewControllerAnimated:YES completion:self.returnAfterBlock];
+            [self dismissViewControllerAnimated:YES completion:self.returnAfterOption];
         } else {
             [self.navigationController popViewControllerAnimated:YES];
         }

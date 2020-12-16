@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
 @property (nonatomic, strong) UIColor *norTitleColor;
 /// 标题的选中颜色 ，默认： grayColor
 @property (nonatomic, strong) UIColor *selTitleColor;
-/// 图片的size ，默认 ：(26*26)
+/// 图片的size ，默认 ：(24*24)
 @property (nonatomic, assign) CGSize imageSize;
 /// 标题未选中文字大小 ，默认：12.f，常规
 @property (nonatomic, strong) UIFont *nolTitleFont;

@@ -84,7 +84,8 @@
     }
     
     //隐藏顶部线条
-    if (self.config.topLineConfig.type == ZJBTBConfigTopLineTypeShadow) {
+    if (self.config.topLineConfig.type == ZJBTBConfigTopLineTypeShadow ||
+        self.config.topLineConfig.type == ZJBTBConfigTopLineTypeClear) {
         if (@available(iOS 13.0, *)) {
             [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([obj isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
@@ -139,7 +140,6 @@
 - (void)setConfig:(ZJBaseTabBarConfig *)config
 {
     _config = config;
-    [self handleTopLine];
     
     for (ZJBaseTabBarButton *btn in self.tabBarBtnArray) {
         btn.config = config;
@@ -148,6 +148,8 @@
     if (!_backgroundView) {
         self.backgroundColor = self.config.backgroundColor;
     }
+    
+    [self handleTopLine];
 }
 
 - (void)setBackgroundView:(UIView *)backgroundView

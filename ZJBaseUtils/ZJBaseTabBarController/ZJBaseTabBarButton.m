@@ -31,11 +31,17 @@
         self.titleLB.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.titleLB];
         
-        self.badge = [[ZJBaseTBBadge alloc] init];
-        self.badge.hidden = YES;
         [self addSubview:self.badge];
     }
     return self;
+}
+
+- (ZJBaseTBBadge *)badge {
+    if (!_badge) {
+        _badge = [[ZJBaseTBBadge alloc] init];
+        _badge.hidden = YES;
+    }
+    return _badge;
 }
 
 - (void)layoutSubviews
@@ -44,10 +50,10 @@
     
     [self setConfig:self.config];
     
-    CGFloat badgeX = CGRectGetMaxX(self.imageView.frame) - 6;
-    CGFloat badgeY = CGRectGetMinY(self.imageView.frame) - 2;
+    CGFloat badgeX = CGRectGetMaxX(self.imageView.frame) + 2;
+    CGFloat badgeY = 0;
     CGFloat badgeH = 16;
-    CGFloat badgeW = 24;
+    CGFloat badgeW = 28;
     self.badge.frame = CGRectMake(badgeX, badgeY, badgeW, badgeH);
     
     if (self.isCenter) {
