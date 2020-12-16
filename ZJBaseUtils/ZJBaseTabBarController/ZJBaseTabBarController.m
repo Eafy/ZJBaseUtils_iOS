@@ -411,6 +411,7 @@
     if (!_customTabBar) {
         _customTabBar = [[ZJBaseTabBar alloc] init];
         _customTabBar.delegate = self;
+        _customTabBar.config = self.config;
     }
     return _customTabBar;
 }
