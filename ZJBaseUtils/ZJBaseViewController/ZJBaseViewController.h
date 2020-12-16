@@ -34,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) void (^ _Nullable returnBeforeOption)(id _Nullable data);
 /// 返回之后需要执行的Block
 @property (nonatomic,copy) void (^ _Nullable returnAfterOption)(void);
+/// 右键响应
+- (void)navRightBtnAction;
+/// 左键响应
+- (void)navLeftBtnAction;
 
 //自定义导航栏
 @property (nonatomic,assign) BOOL isShowNavBarView;     //是否显示自定义导航栏视图，当isHideNavBar为YES时生效
