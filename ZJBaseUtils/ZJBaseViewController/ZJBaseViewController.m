@@ -358,8 +358,13 @@
     if (!self.isLeftSideslipBack) {
         if (self.navigationController.viewControllers.count == 1) {
             [self dismissViewControllerAnimated:YES completion:self.returnAfterOption];
+            _returnAfterOption = nil;
         } else {
             [self.navigationController popViewControllerAnimated:YES];
+            if (_returnAfterOption) {
+                self.returnAfterOption();
+                _returnAfterOption = nil;
+            }
         }
     }
     self.isLeftSideslipBack = NO;
