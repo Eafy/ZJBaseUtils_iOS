@@ -26,9 +26,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param filePath 保存路径
 - (BOOL)zj_saveWithPath:(NSString *)filePath;
 
-/// 改变图片颜色
+/// 改变图片颜色（非透明的都会改变）
 /// @param color 改变的颜色
 - (UIImage *)zj_imageWithColor:(UIColor *)color;
+
+/// 改变图片颜色
+/// @param minR 最小范围R值
+/// @param maxR 最大范围R值
+/// @param minG 最小范围G值
+/// @param maxG 最大范围G值
+/// @param minB 最小范围B值
+/// @param maxB 最大范围B值
+- (UIImage *)zj_imageWithMinR:(CGFloat)minR maxR:(CGFloat)maxR minG:(CGFloat)minG maxG:(CGFloat)maxG minB:(CGFloat)minB maxB:(CGFloat)maxB;
 
 /// 缩放图片
 /// @param size 要缩放的尺寸
@@ -57,6 +66,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *)zj_rotatedByDegrees:(CGFloat)degrees;
 
 #pragma mark - StaticAPI
+
+/// 根据CIImage缩放获取图片
+/// @param image CIImage
+/// @param size 缩放大小
++ (UIImage *)zj_scaleWithCIImage:(CIImage *)image size:(CGSize)size;
 
 /// 根据颜色返回指定大小的图片
 /// @param color 图片颜色
