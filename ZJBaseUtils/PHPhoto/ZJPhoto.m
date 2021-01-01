@@ -163,18 +163,21 @@ singleton_m();
 {
     __block NSString *localIdentifier = nil;
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        PHAssetCollection *assetCollection = [self fetchAssetColletion:album];
-        PHAssetCollectionChangeRequest *assetCollectionChangeRequest = nil;
-        if (assetCollection) {
-            assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
-        } else {
-            assetCollectionChangeRequest = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:album];
-        }
         PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
         localIdentifier = assetChangeRequest.placeholderForCreatedAsset.localIdentifier;
-        PHObjectPlaceholder *placeholder = [assetChangeRequest placeholderForCreatedAsset];
-        if (placeholder != nil ) {
-            [assetCollectionChangeRequest addAssets:@[placeholder]];
+        
+        if (album && ![album isEqualToString:@""]) {
+            PHAssetCollection *assetCollection = [self fetchAssetColletion:album];
+            PHAssetCollectionChangeRequest *assetCollectionChangeRequest = nil;
+            if (assetCollection) {
+                assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
+            } else {
+                assetCollectionChangeRequest = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:album];
+            }
+            PHObjectPlaceholder *placeholder = [assetChangeRequest placeholderForCreatedAsset];
+            if (placeholder != nil) {
+                [assetCollectionChangeRequest addAssets:@[placeholder]];
+            }
         }
     } completionHandler:^(BOOL success, NSError * _Nullable error) {
         if (handler) {
@@ -212,18 +215,21 @@ singleton_m();
 {
     __block NSString *localIdentifier = nil;
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        PHAssetCollection *assetCollection = [self fetchAssetColletion:album];
-        PHAssetCollectionChangeRequest *assetCollectionChangeRequest = nil;
-        if (assetCollection) {
-            assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
-        } else {
-            assetCollectionChangeRequest = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:album];
-        }
         PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL URLWithString:filePath]];
         localIdentifier = assetChangeRequest.placeholderForCreatedAsset.localIdentifier;
-        PHObjectPlaceholder *placeholder = [assetChangeRequest placeholderForCreatedAsset];
-        if (placeholder != nil ) {
-            [assetCollectionChangeRequest addAssets:@[placeholder]];
+        
+        if (album && ![album isEqualToString:@""]) {
+            PHAssetCollection *assetCollection = [self fetchAssetColletion:album];
+            PHAssetCollectionChangeRequest *assetCollectionChangeRequest = nil;
+            if (assetCollection) {
+                assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
+            } else {
+                assetCollectionChangeRequest = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:album];
+            }
+            PHObjectPlaceholder *placeholder = [assetChangeRequest placeholderForCreatedAsset];
+            if (placeholder != nil ) {
+                [assetCollectionChangeRequest addAssets:@[placeholder]];
+            }
         }
     } completionHandler:^(BOOL success, NSError * _Nullable error) {
         if (handler) {
