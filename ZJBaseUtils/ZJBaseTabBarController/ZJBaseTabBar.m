@@ -191,10 +191,18 @@
 - (void)clickedBtnTapAction:(UIButton *)btn
 {
     NSInteger selectedIndex = self.selectedIndex;
-    [self handleSelectedIndex:btn.tag];
     
-    if ([self.delegate respondsToSelector:@selector(didTabBarSelectedFrom:to:)]) {
-        [self.delegate didTabBarSelectedFrom:selectedIndex to:btn.tag];
+    BOOL ret = YES;
+    if ([self.delegate respondsToSelector:@selector(willTabBarSelectedFrom:to:)]) {
+        ret = [self.delegate willTabBarSelectedFrom:selectedIndex to:btn.tag];
+    }
+    
+    if (ret) {
+        [self handleSelectedIndex:btn.tag];
+        
+        if ([self.delegate respondsToSelector:@selector(didTabBarSelectedFrom:to:)]) {
+            [self.delegate didTabBarSelectedFrom:selectedIndex to:btn.tag];
+        }        
     }
 }
 
