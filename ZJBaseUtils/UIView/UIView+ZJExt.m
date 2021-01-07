@@ -42,7 +42,7 @@
     [[self layer] addSublayer:shapeLayer];
 }
 
-- (void)zj_borderWithWidth:(CGFloat)width cornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)rectCorner length:(CGFloat)length space:(CGFloat)space strokeColor:(UIColor *)strokeColor
+- (CAShapeLayer *)zj_borderWithWidth:(CGFloat)width cornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)rectCorner length:(CGFloat)length space:(CGFloat)space strokeColor:(UIColor *)strokeColor
 {
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:rectCorner cornerRadii:cornerRadii];
     CAShapeLayer *borderLayer = [CAShapeLayer layer];
@@ -56,6 +56,7 @@
     }
     borderLayer.strokeColor = strokeColor.CGColor;
     [self.layer addSublayer:borderLayer];
+    return borderLayer;
 }
 
 - (void)zj_borderWithWidth:(CGFloat)width color:(UIColor *)color

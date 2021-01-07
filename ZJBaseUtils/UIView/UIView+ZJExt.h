@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 
 /// @param space 虚线的间距，0时为实线
 /// @param strokeColor 线的颜色
-- (void)zj_borderWithWidth:(CGFloat)width cornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)rectCorner length:(CGFloat)length space:(CGFloat)space strokeColor:(UIColor * _Nonnull)strokeColor;
+- (CAShapeLayer *)zj_borderWithWidth:(CGFloat)width cornerRadii:(CGSize)cornerRadii rectCorner:(UIRectCorner)rectCorner length:(CGFloat)length space:(CGFloat)space strokeColor:(UIColor * _Nonnull)strokeColor;
 
 /// 画实线边框（离屏）
 /// @param width 宽度
