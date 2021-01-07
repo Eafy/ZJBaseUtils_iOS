@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+ZJQR.h"
+#import "UIImage+ZJExt.h"
 
 @implementation UIImage (ZJQR)
 
@@ -22,8 +23,17 @@
     [filter setValue:data forKey:@"inputMessage"];
     // 5.生成二维码
     CIImage *outputImage = [filter outputImage];
+
+    return [UIImage zj_scaleWithCIImage:outputImage size:CGSizeMake(512, 512)];
+}
+
++ (UIImage *)imageWithQRCodeString:(NSString *)qrString color:(UIColor *)color
+{
+    UIImage *img = [self imageWithQRCodeString:qrString];
+    img = [img zj_imageWithMinR:254 maxR:255 minG:254 maxG:255 minB:254 maxB:255];
+    img = [img zj_imageWithColor:color];
     
-    return [UIImage imageWithCIImage:outputImage];;
+    return img;
 }
 
 @end

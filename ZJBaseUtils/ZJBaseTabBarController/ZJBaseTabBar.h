@@ -15,6 +15,12 @@ typedef void (^ZJBTBCustomBtnBlock) (UIButton * _Nonnull btn, NSInteger index);
 
 @protocol ZJBaseTabBarDelegate <NSObject>
 
+/// 将选中回调
+/// @param fromIndex 之前选中的Index
+/// @param toIndex 现在选中的Index
+/// @return YES：执行，NO：不执行选中
+- (BOOL)willTabBarSelectedFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex;
+
 /// 选中回调
 /// @param fromIndex 之前选中的Index
 /// @param toIndex 现在选中的Index

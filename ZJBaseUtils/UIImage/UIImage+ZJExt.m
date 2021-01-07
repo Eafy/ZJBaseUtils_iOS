@@ -125,20 +125,16 @@
     return newImage;
 }
 
+- (UIImage *)zj_imageWithMinR:(CGFloat)minR maxR:(CGFloat)maxR minG:(CGFloat)minG maxG:(CGFloat)maxG minB:(CGFloat)minB maxB:(CGFloat)maxB {
+    const CGFloat maskingColors[6] = {minR, maxR, minG, maxG, minB, maxB};
+    CGImageRef ref = CGImageCreateWithMaskingColors(self.CGImage, maskingColors);
+    return [UIImage imageWithCGImage:ref];
+}
+
 - (UIImage *)zj_scaleToSize:(CGSize)size
 {
     if (!self) return nil;
-    // 创建一个bitmap的context
-    // 并把它设置成为当前正在使用的context
-    UIGraphicsBeginImageContext(size);
-    // 绘制改变大小的图片
-    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    // 从当前context中创建一个改变大小后的图片
-    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    // 使当前的context出堆栈
-    UIGraphicsEndImageContext();
-    // 返回新的改变大小后的图片
-    return scaledImage;
+    return [UIImage zj_scaleWithCIImage:self.CIImage size:size];
 }
 
 - (UIImage*)zj_subImageWithRect:(CGRect)mCGRect
@@ -339,6 +335,28 @@
 }
 
 #pragma mark - StaticAPI
+
++ (UIImage *)zj_scaleWithCIImage:(CIImage *)image size:(CGSize)size
+{
+    if (!image) return nil;
+    CGRect extent = CGRectIntegral(image.extent);
+    CGFloat scale = MIN(size.width/CGRectGetWidth(extent), size.height/CGRectGetHeight(extent));
+
+    size_t width = CGRectGetWidth(extent) * scale;
+    size_t height = CGRectGetHeight(extent) * scale;
+    CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();
+    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, cs, (CGBitmapInfo)kCGImageAlphaNone);
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef bitmapImage = [context createCGImage:image fromRect:extent];
+    CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);
+    CGContextScaleCTM(bitmapRef, scale, scale);
+    CGContextDrawImage(bitmapRef, extent, bitmapImage);
+
+    CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
+    CGContextRelease(bitmapRef);
+    CGImageRelease(bitmapImage);
+    return [UIImage imageWithCGImage:scaledImage];
+}
 
 + (UIImage *)zj_imageWithColor:(UIColor *)color size:(CGSize)size
 {

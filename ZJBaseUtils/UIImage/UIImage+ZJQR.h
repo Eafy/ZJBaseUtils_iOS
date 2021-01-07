@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param qrString 二维码字符串
 + (UIImage *)imageWithQRCodeString:(NSString *)qrString;
 
++ (UIImage *)imageWithQRCodeString:(NSString *)qrString color:(UIColor *)color;
+
 @end
 
 NS_ASSUME_NONNULL_END

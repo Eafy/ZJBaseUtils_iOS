@@ -513,8 +513,24 @@
 
 #pragma mark - ZJBaseTabBarDelegate
 
+- (BOOL)willTabBarSelectedFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]) {
+        if (toIndex < self.viewControllers.count) {
+            UIViewController *vc = [self.viewControllers objectAtIndex:toIndex];
+            [self.delegate tabBarController:self shouldSelectViewController:vc];
+        }
+    }
+    return YES;
+}
+
 - (void)didTabBarSelectedFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex {
     self.selectedIndex = toIndex;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
+        if (toIndex < self.viewControllers.count) {
+            UIViewController *vc = [self.viewControllers objectAtIndex:toIndex];
+            [self.delegate tabBarController:self didSelectViewController:vc];
+        }
+    }
 }
 
 
