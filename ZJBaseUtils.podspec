@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.private_header_files = "ZJBaseUtils/**/ZJSAMKeychain.h","ZJBaseUtils/**/ZJNetRoute.hpp"
   
   s.resource_bundles = {
-    'ZJBaseUtils' => ['ZJBaseUtils/Resources/*.png']
+    'ZJBundleRes' => ['ZJBaseUtils/Resources/*.png']
   }
 
 end
