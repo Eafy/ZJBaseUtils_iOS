@@ -35,6 +35,8 @@
 @property (nonatomic,strong) NSMutableArray<ZJAlertAction *> *btnArray;
 @property (nonatomic,strong) NSMutableArray<UIView *> *lineViewArray;
 
+@property (nonatomic,copy) void (^ _Nullable dismissHandle)(void);
+
 @end
 
 @implementation ZJAlertView
@@ -528,12 +530,20 @@
     }];
 }
 
+- (void)showWithDismissHandle:(void (^ _Nullable)(void))dismissHandle {
+    _dismissHandle = dismissHandle;
+    [self show];
+}
+
 - (void)dismiss
 {
     if (self.animationStyle == ZJAlertViewStyleAnimation2) {
         [self hideAnimation2WithLayer:self.alertView.layer durationTime:0.25];
     } else {
         [self hideAnimation1WithLayer:self.alertView.layer durationTime:0.25];
+    }
+    if (_dismissHandle) {
+        self.dismissHandle();
     }
     
     @weakify(self);

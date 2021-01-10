@@ -101,6 +101,10 @@ typedef NS_ENUM(NSInteger, ZJAlertViewAnimationStyle) {
 /// 显示
 - (void)show;
 
+/// 显示
+/// @param dismissHandle 隐藏回调
+- (void)showWithDismissHandle:(void (^ _Nullable)(void))dismissHandle;
+
 /// 移除
 - (void)dismiss;
 
