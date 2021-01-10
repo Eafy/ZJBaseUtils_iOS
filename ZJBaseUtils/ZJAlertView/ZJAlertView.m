@@ -553,6 +553,10 @@
         [self resignFirstResponder];
     } completion:^(BOOL finished) {
         @strongify(self);
+        if (_customView) {
+            [_customView removeFromSuperview]
+            _customView = nil;
+        }
         [self removeFromSuperview];
         [self.btnArray removeAllObjects];
         [self.lineViewArray removeAllObjects];
