@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger, ZJAlertViewAnimationStyle) {
 @property (nonatomic,assign) ZJAlertViewAnimationStyle animationStyle;
 /// 自定义视图
 @property (nonatomic,strong) UIView *customView;
+/// 点击遮罩层隐藏，默认false
+@property (nonatomic,assign) BOOL isTapMaskHide;
 
 /// 标题
 @property (nonatomic,copy) NSString * _Nullable title;

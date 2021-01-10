@@ -491,6 +491,9 @@
     if (self.style == ZJAlertViewStyleTextField) {
         [self.inputTextField resignFirstResponder];
     }
+    if (self.isTapMaskHide) {
+        [self dismiss];
+    }
 }
 
 - (void)clickedInputTextAssistBtnAction:(UIButton *)btn
@@ -537,6 +540,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         @strongify(self);
         self.alpha = 0;
+        [self resignFirstResponder];
     } completion:^(BOOL finished) {
         @strongify(self);
         [self removeFromSuperview];
