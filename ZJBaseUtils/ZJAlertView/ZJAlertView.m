@@ -553,9 +553,9 @@
         [self resignFirstResponder];
     } completion:^(BOOL finished) {
         @strongify(self);
-        if (_customView) {
-            [_customView removeFromSuperview]
-            _customView = nil;
+        if (self->_customView) {
+            [self.customView removeFromSuperview];
+            self->_customView = nil;
         }
         [self removeFromSuperview];
         [self.btnArray removeAllObjects];
