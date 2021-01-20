@@ -169,24 +169,56 @@ extern CGFloat ZJSysVersion(void) {
 
 + (BOOL)canCameraPermission
 {
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:@"kZJBaseUtils_canCameraPermission"];
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    if (authStatus == AVAuthorizationStatusDenied || authStatus == AVAuthorizationStatusRestricted) {
-        return NO;
-    } else {
+    
+    if (!value && authStatus == AVAuthorizationStatusNotDetermined) {
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"kZJBaseUtils_canCameraPermission"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return  YES;
+    } else if (authStatus == AVAuthorizationStatusAuthorized) {
         return YES;
     }
+
+    return NO;
 }
 
 + (BOOL)canPhotoPermission
 {
-    PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
-    if (authStatus == PHAuthorizationStatusDenied || authStatus == PHAuthorizationStatusRestricted) {
-        return NO;
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:@"kZJBaseUtils_canPhotoPermission"];
+    PHAuthorizationStatus authStatus = PHAuthorizationStatusNotDetermined;
+    if (@available(iOS 14.0, *)) {
+        authStatus = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
     } else {
-        return YES;
+        authStatus = [PHPhotoLibrary authorizationStatus];
     }
     
+    if (!value && authStatus == PHAuthorizationStatusNotDetermined) {
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"kZJBaseUtils_canPhotoPermission"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return  YES;
+    } else if (authStatus == PHAuthorizationStatusAuthorized) {
+        return YES;
+    }
+
     return NO;
+}
+
++ (void)requestPhotoPermission:(void(^)(BOOL success))handler
+{
+    if (@available(iOS 14.0, *)) {
+        [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
+            if (handler) {
+                handler(status == PHAuthorizationStatusAuthorized);
+            }
+        }];
+    } else {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (handler) {
+                handler(status == PHAuthorizationStatusAuthorized);
+            }
+        }];
+    }
 }
 
 + (BOOL)canNotificationPermission
