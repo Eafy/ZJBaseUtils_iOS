@@ -82,10 +82,14 @@ extern CGFloat ZJSysVersion(void);
 /// 麦克风权限（若未申请则会申请）
 + (BOOL)canRecordPermission;
 
-/// 摄像机权限（若未申请则会申请）
+/// 判断摄像机权限（不申请）
 + (BOOL)canCameraPermission;
 
-/// 判断系统相册权限（不会申请）
+/// 请求摄像机权限
+/// @param handler 回调
++ (void)requestCameraPermission:(void(^)(BOOL success))handler;
+
+/// 判断系统相册权限（不申请）
 + (BOOL)canPhotoPermission;
 
 /// 申请相册权限

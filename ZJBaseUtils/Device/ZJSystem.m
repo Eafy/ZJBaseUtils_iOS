@@ -169,23 +169,31 @@ extern CGFloat ZJSysVersion(void) {
 
 + (BOOL)canCameraPermission
 {
-    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:@"kZJBaseUtils_canCameraPermission"];
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    
-    if (!value && authStatus == AVAuthorizationStatusNotDetermined) {
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"kZJBaseUtils_canCameraPermission"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        return  YES;
-    } else if (authStatus == AVAuthorizationStatusAuthorized) {
+    if (authStatus == AVAuthorizationStatusAuthorized) {
         return YES;
     }
 
     return NO;
 }
 
++ (void)requestCameraPermission:(void(^)(BOOL success))handler
+{
+    if ([self canCameraPermission]) {
+        if (handler) {
+            handler(YES);
+        }
+    } else {
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            if (handler) {
+                handler(granted);
+            }
+        }];
+    }
+}
+
 + (BOOL)canPhotoPermission
 {
-    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:@"kZJBaseUtils_canPhotoPermission"];
     PHAuthorizationStatus authStatus = PHAuthorizationStatusNotDetermined;
     if (@available(iOS 14.0, *)) {
         authStatus = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
@@ -193,15 +201,11 @@ extern CGFloat ZJSysVersion(void) {
         authStatus = [PHPhotoLibrary authorizationStatus];
     }
     
-    if (!value && authStatus == PHAuthorizationStatusNotDetermined) {
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"kZJBaseUtils_canPhotoPermission"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        return YES;
-    } else if (authStatus == PHAuthorizationStatusAuthorized) {
+    if (authStatus == PHAuthorizationStatusAuthorized) {
         return YES;
     } else if (@available(iOS 14.0, *)) {
         if (authStatus == PHAuthorizationStatusLimited) {
-            return  YES;
+            return YES;
         }
     }
 
@@ -210,7 +214,11 @@ extern CGFloat ZJSysVersion(void) {
 
 + (void)requestPhotoPermission:(void(^)(BOOL success))handler
 {
-    if (@available(iOS 14.0, *)) {
+    if ([self canPhotoPermission]) {
+        if (handler) {
+            handler(YES);
+        }
+    } else if (@available(iOS 14.0, *)) {
         [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
             if (handler) {
                 handler(status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusLimited);
