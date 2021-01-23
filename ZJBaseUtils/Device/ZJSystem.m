@@ -196,9 +196,13 @@ extern CGFloat ZJSysVersion(void) {
     if (!value && authStatus == PHAuthorizationStatusNotDetermined) {
         [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"kZJBaseUtils_canPhotoPermission"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        return  YES;
+        return YES;
     } else if (authStatus == PHAuthorizationStatusAuthorized) {
         return YES;
+    } else if (@available(iOS 14.0, *)) {
+        if (authStatus == PHAuthorizationStatusLimited) {
+            return  YES;
+        }
     }
 
     return NO;
@@ -209,7 +213,7 @@ extern CGFloat ZJSysVersion(void) {
     if (@available(iOS 14.0, *)) {
         [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
             if (handler) {
-                handler(status == PHAuthorizationStatusAuthorized);
+                handler(status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusLimited);
             }
         }];
     } else {
