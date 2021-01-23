@@ -134,7 +134,11 @@
 - (UIImage *)zj_scaleToSize:(CGSize)size
 {
     if (!self) return nil;
-    return [UIImage zj_scaleWithCIImage:self.CIImage size:size];
+    UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.mainScreen.scale);
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
 }
 
 - (UIImage*)zj_subImageWithRect:(CGRect)mCGRect
