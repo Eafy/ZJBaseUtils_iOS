@@ -32,9 +32,11 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 
 /// item类型(设置无效)
 @property (nonatomic,assign) ZJSettingItemType type;
-
 /// 标识（用户自定义标签Tag）
 @property (nonatomic,assign) NSInteger tag;
+/// 临时数据值（内部不使用）
+@property (nonatomic,assign) NSInteger tempValue;
+
 /// 图标
 @property (nonatomic,copy) NSString * _Nullable icon;
 /// 左边主标题

@@ -181,12 +181,16 @@ extern CGFloat ZJSysVersion(void) {
 {
     if ([self canCameraPermission]) {
         if (handler) {
-            handler(YES);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                handler(YES);
+            });
         }
     } else {
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             if (handler) {
-                handler(granted);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(granted);
+                });
             }
         }];
     }
@@ -216,18 +220,24 @@ extern CGFloat ZJSysVersion(void) {
 {
     if ([self canPhotoPermission]) {
         if (handler) {
-            handler(YES);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                handler(YES);
+            });
         }
     } else if (@available(iOS 14.0, *)) {
         [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
             if (handler) {
-                handler(status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusLimited);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusLimited);
+                });
             }
         }];
     } else {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             if (handler) {
-                handler(status == PHAuthorizationStatusAuthorized);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(status == PHAuthorizationStatusAuthorized);
+                });
             }
         }];
     }
@@ -265,6 +275,5 @@ extern CGFloat ZJSysVersion(void) {
         return YES;
     }
 }
-
 
 @end

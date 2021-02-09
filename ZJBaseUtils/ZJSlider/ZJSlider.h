@@ -8,36 +8,43 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, ZJSliderStyle) {
+    ZJSliderStyleSinglePoint,       //单点
+    ZJSliderStyleRange,             //区间
+    ZJSliderStyleFixedPoint         //固定点
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJSlider : UIControl
 
+- (instancetype)initWithStyle:(ZJSliderStyle)style;
+
+/// 样式
+@property (nonatomic, assign) ZJSliderStyle style;
+
 /// 最小值
 @property (nonatomic, assign) CGFloat minValue;
-
 /// 最大值
 @property (nonatomic, assign) CGFloat maxValue;
-
 /// 区间最小可选择值（单选滑块无效）
 @property (nonatomic, assign) CGFloat minRange;
 
-/// 线条高度，默认6
-@property (nonatomic, assign) CGFloat lineHeight;
-
 /// 已选最小值（单选为选择值）
 @property (nonatomic, assign) CGFloat selectedMinValue;
-
 /// 已选最大值（单选滑块无效）
 @property (nonatomic, assign) CGFloat selectedMaxValue;
 
-/// 是否是区间模式，默认NO
-@property (nonatomic, assign) BOOL isRangeMode;
-
-/// 是否是滑动标签，默认NO
-@property (nonatomic, assign) BOOL isShowSign;
-
+/// 线条高度，默认6
+@property (nonatomic, assign) CGFloat lineHeight;
+/// 是否是顶部滑动标签，默认NO
+@property (nonatomic, assign) BOOL isShowTopSign;
+/// 是否是双侧滑动标签，默认NO
+@property (nonatomic, assign) BOOL isShowBothSideSign;
 /// 标记文字是否显示整形
 @property (nonatomic, assign) BOOL isShowShapingSign;
+/// 固定点分段数(段数，非点个数)
+@property (nonatomic, assign) NSInteger fixedPointCount;
 
 /// 滑块颜色，默认白色
 @property (nonatomic, strong) UIColor *thumbColor;

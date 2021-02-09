@@ -48,9 +48,9 @@
         
         _rowHeight = 56.0f;
         
-        _cellTitleColor = ZJColorFromHex(@"#181E28");
-        _cellSubTitleColor = ZJColorFromHex(@"#8690A9");
-        _cellDetailTitleColor = ZJColorFromHex(@"#5A6482");
+        _cellTitleColor = ZJColorFromRGB(0x181E28);
+        _cellSubTitleColor = ZJColorFromRGB(0x8690A9);
+        _cellDetailTitleColor = ZJColorFromRGB(0x5A6482);
         
         _cellTitleFont = [UIFont systemFontOfSize:16.0f];
         _cellSubTitleFont = [UIFont systemFontOfSize:12.0f];

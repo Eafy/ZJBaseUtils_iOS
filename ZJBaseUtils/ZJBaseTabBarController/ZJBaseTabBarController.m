@@ -13,6 +13,7 @@
 #import "ZJScreen.h"
 #import "ZJSystem.h"
 #import "UIView+ZJFrame.h"
+#import "UIColor+ZJExt.h"
 
 @interface ZJBaseTabBarController () <ZJBaseTabBarDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 
@@ -118,6 +119,7 @@
         }
         
         [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
+        [_navLeftBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navLeftBtn setBackgroundColor:[UIColor clearColor]];
         [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
         if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
@@ -136,12 +138,37 @@
     return _navLeftBtn;
 }
 
+- (UIButton *)navLeftSubBtn {
+    if (!_navLeftSubBtn) {
+        _navLeftSubBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _navLeftSubBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight());
+        [_navLeftSubBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
+        [_navLeftSubBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
+        [_navLeftSubBtn setBackgroundColor:[UIColor clearColor]];
+        [_navLeftSubBtn addTarget:self action:@selector(navLeftSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
+            _navLeftSubBtn.imageView.transform = CGAffineTransformMakeScale(-1, 1);
+            [_navLeftSubBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
+            [_navLeftSubBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+        } else {
+            [_navLeftSubBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
+            [_navLeftSubBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+            if (ZJIsIPad()) {
+                [_navLeftSubBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+            }
+        }
+    }
+    
+    return _navLeftSubBtn;
+}
+
 - (UIButton *)navRightBtn
 {
     if (!_navRightBtn) {
         _navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _navRightBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight());
         [_navRightBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
+        [_navRightBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navRightBtn setBackgroundColor:[UIColor clearColor]];
         [_navRightBtn addTarget:self action:@selector(navRightBtnAction) forControlEvents:UIControlEventTouchUpInside];
         if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
@@ -159,12 +186,33 @@
     return _navRightBtn;
 }
 
+- (UIButton *)navRightSubBtn {
+    if (!_navRightSubBtn) {
+        _navRightSubBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _navRightSubBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight());
+        [_navRightSubBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
+        [_navRightSubBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
+        [_navRightSubBtn setBackgroundColor:[UIColor clearColor]];
+        [_navRightSubBtn addTarget:self action:@selector(navRightSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
+            [_navRightSubBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
+            [_navRightSubBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        } else {
+            [_navRightSubBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
+            [_navRightSubBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+            if (ZJIsIPad()) {
+                [_navRightSubBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+            }
+        }
+    }
+    
+    return _navRightSubBtn;
+}
+
 - (UILabel *)navBarTitleLB
 {
     if (!_navBarTitleLB) {
         _navBarTitleLB = [[UILabel alloc] initWithFrame:CGRectMake(0, ZJStatusBarHeight(), ZJScreenWidth()/2.0, ZJNavBarHeight())];
-        _navBarTitleLB.zj_centerX = ZJScreenWidth()/2.0;
-        _navBarTitleLB.zj_centerY = ZJStatusBarHeight() + ZJNavBarHeight()/2.0;
         _navBarTitleLB.text = self.title;
         _navBarTitleLB.textAlignment = NSTextAlignmentCenter;
         _navBarTitleLB.backgroundColor = [UIColor clearColor];
@@ -184,8 +232,14 @@
             UIFont *font = [dic objectForKey:NSFontAttributeName];
             if (font) {
                 _navBarTitleLB.font = font;
+            } else {
+                _navBarTitleLB.font = [UIFont boldSystemFontOfSize:18.0];
             }
         }
+        
+        [_navBarTitleLB sizeToFit];
+        _navBarTitleLB.zj_centerX = ZJScreenWidth()/2.0;
+        _navBarTitleLB.zj_centerY = ZJStatusBarHeight() + ZJNavBarHeight()/2.0;
     }
     
     return _navBarTitleLB;
@@ -215,7 +269,9 @@
 {
     _barTitleFont = barTitleFont;
     if (_navBarTitleLB) {
-        self.navBarTitleLB.font = barTitleFont;
+        if (barTitleFont) {
+            self.navBarTitleLB.font = barTitleFont;
+        }
     } else if (self.navigationController) {
         [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.barTitleFont, NSFontAttributeName,nil]];
     }
@@ -238,12 +294,24 @@
     
     if (!self.isHideNavBar && !self.navigationItem.leftBarButtonItem) {
         UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.navLeftBtn];
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+        if (!_navLeftSubBtn) {
+            self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+        } else {
+            UIBarButtonItem *leftBarButtonItem2 = [[UIBarButtonItem alloc] initWithCustomView:self.navLeftSubBtn];
+            self.navigationItem.leftBarButtonItems = @[leftBarButtonItem, leftBarButtonItem2];
+        }
     }
+    
     if (!self.isHideNavBar && !self.navigationItem.rightBarButtonItem) {
         UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.navRightBtn];
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+        if (!_navRightSubBtn) {
+            self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+        } else {
+            UIBarButtonItem *rightBarButtonItem2 = [[UIBarButtonItem alloc] initWithCustomView:self.navRightSubBtn];
+            self.navigationItem.rightBarButtonItems = @[rightBarButtonItem, rightBarButtonItem2];
+        }
     }
+    
     //去除NavigationBar底部黑线颜色
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
@@ -267,33 +335,84 @@
 - (void)addNavBarBtnForHide
 {
     self.navLeftBtn.zj_left = 15.0f;
-    self.navLeftBtn.zj_top = ZJStatusBarHeight();
-    self.navRightBtn.zj_top = ZJStatusBarHeight();
+    self.navLeftBtn.zj_centerY = ZJStatusBarHeight() + ZJNavBarHeight()/2;
+    self.navRightBtn.zj_centerY = self.navLeftBtn.zj_centerY;
     self.navRightBtn.zj_right = ZJScreenWidth() - 15;
     
     if (self.isShowNavBarBgView) {
         self.navBarBgView.frame = CGRectMake(0, 0, ZJScreenWidth(), ZJNavStatusBarHeight());
         self.navBarBgView.userInteractionEnabled = YES;
-        [self.view addSubview:self.navBarBgView];
-        
-        if (self.navLeftBtn.superview != self.navBarBgView) {
-            [self.navLeftBtn removeFromSuperview];
-            [self.navRightBtn removeFromSuperview];
-            [self.navBarTitleLB removeFromSuperview];
-            [self.navBarBgView addSubview:self.navLeftBtn];
-            [self.navBarBgView addSubview:self.navRightBtn];
-            [self.navBarBgView addSubview:self.navBarTitleLB];
-        }
-    } else {
-        if (self.navLeftBtn.superview != self.view) {
-            [self.navLeftBtn removeFromSuperview];
-            [self.navRightBtn removeFromSuperview];
-            [self.navBarTitleLB removeFromSuperview];
-            [self.view addSubview:self.navLeftBtn];
-            [self.view addSubview:self.navRightBtn];
-            [self.view addSubview:self.navBarTitleLB];
+        if (self.navBarBgView.superview != self.view) {
+            [self.view addSubview:self.navBarBgView];
         }
     }
+    UIView *navView = self.view;
+    if (_navBarBgView) {
+        navView = self.navBarBgView;
+        if (self.navLeftBtn.superview == self.navBarBgView) {
+            return;
+        }
+    } else if (self.navLeftBtn.superview == self.view) {
+        return;
+    }
+        
+    [self.navLeftBtn removeFromSuperview];
+    [self.navRightBtn removeFromSuperview];
+    [self.navBarTitleLB removeFromSuperview];
+    if (_navRightSubBtn) {
+        [self.navRightSubBtn removeFromSuperview];
+    }
+    if (_navLeftSubBtn) {
+        [self.navLeftSubBtn removeFromSuperview];
+    }
+        
+    [navView addSubview:self.navLeftBtn];
+    CGFloat imageWith = self.navLeftBtn.imageView.frame.size.width;
+    CGFloat labelWidth = self.navLeftBtn.titleLabel.intrinsicContentSize.width;
+    if (imageWith + labelWidth > self.navLeftBtn.zj_width) {
+        self.navLeftBtn.zj_width = imageWith + labelWidth;
+        self.navLeftBtn.zj_left = 15;
+    }
+    if (_navLeftSubBtn || self.isNavLeftSubTitle) {
+        self.navLeftBtn.zj_width = imageWith + labelWidth;
+        
+        self.navLeftSubBtn.zj_centerY = self.navLeftBtn.zj_centerY;
+        [navView addSubview:self.navLeftSubBtn];
+        if (self.isNavLeftSubTitle) {
+            if (self.navigationController.viewControllers.count > 1) {
+                UIViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+                [self.navLeftSubBtn setTitle:vc.title forState:UIControlStateNormal];
+            }
+        }
+        
+        imageWith = self.navLeftSubBtn.imageView.frame.size.width;
+        labelWidth = self.navLeftSubBtn.titleLabel.intrinsicContentSize.width;
+        if (imageWith + labelWidth > self.navLeftSubBtn.zj_width) {
+            self.navLeftSubBtn.zj_width = imageWith + labelWidth;
+        }
+        self.navLeftSubBtn.zj_left = self.navLeftBtn.zj_right;
+    }
+    
+    [navView addSubview:self.navRightBtn];
+    imageWith = self.navRightBtn.imageView.frame.size.width;
+    labelWidth = self.navRightBtn.titleLabel.intrinsicContentSize.width;
+    if (imageWith + labelWidth > self.navRightBtn.zj_width) {
+        self.navRightBtn.zj_width = imageWith + labelWidth;
+        self.navRightBtn.zj_right = ZJScreenWidth() - 15;
+    }
+    if (_navRightSubBtn) {
+        self.navRightSubBtn.zj_centerY = self.navRightBtn.zj_centerY;
+        [navView addSubview:self.navRightSubBtn];
+        
+        imageWith = self.navRightSubBtn.imageView.frame.size.width;
+        labelWidth = self.navRightSubBtn.titleLabel.intrinsicContentSize.width;
+        if (imageWith + labelWidth > self.navRightSubBtn.zj_width) {
+            self.navRightSubBtn.zj_width = imageWith + labelWidth;
+        }
+        self.navRightSubBtn.zj_right = self.navRightBtn.zj_left - 8;
+    }
+    
+    [navView addSubview:self.navBarTitleLB];
 }
 
 - (void)setIsShowNavBarView:(BOOL)isShowNavBarView
@@ -304,7 +423,7 @@
         return;
     }
     
-    if (isShowNavBarView && !_navBarBgView) {   //之前没有添加自定义视图
+    if (isShowNavBarView && self.isVisible) {
         [self addNavBarBtnForHide];
     }
     
@@ -348,9 +467,10 @@
 {
     if (_nextViewController) {
         [self.navigationController pushViewController:_nextViewController animated:YES];
-    } else {
-        [self clickedNavRightBarButton];
     }
+}
+
+- (void)navRightSubBtnAction {
 }
 
 //返回动画
@@ -377,9 +497,7 @@
     self.isLeftSideslipBack = NO;
 }
 
-- (void)clickedNavRightBarButton
-{
-    
+- (void)navLeftSubBtnAction {
 }
 
 #pragma mark - UINavigationControllerDelegate
@@ -408,7 +526,6 @@
         navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
 }
-
 #pragma mark - UITabBarController
 
 - (ZJBaseTabBar *)customTabBar
@@ -532,6 +649,5 @@
         }
     }
 }
-
 
 @end

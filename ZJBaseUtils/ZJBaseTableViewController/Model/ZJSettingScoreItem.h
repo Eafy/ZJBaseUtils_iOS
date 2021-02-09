@@ -21,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 星星之间的间隔（必填）
 @property (nonatomic,assign) CGFloat starSpace;
 
+/// 星星分数
+@property (nonatomic,assign) CGFloat score;
+
+@property (nonatomic,copy) void(^ _Nullable scoreHandle)(CGFloat score);
+
 @end
 
 NS_ASSUME_NONNULL_END

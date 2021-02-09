@@ -1,5 +1,5 @@
 //
-//  ZJStepsView.h
+//  ZJStepBar.h
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/8/3.
@@ -15,15 +15,9 @@ typedef NS_ENUM(NSInteger, ZJStepBarStyle) {
     ZJStepBarStyleImage,          //已选择进度为图形，图像会变成中原
 };
 
-@interface ZJStepsView: UIView
+@interface ZJStepBar: UIView
 
-
-- (instancetype)initWithTitleArray:(NSArray *)titleArr;
-
-- (instancetype)initHorizontaWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray;
-
-- (instancetype)initVerticalWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray;
-
+/// 进度到第几个
 @property (nonatomic,assign) NSInteger index;
 
 /// 最小原宽度，默认8，即大圆16，选中圆环32，3倍缩放
@@ -55,6 +49,38 @@ typedef NS_ENUM(NSInteger, ZJStepBarStyle) {
 @property (nonatomic,strong) UIFont *titleFont;
 /// 文字与进度条之间的间距，默认30
 @property (nonatomic,assign) CGFloat titleTopSpace;
+
+/// 生成步骤条（默认水平）
+/// @param titleArr 标题数组
++ (instancetype)stepBarWithTitleArray:(NSArray *)titleArr;
+
+/// 初始化步骤条（默认水平）
+/// @param titleArr 标题数组
+- (instancetype)initWithTitleArray:(NSArray *)titleArr;
+
+/// 初始化水平步骤条
+/// @param frame frame
+/// @param titleArray 标题数组
+- (instancetype)initHorizontaWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray;
+
+/// 初始化垂直步骤条
+/// @param frame frame
+/// @param titleArray 标题数组
+- (instancetype)initVerticalWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray;
+
+/// 设置标题数组（仅第一次有效）
+/// @param titleArr 标题数组
+- (void)setupTitleArray:(NSArray *)titleArr;
+
+/// 选择进度到第几个（选择的同时会更新标题）
+/// @param index 索引号
+/// @param title 更新标题
+- (void)selectIndex:(NSInteger)index withTitle:(NSString *)title;
+
+/// 更新进度的标题（仅更新标题）
+/// @param index 索引号
+/// @param title 更新标题
+- (void)updateIndex:(NSInteger)index title:(NSString *)title;
  
 @end
 

@@ -33,8 +33,12 @@
 /// 未选中背景线
 @property (nonatomic,strong) UIView *bgLineView;
 
-@property (nonatomic,strong) UILabel *signCountLeftLB;
-@property (nonatomic,strong) UILabel *signCountRightLB;
+@property (nonatomic,strong) UILabel *signCountTopLeftLB;
+@property (nonatomic,strong) UILabel *signCountTopRightLB;
+@property (nonatomic,strong) UILabel *signCountSideLeftLB;
+@property (nonatomic,strong) UILabel *signCountSideRightLB;
+
+@property (nonatomic,strong) NSMutableArray *fixedPointViews;
 
 @end
 
@@ -42,29 +46,44 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.maxTumbOn = NO;
-        self.maxTumbOn = NO;
-        self.lineHeight = 6;
-        self.isShowSign = NO;
-        self.isRangeMode = NO;
-        self.isShowShapingSign = NO;
-        
-        _thumbColor = [UIColor whiteColor];
-        _leverColor = ZJColorFromRGB(0xBCC4D4);
-        _leverDisabledColor = ZJColorFromRGB(0xDCE0E8);
-        _progressColor = ZJColorFromRGB(0x3D7DFF);
-        _progressDisabledColor = ZJColorFromRGB(0xD6E4FF);
-        _textColor = ZJColorFromRGB(0x5A6482);
-        _textFont = [UIFont systemFontOfSize:16];
-        
-        [self addSubview:self.bgLineView];
-        [self addSubview:self.selectedView];
-        [self addSubview:self.thumbLeftImgView];
-        [self addSubview:self.thumbRightImgView];
-        
-        [self setSubFrame:self.frame];
+        [self initDefaultData];
     }
     return self;
+}
+
+- (instancetype)initWithStyle:(ZJSliderStyle)style
+{
+    if (self = [super init]) {
+        [self initDefaultData];
+        self.style = style;
+    }
+    return self;
+}
+
+- (void)initDefaultData
+{
+    self.style = ZJSliderStyleSinglePoint;
+    self.maxTumbOn = NO;
+    self.maxTumbOn = NO;
+    self.lineHeight = 6;
+    self.isShowTopSign = NO;
+    self.isShowBothSideSign = NO;
+    self.isShowShapingSign = NO;
+    
+    _thumbColor = [UIColor whiteColor];
+    _leverColor = ZJColorFromRGB(0xBCC4D4);
+    _leverDisabledColor = ZJColorFromRGB(0xDCE0E8);
+    _progressColor = ZJColorFromRGB(0x3D7DFF);
+    _progressDisabledColor = ZJColorFromRGB(0xD6E4FF);
+    _textColor = ZJColorFromRGB(0x5A6482);
+    _textFont = [UIFont systemFontOfSize:16];
+    
+    [self addSubview:self.bgLineView];
+    [self addSubview:self.selectedView];
+    [self addSubview:self.thumbLeftImgView];
+    [self addSubview:self.thumbRightImgView];
+    
+    [self setSubFrame:self.frame];
 }
 
 - (UIView *)bgLineView
@@ -109,31 +128,62 @@
     return _thumbRightImgView;
 }
 
-- (UILabel *)signCountLeftLB
+- (UILabel *)signCountTopLeftLB
 {
-    if (!_signCountLeftLB) {
-        _signCountLeftLB = [[UILabel alloc] init];
-        _signCountLeftLB.text = @"0";
-        _signCountLeftLB.font = self.textFont;
-        _signCountLeftLB.textColor = self.textColor;
-        _signCountLeftLB.backgroundColor = [UIColor clearColor];
-        _signCountLeftLB.contentMode = UIViewContentModeBottom;
+    if (!_signCountTopLeftLB) {
+        _signCountTopLeftLB = [[UILabel alloc] init];
+        _signCountTopLeftLB.text = @"0";
+        _signCountTopLeftLB.font = self.textFont;
+        _signCountTopLeftLB.textColor = self.textColor;
+        _signCountTopLeftLB.backgroundColor = [UIColor clearColor];
+        _signCountTopLeftLB.contentMode = UIViewContentModeBottom;
     }
-    return _signCountLeftLB;
+    return _signCountTopLeftLB;
 }
 
-- (UILabel *)signCountRightLB
+- (UILabel *)signCountTopRightLB
 {
-    if (!_signCountRightLB) {
-        _signCountRightLB = [[UILabel alloc] init];
-        _signCountRightLB.text = @"0";
-        _signCountRightLB.font =  self.textFont;
-        _signCountRightLB.textColor = self.textColor;
-        _signCountRightLB.backgroundColor = [UIColor clearColor];
-        _signCountRightLB.contentMode = UIViewContentModeBottom;
-        _signCountRightLB.hidden = YES;
+    if (!_signCountTopRightLB) {
+        _signCountTopRightLB = [[UILabel alloc] init];
+        _signCountTopRightLB.text = @"0";
+        _signCountTopRightLB.font =  self.textFont;
+        _signCountTopRightLB.textColor = self.textColor;
+        _signCountTopRightLB.backgroundColor = [UIColor clearColor];
+        _signCountTopRightLB.contentMode = UIViewContentModeBottom;
+        _signCountTopRightLB.hidden = YES;
     }
-    return _signCountRightLB;
+    return _signCountTopRightLB;
+}
+
+- (UILabel *)signCountSideLeftLB {
+    if (!_signCountSideLeftLB) {
+        _signCountSideLeftLB = [[UILabel alloc] init];
+        _signCountSideLeftLB.text = @"0";
+        _signCountSideLeftLB.font =  self.textFont;
+        _signCountSideLeftLB.textColor = self.textColor;
+        _signCountSideLeftLB.backgroundColor = [UIColor clearColor];
+        _signCountSideLeftLB.contentMode = UIViewContentModeRight;
+    }
+    return _signCountSideLeftLB;
+}
+
+- (UILabel *)signCountSideRightLB {
+    if (!_signCountSideRightLB) {
+        _signCountSideRightLB = [[UILabel alloc] init];
+        _signCountSideRightLB.text = @"0";
+        _signCountSideRightLB.font =  self.textFont;
+        _signCountSideRightLB.textColor = self.textColor;
+        _signCountSideRightLB.backgroundColor = [UIColor clearColor];
+        _signCountSideRightLB.contentMode = UIViewContentModeLeft;
+    }
+    return _signCountSideRightLB;
+}
+
+- (NSMutableArray *)fixedPointViews {
+    if (!_fixedPointViews) {
+        _fixedPointViews = [NSMutableArray array];
+    }
+    return _fixedPointViews;
 }
 
 #pragma mark -
@@ -141,6 +191,20 @@
 - (void)setSubFrame:(CGRect)frame
 {
     self.bgLineView.frame = CGRectMake(0, self.zj_height - self.padding/2 - self.lineHeight, frame.size.width, self.lineHeight);
+    if (self.isShowBothSideSign) {
+        [self.signCountSideLeftLB sizeToFit];
+        [self.signCountSideRightLB sizeToFit];
+        
+        self.signCountSideLeftLB.zj_height = 20;
+        self.signCountSideLeftLB.zj_centerY = self.bgLineView.zj_centerY;
+        
+        self.signCountSideRightLB.zj_height =  self.signCountSideLeftLB.zj_height;
+        self.signCountSideRightLB.zj_centerY = self.signCountSideLeftLB.zj_centerY;
+        self.signCountSideRightLB.zj_right = self.zj_width;
+        
+        self.bgLineView.zj_left = self.signCountSideLeftLB.zj_right + 8;
+        self.bgLineView.zj_width = self.signCountSideRightLB.zj_left - 8 - self.bgLineView.zj_left;
+    }
     [self.bgLineView zj_cornerWithRadii:CGSizeMake(self.bgLineView.zj_height/2, self.bgLineView.zj_height/2) rectCorner:UIRectCornerAllCorners];
     
     self.selectedView.frame = self.bgLineView.frame;
@@ -154,13 +218,28 @@
     self.thumbRightImgView.zj_centerY = self.bgLineView.zj_centerY;
     [self.thumbRightImgView zj_shadowWithOpacity:0.3 shadowRadius:3 andCornerRadius:self.thumbRightImgView.zj_height/2];
     
-    if (self.isShowSign) {
-        self.signCountLeftLB.zj_height = 20;
-        self.signCountLeftLB.zj_centerX = self.thumbLeftImgView.zj_centerX;
-        self.signCountLeftLB.zj_bottom = self.thumbLeftImgView.zj_top - 4;
+    if (self.isShowTopSign) {
+        [self.signCountTopLeftLB sizeToFit];
+        [self.signCountTopRightLB sizeToFit];
         
-        self.signCountRightLB.frame =  self.signCountLeftLB.frame;
-        self.signCountRightLB.zj_centerX = self.thumbRightImgView.zj_centerX;
+        self.signCountTopLeftLB.zj_height = 20;
+        self.signCountTopLeftLB.zj_centerX = self.thumbLeftImgView.zj_centerX;
+        self.signCountTopLeftLB.zj_bottom = self.thumbLeftImgView.zj_top - 4;
+        
+        self.signCountTopRightLB.zj_height = self.signCountTopLeftLB.zj_height;
+        self.signCountTopRightLB.zj_bottom = self.signCountTopLeftLB.zj_bottom;
+        self.signCountTopRightLB.zj_centerX = self.thumbRightImgView.zj_centerX;
+    }
+    
+    if (self.style == ZJSliderStyleFixedPoint) {
+        NSInteger index = 0;
+        for (UIView *view in self.fixedPointViews) {
+            view.zj_width = view.zj_height = self.lineHeight*2;
+            view.layer.cornerRadius = view.zj_height/2;
+            view.zj_centerY = self.bgLineView.zj_centerY;
+            view.zj_centerX = (self.bgLineView.zj_width-self.padding)/self.fixedPointCount * index + self.padding/2 + self.bgLineView.zj_left;
+            index ++;
+        }
     }
 }
 
@@ -171,37 +250,70 @@
     self.frame = self.frame;
 }
 
-- (void)setIsShowSign:(BOOL)isShowSign
+- (void)setIsShowTopSign:(BOOL)isShowTopSign
 {
-    if (_isShowSign == isShowSign) return;
+    if (_isShowTopSign == isShowTopSign) return;
     
-    _isShowSign = isShowSign;
-    if (isShowSign) {
-        [self addSubview:self.signCountLeftLB];
-        [self addSubview:self.signCountRightLB];
-        if (self.isRangeMode) {
-            self.signCountRightLB.hidden = NO;
+    _isShowTopSign = isShowTopSign;
+    if (isShowTopSign) {
+        [self addSubview:self.signCountTopLeftLB];
+        [self addSubview:self.signCountTopRightLB];
+        if (self.style == ZJSliderStyleRange) {
+            self.signCountTopRightLB.hidden = NO;
         }
-        self.frame = self.frame;
+        [self setSubFrame:self.frame];
     } else {
-        if (_signCountLeftLB) {
-            [self.signCountLeftLB removeFromSuperview];
-            _signCountLeftLB = nil;
+        if (_signCountTopLeftLB) {
+            [self.signCountTopLeftLB removeFromSuperview];
+            _signCountTopLeftLB = nil;
         }
-        if (_signCountRightLB) {
-            [self.signCountRightLB removeFromSuperview];
-            _signCountRightLB = nil;
+        if (_signCountTopRightLB) {
+            [self.signCountTopRightLB removeFromSuperview];
+            _signCountTopRightLB = nil;
         }
     }
 }
 
-- (void)setIsRangeMode:(BOOL)isRangeMode
+- (void)setIsShowBothSideSign:(BOOL)isShowBothSideSign
 {
-    if (_isRangeMode == isRangeMode) return;
-    _isRangeMode = isRangeMode;
+    if (_isShowBothSideSign == isShowBothSideSign) return;
     
-    self.signCountRightLB.hidden = !isRangeMode;
-    self.thumbRightImgView.hidden = !isRangeMode;
+    _isShowBothSideSign = isShowBothSideSign;
+    if (isShowBothSideSign) {
+        [self addSubview:self.signCountSideLeftLB];
+        [self addSubview:self.signCountSideRightLB];
+        [self setSubFrame:self.frame];
+    } else {
+        if (_signCountSideLeftLB) {
+            [self.signCountSideLeftLB removeFromSuperview];
+            _signCountSideLeftLB = nil;
+        }
+        if (_signCountSideRightLB) {
+            [self.signCountSideRightLB removeFromSuperview];
+            _signCountSideRightLB = nil;
+        }
+    }
+}
+
+- (void)setFixedPointCount:(NSInteger)fixedPointCount {
+    _fixedPointCount = fixedPointCount;
+    
+    for (UIView *view in self.fixedPointViews) {
+        [view removeFromSuperview];
+    }
+    [self.fixedPointViews removeAllObjects];
+    
+    for (NSInteger i=0; i<fixedPointCount+1; i++) {
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = self.leverColor;
+        view.layer.masksToBounds = YES;
+        [self insertSubview:view aboveSubview:self.bgLineView];
+        [self.fixedPointViews addObject:view];
+        if (i == 0 || i == fixedPointCount) {
+            view.hidden = YES;
+        }
+    }
+    [self setSubFrame:self.frame];
 }
 
 - (void)layoutSubviews {
@@ -211,36 +323,45 @@
         [self setSubFrame:self.frame];
     }
     
-    self.thumbLeftImgView.zj_centerX = [self xForValue:self.selectedMinValue];
-    self.thumbRightImgView.zj_centerX = [self xForValue:self.isRangeMode?self.selectedMaxValue:self.maxValue];
+    self.thumbLeftImgView.zj_centerX = [self xFromValue:self.selectedMinValue];
+    self.thumbRightImgView.zj_centerX = [self xFromValue:self.style == ZJSliderStyleRange ? self.selectedMaxValue : self.maxValue];
     
-    if (self.isRangeMode) {
+    if (self.style == ZJSliderStyleRange) {
         self.selectedView.zj_left = self.thumbLeftImgView.zj_centerX;
         self.selectedView.zj_width = self.thumbRightImgView.zj_centerX - self.thumbLeftImgView.zj_centerX;
     } else {
-        self.selectedView.zj_left = 0;
-        self.selectedView.zj_width = self.thumbLeftImgView.zj_centerX;
+        self.selectedView.zj_left = self.bgLineView.zj_left;
+        self.selectedView.zj_width = self.thumbLeftImgView.zj_centerX - self.selectedView.zj_left;
     }
     
-    if (self.isShowSign) {
-        self.signCountLeftLB.zj_centerX = self.thumbLeftImgView.zj_centerX;
-        self.signCountRightLB.zj_centerX = self.thumbRightImgView.zj_centerX;
+    if (self.isShowTopSign) {
         
         if (self.isShowShapingSign) {
-            self.signCountLeftLB.text = [NSString stringWithFormat:@"%ld", (long)(self.selectedMinValue)];
-        } else {
-            self.signCountLeftLB.text = [NSString stringWithFormat:@"%.2f", self.selectedMinValue];
-        }
-        [self.signCountLeftLB sizeToFit];
-        
-        if (self.isRangeMode) {
+            self.signCountTopLeftLB.text = [NSString stringWithFormat:@"%ld", (NSInteger)(self.selectedMinValue)];
             if (self.isShowShapingSign) {
-                self.signCountRightLB.text = [NSString stringWithFormat:@"%ld", (long)(self.selectedMaxValue)];
-            } else {
-                self.signCountRightLB.text = [NSString stringWithFormat:@"%.2f", self.selectedMaxValue];
+                self.signCountSideLeftLB.text = [NSString stringWithFormat:@"%ld", (NSInteger)self.minValue];
+                self.signCountSideRightLB.text = [NSString stringWithFormat:@"%ld", (NSInteger)self.maxValue];
             }
-            [self.signCountRightLB sizeToFit];
+        } else {
+            self.signCountTopLeftLB.text = [NSString stringWithFormat:@"%.2f", self.selectedMinValue];
+            if (self.isShowShapingSign) {
+                self.signCountSideLeftLB.text = [NSString stringWithFormat:@"%.2f", self.minValue];
+                self.signCountSideRightLB.text = [NSString stringWithFormat:@"%.2f", self.maxValue];
+            }
         }
+        
+        if (self.style == ZJSliderStyleRange) {
+            if (self.isShowShapingSign) {
+                self.signCountTopRightLB.text = [NSString stringWithFormat:@"%ld", (long)(self.selectedMaxValue)];
+            } else {
+                self.signCountTopRightLB.text = [NSString stringWithFormat:@"%.2f", self.selectedMaxValue];
+            }
+        }
+        [self.signCountTopLeftLB sizeToFit];
+        [self.signCountTopRightLB sizeToFit];
+        
+        self.signCountTopLeftLB.zj_centerX = self.thumbLeftImgView.zj_centerX;
+        self.signCountTopRightLB.zj_centerX = self.thumbRightImgView.zj_centerX;
     }
 }
 
@@ -268,17 +389,19 @@
     if (!self.minTumbOn && !self.maxTumbOn) {
         return YES;
     }
+    
     CGPoint touchPoint = [touch locationInView:self];
     if (self.minTumbOn) {
-        self.thumbLeftImgView.center = CGPointMake(MAX([self xForValue:self.minValue], MIN(touchPoint.x - self.distanceFromCenter, [self xForValue:self.isRangeMode?(self.selectedMaxValue- self.minRange):self.maxValue])), self.thumbLeftImgView.zj_centerY);
+        self.thumbLeftImgView.zj_centerX = MAX([self xFromValue:self.minValue], MIN(touchPoint.x - self.distanceFromCenter, [self xFromValue:self.style == ZJSliderStyleRange ? (self.selectedMaxValue- self.minRange) : self.maxValue]));
         
-        self.selectedMinValue = [self valueForX:self.thumbLeftImgView.zj_centerX];
+        self.selectedMinValue = [self valueFromX:self.thumbLeftImgView.zj_centerX];
+        [self showFiexedPointX:NO];
     }
     
     if (self.maxTumbOn) {
-        self.thumbRightImgView.center = CGPointMake(MIN([self xForValue:self.maxValue], MAX(touchPoint.x - self.distanceFromCenter, [self xForValue:self.selectedMinValue + self.minRange])), self.thumbRightImgView.zj_centerY);
+        self.thumbRightImgView.center = CGPointMake(MIN([self xFromValue:self.maxValue], MAX(touchPoint.x - self.distanceFromCenter, [self xFromValue:self.selectedMinValue + self.minRange])), self.thumbRightImgView.zj_centerY);
         
-        self.selectedMaxValue = [self valueForX:self.thumbRightImgView.zj_centerX];
+        self.selectedMaxValue = [self valueFromX:self.thumbRightImgView.zj_centerX];
     }
     [self setNeedsLayout];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
@@ -288,23 +411,64 @@
 }
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
-    if (!self.isRangeMode && !self.minTumbOn && !self.maxTumbOn) {   //这个支持单点
+    if (self.style != ZJSliderStyleRange && !self.minTumbOn && !self.maxTumbOn) {   //这个支持单点
         self.minTumbOn = self.maxTumbOn = YES;
         [self continueTrackingWithTouch:touch withEvent:event];
     }
+
+    [self showFiexedPointX:YES];
     self.minTumbOn = NO;
     self.maxTumbOn = NO;
 }
 
-- (float)xForValue:(float)value {
-    return (self.zj_width - self.padding) * ((value - self.minValue) / (self.maxValue - self.minValue)) + self.padding / 2;
+- (float)xFromValue:(float)value {
+    return (self.bgLineView.zj_width - self.padding) * ((value - self.minValue) / (self.maxValue - self.minValue)) + self.padding/2 + self.bgLineView.zj_left;
 }
 
-- (float)valueForX:(float)x {
-    return self.minValue + (x - self.padding / 2) / (self.zj_width - self.padding) * (self.maxValue - self.minValue);
+- (float)valueFromX:(float)x {
+    return self.minValue + (x - self.padding / 2 - self.bgLineView.zj_left) / (self.bgLineView.zj_width - self.padding) * (self.maxValue - self.minValue);
+}
+
+- (void)showFiexedPointX:(BOOL)isFixedPoint {
+    if (self.style == ZJSliderStyleFixedPoint) {
+        CGFloat minX = 0;
+        CGFloat maxX = 0;
+        CGFloat minViewX = 0;
+        for (UIView *view in self.fixedPointViews) {
+            if (self.thumbLeftImgView.zj_centerX > view.zj_centerX) {
+                minX = self.thumbLeftImgView.zj_centerX - view.zj_centerX;
+                minViewX = view.zj_centerX;
+                view.backgroundColor = self.progressColor;
+            } else if (maxX == 0 && self.thumbLeftImgView.zj_centerX < view.zj_centerX) {
+                maxX = view.zj_centerX - self.thumbLeftImgView.zj_centerX;
+                view.backgroundColor = self.leverColor;
+                
+                if (isFixedPoint) {
+                    self.selectedMinValue = [self valueFromX:maxX > minX ? minViewX : view.zj_centerX];
+                    [self setNeedsLayout];
+                }
+            } else {
+                view.backgroundColor = self.leverColor;
+            }
+        }
+    }
 }
 
 #pragma mark -
+
+- (void)setStyle:(ZJSliderStyle)style {
+    if (_style == style) return;
+    _style = style;
+    
+    self.signCountTopRightLB.hidden = style != ZJSliderStyleRange;
+    self.thumbRightImgView.hidden = self.signCountTopRightLB.hidden;
+    if (style != ZJSliderStyleFixedPoint && _fixedPointViews) {
+        for (UIView *view in self.fixedPointViews) {
+            [view removeFromSuperview];
+        }
+        [self.fixedPointViews removeAllObjects];
+    }
+}
 
 - (void)setSelectedMinValue:(CGFloat)selectedMinValue
 {
@@ -339,6 +503,16 @@
 }
 
 #pragma mark -
+
+- (void)setMinValue:(CGFloat)minValue {
+    _minValue = minValue;
+    [self setNeedsLayout];
+}
+
+- (void)setMaxValue:(CGFloat)maxValue {
+    _maxValue = maxValue;
+    [self setNeedsLayout];
+}
 
 - (void)setLeverColor:(UIColor *)leverColor
 {
@@ -375,9 +549,9 @@
 - (void)setTextColor:(UIColor *)textColor
 {
     _textColor = textColor;
-    if (_signCountLeftLB) {
-        self.signCountLeftLB.textColor = textColor;
-        self.signCountRightLB.textColor = textColor;
+    if (_signCountTopLeftLB) {
+        self.signCountTopLeftLB.textColor = textColor;
+        self.signCountTopRightLB.textColor = textColor;
     }
 }
 
@@ -385,8 +559,8 @@
 {
     _textFont = textFont;
     if (_textFont) {
-        self.signCountLeftLB.font = textFont;
-        self.signCountRightLB.font = textFont;
+        self.signCountTopLeftLB.font = textFont;
+        self.signCountTopRightLB.font = textFont;
     }
 }
 

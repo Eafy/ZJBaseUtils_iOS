@@ -9,9 +9,9 @@
 #import "ZJSettingStepperItem.h"
 #import "UIView+ZJFrame.h"
 #import "ZJSettingTableViewCellExt.h"
-#import "ZJBaseUtils.h"
+#import "ZJBundleRes.h"
 
-@interface ZJSettingStepperItem ()
+@interface ZJSettingStepperItem () <UITextFieldDelegate>
 
 @property (nonatomic,strong) UIView *stepperView;
 
@@ -57,8 +57,8 @@
     if (!_increaseBtn) {
         _increaseBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
         _increaseBtn.backgroundColor = [UIColor clearColor];
-        [_increaseBtn setImage:[ZJBaseUtils imageNamed:@"icon_stepper_increase_normal"] forState:UIControlStateNormal];
-        [_increaseBtn setImage:[ZJBaseUtils imageNamed:@"icon_stepper_increase_selected"] forState:UIControlStateSelected];
+        [_increaseBtn setImage:[ZJBundleRes imageNamed:@"icon_stepper_increase_normal"] forState:UIControlStateNormal];
+        [_increaseBtn setImage:[ZJBundleRes imageNamed:@"icon_stepper_increase_selected"] forState:UIControlStateSelected];
         [_increaseBtn addTarget:self action:@selector(handleStepperCount:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -76,6 +76,8 @@
         _stepperTF.textColor = [UIColor colorWithRed:24/255.0 green:30/255.0 blue:40/255.0 alpha:1.0];
         _stepperTF.textAlignment = NSTextAlignmentCenter;
         _stepperTF.enabled = NO;
+        _stepperTF.keyboardType = UIKeyboardTypeNumberPad;
+        _stepperTF.delegate = self;
     }
     
     return _stepperTF;
@@ -86,8 +88,8 @@
     if (!_decreaseBtn) {
         _decreaseBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
         _decreaseBtn.backgroundColor = [UIColor clearColor];
-        [_decreaseBtn setImage:[ZJBaseUtils imageNamed:@"icon_stepper_decrease_normal"] forState:UIControlStateNormal];
-        [_decreaseBtn setImage:[ZJBaseUtils imageNamed:@"icon_stepper_decrease_selected"] forState:UIControlStateSelected];
+        [_decreaseBtn setImage:[ZJBundleRes imageNamed:@"icon_stepper_decrease_normal"] forState:UIControlStateNormal];
+        [_decreaseBtn setImage:[ZJBundleRes imageNamed:@"icon_stepper_decrease_selected"] forState:UIControlStateSelected];
         [_decreaseBtn addTarget:self action:@selector(handleStepperCount:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -138,6 +140,35 @@
         self.increaseBtn.zj_right = self.stepperView.zj_right;
         self.stepperTF.zj_right = self.increaseBtn.zj_left - 8;
         self.decreaseBtn.zj_right = self.stepperTF.zj_left - 8;
+    }
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSInteger value = 0;
+    if (string.length == 0) {
+        value = [[NSString stringWithFormat:@"%@", [textField.text substringToIndex:range.location]] integerValue];
+    } else {
+        value = [[NSString stringWithFormat:@"%@%@", textField.text, string] integerValue];
+    }
+    if (value > self.stepMax) {
+        self.stepCount = self.stepMax;
+    } else if (value < self.stepMin) {
+        self.stepCount = self.stepMin;
+    } else {
+        self.stepCount = value;
+    }
+    
+    return NO;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSString *str = [NSString stringWithFormat:@"%@", textField.text];
+    if ([str integerValue] > self.stepMax) {
+        self.stepCount = self.stepMax;
+    } else if ([str integerValue] <= self.stepMin) {
+        self.stepCount = self.stepMin;
     }
 }
 

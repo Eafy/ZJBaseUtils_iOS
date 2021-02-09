@@ -8,7 +8,7 @@
 
 #import "ZJRatingView.h"
 #import "ZJRatingStarView.h"
-#import "ZJBaseUtils.h"
+#import "ZJBundleRes.h"
 
 @interface ZJRatingView ()
 
@@ -42,8 +42,8 @@
     if (self = [super init]) {
         self.starCount = starCount;
         self.starSpace = starSpace;
-        self.defaultImage = [ZJBaseUtils imageNamed:@"icon_rating_star_normal"];
-        self.frontImage = [ZJBaseUtils imageNamed:@"icon_rating_star_highlighted"];
+        self.defaultImage = [ZJBundleRes imageNamed:@"icon_rating_star_normal"];
+        self.frontImage = [ZJBundleRes imageNamed:@"icon_rating_star_highlighted"];
         self.backgroundColor = [UIColor clearColor];
     }
     
@@ -164,8 +164,8 @@
         self.backColorLayer.strokeEnd = newPoint.x/self.frame.size.width;
     }
     
-    _score = score;
-    if (_scoreHandle) {
+    if (_score != score && _scoreHandle) {
+        _score = score;
         self.scoreHandle(score);
     }
 }

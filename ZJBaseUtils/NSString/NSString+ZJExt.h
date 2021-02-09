@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 判断字符串是否为空字符串
 /// @param str 需要判断的字符串
-+ (BOOL)zj_isEmpty:(NSString *)str;
++ (BOOL)zj_isEmpty:(nullable NSString *)str;
 
 ///  验证字符串是否为合法邮箱
 - (BOOL)zj_isValidEmail;

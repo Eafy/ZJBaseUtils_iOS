@@ -139,9 +139,14 @@
             if (CGSizeEqualToSize(self.msgContentSize, CGSizeZero)) {
                 self.msgContentSize = self.msgTextView.contentSize;
             }
+            
             if (self.msgTextView.contentSize.height > self.msgContentSize.height && self.msgTextView.contentSize.height > self.msgTextView.zj_height) {
                 self.zj_height += self.msgTextView.font.lineHeight;
                 self.msgTextView.zj_height +=self.msgTextView.font.lineHeight;
+                self.msgContentSize = self.msgTextView.contentSize;
+            } else if (self.msgTextView.contentSize.height + self.msgTextView.font.lineHeight < self.msgContentSize.height) {
+                self.zj_height -= self.msgTextView.font.lineHeight;
+                self.msgTextView.zj_height -=self.msgTextView.font.lineHeight;
                 self.msgContentSize = self.msgTextView.contentSize;
             }
         }

@@ -202,7 +202,7 @@
         
         if ([self.delegate respondsToSelector:@selector(didTabBarSelectedFrom:to:)]) {
             [self.delegate didTabBarSelectedFrom:selectedIndex to:btn.tag];
-        }        
+        }
     }
 }
 

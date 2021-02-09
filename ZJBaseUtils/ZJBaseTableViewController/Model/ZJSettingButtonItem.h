@@ -24,10 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 普通样式图片
 @property (nonatomic,copy) NSString *imageName;
 
+/// 按钮文字
+@property (nonatomic,copy) NSString *btnTitle;
 /// 普通样式的文字颜色
-@property (nonatomic,strong) UIColor *titleColor;
+@property (nonatomic,strong) UIColor *btnTitleColor;
 /// 普通样式的文字字体
-@property (nonatomic,strong) UIFont *titleFont;
+@property (nonatomic,strong) UIFont *btnTitleFont;
 
 @end
 

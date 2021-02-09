@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
 @property (nonatomic, strong) UIFont *selTitleFont;
 /// 标题的偏移值 (标题距离底部的距离 默认 2.f)
 @property (nonatomic, assign) CGFloat titleOffset;
-/// 图片的偏移值 (图片距离顶部的距离 默认 2.f)
+/// 图片的偏移值 (图片距离顶部的距离 默认 4.f)
 @property (nonatomic, assign) CGFloat imageOffset;
 
 #pragma mark - 动画参数

@@ -48,7 +48,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         super.backgroundColor = [UIColor clearColor];
-        _cornerRadius = 4;
+        _cornerRadius = 8;
         _maskAlpha = 0.7;
         
         [self addSubview:self.maskView];

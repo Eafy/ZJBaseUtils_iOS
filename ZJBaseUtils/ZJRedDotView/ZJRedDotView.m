@@ -1,6 +1,6 @@
 //
 //  ZJRedDotView.m
-//  ZJBaseUtils
+//  ZJUXKit
 //
 //  Created by eafy on 2020/8/13.
 //  Copyright © 2020 ZJ. All rights reserved.
@@ -35,7 +35,7 @@
     
     if (self.isAutoFrame) {
         CGSize size = [self.text zj_sizeWithFont:self.font maxSize:CGSizeZero];
-        if (size.height > self.zj_height) {
+        if (size.height >= self.zj_height) {
             size.height = size.height + 2;
         } else {
             size.height = self.zj_height;

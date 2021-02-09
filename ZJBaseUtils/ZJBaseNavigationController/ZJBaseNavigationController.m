@@ -18,11 +18,11 @@
 
 + (void)handleJumpWithNavigationController:(UINavigationController *)navCtl viewController:(UIViewController *)viewCtl
 {
-    //判断是否是基础导航控制器
+    // 判断是否是基础导航控制器
     if ([navCtl isKindOfClass:[ZJBaseNavigationController class]]) {
-        ZJBaseNavigationController *nav = (ZJBaseNavigationController *)navCtl;    //目标控制器
+        ZJBaseNavigationController *nav = (ZJBaseNavigationController *)navCtl;
         
-        //判断是否是基础视图控制器、基础表单控制器
+        // 判断是否是基础视图控制器、基础表单控制器
         if ([viewCtl isKindOfClass:[ZJBaseViewController class]] ||
             [viewCtl isKindOfClass:[ZJBaseTableViewController class]]) {
             ZJBaseViewController *vc = (ZJBaseViewController *)viewCtl;    //目标控制器
@@ -39,6 +39,7 @@
             if (nav.barTintColor) vc.barTintColor = nav.barTintColor;
             if (nav.barTitleColor) vc.barTitleColor = nav.barTitleColor;
             if (nav.barTitleFont) vc.barTitleFont = nav.barTitleFont;
+            if (nav.isNavLeftSubTitle) vc.isNavLeftSubTitle = [nav.isNavLeftSubTitle boolValue];
         }
     }
 }

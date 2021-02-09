@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "v#{s.version}"}
   s.source_files  = "ZJBaseUtils/*.{h,m,mm,c,hpp,cpp}", "ZJBaseUtils/**/*.{h,m,mm,c,hpp,cpp}"
   s.public_header_files = "ZJBaseUtils/*.h", "ZJBaseUtils/**/*.h"
-  s.private_header_files = "ZJBaseUtils/**/ZJSAMKeychain.h","ZJBaseUtils/**/ZJNetRoute.hpp"
+  s.private_header_files = "ZJBaseUtils/**/ZJSAMKeychain.h","ZJBaseUtils/**/ZJNetRoute.hpp","ZJBaseUtils/**/ZJNetRoute.hpp"
   
   s.resource_bundles = {
     'ZJBundleRes' => ['ZJBaseUtils/Resources/*.png']

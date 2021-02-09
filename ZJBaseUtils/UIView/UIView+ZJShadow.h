@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (ZJShadow)
 
+/// 设置阴影
+/// @param shadowOpacity 透明度
+/// @param shadowRadius 阴影半径
+/// @param cornerRadius 剪辑半径
 - (void)zj_shadowWithOpacity:(float)shadowOpacity shadowRadius:(CGFloat)shadowRadius andCornerRadius:(CGFloat)cornerRadius;
 
 @end

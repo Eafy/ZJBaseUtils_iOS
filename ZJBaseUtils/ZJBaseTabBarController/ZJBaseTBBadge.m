@@ -46,8 +46,6 @@
 {
     [super layoutSubviews];
     
-    self.badgeLB.layer.cornerRadius = self.badgeLB.zj_height/2;
-    self.badgeLB.layer.masksToBounds = YES;
     if (self.type == ZJBTBBadgeStyleTypePoint) {
         self.badgeLB.zj_size = CGSizeMake(6, 6);
         self.badgeLB.zj_left = 0;
@@ -60,16 +58,18 @@
             size = CGSizeMake(self.zj_height, self.zj_height);
         } else if (self.badgeLB.text.length > 1) {
             size = [self.badgeLB.text zj_sizeWithFont:self.badgeLB.font maxSize:CGSizeZero];
-            if (size.width > self.zj_width) {
-                size.width = self.zj_width;
-            }
-            if (size.width + self.badgeLB.layer.cornerRadius <= self.zj_width) {
-                size.width += self.badgeLB.layer.cornerRadius;
+            if (size.width >= self.zj_width) {
+                self.zj_width = size.width + 2;
+            } else if (size.width < self.zj_height) {
+                size.width = self.zj_height;
             }
         }
         self.badgeLB.zj_height = self.zj_height;
         self.badgeLB.zj_width = size.width;
     }
+    
+    self.badgeLB.layer.cornerRadius = self.badgeLB.zj_height/2;
+    self.badgeLB.layer.masksToBounds = YES;
 
     if (self.animType == ZJBTBConfigBadgeAnimTypeShake) {   //抖动
         [self.badgeLB.layer addAnimation:[CAAnimation zj_shakeAnimationWithRepeatTimes:5.0f] forKey:@"shakeAnimation"];

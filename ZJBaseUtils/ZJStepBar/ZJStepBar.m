@@ -1,16 +1,16 @@
 //
-//  ZJStepsView.m
+//  ZJStepBar.m
 //  ZJBaseUtils
 //
 //  Created by eafy on 2020/8/3.
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJStepsView.h"
+#import "ZJStepBar.h"
 #import "UIView+ZJFrame.h"
 #import "UIColor+ZJExt.h"
 #import "NSString+ZJExt.h"
-#import "ZJBaseUtils.h"
+#import "ZJBundleRes.h"
 #import "UIView+ZJExt.h"
 
 #define kZJStepsView_ProgressLineTagStart 10240
@@ -18,23 +18,23 @@
 #define kZJStepsView_TitleLBTagStart 12240
 #define kZJStepsView_CircleAnmiTagStart 13240
 
-@interface ZJStepsView ()
+@interface ZJStepBar ()
 
 @property (nonatomic, strong) NSMutableArray *titleArr;
 
 @property (nonatomic, strong) UIView *progressView;
 
-@property (nonatomic, assign) CGFloat bigCircleWidth;
-
-@property (nonatomic, assign) CGRect rect;
-
 @property (nonatomic, assign) BOOL isVertical;
-
-@property (nonatomic,strong) NSMutableArray *circleArray;
 
 @end
 
-@implementation ZJStepsView
+@implementation ZJStepBar
+
++ (instancetype)stepBarWithTitleArray:(NSArray *)titleArr {
+    ZJStepBar *stepbar = [[ZJStepBar alloc] init];
+    
+    return stepbar;
+}
 
 - (instancetype)initWithTitleArray:(NSArray *)titleArr {
     if (self = [super init]) {
@@ -52,11 +52,11 @@
         _progressSelColor = ZJColorFromRGB(0x3D7DFF);
         _progressLineHeight = 2.0;
         _titleTopSpace = 30.0;
+        _circleWidth = 8.f;
         
         [self addSubview:self.progressView];
         [self addSubviews];
         
-        self.circleWidth = 8.f;
     }
     return self;
 }
@@ -109,7 +109,6 @@
         titleLabel.font = self.titleFont;
         titleLabel.tag = kZJStepsView_TitleLBTagStart + i;
         titleLabel.text = self.titleArr[i];
-        [titleLabel sizeToFit];
         titleLabel.zj_size = [titleLabel.text zj_sizeWithFont:titleLabel.font maxSize:CGSizeZero];
         [self addSubview:titleLabel];
     }
@@ -128,6 +127,8 @@
 
 - (void)updateLayout
 {
+    if (self.titleArr.count <= 1 || self.progressView.zj_width == 0) return;
+    
     CGFloat width = self.isVertical ? self.progressView.zj_height : self.progressView.zj_width;
     CGFloat center = self.isVertical ? self.progressView.zj_width/2 : self.progressView.zj_height/2;
     CGFloat perspace = width / (self.titleArr.count - 1);
@@ -146,7 +147,7 @@
         if (i < self.index) {
             if (self.style == ZJStepBarStyleImage) {
                 imgViewSize = CGSizeMake(self.circleWidth * 2, self.circleWidth * 2);
-                imgView.image = self.selectImgName ? [UIImage imageNamed:self.selectImgName] : [ZJBaseUtils imageNamed:@"icon_stepBar_selected"];
+                imgView.image = self.selectImgName ? [UIImage imageNamed:self.selectImgName] : [ZJBundleRes imageNamed:@"icon_stepBar_selected"];
             }
             imgView.backgroundColor = self.circleSelColor;
             
@@ -156,7 +157,11 @@
             imgView.backgroundColor = self.circleSelColor;
             
             titleLabel.textColor = self.titleSelColor;
-            progressLine.frame = CGRectMake(0, 0, perspace * self.index, self.progressView.zj_height);
+            if (self.isVertical) {
+                progressLine.frame = CGRectMake(0, 0, self.progressView.zj_width, perspace * self.index);
+            } else {
+                progressLine.frame = CGRectMake(0, 0, perspace * self.index, self.progressView.zj_height);
+            }
         } else {
             imgView.backgroundColor = self.circleNorColor;
             titleLabel.textColor = self.titleNorColor;
@@ -187,12 +192,104 @@
     if (index >= self.titleArr.count) return;
         
     _index = index;
-    [self layoutIfNeeded];
+    [self updateLayout];
 }
 
 - (void)setStyle:(ZJStepBarStyle)style {
     _style = style;
-    [self layoutIfNeeded];
+    [self updateLayout];
+}
+
+- (void)setCircleWidth:(CGFloat)circleWidth {
+    _circleWidth = circleWidth;
+    [self updateLayout];
+}
+
+- (void)setSelectImgName:(NSString *)selectImgName {
+    _selectImgName = selectImgName;
+    [self updateLayout];
+}
+
+- (void)setCircleNorColor:(UIColor *)circleNorColor {
+    _circleNorColor = circleNorColor;
+    [self updateLayout];
+}
+
+- (void)setCircleSelColor:(UIColor *)circleSelColor {
+    _circleSelColor = circleSelColor;
+    [self updateLayout];
+}
+
+- (void)setCircleAnimColor:(UIColor *)circleAnimColor {
+    _circleAnimColor = circleAnimColor;
+    [self updateLayout];
+}
+
+- (void)setProgressLineHeight:(CGFloat)progressLineHeight {
+    _progressLineHeight = progressLineHeight;
+    [self updateLayout];
+}
+
+- (void)setProgressNorColor:(UIColor *)progressNorColor {
+    _progressNorColor = progressNorColor;
+    [self updateLayout];
+}
+
+- (void)setProgressSelColor:(UIColor *)progressSelColor {
+    _progressSelColor = progressSelColor;
+    [self updateLayout];
+}
+
+- (void)setTitleNorColor:(UIColor *)titleNorColor {
+    _titleNorColor = titleNorColor;
+    [self updateLayout];
+}
+
+- (void)setTitleSelColor:(UIColor *)titleSelColor {
+    _titleSelColor = titleSelColor;
+    [self updateLayout];
+}
+
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont;
+    for (NSInteger i = 0; i < self.titleArr.count; i++) {
+        UILabel *titleLabel = [self viewWithTag:kZJStepsView_TitleLBTagStart + i];
+        titleLabel.font = titleFont;
+        [titleLabel sizeToFit];
+    }
+    
+    [self updateLayout];
+}
+
+- (void)setTitleTopSpace:(CGFloat)titleTopSpace {
+    _titleTopSpace = titleTopSpace;
+    [self updateLayout];
+}
+
+#pragma mark -
+
+- (void)setupTitleArray:(NSArray *)titleArr {
+    if (_titleArr) {
+        self.titleArr = [NSMutableArray arrayWithArray:titleArr];
+        [self addSubviews];
+    }
+}
+
+- (void)selectIndex:(NSInteger)index withTitle:(NSString *)title {
+    if (index >= self.titleArr.count) return;
+    _index = index;
+    
+    [self updateIndex:index title:title];
+}
+
+- (void)updateIndex:(NSInteger)index title:(NSString *)title {
+    if (index >= self.titleArr.count) return;
+    
+    UILabel *titleLabel = [self viewWithTag:kZJStepsView_TitleLBTagStart + index];
+    titleLabel.text = title;
+    titleLabel.zj_size = [titleLabel.text zj_sizeWithFont:titleLabel.font maxSize:CGSizeZero];
+    
+    [self updateLayout];
 }
 
 @end

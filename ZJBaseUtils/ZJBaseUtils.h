@@ -30,24 +30,28 @@
 #import "UIColor+ZJExt.h"
 #import "UIImage+ZJExt.h"
 #import "UIImage+ZJQR.h"
+#import "UISearchBar+ZJExt.h"
 
 #import "UIView+ZJExt.h"
 #import "UIView+ZJFrame.h"
 #import "UIView+ZJGesture.h"
 #import "UIView+ZJGradient.h"
 #import "UIView+ZJShadow.h"
+#import "UIView+ZJAnimation.h"
 #import "UIButton+ZJExt.h"
 #import "UIButton+ZJGradient.h"
 #import "UIImageView+ZJExt.h"
 #import "UIViewController+ZJExt.h"
 #import "ZJTextField.h"
 #import "ZJTextView.h"
+#import "ZJSearchBar.h"
 
 #import "ZJModelFilter.h"
 #import "ZJModelFilterGet.h"
 #import "ZJModelFilterSet.h"
 #import "ZJModelPairs.h"
 
+#import "ZJBundleRes.h"
 #import "ZJThread.h"
 #import "ZJSystem.h"
 #import "ZJScreen.h"
@@ -59,38 +63,21 @@
 #import "ZJSheetView.h"
 #import "ZJMessageBoard.h"
 #import "ZJRedDotView.h"
-#import "ZJStepsView.h"
+#import "ZJStepBar.h"
+#import "ZJLine.h"
+#import "ZJInputPlayPwdView.h"
+#import "ZJInputTextView.h"
+#import "ZJSwitch.h"
+#import "ZJButton.h"
+#import "ZJLabel.h"
+#import "ZJSegmentedControl.h"
+#import "ZJUploadView.h"
+#import "ZJCalendarView.h"
+#import "ZJAvatarView.h"
+#import "ZJProgressBar.h"
 
 #import "ZJBaseViewController.h"
 #import "ZJBaseNavigationController.h"
 #import "ZJBaseTableViewController.h"
 #import "ZJBaseTableView.h"
 #import "ZJBaseTabBarController.h"
-
-
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface ZJBaseUtils : NSObject
-
-/// 获取bundle包内默认路径
-/// @param imageName 图片名称
-+ (nullable NSString *)imageNamePath:(NSString * _Nullable)imageName;
-
-/// 获取bundle包内默认图片
-/// @param imageName 图片名称
-+ (nullable UIImage *)imageNamed:(NSString * _Nullable)imageName;
-
-/// 获取bundle包内默认路径
-/// @param bundleName bundle名称
-/// @param imageName 图片名称
-+ (nullable NSString *)imageNamedPathWithBundle:(NSString *)bundleName imageName:(NSString * _Nullable)imageName;
-
-/// 获取bundle包内默认图片
-/// @param bundleName bundle名称
-/// @param imageName 图片名称
-+ (nullable UIImage *)imageNamedWithBundle:(NSString *)bundleName imageName:(NSString * _Nullable)imageName;
-
-@end
-
-NS_ASSUME_NONNULL_END
