@@ -36,6 +36,9 @@ extern CGFloat ZJSysVersion(void);
 /// 是否是模拟器
 + (BOOL)isSimulator;
 
+/// 获取Bundle ID
++ (NSString *)bundleId;
+
 /// 项目名称
 + (NSString *)projectName;
 
@@ -69,6 +72,14 @@ extern CGFloat ZJSysVersion(void);
 
 /// 移除UUID记录
 + (void)removeUUID;
+
+/// 获取UUID(根据GroupID)
+/// @param groupID 为nil时，默认获取bid前2个位
++ (NSString *)getUUIDForGroup:(NSString * _Nullable)groupID;
+
+/// 移除UUID记录
+/// @param groupID groupID 为nil时，默认获取bid前2个位
++ (void)removeUUIDWithGroupId:(NSString * _Nullable)groupID;
 
 #pragma mark -
 
