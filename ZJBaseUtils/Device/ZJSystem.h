@@ -51,7 +51,7 @@ extern CGFloat ZJSysVersion(void);
 /// App编译版本
 + (NSString *)appBuildVersion;
 
-/// 版本字符串转换为整形
+/// 版本字符串转换为整形(每个点占4位，即1000)
 /// @param version 版本号，3位纯数字，比如：1.0.0
 + (NSInteger)versionToNumber:(NSString *)version;
 
