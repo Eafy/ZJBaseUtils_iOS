@@ -60,14 +60,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param scale 缩放比例
 + (UIImageView *)zj_imageWithName:(NSString *)imageName topRightPoint:(CGPoint)point scale:(CGFloat)scale;
 
-#pragma mark -
-
-/// 添加自动旋转动画
-- (CABasicAnimation *)zj_addLoopRotateAnimation;
-
-/// 删除自动旋转动画
-- (void)zj_removeLoopRotateAnimation;
-
 @end
 
 NS_ASSUME_NONNULL_END

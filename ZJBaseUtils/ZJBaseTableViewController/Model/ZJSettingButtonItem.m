@@ -10,6 +10,7 @@
 #import "ZJBaseTVConfig.h"
 #import "ZJSettingTableViewCellExt.h"
 #import "UIView+ZJFrame.h"
+#import "NSString+ZJExt.h"
 
 @interface ZJSettingButtonItem()
 
@@ -33,13 +34,14 @@
         _detailBtn.backgroundColor = [UIColor clearColor];
         _detailBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         _detailBtn.contentMode = UIViewContentModeScaleAspectFit;
+        if (self.btnTitleColor) [_detailBtn setTitleColor:self.btnTitleColor forState:UIControlStateNormal];
+        if (self.btnTitleFont) _detailBtn.titleLabel.font = self.btnTitleFont;
         [_detailBtn addTarget:self action:@selector(clickedDetailBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _detailBtn;
 }
 
-- (UIView *)accessoryView
-{
+- (UIView *)accessoryView {
     if (super.accessoryView.tag != self.type) {
         super.accessoryView = self.detailBtn;
         super.accessoryView.tag = self.type;
@@ -48,17 +50,30 @@
     return super.accessoryView;
 }
 
-- (void)setEnable:(BOOL)enable
-{
+- (void)setEnable:(BOOL)enable {
     _enable = enable;
     self.detailBtn.enabled = enable;
 }
 
-- (void)setImageName:(NSString *)imageName
-{
+- (void)setImageName:(NSString *)imageName {
     _imageName = imageName;
     UIImage *img = imageName?[UIImage imageNamed:imageName]:nil;
     [self.detailBtn setImage:img forState:UIControlStateNormal];
+}
+
+- (void)setBtnTitle:(NSString *)btnTitle {
+    _btnTitle = btnTitle;
+    [self.detailBtn setTitle:btnTitle forState:UIControlStateNormal];
+}
+
+- (void)setBtnTitleColor:(UIColor *)btnTitleColor {
+    _btnTitleColor = btnTitleColor;
+    [self.detailBtn setTitleColor:self.btnTitleColor forState:UIControlStateNormal];
+}
+
+- (void)setBtnTitleFont:(UIFont *)btnTitleFont {
+    _btnTitleFont = btnTitleFont;
+    self.detailBtn.titleLabel.font = self.btnTitleFont;
 }
 
 #pragma mark - 重载差异化
@@ -71,9 +86,8 @@
         if (size.height == 0 || size.height > cell.contentView.zj_height) {
             size.height = cell.contentView.zj_height;
         }
-        if (size.width == 0) {
-            size.width = size.height * 2;
-        }
+        NSInteger width = [[self.detailBtn titleForState:UIControlStateNormal] zj_sizeWithFont:self.detailBtn.titleLabel.font maxSize:CGSizeMake(cell.contentView.zj_width/2, cell.contentView.zj_height)].width;
+        size.width = size.width + width;
         
         self.detailBtn.zj_width = size.width;
         self.detailBtn.zj_height = size.height;
@@ -82,7 +96,12 @@
 
 - (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
 {
- 
+    if (!_btnTitleColor && config.cellDetailTitleColor) {
+        [self.detailBtn setTitleColor:config.cellDetailTitleColor forState:UIControlStateNormal];
+    }
+    if (!_btnTitleFont && config.cellDetailTitleFont) {
+        self.detailBtn.titleLabel.font = config.cellDetailTitleFont;
+    }
 }
 
 #pragma mark - btnAction

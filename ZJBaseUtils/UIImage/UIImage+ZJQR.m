@@ -11,7 +11,7 @@
 
 @implementation UIImage (ZJQR)
 
-+ (UIImage *)imageWithQRCodeString:(NSString *)qrString
++ (UIImage *)zj_imageWithQRCodeString:(NSString *)qrString
 {
     // 1.实例化二维码滤镜
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
@@ -27,9 +27,9 @@
     return [UIImage zj_scaleWithCIImage:outputImage size:CGSizeMake(512, 512)];
 }
 
-+ (UIImage *)imageWithQRCodeString:(NSString *)qrString color:(UIColor *)color
++ (UIImage *)zj_imageWithQRCodeString:(NSString *)qrString color:(UIColor *)color
 {
-    UIImage *img = [self imageWithQRCodeString:qrString];
+    UIImage *img = [self zj_imageWithQRCodeString:qrString];
     img = [img zj_imageWithMinR:254 maxR:255 minG:254 maxG:255 minB:254 maxB:255];
     img = [img zj_imageWithColor:color];
     

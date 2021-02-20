@@ -24,20 +24,30 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIColor *barTitleColor;    //导航栏标题颜色，首次需要设置
 @property (nonatomic,strong) UIFont *barTitleFont;  //导航栏标题字体，首次需要设置
 
-/// 导航栏右键按钮
-@property (nonatomic,strong) UIButton * _Nullable navRightBtn;
 /// 导航栏左键按钮
 @property (nonatomic,strong) UIButton * _Nullable navLeftBtn;
+/// 导航栏左键副按钮(靠中)
+@property (nonatomic,strong) UIButton * _Nullable navLeftSubBtn;
+/// 导航栏右键按钮
+@property (nonatomic,strong) UIButton * _Nullable navRightBtn;
+/// 导航栏右键副按钮(靠中)
+@property (nonatomic,strong) UIButton * _Nullable navRightSubBtn;
+/// 左辅助按钮是否显示上一级标题，默认NO；
+@property (nonatomic,assign) BOOL isNavLeftSubTitle;
 /// 页面退出返回给上层控制器的数据
 @property (nonatomic,strong) id _Nullable returnBeforeData;
 /// 返回之前需要执行的Block
 @property (nonatomic,copy) void (^ _Nullable returnBeforeOption)(id _Nullable data);
 /// 返回之后需要执行的Block
 @property (nonatomic,copy) void (^ _Nullable returnAfterOption)(void);
-/// 右键响应
+/// 右按按钮响应
 - (void)navRightBtnAction;
-/// 左键响应
+/// 右辅助按钮响应
+- (void)navRightSubBtnAction;
+/// 左按钮响应
 - (void)navLeftBtnAction;
+/// 左辅助按钮响应
+- (void)navLeftSubBtnAction;
 
 //自定义导航栏
 @property (nonatomic,assign) BOOL isShowNavBarView;     //是否显示自定义导航栏视图，当isHideNavBar为YES时生效

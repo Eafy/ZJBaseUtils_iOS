@@ -100,6 +100,24 @@ extern NSString *const NSDateFormat_Sec;
 /// @param formatter 格式化字符串
 + (NSDate *)zj_timeFromString:(NSString *)dateStr formatter:(NSString *)formatter;
 
+#pragma mark -
+
+/// 当前年
+- (NSInteger)year;
+/// 当前月
+- (NSInteger)month;
+/// 当前天
+- (NSInteger)day;
+/// 当前小时
+- (NSInteger)hour;
+/// 当前分钟
+- (NSInteger)min;
+/// 当前秒
+- (NSInteger)sec;
+
+/// 当月天数
+- (NSInteger)days;
+
 @end
 
 NS_ASSUME_NONNULL_END

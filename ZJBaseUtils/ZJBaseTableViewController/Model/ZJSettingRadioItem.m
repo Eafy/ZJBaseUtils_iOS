@@ -13,21 +13,33 @@
 #import "UIColor+ZJExt.h"
 #import "ZJBaseTVConfig.h"
 #import "ZJSettingTableViewCellExt.h"
-#import "ZJBaseUtils.h"
+#import "ZJBundleRes.h"
 
 @interface ZJSettingRadioItem ()
 
 @property (nonatomic,strong) NSMutableArray *btnArray;
+@property (nonatomic,strong) NSMutableArray<NSNumber *> *stateBtnArray;
 @property (nonatomic,assign) NSUInteger selectIndex;
 
 @end
 
 @implementation ZJSettingRadioItem
-@synthesize stateArray = _stateArray;
 
 - (ZJSettingItemType)type
 {
     return ZJSettingItemTypeRadio;
+}
+
+- (void)defaultData {
+    _enable = YES;
+}
+
+- (void)setEnable:(BOOL)enable {
+    _enable = enable;
+    
+    for (UIButton *btn in self.btnArray) {
+        btn.enabled = enable;
+    }
 }
 
 - (UIView *)accessoryView
@@ -48,16 +60,22 @@
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100.0f, 44.0f)];
     btn.contentMode = UIViewContentModeRight;
     if (self.normalIcon) [btn setImage:[UIImage imageNamed:self.normalIcon] forState:UIControlStateNormal];
-    else [btn setImage:[ZJBaseUtils imageNamed:@"icon_radio_normal"] forState:UIControlStateNormal];
+    else [btn setImage:[ZJBundleRes imageNamed:@"icon_radio_normal"] forState:UIControlStateNormal];
     if (self.selectIcon) [btn setImage:[UIImage imageNamed:self.selectIcon] forState:UIControlStateSelected];
-    else [btn setImage:[ZJBaseUtils imageNamed:@"icon_radio_selected"] forState:UIControlStateNormal];
+    else [btn setImage:[ZJBundleRes imageNamed:@"icon_radio_selected"] forState:UIControlStateSelected];
     if (self.radioBtnTitleColor) [btn setTitleColor:self.radioBtnTitleColor forState:UIControlStateNormal];
-    else [btn setTitleColor:ZJColorFromHex(@"#181E28") forState:UIControlStateNormal];
+    else [btn setTitleColor:ZJColorFromRGB(0x181E28) forState:UIControlStateNormal];
     if (self.radioBtnTitleFont) btn.titleLabel.font = self.radioBtnTitleFont;
     else btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     
+    if (self.selectDisIcon) [btn setImage:[UIImage imageNamed:self.selectDisIcon] forState:UIControlStateDisabled|UIControlStateSelected];
+    else [btn setImage:[ZJBundleRes imageNamed:@"icon_radio_disabled_sel"] forState:UIControlStateDisabled|UIControlStateSelected];
+    if (self.normalDisIcon) [btn setImage:[UIImage imageNamed:self.normalDisIcon] forState:UIControlStateDisabled|UIControlStateNormal];
+    else [btn setImage:[ZJBundleRes imageNamed:@"icon_radio_disabled_nor"] forState:UIControlStateDisabled|UIControlStateNormal];
+    
     [btn addTarget:self action:@selector(clickedRadioBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.accessoryView addSubview:btn];
+    btn.enabled = self.enable;
     
     return btn;
 }
@@ -70,18 +88,22 @@
     return _btnArray;
 }
 
-- (NSMutableArray<NSNumber *> *)stateArray
-{
-    if (!_stateArray) {
-        _stateArray = [NSMutableArray array];
+- (NSMutableArray<NSNumber *> *)stateBtnArray {
+    if (!_stateBtnArray) {
+        _stateBtnArray = [NSMutableArray array];
     }
     
-    return _stateArray;
+    return _stateBtnArray;
 }
 
-- (void)setStateArray:(NSMutableArray<NSNumber *> *)stateArray
+- (NSArray<NSNumber *> *)stateArray
 {
-    _stateArray = [NSMutableArray arrayWithArray:stateArray];
+    return self.stateBtnArray;
+}
+
+- (void)setStateArray:(NSArray<NSNumber *> *)stateArray
+{
+    _stateBtnArray = [NSMutableArray arrayWithArray:stateArray];
     [self clearBtnArray:stateArray.count];
 }
 
@@ -108,16 +130,16 @@
         } else {
             btn = [self.btnArray objectAtIndex:i];
         }
-        if (i >= self.stateArray.count) {
-            [self.stateArray addObject:@0];
+        if (i >= self.stateBtnArray.count) {
+            [self.stateBtnArray addObject:@0];
         }
-        btn.selected = [[self.stateArray objectAtIndex:i] boolValue];
+        btn.selected = [[self.stateBtnArray objectAtIndex:i] boolValue];
     }
     
     for (NSUInteger i=count; i<self.btnArray.count; i++) {
         [self.btnArray removeLastObject];
-        if (i < self.stateArray.count) {
-            [self.stateArray removeLastObject];
+        if (i < self.stateBtnArray.count) {
+            [self.stateBtnArray removeLastObject];
         }
     }
 }
@@ -160,7 +182,7 @@
         width += btn.zj_width;
         preBtn = btn;
         
-        [btn setSelected:[[self.stateArray objectAtIndex:i] boolValue]];
+        [btn setSelected:[[self.stateBtnArray objectAtIndex:i] boolValue]];
         if (btn.selected) {
             self.selectIndex = i;
         }
@@ -206,23 +228,23 @@
             if (btnT.tag != btn.tag) {
                 [btnT setSelected:!btn.selected];
             }
-            [self.stateArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
+            [self.stateBtnArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
         }
     } else {
-        [self.stateArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
+        [self.stateBtnArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
     }
     
     if (_radioBtnBlock) {
         BOOL selectedOld = btn.selected;
         BOOL selectedNew = btn.selected;
-        self.radioBtnBlock(self.stateArray, btn.tag, &selectedNew);
+        self.radioBtnBlock([btn titleForState:UIControlStateNormal], self.stateBtnArray, btn.tag, &selectedNew);
         if (selectedOld != selectedNew) {   //外部不接受，还原之前的选项
             btn.selected = selectedNew;
-            [self.stateArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
+            [self.stateBtnArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:btn.selected]];
             if (self.radioModel) {  //单选框，还原之前的选择
                 UIButton * btnT = [self.btnArray objectAtIndex:self.selectIndex];
                 btnT.selected = YES;
-                [self.stateArray replaceObjectAtIndex:btnT.tag withObject:@YES];
+                [self.stateBtnArray replaceObjectAtIndex:btnT.tag withObject:@YES];
             }
         } else {
             self.selectIndex = btn.tag;
@@ -235,17 +257,15 @@
     if (index >= self.btnArray.count) return;
     
     if (self.radioModel) {
-        UIButton *btn = [self.btnArray objectAtIndex:index];
-        if (!btn.selected) {
-            for (int i=0; i<self.btnArray.count; i++) {
-                btn.selected = i == index;
-                [self.stateArray replaceObjectAtIndex:index withObject:@(i == index)];
-            }
+        for (int i=0; i<self.btnArray.count; i++) {
+            UIButton *btn = [self.btnArray objectAtIndex:i];
+            btn.selected = i == index;
+            [self.stateBtnArray replaceObjectAtIndex:i withObject:@(i == index)];
         }
     } else {
         UIButton *btn = [self.btnArray objectAtIndex:index];
         btn.selected = YES;
-        [self.stateArray replaceObjectAtIndex:index withObject:@YES];
+        [self.stateBtnArray replaceObjectAtIndex:index withObject:@YES];
     }
 }
 

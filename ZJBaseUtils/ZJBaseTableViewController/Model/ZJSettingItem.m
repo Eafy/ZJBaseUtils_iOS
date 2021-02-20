@@ -61,6 +61,7 @@
     }
     _privateData = nil;
     _operationHandle = nil;
+    _iconView = nil;
 }
 
 #pragma mark -

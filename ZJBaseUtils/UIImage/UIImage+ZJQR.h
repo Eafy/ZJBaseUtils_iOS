@@ -14,9 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 生成二维码图片
 /// @param qrString 二维码字符串
-+ (UIImage *)imageWithQRCodeString:(NSString *)qrString;
++ (UIImage *)zj_imageWithQRCodeString:(NSString *)qrString;
 
-+ (UIImage *)imageWithQRCodeString:(NSString *)qrString color:(UIColor *)color;
+/// 生成带颜色的二维码图片
+/// @param qrString 二维码字符串
+/// @param color 颜色值
++ (UIImage *)zj_imageWithQRCodeString:(NSString *)qrString color:(UIColor *)color;
 
 @end
 

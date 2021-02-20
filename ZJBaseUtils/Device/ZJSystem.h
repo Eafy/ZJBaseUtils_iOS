@@ -36,6 +36,9 @@ extern CGFloat ZJSysVersion(void);
 /// 是否是模拟器
 + (BOOL)isSimulator;
 
+/// 获取Bundle ID
++ (NSString *)bundleId;
+
 /// 项目名称
 + (NSString *)projectName;
 
@@ -48,7 +51,7 @@ extern CGFloat ZJSysVersion(void);
 /// App编译版本
 + (NSString *)appBuildVersion;
 
-/// 版本字符串转换为整形
+/// 版本字符串转换为整形(每个点占4位，即1000)
 /// @param version 版本号，3位纯数字，比如：1.0.0
 + (NSInteger)versionToNumber:(NSString *)version;
 
@@ -69,6 +72,14 @@ extern CGFloat ZJSysVersion(void);
 
 /// 移除UUID记录
 + (void)removeUUID;
+
+/// 获取UUID(根据GroupID)
+/// @param groupID 为nil时，默认获取bid前2个位
++ (NSString *)getUUIDForGroup:(NSString * _Nullable)groupID;
+
+/// 移除UUID记录
+/// @param groupID groupID 为nil时，默认获取bid前2个位
++ (void)removeUUIDWithGroupId:(NSString * _Nullable)groupID;
 
 #pragma mark -
 

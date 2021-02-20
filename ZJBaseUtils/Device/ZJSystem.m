@@ -25,6 +25,10 @@ extern CGFloat ZJSysVersion(void) {
     return TARGET_IPHONE_SIMULATOR | TARGET_OS_SIMULATOR;
 }
 
++ (NSString *)bundleId {
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
+}
+
 + (NSString *)projectName {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
 }
@@ -87,14 +91,11 @@ extern CGFloat ZJSysVersion(void) {
 {
     NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
     if (openUUID == nil) {
-        NSString *udidStr = [NSString zj_stringRandomWithSize:64];
-        openUUID = [udidStr zj_md5String];
-
         NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
         NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
         if (uniqueKeyItem == nil || [uniqueKeyItem length] == 0) {
-            uniqueKeyItem = openUUID;
-            [ZJSAMKeychain setPassword:openUUID forService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
+            uniqueKeyItem = [[NSString zj_stringRandomWithSize:64] zj_md5String];
+            [ZJSAMKeychain setPassword:uniqueKeyItem forService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
         }
 
         [[NSUserDefaults standardUserDefaults] setObject:uniqueKeyItem forKey:@"zj_base_utils_device_UUID"];
@@ -116,6 +117,47 @@ extern CGFloat ZJSysVersion(void) {
 }
 
 + (void)removeUUID
+{
+    NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
+    if (openUUID != nil) {
+        NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
+        NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
+        if (uniqueKeyItem != nil || [uniqueKeyItem length] != 0) {
+            [ZJSAMKeychain deletePasswordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
+        }
+
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"zj_base_utils_device_UUID"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
++ (NSString *)getUUIDForGroup:(NSString *)groupID
+{
+    NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
+    if (openUUID == nil) {
+        if (!groupID) {
+            NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
+            NSArray *idList = [bundleID componentsSeparatedByString:@"."];
+            if (idList.count >= 2) {
+                groupID = [NSString stringWithFormat:@"%@.%@.*", idList[0], idList[1]];
+            }
+        }
+        
+        NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:groupID account:@"zj_base_utils_device_UUID_keychain_account"];
+        if (uniqueKeyItem == nil || [uniqueKeyItem length] == 0) {
+            uniqueKeyItem = [[NSString zj_stringRandomWithSize:64] zj_md5String];
+            [ZJSAMKeychain setPassword:uniqueKeyItem forService:groupID account:@"zj_base_utils_device_UUID_keychain_account"];
+        }
+
+        [[NSUserDefaults standardUserDefaults] setObject:uniqueKeyItem forKey:@"zj_base_utils_device_UUID"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        openUUID = uniqueKeyItem;
+    }
+
+    return openUUID;
+}
+
++ (void)removeUUIDWithGroupId:(NSString * _Nullable)groupID
 {
     NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
     if (openUUID != nil) {
@@ -181,12 +223,16 @@ extern CGFloat ZJSysVersion(void) {
 {
     if ([self canCameraPermission]) {
         if (handler) {
-            handler(YES);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                handler(YES);
+            });
         }
     } else {
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             if (handler) {
-                handler(granted);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(granted);
+                });
             }
         }];
     }
@@ -216,18 +262,24 @@ extern CGFloat ZJSysVersion(void) {
 {
     if ([self canPhotoPermission]) {
         if (handler) {
-            handler(YES);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                handler(YES);
+            });
         }
     } else if (@available(iOS 14.0, *)) {
         [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
             if (handler) {
-                handler(status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusLimited);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusLimited);
+                });
             }
         }];
     } else {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             if (handler) {
-                handler(status == PHAuthorizationStatusAuthorized);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(status == PHAuthorizationStatusAuthorized);
+                });
             }
         }];
     }
@@ -265,6 +317,5 @@ extern CGFloat ZJSysVersion(void) {
         return YES;
     }
 }
-
 
 @end

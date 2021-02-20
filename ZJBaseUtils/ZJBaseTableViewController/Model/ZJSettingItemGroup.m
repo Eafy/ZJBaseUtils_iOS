@@ -20,11 +20,27 @@
     return _items;
 }
 
-- (void)addObject:(id)anObject
-{
+- (void)addObject:(id)anObject {
     if (anObject && [anObject isKindOfClass:[ZJSettingItem class]]) {
         [self.items addObject:anObject];
     }
+}
+
+- (void)removeObject:(id)anObject {
+    if (anObject) {
+        [self.items removeObject:anObject];
+    }
+}
+
+- (void)removeAllObjects {
+    [self.items removeAllObjects];
+}
+
+- (id)objectAtIndex:(NSUInteger)index {
+    if (index < self.items.count) {
+        return [self.items objectAtIndex:index];
+    }
+    return nil;
 }
 
 @end

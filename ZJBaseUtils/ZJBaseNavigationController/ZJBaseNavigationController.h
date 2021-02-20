@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIColor *barTintColor;     //导航栏背景颜色
 @property (nonatomic,strong) UIColor *barTitleColor;    //导航栏标题颜色，首次需要设置
 @property (nonatomic,strong) UIFont *barTitleFont;  //导航栏标题字体，首次需要设置
+/// 左辅助按钮是否显示上一级标题，默认nil；
+@property (nonatomic,strong) NSNumber *isNavLeftSubTitle;
 
 #pragma mark - 内部使用接口
 

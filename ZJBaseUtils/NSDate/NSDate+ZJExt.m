@@ -163,4 +163,36 @@ NSString *const NSDateFormat_Sec = @"ss";
     return date;
 }
 
+#pragma mark -
+
+- (NSInteger)year {
+    return [[self zj_toString:NSDateFormat_Year] integerValue];
+}
+
+- (NSInteger)month {
+    return [[self zj_toString:NSDateFormat_Month] integerValue];
+}
+
+- (NSInteger)day {
+    return [[self zj_toString:NSDateFormat_Day] integerValue];
+}
+
+- (NSInteger)hour {
+    return [[self zj_toString:NSDateFormat_Hour] integerValue];
+}
+
+- (NSInteger)min {
+    return [[self zj_toString:NSDateFormat_Min] integerValue];
+}
+
+- (NSInteger)sec {
+    return [[self zj_toString:NSDateFormat_Sec] integerValue];
+}
+
+- (NSInteger)days {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger days = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self].length;
+    return days;
+}
+
 @end

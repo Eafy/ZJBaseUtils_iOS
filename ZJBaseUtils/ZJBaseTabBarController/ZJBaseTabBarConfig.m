@@ -23,7 +23,7 @@
        _nolTitleFont = [UIFont systemFontOfSize:12.0f];
        _selTitleFont = [UIFont boldSystemFontOfSize:12.0f];
        _titleOffset = 2.f;
-       _imageOffset = 2.f;
+       _imageOffset = 4.f;
        
        _imageScaleRatio = 1.30f;
        _centerImageSize = CGSizeMake(40.0, 40.0);

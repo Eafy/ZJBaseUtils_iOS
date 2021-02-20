@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ZJSingleton.h"
+#import "ZJSystem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -22,7 +22,9 @@
 /// 表单全局配置参数
 @property (nonatomic,strong) ZJBaseTVConfig *tableViewConfig;
 
+/// 右边箭头视图
 @property (nonatomic, strong) UIImageView *arrowImgView;
+/// 标题详情图片(new)
 @property (nonatomic, strong) UIImageView *titleDetailImgView;
 /// 背景视图
 @property (nonatomic, strong) UIView *bgView;
@@ -102,13 +104,6 @@
     if (self.tableViewConfig.cellDetailTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellDetailTitleFont];
     if (self.tableViewConfig.cellSubTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
     if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellSubTitleFont];
-    
-    if (self.item.subTitle && self.item.detailTitle) {
-        if (self.tableViewConfig.cellSubTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
-        if (self.tableViewConfig.cellSubTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellSubTitleFont];
-        if (self.tableViewConfig.cellDetailTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
-        if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
-    }
 }
 
 - (void)layoutSubviews
@@ -161,12 +156,14 @@
             } else {
                 self.subTitleLabel.zj_width = self.contentView.zj_right - preRight - detailTextSpace;
             }
+            self.detailTextLabel.zj_left = self.textLabel.zj_left;
         } else {
             self.subTitleLabel.zj_left = self.textLabel.zj_left;
             self.subTitleLabel.textAlignment = NSTextAlignmentLeft;
             [self.subTitleLabel sizeToFit];
         }
     } else {
+        self.textLabel.zj_centerY = self.contentView.zj_centerY;
         if (self.accessoryView) {
             self.detailTextLabel.zj_right = self.accessoryView.zj_left - detailTextSpace;
         } else {
@@ -194,6 +191,10 @@
         if (!self.accessoryView && self.accessoryType != UITableViewCellAccessoryNone) {
             self.multiArrowView.zj_right = self.contentView.zj_right - self.tableViewConfig.arrowLeftSpace;
         }
+    }
+    
+    if (!self.item.detailTitle && !self.accessoryView && self.accessoryType == UITableViewCellAccessoryNone && !self.item.multiArrowView) {
+        self.textLabel.zj_width = self.contentView.zj_width - self.textLabel.zj_left - self.tableViewConfig.marginRight;
     }
     
     if (self.isShowLine) {
@@ -240,6 +241,11 @@
                 if (arrowImg) {
                     _arrowImgView = [[UIImageView alloc] initWithImage:arrowImg];
                 }
+            }
+        } else {
+            if (_arrowImgView) {
+                [_arrowImgView removeFromSuperview];
+                _arrowImgView = nil;
             }
         }
     } else if (_arrowImgView != self.item.accessoryView && [NSString zj_isEmpty:self.item.arrowIcon]){
@@ -300,16 +306,19 @@
     if (item.titleAttributed) {
         self.textLabel.attributedText = item.titleAttributed;
     }
-    if (!_item.iconView && item.iconView != _item.iconView) {
-        [_item.iconView removeFromSuperview];
-        _item.iconView = nil;
+    if (_item.iconView && item.iconView != _item.iconView) {
+        if (_item.iconView.superview == self) {
+            [_item.iconView removeFromSuperview];
+        }
     }
     if (![NSString zj_isEmpty:item.icon]) {
         self.imageView.image = [UIImage imageNamed:item.icon];
     } else if (item.iconView && item.iconView != _item.iconView) {
         self.imageView.image = nil;
         item.iconView.zj_left = 15.0f;
-        item.iconView.zj_width = item.iconView.zj_height + 10.0f;
+        if (item.iconView.zj_height > self.tableViewConfig.rowHeight) {
+            item.iconView.zj_height = self.tableViewConfig.rowHeight;
+        }
         item.iconView.zj_centerY = self.tableViewConfig.rowHeight/2.0;
         [self.contentView addSubview:item.iconView];
     }
@@ -343,6 +352,13 @@
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
     } else {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    if (self.item.subTitle && self.item.detailTitle) {
+        if (self.tableViewConfig.cellSubTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
+        if (self.tableViewConfig.cellSubTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellSubTitleFont];
+        if (self.tableViewConfig.cellDetailTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
+        if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
     }
 }
 

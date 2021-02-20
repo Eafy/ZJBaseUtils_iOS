@@ -9,8 +9,6 @@
 #import "UIImageView+ZJExt.h"
 #import "UIImage+ZJExt.h"
 
-NSString *const kZJImageView360RotateTransform = @"kZJImageView360RotateTransform";
-
 @implementation UIImageView (ZJExt)
 
 + (UIImageView *)zj_imageWithName:(NSString *)imageName center:(CGPoint)point scale:(CGFloat)scale
@@ -110,34 +108,6 @@ NSString *const kZJImageView360RotateTransform = @"kZJImageView360RotateTransfor
     imageView.image = image;
     
     return imageView;
-}
-
-#pragma mark -
-
-- (CABasicAnimation *)zj_addLoopRotateAnimation
-{
-    CABasicAnimation *animation = [self.layer animationForKey:kZJImageView360RotateTransform];
-    if (!animation) {
-        animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        animation.toValue = [NSNumber numberWithFloat:M_PI * 2.0];
-        animation.duration = 1.0;
-        animation.cumulative = YES;
-        animation.repeatCount = ULLONG_MAX;
-        
-//        CGRect imageRrect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-//        UIGraphicsBeginImageContext(imageRrect.size);
-//        [self.image drawInRect:CGRectMake(1, 1, self.frame.size.width-2, self.frame.size.height-2)];
-//        self.image = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-        [self.layer addAnimation:animation forKey:kZJImageView360RotateTransform];
-    }
-    
-    return animation;
-}
-
-- (void)zj_removeLoopRotateAnimation
-{
-    [self.layer removeAnimationForKey:kZJImageView360RotateTransform];
 }
 
 @end

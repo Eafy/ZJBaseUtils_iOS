@@ -50,7 +50,7 @@
     
     [self setConfig:self.config];
     
-    CGFloat badgeX = CGRectGetMaxX(self.imageView.frame) + 2;
+    CGFloat badgeX = CGRectGetMaxX(self.imageView.frame) - 2;
     CGFloat badgeY = 0;
     CGFloat badgeH = 16;
     CGFloat badgeW = 28;

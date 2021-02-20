@@ -7,6 +7,7 @@
 //
 
 #import "ZJPickerView.h"
+#import "ZJDatePickerViewModel.h"
 #import "UIColor+ZJExt.h"
 #import "ZJScreen.h"
 #import "UIView+ZJFrame.h"
@@ -22,7 +23,6 @@
 @property (nonatomic,strong) UIView *maskView;
 
 @property (nonatomic,strong) NSMutableArray<UIPickerView *> *pickerViewArray;
-
 @property (nonatomic,assign) CGRect pickerFrame;
 
 /// 标题标签
@@ -34,7 +34,7 @@
 /// 顶部线条
 @property (nonatomic,strong) UIView *topLineView;
 
-@property (nonatomic,assign) BOOL isRowLineSet;
+@property (nonatomic,strong) ZJDatePickerViewModel *dateModel;
 
 @end
 
@@ -76,14 +76,17 @@
 - (void)deafaultData
 {
     _maskColor = ZJColorFromHex(@"#181E28B2");
-    _rowLineColor = ZJColorFromHex(@"#DCE0E8");
+    _rowLineColor = ZJColorFromRGB(0xDCE0E8);
     _btnOffset = 15;
     _topViewHeight = 56;
+    _titleColor = ZJColorFromRGB(0x181E28);
+    _titleFont = [UIFont boldSystemFontOfSize:16];
     _rowTitleColor = [UIColor blackColor];
-    _rowTitleFont = [UIFont systemFontOfSize:18];
+    _rowTitleFont = [UIFont systemFontOfSize:16];
     _rowBackgroundColor = [UIColor clearColor];
     _rowLineHeight = 1.0;
-    _topViewLineColor = [UIColor clearColor];
+    _topViewLineColor = ZJColorFromRGB(0xDCE0E8);
+    _rowAdjustsFontSize = YES;
 }
 
 - (void)layoutSubviews
@@ -93,8 +96,7 @@
     if (self.rowLineColor || !self.rowLineHeight) {
         for (UIPickerView *pickerView in self.pickerViewArray) {
             NSArray<UIView *> *views = pickerView.subviews;
-            if (views.count >= 3 && !self.isRowLineSet) {
-                self.isRowLineSet = YES;
+            if (views.count >= 3) {
                 if (self.rowLineColor) {
                     views[1].backgroundColor = self.rowLineColor;
                     views[2].backgroundColor = self.rowLineColor;
@@ -116,13 +118,20 @@
     return _pickerViewArray;
 }
 
+- (ZJDatePickerViewModel *)dateModel {
+    if (!_dateModel) {
+        _dateModel = [[ZJDatePickerViewModel alloc] init];
+    }
+    return _dateModel;
+}
+
 - (UILabel *)titleLB
 {
     if (!_titleLB) {
         _titleLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ZJScreenWidth() - (self.okBtn.zj_width + self.btnOffset) * 2, self.okBtn.zj_height)];
         _titleLB.backgroundColor = [UIColor clearColor];
-        _titleLB.textColor = ZJColorFromHex(@"#181E28");
-        _titleLB.font = [UIFont boldSystemFontOfSize:16];
+        _titleLB.textColor = self.titleColor;
+        _titleLB.font = self.titleFont;
         _titleLB.textAlignment = NSTextAlignmentCenter;
     }
     
@@ -205,21 +214,23 @@
 /// @param pickerView 选择器
 - (void)changeSpearatorLineColor:(UIPickerView *)pickerView
 {
-    for (UIView *speartorView in pickerView.subviews) {
-        if (speartorView.frame.size.height < 80) {  //找出当前的View
+    if (self.rowLineHeight > 0) {
+        for (UIView *speartorView in pickerView.subviews) {
             if (speartorView.subviews.count == 0) {
-                if (self.rowLineHeight > 0 && !self.isRowLineSet) {
-                    self.isRowLineSet = YES;
-                    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, speartorView.zj_width, self.rowLineHeight)];
+                if (speartorView.frame.size.height <= 1) {  //找出当前的View
+                    speartorView.zj_height = self.rowLineHeight;
+                    speartorView.backgroundColor = self.rowLineColor;
+                } else {
+                    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(-10, 0, speartorView.zj_width + 20, self.rowLineHeight)];
                     line.backgroundColor = self.rowLineColor;
                     [speartorView addSubview:line];
-
+                    
                     CGFloat height = [self pickerView:pickerView rowHeightForComponent:0];
-                    line = [[UIView alloc] initWithFrame:CGRectMake(0, height-self.rowLineHeight, speartorView.zj_width, self.rowLineHeight)];
+                    line = [[UIView alloc] initWithFrame:CGRectMake(-10, height-self.rowLineHeight, speartorView.zj_width+20, self.rowLineHeight)];
                     line.backgroundColor = self.rowLineColor;
                     [speartorView addSubview:line];
+                    speartorView.backgroundColor = self.rowBackgroundColor;
                 }
-                speartorView.backgroundColor = self.rowBackgroundColor;
             }
         }
     }
@@ -325,8 +336,13 @@
     self.okBtn.zj_right = self.zj_width - btnOffset;
     self.titleLB.zj_width = self.zj_width - (self.okBtn.zj_width + btnOffset) * 2;
 }
+
+- (void)setItemsArray:(NSArray<ZJPickerItem *> *)itemsArray {
+    if (self.style != ZJPickerViewStyleNormal) return;
+    [self updateItemsArray:itemsArray];
+}
     
-- (void)setItemsArray:(NSArray<ZJPickerItem *> *)itemsArray
+- (void)updateItemsArray:(NSArray<ZJPickerItem *> *)itemsArray
 {
     _itemsArray = itemsArray;
 
@@ -357,11 +373,54 @@
     }
 }
 
-- (void)setDelegate:(id<ZJPickerViewDelegate>)delegate
-{
+- (void)setDelegate:(id<ZJPickerViewDelegate>)delegate {
     _delegate = delegate;
-    self.isRowLineSet = NO;
-    [self setItemsArray:self.itemsArray];
+}
+
+- (void)setStyle:(ZJPickerViewStyle)style {
+    if (style != self.style) {
+        [self updateItemsArray:nil];
+    }
+    _style = style;
+    
+    NSMutableArray<ZJPickerItem *> *array = [NSMutableArray array];
+    if (style == ZJPickerViewStyleDate_YMD ||
+        style == ZJPickerViewStyleDate_YMDHMS ||
+        style == ZJPickerViewStyleDate_YMDHM) {     //年、月、日
+        ZJPickerItem *item = [[ZJPickerItem alloc] init];
+        item.titleArray = self.dateModel.yearArray;
+        item.selectIndex = [self.dateModel indexYear:-1];   //选择当前年
+        [array addObject:item];
+        item = [[ZJPickerItem alloc] init];
+        item.titleArray = self.dateModel.monthArray;
+        item.selectIndex = [self.dateModel indexMon:-1];    //选择当前月
+        [array addObject:item];
+        item = [[ZJPickerItem alloc] init];
+        item.titleArray = self.dateModel.dayArray;
+        item.selectIndex = [self.dateModel indexDay:-1];
+        [array addObject:item];
+    }
+    if (style == ZJPickerViewStyleDate_YMDHM ||
+        style == ZJPickerViewStyleDate_YMDHMS ||
+        style == ZJPickerViewStyleDate_HMS) {   // 时、分
+        ZJPickerItem *item = [[ZJPickerItem alloc] init];
+        item.titleArray = self.dateModel.hourArray;
+        item.selectIndex = [self.dateModel indexHour:-1];
+        [array addObject:item];
+        item = [[ZJPickerItem alloc] init];
+        item.titleArray = self.dateModel.minuteArray;
+        item.selectIndex = [self.dateModel indexMin:-1];
+        [array addObject:item];
+    }
+    if (style == ZJPickerViewStyleDate_YMDHMS ||
+        style == ZJPickerViewStyleDate_HMS) {   //秒
+        ZJPickerItem *item = [[ZJPickerItem alloc] init];
+        item.titleArray = self.dateModel.secondArray;
+        item.selectIndex = [self.dateModel indexSec:-1];
+        [array addObject:item];
+    }
+
+    [self updateItemsArray:array];
 }
 
 #pragma mark -
@@ -424,7 +483,22 @@
     ZJPickerItem *item = [self.itemsArray objectAtIndex:component];
     if (row >= item.titleArray.count) return;
     UIPickerView *pickerView = [self.pickerViewArray objectAtIndex:component];
-    [pickerView selectRow:row inComponent:0 animated:animated];
+    if (row != [pickerView selectedRowInComponent:0]) {
+        [pickerView selectRow:row inComponent:0 animated:animated];
+    }
+}
+
+- (BOOL)replaceArrayAtComponent:(NSUInteger)index item:(ZJPickerItem *)item {
+    if (index >= self.itemsArray.count) {
+        return NO;
+    }
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.itemsArray];
+    [array replaceObjectAtIndex:index withObject:item];
+    _itemsArray = array;
+    UIPickerView *pickerView = [self.pickerViewArray objectAtIndex:index];
+    [pickerView reloadAllComponents];
+    
+    return YES;
 }
 
 #pragma mark - UIPickerViewDataSource
@@ -444,7 +518,6 @@
     ZJPickerItem *item = [self.itemsArray objectAtIndex:pickerView.tag];
     return item.titleArray.count;
 }
-
 
 #pragma mark - UIPickerViewDelegate
 
@@ -477,40 +550,46 @@
     
     if (self.rowTitleFont && self.rowTitleColor) {
         if (pickerView.tag >= self.itemsArray.count) return nil;
-        
+
         ZJPickerItem *item = [self.itemsArray objectAtIndex:pickerView.tag];
         if (component >= item.titleArray.count) return nil;
         NSString *title = [item.titleArray objectAtIndex:row];
-        return [title zj_stringWithColor:self.rowTitleColor font:self.rowTitleFont];
+        
+        if (self.rowSelTitleColor && self.rowSelTitleFont && [pickerView selectedRowInComponent:component] == row) {
+            return [title zj_stringWithColor:self.rowSelTitleColor font:self.rowSelTitleFont];
+        } else {
+            return [title zj_stringWithColor:self.rowTitleColor font:self.rowTitleFont];
+        }
     }
     
     return nil;
 }
 
-//- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
-//{
-//    [self changeSpearatorLineColor:pickerView];
-//
-//    /// 未选中颜色
-//    UILabel* pickerLabel = (UILabel*)view;
-//    if (!pickerLabel) {
-//        pickerLabel = [[UILabel alloc] init];
-//        pickerLabel.adjustsFontSizeToFitWidth = YES;
-//        pickerLabel.textAlignment = NSTextAlignmentCenter;
-//        pickerLabel.font = self.rowTitleFont;
-//        pickerLabel.textColor = self.rowTitleColor;
-//        pickerLabel.backgroundColor = self.rowBackgroundColor;
-//    }
-//
-//    NSAttributedString *attr = [self pickerView:pickerView attributedTitleForRow:row forComponent:component];
-//    if (attr) {
-//        pickerLabel.attributedText = attr;
-//    } else {
-//        pickerLabel.text = [self pickerView:pickerView titleForRow:row forComponent:component];
-//    }
-//
-//    return pickerLabel;
-//}
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
+{
+    if (_delegate && [self.delegate respondsToSelector:@selector(pickerView:viewForRow:forComponent:reusingView:)]) {
+        return [self.delegate pickerView:self viewForRow:row forComponent:component reusingView:view];
+    }
+    
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel) {
+        pickerLabel = [[UILabel alloc] init];
+        pickerLabel.adjustsFontSizeToFitWidth = self.rowAdjustsFontSize;
+        pickerLabel.textAlignment = NSTextAlignmentCenter;
+        pickerLabel.font = self.rowTitleFont;
+        pickerLabel.textColor = self.rowTitleColor;
+        pickerLabel.backgroundColor = self.rowBackgroundColor;
+    }
+
+    NSAttributedString *attr = [self pickerView:pickerView attributedTitleForRow:row forComponent:component];
+    if (attr) {
+        pickerLabel.attributedText = attr;
+    } else {
+        pickerLabel.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    }
+
+    return pickerLabel;
+}
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
@@ -518,15 +597,44 @@
     ZJPickerItem *item = [self.itemsArray objectAtIndex:pickerView.tag];
     item.selectIndex = row;
     
-    if (_delegate && [self.delegate respondsToSelector:@selector(pickerView:didSelectRow:inComponent:)]) {
-        return [self.delegate pickerView:self didSelectRow:row inComponent:pickerView.tag];
+    //重置后面所有列
+    if (self.isResetNext) {
+        for (NSInteger i = pickerView.tag + 1; i < self.itemsArray.count; i++) {
+            [self selectComponent:i row:0 animated:YES];
+        }
+    }
+    if (self.style == ZJPickerViewStyleDate_YMD ||
+        self.style == ZJPickerViewStyleDate_YMDHMS ||
+        self.style == ZJPickerViewStyleDate_YMDHM) {   //更新天数
+        if (component == 0 || component == 1) {
+            UIPickerView *pickerView = [self.pickerViewArray objectAtIndex:0];  //年
+            ZJPickerItem *itemT = [self.itemsArray objectAtIndex:pickerView.tag];
+            NSString *year = [itemT.titleArray objectAtIndex:[pickerView selectedRowInComponent:0]];
+            pickerView = [self.pickerViewArray objectAtIndex:1];    //月
+            itemT = [self.itemsArray objectAtIndex:pickerView.tag];
+            NSString *mon = [itemT.titleArray objectAtIndex:[pickerView selectedRowInComponent:0]];
+            [self.dateModel updateDays:year mon:mon];
+            
+            pickerView = [self.pickerViewArray objectAtIndex:2];    //天
+            [pickerView reloadAllComponents];
+            
+            ZJPickerItem *item = [[ZJPickerItem alloc] init];   //更新
+            item.titleArray = self.dateModel.dayArray;
+            [self replaceArrayAtComponent:2 item:item];
+        }
     }
     
-    //重置下一列
-    if (self.isResetNext) {
-        if (pickerView.tag < self.itemsArray.count - 1) {
-            [self selectComponent:pickerView.tag + 1 row:0 animated:YES];
-        }
+    if (self.rowSelTitleColor && self.rowSelTitleFont) {
+        [pickerView reloadComponent:component];
+    }
+    
+    if (_delegate && [self.delegate respondsToSelector:@selector(pickerView:didSelectRow:inComponent:)]) {
+        __weak typeof(self) weakSelf = self;
+        __block NSInteger rowT = row;
+        __block NSInteger inComponentT = pickerView.tag;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.delegate pickerView:weakSelf didSelectRow:rowT inComponent:inComponentT];
+        });
     }
 }
 

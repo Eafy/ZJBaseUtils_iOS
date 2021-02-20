@@ -12,7 +12,7 @@
 #import "ZJScreen.h"
 #import "NSString+ZJExt.h"
 #import "ZJUtilsDef.h"
-#import "ZJBaseUtils.h"
+#import "ZJBundleRes.h"
 
 @interface ZJAlertView () <UITextFieldDelegate>
 
@@ -83,6 +83,10 @@
     return self;
 }
 
+- (void)dealloc {
+    [self removeTextFieldKeyboardNotification];
+}
+
 - (NSMutableArray<ZJAlertAction *> *)btnArray {
     if (!_btnArray) {
         _btnArray = [NSMutableArray array];
@@ -125,10 +129,9 @@
     if (!_closeBtn) {
         _closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.alertView.zj_width-40, 0, 40, 40)];
         _closeBtn.backgroundColor = [UIColor clearColor];
-        [_closeBtn setImage:[ZJBaseUtils imageNamed:@"icon_alertview_close"] forState:UIControlStateNormal];
+        [_closeBtn setImage:[ZJBundleRes imageNamed:@"icon_alertview_close"] forState:UIControlStateNormal];
         
         [_closeBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-        [self.alertView addSubview:_closeBtn];
     }
     return _closeBtn;
 }
@@ -197,7 +200,38 @@
     return _inputTextClearBtn;
 }
 
+/// 当键盘出现或改变时调用
+/// @param noti 通知
+- (void)alertViewKeyboardWillShow:(NSNotification *)noti {
+    NSDictionary *userInfo = [noti userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height;   //height 就是键盘的高度
+    
+    if (self.style == ZJAlertViewStyleTextField) {
+        self.alertView.zj_bottom = self.zj_height - height - 12;
+    }
+}
+ 
+/// 键盘退出
+/// @param noti 通知
+- (void)alertViewKeyboardWillHide:(NSNotification *)noti {
+    if (self.style == ZJAlertViewStyleTextField) {
+        self.alertView.zj_centerY = self.zj_centerY;
+    }
+}
+
 #pragma mark - 参数设置
+
+- (void)addTextFieldKeyboardNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)removeTextFieldKeyboardNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 
 - (void)setStyle:(ZJAlertViewStyle)style
 {
@@ -205,6 +239,7 @@
     
     if (style == ZJAlertViewStyleTextField) {
         [self.alertView addSubview:self.inputTextField];
+        [self addTextFieldKeyboardNotification];
     } else if (_inputTextField) {
         [self.inputTextField removeFromSuperview];
         _inputTextField = nil;
@@ -251,8 +286,9 @@
     _titleImageName = titleImageName;
     if (titleImageName && ![titleImageName isEqualToString:@""]) {
         self.titleImgView.image = [UIImage imageNamed:titleImageName];
-        if (!self.titleImgView.superview)
-            [self.alertView insertSubview:self.titleImgView belowSubview:self.closeBtn];
+        if (!self.titleImgView.superview) {
+            [self.alertView addSubview:self.titleImgView];
+        }
     } else if (_titleImgView) {
         [self.titleImgView removeFromSuperview];
         _titleImgView = nil;
@@ -373,6 +409,9 @@
         return;
     }
     CGFloat bottom = 0;
+    if (!self.closeBtn.superview) {
+        [self.alertView addSubview:self.closeBtn];
+    }
     
     if (_titleImgView) {
         self.titleImgView.zj_top = _titleLB ? 32 : 40;
@@ -387,7 +426,6 @@
             _titleImgView.hidden = NO;
         }
     }
-    
         
     if (_titleLB) {
         CGSize size = [self.titleLB.text zj_sizeWithFont:self.titleLB.font maxSize:CGSizeMake(self.titleLB.zj_width, self.titleLB.zj_height*2)];
@@ -544,18 +582,21 @@
     }
     if (_dismissHandle) {
         self.dismissHandle();
+        _dismissHandle = nil;
     }
     
     @weakify(self);
     [UIView animateWithDuration:0.25 animations:^{
         @strongify(self);
         self.alpha = 0;
-        [self resignFirstResponder];
     } completion:^(BOOL finished) {
         @strongify(self);
         if (self->_customView) {
             [self.customView removeFromSuperview];
             self->_customView = nil;
+        }
+        if (self->_inputTextField) {
+            self.inputTextField.delegate = nil;
         }
         [self removeFromSuperview];
         [self.btnArray removeAllObjects];
