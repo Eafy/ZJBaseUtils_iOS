@@ -130,7 +130,7 @@ extern CGFloat ZJSysVersion(void) {
     }
 }
 
-+ (NSString *)getUUIDWihtGroupID:(NSString *)groupID
++ (NSString *)getUUIDWithGroupID:(NSString *)groupID
 {
     NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
     if (openUUID == nil) {
@@ -156,7 +156,7 @@ extern CGFloat ZJSysVersion(void) {
     return openUUID;
 }
 
-+ (NSString *)getUUIDWihtGroupID:(NSString *)groupID preBid:(NSString *)bid
++ (NSString *)getUUIDWithGroupID:(NSString *)groupID preBid:(NSString *)bid
 {
     NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
     if (openUUID == nil) {
