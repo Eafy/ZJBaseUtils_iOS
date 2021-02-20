@@ -75,7 +75,12 @@ extern CGFloat ZJSysVersion(void);
 
 /// 获取UUID(根据GroupID)
 /// @param groupID 为nil时，默认获取bid前2个位
-+ (NSString *)getUUIDForGroup:(NSString * _Nullable)groupID;
++ (NSString *)getUUIDWihtGroupID:(NSString * _Nullable)groupID;
+
+/// 获取UUID(根据GroupID)
+/// @param groupID 为nil时，默认获取bid前2个位
+/// @param bid 兼容上次的bid
++ (NSString *)getUUIDWihtGroupID:(NSString * _Nullable)groupID preBid:(NSString * _Nullable)bid;
 
 /// 移除UUID记录
 /// @param groupID groupID 为nil时，默认获取bid前2个位
