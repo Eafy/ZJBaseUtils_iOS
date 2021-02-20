@@ -91,14 +91,11 @@ extern CGFloat ZJSysVersion(void) {
 {
     NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
     if (openUUID == nil) {
-        NSString *udidStr = [NSString zj_stringRandomWithSize:64];
-        openUUID = [udidStr zj_md5String];
-
         NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
         NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
         if (uniqueKeyItem == nil || [uniqueKeyItem length] == 0) {
-            uniqueKeyItem = openUUID;
-            [ZJSAMKeychain setPassword:openUUID forService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
+            uniqueKeyItem = [[NSString zj_stringRandomWithSize:64] zj_md5String];
+            [ZJSAMKeychain setPassword:uniqueKeyItem forService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
         }
 
         [[NSUserDefaults standardUserDefaults] setObject:uniqueKeyItem forKey:@"zj_base_utils_device_UUID"];
@@ -145,12 +142,11 @@ extern CGFloat ZJSysVersion(void) {
                 groupID = [NSString stringWithFormat:@"%@.%@.*", idList[0], idList[1]];
             }
         }
-        openUUID = [groupID zj_md5String];
         
         NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:groupID account:@"zj_base_utils_device_UUID_keychain_account_group"];
         if (uniqueKeyItem == nil || [uniqueKeyItem length] == 0) {
-            uniqueKeyItem = openUUID;
-            [ZJSAMKeychain setPassword:openUUID forService:groupID account:@"zj_base_utils_device_UUID_keychain_account_group"];
+            uniqueKeyItem = [[NSString zj_stringRandomWithSize:64] zj_md5String];
+            [ZJSAMKeychain setPassword:uniqueKeyItem forService:groupID account:@"zj_base_utils_device_UUID_keychain_account_group"];
         }
 
         [[NSUserDefaults standardUserDefaults] setObject:uniqueKeyItem forKey:@"zj_base_utils_device_UUID_Group"];
