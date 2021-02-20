@@ -133,7 +133,7 @@ extern CGFloat ZJSysVersion(void) {
 
 + (NSString *)getUUIDForGroup:(NSString *)groupID
 {
-    NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID_Group"];
+    NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
     if (openUUID == nil) {
         if (!groupID) {
             NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
@@ -143,13 +143,13 @@ extern CGFloat ZJSysVersion(void) {
             }
         }
         
-        NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:groupID account:@"zj_base_utils_device_UUID_keychain_account_group"];
+        NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:groupID account:@"zj_base_utils_device_UUID_keychain_account"];
         if (uniqueKeyItem == nil || [uniqueKeyItem length] == 0) {
             uniqueKeyItem = [[NSString zj_stringRandomWithSize:64] zj_md5String];
-            [ZJSAMKeychain setPassword:uniqueKeyItem forService:groupID account:@"zj_base_utils_device_UUID_keychain_account_group"];
+            [ZJSAMKeychain setPassword:uniqueKeyItem forService:groupID account:@"zj_base_utils_device_UUID_keychain_account"];
         }
 
-        [[NSUserDefaults standardUserDefaults] setObject:uniqueKeyItem forKey:@"zj_base_utils_device_UUID_Group"];
+        [[NSUserDefaults standardUserDefaults] setObject:uniqueKeyItem forKey:@"zj_base_utils_device_UUID"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         openUUID = uniqueKeyItem;
     }
@@ -159,15 +159,15 @@ extern CGFloat ZJSysVersion(void) {
 
 + (void)removeUUIDWithGroupId:(NSString * _Nullable)groupID
 {
-    NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID_Group"];
+    NSString *openUUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"zj_base_utils_device_UUID"];
     if (openUUID != nil) {
         NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
-        NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account_group"];
+        NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
         if (uniqueKeyItem != nil || [uniqueKeyItem length] != 0) {
-            [ZJSAMKeychain deletePasswordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account_group"];
+            [ZJSAMKeychain deletePasswordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
         }
 
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"zj_base_utils_device_UUID_Group"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"zj_base_utils_device_UUID"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }

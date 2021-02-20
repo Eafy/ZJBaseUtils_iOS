@@ -307,7 +307,9 @@
         self.textLabel.attributedText = item.titleAttributed;
     }
     if (_item.iconView && item.iconView != _item.iconView) {
-        [_item.iconView removeFromSuperview];
+        if (_item.iconView.superview == self) {
+            [_item.iconView removeFromSuperview];
+        }
     }
     if (![NSString zj_isEmpty:item.icon]) {
         self.imageView.image = [UIImage imageNamed:item.icon];
