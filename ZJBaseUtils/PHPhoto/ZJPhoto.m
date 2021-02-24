@@ -34,22 +34,37 @@ singleton_m();
 {
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status == PHAuthorizationStatusAuthorized) {
-            PHAsset *asset = [PHAsset latestPhotoAsset];
-            if (asset) {
-                PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-                [imageManager requestImageDataForAsset:asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-                    ZJPHAsset *asset = nil;
-                    if (imageData) {
-                        asset = [[ZJPHAsset alloc] init];
-                        asset.image = [UIImage imageWithData:imageData];
-                        if ([info objectForKey:@"PHImageFileURLKey"]) {
-                            asset.url = [info objectForKey:@"PHImageFileURLKey"];
+            __block PHAsset *phAsset = [PHAsset latestPhotoAsset];
+            if (phAsset) {
+                if (@available(iOS 13, *)) {
+                    [[PHImageManager defaultManager] requestImageDataAndOrientationForAsset:phAsset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, CGImagePropertyOrientation orientation, NSDictionary * _Nullable info) {
+                        ZJPHAsset *asset = [[ZJPHAsset alloc] init];
+                        asset.phAsset = phAsset;
+                        asset.imageOrientation = orientation;
+                        asset.infoDic = info.copy;
+                        if (imageData) {
+                            asset.image = [UIImage imageWithData:imageData];
                         }
-                    }
-                    if (callBack) {
-                        callBack(asset);
-                    }
-                }];
+                        if (callBack) {
+                            callBack(asset);
+                        }
+                    }];
+                } else {
+                    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
+                    [imageManager requestImageDataForAsset:phAsset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                        ZJPHAsset *asset = nil;
+                        if (imageData) {
+                            asset = [[ZJPHAsset alloc] init];
+                            asset.image = [UIImage imageWithData:imageData];
+                            if ([info objectForKey:@"PHImageFileURLKey"]) {
+//                                asset.url = [info objectForKey:@"PHImageFileURLKey"];
+                            }
+                        }
+                        if (callBack) {
+                            callBack(asset);
+                        }
+                    }];
+                }
             } else {
                 if (callBack) {
                     callBack(nil);
@@ -80,7 +95,7 @@ singleton_m();
                         if ([info objectForKey:@"PHImageFileSandboxExtensionTokenKey"]) {
                             NSString *videoStr = [info objectForKey:@"PHImageFileSandboxExtensionTokenKey"];
                             NSArray *strArr = [videoStr componentsSeparatedByString:@";"];     //分割
-                            asset.url = [NSURL URLWithString:[strArr lastObject]];
+//                            asset.url = [NSURL URLWithString:[strArr lastObject]];
                         }
                     }
                     if (callBack) {

@@ -12,17 +12,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJPHAsset : PHAsset
+@interface ZJPHAsset : NSObject
 
-@property (nonatomic, strong) NSURL *_Nullable url;
-@property (nonatomic, assign, readonly) NSTimeInterval creationTimeInterval;//创建时间戳
-@property (nonatomic, assign) CGSize size;
+/// 原始句柄对象
+@property (nonatomic, strong) PHAsset *phAsset;
+
+/// 播放句柄
 @property (nonatomic, strong) AVPlayerItem *_Nullable playerItem;
+
+/// 方向
+@property (nonatomic, assign) CGImagePropertyOrientation imageOrientation;
+/// 缩略图
 @property (nonatomic, strong) UIImage * _Nullable image;
-
-- (instancetype)initWithPlayerItem:(AVPlayerItem * _Nullable)playerItem;
-
-- (instancetype)initWithUrl:(NSURL *_Nullable)url;
+/// 信息字段
+@property (nonatomic, strong) NSDictionary *infoDic;
 
 @end
 
