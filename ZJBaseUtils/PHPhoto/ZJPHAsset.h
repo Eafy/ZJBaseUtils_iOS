@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImage * _Nullable image;
 /// 信息字段
 @property (nonatomic, strong) NSDictionary *infoDic;
+/// 文件链接地址
+@property (nonatomic, strong) NSString *fileURL NS_DEPRECATED(2_0, 2_0, 8_0, 13_0, "iOS 13已无效");
 
 @end
 

@@ -33,6 +33,12 @@ singleton_h();
 /// 获取最后一个视频
 + (void)latestVideoAsset:(ZJAssetHandler _Nullable)callBack;
 
+/// 删除最后一张图片
++ (void)deleteLatestPhoto:(nullable void (^)(BOOL success))completion;
+
+/// 删除最后一个视频
++ (void)deleteLatestVideo:(nullable void (^)(BOOL success))completion;
+
 /// 获取本地沙盒视频长度（秒）
 + (CGFloat)videoTimeWithLocalPath:(NSString *_Nonnull)filePath;
 
@@ -81,6 +87,15 @@ singleton_h();
 /// @param urlArray localIdentifier或assets-library数组，同时仅支持一种类型
 /// @param handler 回调，dataObj为沙盒存入的数组
 - (void)deletePhotoOrVideo:(NSArray<NSString *> *_Nonnull)urlArray handler:(ZJAlbumOperateHandler _Nullable)handler;
+
+/// 删除相册最后一张图片/视频
+/// @param asset ZJPHAsset
+- (void)deletePhotoOrVideoAsset:(ZJPHAsset * _Nonnull)asset completion:(nullable void (^)(BOOL success))completion;
+
+/// 删除系统图片或视频
+/// @param assetArray ZJPHAsset数组
+/// @param handler 回调
+- (void)deletePhotoOrVideoAssets:(NSArray<ZJPHAsset *> *_Nonnull)assetArray handler:(ZJAlbumOperateHandler _Nullable)handler;
 
 /// 拷贝系统图片或视频
 /// @param url localIdentifier或assets-library

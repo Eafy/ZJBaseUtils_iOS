@@ -32,8 +32,8 @@ singleton_m();
 
 + (void)latestPhotoAsset:(ZJAssetHandler _Nullable)callBack
 {
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        if (status == PHAuthorizationStatusAuthorized) {
+    [ZJSystem requestPhotoPermission:^(BOOL success) {
+        if (success) {
             __block PHAsset *phAsset = [PHAsset latestPhotoAsset];
             if (phAsset) {
                 if (@available(iOS 13, *)) {
@@ -52,14 +52,18 @@ singleton_m();
                 } else {
                     PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
                     [imageManager requestImageDataForAsset:phAsset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-                        ZJPHAsset *asset = nil;
+                        ZJPHAsset *asset = [[ZJPHAsset alloc] init];
+                        asset.phAsset = phAsset;
+                        asset.imageOrientation = (CGImagePropertyOrientation)orientation;
+                        asset.infoDic = info.copy;
+                        
                         if (imageData) {
-                            asset = [[ZJPHAsset alloc] init];
                             asset.image = [UIImage imageWithData:imageData];
-                            if ([info objectForKey:@"PHImageFileURLKey"]) {
-//                                asset.url = [info objectForKey:@"PHImageFileURLKey"];
-                            }
                         }
+                        if ([info objectForKey:@"PHImageFileURLKey"]) {
+                            asset.fileURL = [info objectForKey:@"PHImageFileURLKey"];
+                        }
+                        
                         if (callBack) {
                             callBack(asset);
                         }
@@ -71,7 +75,6 @@ singleton_m();
                 }
             }
         } else {
-            NSLog(@"PHAuthorization Status: %ld",(long)status);
             if (callBack) {
                 callBack(nil);
             }
@@ -81,23 +84,24 @@ singleton_m();
 
 + (void)latestVideoAsset:(ZJAssetHandler _Nullable)callBack
 {
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        if (status == PHAuthorizationStatusAuthorized) {
-            PHAsset *asset = [PHAsset latestVideoAsset];
-            if (asset) {
+    [ZJSystem requestPhotoPermission:^(BOOL success) {
+        if (success) {
+            PHAsset *phAsset = [PHAsset latestVideoAsset];
+            if (phAsset) {
                 PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-                [imageManager requestPlayerItemForVideo:asset options:nil resultHandler:^(AVPlayerItem * _Nullable playerItem, NSDictionary * _Nullable info) {
-                    
-                    ZJPHAsset *asset = nil;
+                [imageManager requestPlayerItemForVideo:phAsset options:nil resultHandler:^(AVPlayerItem * _Nullable playerItem, NSDictionary * _Nullable info) {
+                    ZJPHAsset *asset = [[ZJPHAsset alloc] init];
+                    asset.phAsset = phAsset;
                     if (playerItem) {
-                        asset = [[ZJPHAsset alloc] init];
                         asset.playerItem = playerItem;
-                        if ([info objectForKey:@"PHImageFileSandboxExtensionTokenKey"]) {
-                            NSString *videoStr = [info objectForKey:@"PHImageFileSandboxExtensionTokenKey"];
-                            NSArray *strArr = [videoStr componentsSeparatedByString:@";"];     //分割
-//                            asset.url = [NSURL URLWithString:[strArr lastObject]];
-                        }
                     }
+                    
+                    NSString *filePath = [info objectForKey:@"PHImageFileSandboxExtensionTokenKey"];
+                    if (filePath) {
+                        NSArray *strArr = [filePath componentsSeparatedByString:@";"];     //分割
+                        asset.fileURL = [strArr lastObject];
+                    }
+                    
                     if (callBack) {
                         callBack(asset);
                     }
@@ -108,10 +112,35 @@ singleton_m();
                 }
             }
         } else {
-            NSLog(@"PHAuthorization Status: %ld",(long)status);
             if (callBack) {
                 callBack(nil);
             }
+        }
+    }];
+}
+
++ (void)deleteLatestPhoto:(nullable void (^)(BOOL success))completion
+{
+    [ZJPhoto latestPhotoAsset:^(ZJPHAsset * _Nullable asset) {
+        if (asset) {
+            [[ZJPhoto shared] deletePhotoOrVideoAsset:asset completion:^(BOOL success) {
+                if (completion) completion(success);
+            }];
+        } else if (completion) {
+            completion(YES);
+        }
+    }];
+}
+
++ (void)deleteLatestVideo:(nullable void (^)(BOOL success))completion
+{
+    [ZJPhoto latestVideoAsset:^(ZJPHAsset * _Nullable asset) {
+        if (asset) {
+            [[ZJPhoto shared] deletePhotoOrVideoAsset:asset completion:^(BOOL success) {
+                if (completion) completion(success);
+            }];
+        } else if (completion) {
+            completion(YES);
         }
     }];
 }
@@ -336,6 +365,57 @@ singleton_m();
     } else {
         if (handler) {
             handler(YES, urlArray, nil);
+        }
+    }
+}
+
+- (void)deletePhotoOrVideoAsset:(ZJPHAsset * _Nonnull)asset completion:(void (^)(BOOL finished))completion
+{
+    PHFetchResult *assetResult = nil;
+    if (asset.phAsset) {
+        assetResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[asset.phAsset.localIdentifier] options:nil];
+    } else if (asset.fileURL) {
+        assetResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[asset.fileURL] options:nil];
+    }
+    
+    if (assetResult) {
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            [PHAssetChangeRequest deleteAssets:assetResult];
+        } completionHandler:^(BOOL success, NSError *error) {
+            if (completion) {
+                completion(success);
+            }
+        }];
+    } else {
+        if (completion) {
+            completion(NO);
+        }
+    }
+}
+
+- (void)deletePhotoOrVideoAssets:(NSArray<ZJPHAsset *> *_Nonnull)assetArray handler:(ZJAlbumOperateHandler _Nullable)handler
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (ZJPHAsset *asset in assetArray) {
+        if (asset.phAsset) {
+            [array addObject:asset.phAsset.localIdentifier];
+        } else if (asset.fileURL) {
+            [array addObject:asset.fileURL];
+        }
+    }
+    
+    if (array.count > 0) {
+        PHFetchResult *assetResult = [PHAsset fetchAssetsWithLocalIdentifiers:array options:nil];
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            [PHAssetChangeRequest deleteAssets:assetResult];
+        } completionHandler:^(BOOL success, NSError *error) {
+            if (handler) {
+                handler(success, array, error);
+            }
+        }];
+    } else {
+        if (handler) {
+            handler(YES, array, nil);
         }
     }
 }
