@@ -20,7 +20,6 @@
 		0C268846257FA51E00171010 /* ZJSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C268844257FA51E00171010 /* ZJSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C268847257FA51E00171010 /* ZJSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C268845257FA51E00171010 /* ZJSlider.m */; };
 		0C279C5124E2D22F00474649 /* ZJBaseUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C279C4724E2D22E00474649 /* ZJBaseUtils.framework */; };
-		0C279C5624E2D22F00474649 /* ZJBaseUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C279C5524E2D22F00474649 /* ZJBaseUtilsTests.m */; };
 		0C279C5824E2D22F00474649 /* ZJBaseUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C279C4A24E2D22E00474649 /* ZJBaseUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C2A33DF2573A82000F53794 /* UIView+ZJGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C2A33DD2573A82000F53794 /* UIView+ZJGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C2A33E02573A82000F53794 /* UIView+ZJGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2A33DE2573A82000F53794 /* UIView+ZJGradient.m */; };
@@ -260,8 +259,6 @@
 		0C279C4A24E2D22E00474649 /* ZJBaseUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJBaseUtils.h; sourceTree = "<group>"; };
 		0C279C4B24E2D22E00474649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C279C5024E2D22F00474649 /* ZJBaseUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZJBaseUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C279C5524E2D22F00474649 /* ZJBaseUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJBaseUtilsTests.m; sourceTree = "<group>"; };
-		0C279C5724E2D22F00474649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C2A33DD2573A82000F53794 /* UIView+ZJGradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZJGradient.h"; sourceTree = "<group>"; };
 		0C2A33DE2573A82000F53794 /* UIView+ZJGradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZJGradient.m"; sourceTree = "<group>"; };
 		0C4C942A255ED29D008CED51 /* ZJBaseTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJBaseTabBar.h; sourceTree = "<group>"; };
@@ -526,7 +523,6 @@
 			isa = PBXGroup;
 			children = (
 				0C279C4924E2D22E00474649 /* ZJBaseUtils */,
-				0C279C5424E2D22F00474649 /* ZJBaseUtilsTests */,
 				0C279C4824E2D22E00474649 /* Products */,
 				0CA3ADE925340907009782ED /* Frameworks */,
 			);
@@ -598,15 +594,6 @@
 				0CE6F6DD255574E9009CE033 /* ZJBaseUtils.podspec */,
 			);
 			path = ZJBaseUtils;
-			sourceTree = "<group>";
-		};
-		0C279C5424E2D22F00474649 /* ZJBaseUtilsTests */ = {
-			isa = PBXGroup;
-			children = (
-				0C279C5524E2D22F00474649 /* ZJBaseUtilsTests.m */,
-				0C279C5724E2D22F00474649 /* Info.plist */,
-			);
-			path = ZJBaseUtilsTests;
 			sourceTree = "<group>";
 		};
 		0C4C9428255ED264008CED51 /* ZJBaseTabBarController */ = {
@@ -1463,7 +1450,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C279C5624E2D22F00474649 /* ZJBaseUtilsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
