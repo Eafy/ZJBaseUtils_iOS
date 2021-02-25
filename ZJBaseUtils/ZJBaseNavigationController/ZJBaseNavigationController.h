@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJBaseNavigationController : UINavigationController
 
+/// 哪些控制器列表隐藏导航栏
 @property (nonatomic,assign) NSArray<Class> *hideNavBarArray;
 
 /// 设置背景图片

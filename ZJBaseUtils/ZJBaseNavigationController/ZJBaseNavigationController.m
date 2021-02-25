@@ -9,6 +9,7 @@
 #import "ZJBaseNavigationController.h"
 #import "ZJBaseViewController.h"
 #import "ZJBaseTableViewController.h"
+#import "ZJBaseTabBarController.h"
 
 @interface ZJBaseNavigationController ()
 
@@ -24,8 +25,13 @@
         
         // 判断是否是基础视图控制器、基础表单控制器
         if ([viewCtl isKindOfClass:[ZJBaseViewController class]] ||
-            [viewCtl isKindOfClass:[ZJBaseTableViewController class]]) {
+            [viewCtl isKindOfClass:[ZJBaseTableViewController class]] ||
+            [viewCtl isKindOfClass:[ZJBaseTabBarController class]]) {
             ZJBaseViewController *vc = (ZJBaseViewController *)viewCtl;    //目标控制器
+            
+            if (!vc.hidesBottomBarWhenPushed && !vc.showBottomBarWhenPushed && navCtl.topViewController && navCtl.viewControllers.count == 1) {
+                vc.hidesBottomBarWhenPushed = YES;
+            }
             
             if (nav.navBackImgName) {
                 UIImage *img = [vc.navLeftBtn imageForState:UIControlStateNormal];
@@ -55,9 +61,6 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [ZJBaseNavigationController handleJumpWithNavigationController:self viewController:viewController];
-    if (!viewController.hidesBottomBarWhenPushed && self.topViewController && self.viewControllers.count == 1) {
-        viewController.hidesBottomBarWhenPushed = YES;
-    }
     
     [super pushViewController:viewController animated:animated];
     if (self.hideNavBarArray && [self.hideNavBarArray containsObject:[self class]]) {
