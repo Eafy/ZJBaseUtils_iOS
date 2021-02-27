@@ -437,29 +437,29 @@
         bottom = self.titleLB.zj_bottom;
     }
     
+    if (_messageLB) {
+        CGSize size = [self.messageLB.text zj_sizeWithFont:self.messageLB.font maxSize:CGSizeMake(self.messageLB.zj_width, 400)];
+        if (_titleLB && _titleImgView) {
+            bottom += 12;
+        } else if (_titleLB || _titleImgView) {
+            bottom += 16;
+        } else {
+            bottom += 40;
+        }
+        if (size.width >= self.messageLB.zj_width - 1) {
+            self.messageLB.textAlignment = NSTextAlignmentLeft;
+        } else {
+            self.messageLB.textAlignment = NSTextAlignmentCenter;
+        }
+        
+        self.messageLB.zj_top = bottom;
+        self.messageLB.zj_height = size.height;
+        bottom = self.messageLB.zj_bottom;
+    }
+    
     if (self.style == ZJAlertViewStyleTextField) {
         self.inputTextField.zj_top = bottom + (bottom > 0 ? 16 : 24);
         bottom = self.inputTextField.zj_bottom + 8;
-    } else {
-        if (_messageLB) {
-            CGSize size = [self.messageLB.text zj_sizeWithFont:self.messageLB.font maxSize:CGSizeMake(self.messageLB.zj_width, 400)];
-            if (_titleLB && _titleImgView) {
-                bottom += 12;
-            } else if (_titleLB || _titleImgView) {
-                bottom += 16;
-            } else {
-                bottom += 40;
-            }
-            if (size.width >= self.messageLB.zj_width - 1) {
-                self.messageLB.textAlignment = NSTextAlignmentLeft;
-            } else {
-                self.messageLB.textAlignment = NSTextAlignmentCenter;
-            }
-            
-            self.messageLB.zj_top = bottom;
-            self.messageLB.zj_height = size.height;
-            bottom = self.messageLB.zj_bottom;
-        }
     }
     
     for (int i=0; i<self.btnArray.count; i++) {
