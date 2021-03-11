@@ -8,6 +8,8 @@
 
 #import "ZJScreen.h"
 
+CGFloat kZJScale = 1.0;
+
 CGRect ZJScreenFrame() {
     return ZJScreen.shared.screenFrame;
 }
@@ -211,6 +213,8 @@ singleton_m();
             _scaleStandardLength = 667;
             break;
     }
+    
+    kZJScale = ZJScale();
 }
 
 #pragma mark -

@@ -36,6 +36,23 @@ extern ZJScreenSizeType ZJscreenSizeType(void);
 extern BOOL ZJIsIPad(void);
 extern CGFloat ZJScale(void);   //针对于8的缩放比
 
+#ifndef kZJScreen
+#define kZJScreen
+#define kZJScreenFrame ZJScreen.shared.screenFrame
+#define kZJScreenHeight ZJScreen.shared.screenHeight
+#define kZJScreenWidth ZJScreen.shared.screenWidth
+#define kZJStatusBarHeight ZJScreen.shared.statusBarHeight
+#define kZJNavBarHeight ZJScreen.shared.navBarHeight
+#define kZJNavStatusBarHeight ZJScreen.shared.navStatusBarHeight
+#define kZJTabarBarHeight ZJScreen.shared.tabarBarHeight
+#define kZJSafeAreaInsetsHeight ZJScreen.shared.safeAreaInsetsHeight
+#define kZJSafeAreaTop ZJScreen.shared.safeAreaTop
+#define kZJSafeAreaBottom ZJScreen.shared.safeAreaBottom
+#define kZJscreenSizeType ZJScreen.shared.screenSizeType
+#define kZJIsIPad ZJScreen.shared.isIPad
+extern CGFloat kZJScale;
+#endif
+
 @interface ZJScreen : NSObject
 singleton_h();
 
