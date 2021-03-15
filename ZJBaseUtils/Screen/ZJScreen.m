@@ -93,7 +93,9 @@ singleton_m();
         _isIPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     }
     
-    self.scaleStandard = ZJScreenSizeType8;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.scaleStandard = ZJScreenSizeType8;
+    });
 }
 
 - (CGFloat)statusBarHeight
