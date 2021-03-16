@@ -11,6 +11,7 @@
 #import "ZJSystem.h"
 #import "UIView+ZJFrame.h"
 #import "UIColor+ZJExt.h"
+#import "ZJBundleRes.h"
 
 @interface ZJBaseViewController () <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
@@ -98,13 +99,13 @@
     if (!_navLeftBtn) {
         _navLeftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight())];
         if (![_navLeftBtn imageForState:UIControlStateNormal]) {
-            UIImage *img = [UIImage imageNamed:@"icon_nav_back_no"];
+            UIImage *img = [ZJBundleRes imageNamed:@"icon_nav_back_no"];
             if (img) {
                 [_navLeftBtn setImage:img forState:UIControlStateNormal];
             }
         }
         if (![_navLeftBtn imageForState:UIControlStateHighlighted]) {
-            UIImage *img = [UIImage imageNamed:@"icon_nav_back_sel"];
+            UIImage *img = [ZJBundleRes imageNamed:@"icon_nav_back_sel"];
             if (img) {
                 [_navLeftBtn setImage:img forState:UIControlStateHighlighted];
             }
