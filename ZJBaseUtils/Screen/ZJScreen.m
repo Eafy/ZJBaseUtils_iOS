@@ -93,9 +93,7 @@ singleton_m();
         _isIPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.scaleStandard = ZJScreenSizeType8;
-    });
+    self.scaleStandard = ZJScreenSizeType8;
 }
 
 - (CGFloat)statusBarHeight
@@ -216,7 +214,11 @@ singleton_m();
             break;
     }
     
-    kZJScale = ZJScale();
+    if (_isIPad) {
+        kZJScale = _screenHeight/667.0 + 0.5;
+    } else {
+        kZJScale = _screenHeight/_scaleStandardLength;
+    }
 }
 
 #pragma mark -
