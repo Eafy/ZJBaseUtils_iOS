@@ -82,41 +82,42 @@
 
 - 表单模板：支持大部分设置类型功能的表单样式，仅针对填入对应的数据，即可展示；
 
-  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318142809207.png" alt="image-20210318142809207" style="zoom:30%;" />
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318142809207.png" alt="image-20210318142809207" style="zoom:40%;" />
 
 - ZJCalendar：日历模块，支持单选、多选、区域选择；
 
-  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318141235436.png" alt="image-20210318141235436" style="zoom:30%;" />
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318141235436.png" alt="image-20210318141235436" style="zoom:40%;" />
 
 - ZJSlider：滑块选择模块，支持单点、区间、固定点样式；
 
-![image-20210318143244179](/Users/lzj/Library/Application Support/typora-user-images/image-20210318143244179.png)
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143244179.png" alt="image-20210318143244179" style="zoom:40%;" />
 
 - ZJNotifyHUD：类告警提示的Hub提示弹框，支持多动画、悬停、右键操作、内容分类；
 
-![image-20210318143348472](/Users/lzj/Library/Application Support/typora-user-images/image-20210318143348472.png)
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143348472.png" alt="image-20210318143348472" style="zoom:40%;" />
 
 - ZJAlertView：弹框提示器，可根据不同场景自行搭配多种样式；
 
-![image-20210318143749772](/Users/lzj/Library/Application Support/typora-user-images/image-20210318143749772.png)![image-20210318143759396](/Users/lzj/Library/Application Support/typora-user-images/image-20210318143759396.png)
-
-![image-20210318143825829](/Users/lzj/Library/Application Support/typora-user-images/image-20210318143825829.png)
+<center calss="half">
+	<img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143749772.png" alt="image-20210318143749772" style="zoom:40%;" />
+	<img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143759396.png" alt="image-20210318143759396" style="zoom:40%;" />
+	<img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143825829.png" alt="image-20210318143825829" style="zoom:40%;" />
 
 - ZJSheetView：底部弹框选择器，支持内容自由搭配；
 
-![image-20210318144007849](/Users/lzj/Library/Application Support/typora-user-images/image-20210318144007849.png)
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318144007849.png" alt="image-20210318144007849" style="zoom:40%;" />
 
 - ZJStepBar：步骤条模块；
 
-![image-20210318144232503](/Users/lzj/Library/Application Support/typora-user-images/image-20210318144232503.png)
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318144232503.png" alt="image-20210318144232503" style="zoom:40%;" />
 
 - ZJSegmentedControl：标签选择器，支持固定、滑动、图形文字混合；
 
-  ![image-20210318144257440](/Users/lzj/Library/Application Support/typora-user-images/image-20210318144257440.png)
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318144257440.png" alt="image-20210318144257440" style="zoom:40%;" />
 
 - ZJPickerView：选择器，支持多列、时间、联动模式；
 
-  
-
-![image-20210318144803808](/Users/lzj/Library/Application Support/typora-user-images/image-20210318144803808.png)![image-20210318144813701](/Users/lzj/Library/Application Support/typora-user-images/image-20210318144813701.png)
+  <center calss="half">
+    <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318144803808.png" alt="image-20210318144803808" style="zoom:40%;" />
+    <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318144813701.png" alt="image-20210318144813701" style="zoom:40%;" />
 
