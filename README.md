@@ -99,9 +99,7 @@
 - ZJAlertView：弹框提示器，可根据不同场景自行搭配多种样式；
 
 <center calss="half">
-	<img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143749772.png" alt="image-20210318143749772" style="zoom:40%;" />
-	<img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143759396.png" alt="image-20210318143759396" style="zoom:40%;" />
-	<img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143825829.png" alt="image-20210318143825829" style="zoom:40%;" />
+	<img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143749772.png" alt="image-20210318143749772" style="zoom:40%;" /><img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143759396.png" alt="image-20210318143759396" style="zoom:40%;" /><img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318143825829.png" alt="image-20210318143825829" style="zoom:40%;" />
 
 - ZJSheetView：底部弹框选择器，支持内容自由搭配；
 
