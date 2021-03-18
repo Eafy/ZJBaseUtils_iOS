@@ -82,11 +82,11 @@
 
 - 表单模板：支持大部分设置类型功能的表单样式，仅针对填入对应的数据，即可展示；
 
-  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes//image-20210318142809207.png" alt="image-20210318142809207" style="zoom:50%;" />
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318142809207.png" alt="image-20210318142809207" style="zoom:30%;" />
 
 - ZJCalendar：日历模块，支持单选、多选、区域选择；
 
-  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318141235436.png" alt="image-20210318141235436" style="zoom:50%;" />
+  <img src="https://raw.githubusercontent.com/Eafy/ZJBaseUtils_iOS/master/SampleImgRes/image-20210318141235436.png" alt="image-20210318141235436" style="zoom:30%;" />
 
 - ZJSlider：滑块选择模块，支持单点、区间、固定点样式；
 
