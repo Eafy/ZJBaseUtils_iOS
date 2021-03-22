@@ -190,6 +190,37 @@
     return data;
 }
 
+- (NSString *)zj_toHexString
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    const char *bytes = [data bytes];
+    
+    NSString *hexStr = @"";
+    for(int i=0; i<[data length]; i++) {
+        hexStr = [NSString stringWithFormat:@"%@%02X", hexStr, bytes[i] & 0xFF];   ///16进制数
+    }
+    return hexStr;
+}
+
+- (NSString *)zj_fromHexString
+{
+    if ([self length] <= 0) return @"";
+    char *cBuff = calloc(1, [self length] / 2 + 1);
+    if (!cBuff) return @"";
+    
+    unsigned int anInt;
+    for (int i = 0; i < [self length] - 1; i += 2) {
+        NSString * hexCharStr = [self substringWithRange:NSMakeRange(i, 2)];
+        NSScanner * scanner = [[NSScanner alloc] initWithString:hexCharStr];
+        [scanner scanHexInt:&anInt];
+        cBuff[i / 2] = (char)anInt;
+    }
+    NSString *str = [NSString stringWithCString:cBuff encoding:NSUTF8StringEncoding];
+    free(cBuff);
+    
+    return str;
+}
+
 - (NSData *)zj_scanToData
 {
     NSData *data = [NSData data];

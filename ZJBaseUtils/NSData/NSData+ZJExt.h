@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSData (ZJExt)
 
 /// 转换为base64编码的字符串
-- (NSString *)zj_base64String;
+- (NSString *)zj_toBase64String;
 
 /// 转换为十六进制字符
-- (NSString *)toHexString;
+- (NSString *)zj_toHexString;
 
 @end
 

@@ -21,7 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSData (ZJAESDES)
 
-/// AES编码或DES解码
+/// DES编码
+/// @param key 秘钥
+/// @param options 加密选项
+/// @param iv iv
+- (NSData *_Nullable)zj_desWithType:(CCOperation)type key:(NSString *)key options:(CCOptions)options iv:(NSString * _Nullable)iv;
+
+/// AES编码或DES解码(未验证)
 /// @param type 编码类型
 /// @param key 秘钥
 /// @param operation 编码或解码

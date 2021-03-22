@@ -66,6 +66,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 将16进制字符串转为NSData
 - (NSData *)zj_toData;
 
+/// 转十六进制字符串
+- (NSString *)zj_toHexString;
+
+/// 从十进制字符串转普通字符串
+- (NSString *)zj_fromHexString;
+
 /// 扫描字符串，将第1个符合的字符串转为NSData
 - (NSData *)zj_scanToData;
 

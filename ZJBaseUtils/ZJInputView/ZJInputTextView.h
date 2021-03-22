@@ -34,6 +34,8 @@ typedef NS_ENUM(NSUInteger, ZJInputTextViewStyle) {
 @property (nonatomic,strong) UIImageView *iconImgView;
 /// 输入框
 @property (nonatomic,strong) UITextField *inputTextField;
+/// 输入占位提示语
+@property (nonatomic,copy) NSString *placeholderString;
 /// 右边辅助按钮
 @property (nonatomic,strong) UIButton *assistBtn;
 /// 输入框右边辅助按钮，置空时使用系统默认

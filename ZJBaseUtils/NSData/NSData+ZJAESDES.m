@@ -10,6 +10,41 @@
 
 @implementation NSData (ZJAESDES)
 
+- (NSData *_Nullable)zj_desWithType:(CCOperation)type key:(NSString *)key options:(CCOptions)options iv:(NSString * _Nullable)iv
+{
+    CCAlgorithm algorithm = kCCAlgorithmDES;
+    NSUInteger blockSize = kCCBlockSizeDES;
+    NSUInteger keySize = kCCKeySizeDES;
+    
+    size_t bufferSize = (self.length + blockSize) & ~(blockSize - 1);
+    void * buffer = malloc(bufferSize);
+    memset(buffer, 0, bufferSize);
+    
+    size_t numBytesDecrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(type,
+                                          algorithm,
+                                          options,
+                                          [key UTF8String],
+                                          keySize,
+                                          iv ? [iv UTF8String] : NULL,
+                                          self.bytes,
+                                          self.length,
+                                          buffer,
+                                          bufferSize,
+                                          &numBytesDecrypted);
+    
+    NSData *result = nil;
+    if (cryptStatus == kCCSuccess) {
+        result = [NSData dataWithBytes:buffer length:numBytesDecrypted];
+    }
+    
+    if (buffer) {
+        free(buffer);
+        buffer = NULL;
+    }
+    return result;
+}
+
 - (NSData *)zj_aesDesWithType:(ZJ_AES_TYPE)type key:(NSString *)key ccOperation:(CCOperation)operation options:(CCOptions)options iv:(NSString *)iv
 {
     NSUInteger keySize;
@@ -35,8 +70,8 @@
             break;
         }
         case ZJ_DES_TYPE_1: {
-            keySize = kCCKeySizeDES;
             algorithm = kCCAlgorithmDES;
+            keySize = kCCKeySizeDES;
             blockSize = kCCBlockSizeDES;
             break;
         }
@@ -50,33 +85,24 @@
             return nil;
         }
     }
-    NSInteger keyLength = MAX(keySize, key.length);
-    char keyPtr[keyLength + 1];
-    bzero(keyPtr, sizeof(keyPtr));
-    [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
     
-    NSUInteger dataLength = self.length;
-    size_t bufferSize = dataLength + blockSize;
+    size_t bufferSize = self.length + blockSize;
     void * buffer = malloc(bufferSize);
+    
     size_t numBytesDecrypted = 0;
-    char ivPtr[blockSize+1];
-    memset(ivPtr, 0, sizeof(ivPtr));
-    if (iv != nil) {
-        [iv getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding];
-    }
     CCCryptorStatus cryptStatus = CCCrypt(operation,
                                           algorithm,
                                           options,
-                                          keyPtr,
+                                          [key UTF8String],
                                           keySize,
-                                          ivPtr,
+                                          iv ? [iv UTF8String] : NULL,
                                           self.bytes,
-                                          dataLength,
+                                          self.length,
                                           buffer,
                                           bufferSize,
                                           &numBytesDecrypted);
     if (cryptStatus == kCCSuccess) {
-        NSData * result = [NSData dataWithBytesNoCopy:buffer length:numBytesDecrypted];
+        NSData * result = [NSData dataWithBytes:buffer length:numBytesDecrypted];
         if (result != nil) {
             return result;
         }

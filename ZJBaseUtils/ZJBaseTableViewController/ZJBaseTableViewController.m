@@ -42,6 +42,9 @@
     if (self.isShowNavBarView) {
         [self addNavBarBtnForHide];
     }
+    if (_navLeftBtn && self.navigationController && self.navigationController.viewControllers.count == 1) {
+        self.navLeftBtn.hidden = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -247,7 +250,6 @@
             }
         }
         
-        [_navBarTitleLB sizeToFit];
         _navBarTitleLB.zj_centerX = ZJScreenWidth()/2.0;
         _navBarTitleLB.zj_centerY = ZJStatusBarHeight() + ZJNavBarHeight()/2.0;
     }

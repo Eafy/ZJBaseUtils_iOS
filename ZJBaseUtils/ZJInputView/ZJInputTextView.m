@@ -11,6 +11,7 @@
 #import "ZJLine.h"
 #import "NSString+ZJExt.h"
 #import "UIView+ZJFrame.h"
+#import "ZJBundleRes.h"
 
 @interface ZJInputTextView ()
 
@@ -79,15 +80,23 @@
         _inputTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 0, 18)];
         _inputTextField.font = [UIFont boldSystemFontOfSize:14];
         _inputTextField.textColor = ZJColorFromRGB(0x181E28);
-        _inputTextField.attributedPlaceholder = [@"Input Info" zj_stringWithColor:ZJColorFromRGB(0xBCC4D4) font:_inputTextField.font];
+        _inputTextField.attributedPlaceholder = [@"Input info" zj_stringWithColor:ZJColorFromRGB(0xBCC4D4) font:_inputTextField.font];
         _inputTextField.returnKeyType = UIReturnKeyNext;
         _inputTextField.keyboardType = UIKeyboardTypeASCIICapable;
+        _inputTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;  //首字母大小;
+        _inputTextField.autocorrectionType = UITextAutocorrectionTypeNo;    //自动联想
         [self addSubview:_inputTextField];
         
         [self inputTextClearBtn];
     }
     
     return _inputTextField;
+}
+
+- (void)setPlaceholderString:(NSString *)placeholderString
+{
+    _placeholderString = placeholderString;
+    self.inputTextField.attributedPlaceholder = [placeholderString zj_stringWithColor:ZJColorFromRGB(0xBCC4D4) font:_inputTextField.font];
 }
 
 - (ZJLine *)liveView
@@ -104,7 +113,7 @@
 {
     if (!_inputTextClearBtn) {
         _inputTextClearBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        [_inputTextClearBtn setImage:[UIImage imageNamed:@"icon_textField_clear_normal"] forState:UIControlStateNormal];
+        [_inputTextClearBtn setImage:[ZJBundleRes imageNamed:@"icon_textField_clear_normal"] forState:UIControlStateNormal];
         [_inputTextClearBtn addTarget:self action:@selector(clickedInputTextAssistBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
         self.inputTextField.clearButtonMode = UITextFieldViewModeNever;
@@ -244,18 +253,20 @@
     if (style == ZJInputTextViewStylePhone ||
         style == ZJInputTextViewStylePhoneAreaCode) {   //手机
         self.inputTextField.keyboardType = UIKeyboardTypePhonePad;
-        
-        self.iconImgView.image = [UIImage imageNamed:@"icon_uxkit_phone"];
+        self.iconImgView.image = [ZJBundleRes imageNamed:@"icon_uxkit_phone"];
+        self.placeholderString = @"Input email";
     } else if (style == ZJInputTextViewStyleEmail) {
         self.inputTextField.keyboardType = UIKeyboardTypeEmailAddress;
-        
+        self.iconImgView.image = [ZJBundleRes imageNamed:@"icon_uxkit_mailbox"];
+        self.placeholderString = @"Input phone";
     } else if (style == ZJInputTextViewStylePassword) {
         self.inputTextField.secureTextEntry = YES;
         self.assistBtn.hidden = NO;
         
-        self.iconImgView.image = [UIImage imageNamed:@"icon_uxkit_password"];
-        [self.assistBtn setImage:[UIImage imageNamed:@"icon_uxkit_hide"] forState:UIControlStateNormal];
-        [self.assistBtn setImage:[UIImage imageNamed:@"icon_uxkit_display"] forState:UIControlStateSelected];
+        self.iconImgView.image = [ZJBundleRes imageNamed:@"icon_uxkit_password"];
+        [self.assistBtn setImage:[ZJBundleRes imageNamed:@"icon_uxkit_hide"] forState:UIControlStateNormal];
+        [self.assistBtn setImage:[ZJBundleRes imageNamed:@"icon_uxkit_display"] forState:UIControlStateSelected];
+        self.placeholderString = @"Input password";
     } else if (style == ZJInputTextViewStyleVerificationCode) {
         self.inputTextField.secureTextEntry = NO;
         self.assistBtn.hidden = NO;
@@ -266,6 +277,7 @@
         [self.assistBtn setTitle:@"60s秒后重获" forState:UIControlStateSelected];
         [self.assistBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [self.assistBtn setTitleColor:ZJColorFromRGB(0xBCC4D4) forState:UIControlStateSelected];
+        self.placeholderString = @"Input verification code";
     }
 }
 

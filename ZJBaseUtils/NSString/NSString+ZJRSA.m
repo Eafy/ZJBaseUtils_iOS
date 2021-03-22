@@ -19,7 +19,7 @@
     }
     
     NSData *data = [[self dataUsingEncoding:NSUTF8StringEncoding] zj_rsaEncryptWithPublicKey:pubKey];
-    NSString *ret = [data zj_base64String];
+    NSString *ret = [data zj_toBase64String];
     return ret;
 }
 
@@ -30,7 +30,7 @@
     }
     
     NSData *data = [[self dataUsingEncoding:NSUTF8StringEncoding] zj_rsaEncryptWithPublicKey:privKey];
-    NSString *ret = [data zj_base64String];
+    NSString *ret = [data zj_toBase64String];
     return ret;
 }
 

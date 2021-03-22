@@ -10,14 +10,14 @@
 
 @implementation NSData (ZJExt)
 
-- (NSString *)zj_base64String
+- (NSString *)zj_toBase64String
 {
     NSData *data = [self base64EncodedDataWithOptions:0];
     NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return ret;
 }
 
-- (NSString *)toHexString
+- (NSString *)zj_toHexString
 {
     const unsigned char *bytes = [self bytes];
     if (!bytes) return @"";
