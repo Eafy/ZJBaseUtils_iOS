@@ -21,6 +21,7 @@
 @property (nonatomic,assign) BOOL isLeftSideslipBack;
 
 @property (nonatomic,strong) UIImageView *backgroundImgView;
+@property (nonatomic,assign) BOOL isFirstDidLoad;
 
 @end
 
@@ -58,6 +59,7 @@
     [super viewWillDisappear:animated];
     
     self.isVisible = NO;
+    self.isFirstDidLoad = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -81,6 +83,7 @@
     if (_backgroundImgName && !_backgroundImgView) {
         self.backgroundImgName = _backgroundImgName;
     }
+    self.isFirstDidLoad = YES;
     
     self.customTabBar.config = self.config;
     [self setValue:self.customTabBar forKey:@"tabBar"];

@@ -21,6 +21,7 @@
 
 @property (nonatomic,assign) BOOL isLeftSideslipBack;     //是左侧边栏右滑返回
 @property (nonatomic,strong) UIImageView *backgroundImgView;
+@property (nonatomic,assign) BOOL isFirstDidLoad;
 
 @property (nonatomic,strong) NSArray * _Nullable datasArray;      //TableView数据源
 
@@ -60,6 +61,7 @@
 {
     [super viewWillDisappear:animated];
     self.isVisible = NO;
+    self.isFirstDidLoad = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -94,6 +96,7 @@
     if (_backgroundImgName && !_backgroundImgView) {
         self.backgroundImgName = _backgroundImgName;
     }
+    self.isFirstDidLoad = YES;
 }
 
 - (void)dealloc {

@@ -76,6 +76,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 显示底部导航栏当Push的时候（系统默认显示时，且设置为YES才生效）
 @property (nonatomic,assign) BOOL showBottomBarWhenPushed;
 
+#pragma mark -
+
+/// 是否控制器首次加载
+@property (readonly) BOOL isFirstDidLoad;
+
 #pragma mark - 私有数据
 @property (nonatomic,strong) ZJBaseTVPrivateData *privateData;  //Item或上一个界面透传过来的数据
 
