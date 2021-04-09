@@ -26,6 +26,7 @@
 #import "NSArray+ZJExt.h"
 #import "NSThread+ZJExt.h"
 #import "CAAnimation+ZJExt.h"
+#import "NSNumber+ZJExt.h"
 
 #import "UIColor+ZJExt.h"
 #import "UIImage+ZJExt.h"

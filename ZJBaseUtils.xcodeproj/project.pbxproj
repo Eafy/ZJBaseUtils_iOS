@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C08E9B126202D8400826239 /* NSNumber+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C08E9AF26202D8400826239 /* NSNumber+ZJExt.h */; };
+		0C08E9B226202D8400826239 /* NSNumber+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08E9B026202D8400826239 /* NSNumber+ZJExt.m */; };
 		0C0D6059258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0D6057258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.m */; };
 		0C0D605A258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C0D6058258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C0D605E258A0EC400E3CEF1 /* ZJRedDotView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C0D605C258A0EC400E3CEF1 /* ZJRedDotView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -245,6 +247,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C08E9AF26202D8400826239 /* NSNumber+ZJExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+ZJExt.h"; sourceTree = "<group>"; };
+		0C08E9B026202D8400826239 /* NSNumber+ZJExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+ZJExt.m"; sourceTree = "<group>"; };
 		0C0D6057258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+ZJExt.m"; sourceTree = "<group>"; };
 		0C0D6058258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+ZJExt.h"; sourceTree = "<group>"; };
 		0C0D605C258A0EC400E3CEF1 /* ZJRedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJRedDotView.h; sourceTree = "<group>"; };
@@ -494,6 +498,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C08E9AE26202D8400826239 /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				0C08E9AF26202D8400826239 /* NSNumber+ZJExt.h */,
+				0C08E9B026202D8400826239 /* NSNumber+ZJExt.m */,
+			);
+			path = NSNumber;
+			sourceTree = "<group>";
+		};
 		0C0D605B258A0EC400E3CEF1 /* ZJRedDotView */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,6 +602,7 @@
 				0C95693624E2D96900C9A6C5 /* NSDate */,
 				0C95691924E2D8FB00C9A6C5 /* Device */,
 				0C50B8AC251E516A0032CB2F /* UIImageView */,
+				0C08E9AE26202D8400826239 /* NSNumber */,
 				0C279C4A24E2D22E00474649 /* ZJBaseUtils.h */,
 				0CEB8CBD256B9E4100BFD910 /* ZJBaseUtils.m */,
 				0C95693224E2D96900C9A6C5 /* ZJSingleton.h */,
@@ -1240,6 +1254,7 @@
 				0C84836425D279C700B75FD2 /* ZJAvatarView.h in Headers */,
 				0C5E7BDC2580E2370056CFCB /* ZJTextView.h in Headers */,
 				0C84830E25D2787700B75FD2 /* ZJInputPlayPwdView.h in Headers */,
+				0C08E9B126202D8400826239 /* NSNumber+ZJExt.h in Headers */,
 				0C0D605A258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.h in Headers */,
 				0C7172D62563FB0600950EE5 /* UIImage+ZJGradient.h in Headers */,
 				0C9D9A8B255F98BE0026C980 /* ZJBaseTBBadge.h in Headers */,
@@ -1355,6 +1370,7 @@
 				0C8482F625D2782700B75FD2 /* UISearchBar+ZJExt.m in Sources */,
 				0C50B88D251E4F0C0032CB2F /* ZJSettingCustomViewItem.m in Sources */,
 				0CA0211B251F76D200A9F216 /* ZJModel.m in Sources */,
+				0C08E9B226202D8400826239 /* NSNumber+ZJExt.m in Sources */,
 				0C8482F425D2782700B75FD2 /* ZJSearchBar.m in Sources */,
 				0C84831C25D2788500B75FD2 /* ZJButton.m in Sources */,
 				0CFBF56E25249A3200D55386 /* ZJSettingRadioItem.m in Sources */,

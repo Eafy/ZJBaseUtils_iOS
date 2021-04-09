@@ -15,6 +15,11 @@ NSString *const NSDateFormat_yyyyMMddHHmmss = @"yyyyMMddHHmmss";
 NSString *const NSDateFormat_yyyy_MM_dd = @"yyyy-MM-dd";
 NSString *const NSDateFormat_dd_MM_yyyy = @"dd-MM-yyyy";
 NSString *const NSDateFormat_yyyyMMdd = @"yyyyMMdd";
+
+NSString *const NSDateFormat_Time = @"HH:mm:ss";
+NSString *const NSDateFormat_Hour_Min = @"HH:mm";
+NSString *const NSDateFormat_Min_Sec = @"mm:ss";
+
 NSString *const NSDateFormat_Year = @"yyyy";
 NSString *const NSDateFormat_Month = @"MM";
 NSString *const NSDateFormat_Day = @"dd";

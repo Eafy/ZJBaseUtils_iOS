@@ -149,7 +149,7 @@
     }
 }
 
-- (void)zj_addlongPressTap:(void(^)(UILongPressGestureRecognizer *obj))longPressAction
+- (void)zj_addLongPressTap:(void(^)(UILongPressGestureRecognizer *obj))longPressAction
 {
     self.zj_viewLongPressAction = longPressAction;
     UILongPressGestureRecognizer *longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(zj_longPressTapAction:)];

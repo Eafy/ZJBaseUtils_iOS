@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 长按手势
 /// @param longPressAction 手势回调
-- (void)zj_addlongPressTap:(void(^)(UILongPressGestureRecognizer *obj))longPressAction;
+- (void)zj_addLongPressTap:(void(^)(UILongPressGestureRecognizer *obj))longPressAction;
 
 /// 左滑手势
 /// @param leftSwipAction 手势回调

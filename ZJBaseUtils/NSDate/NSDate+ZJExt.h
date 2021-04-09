@@ -25,6 +25,15 @@ extern NSString *const NSDateFormat_dd_MM_yyyy;
 /// 日期格式为 @"yyyyMMdd"
 extern NSString *const NSDateFormat_yyyyMMdd;
 
+/// 日期格式为 @"HH:mm:ss"
+extern NSString *const NSDateFormat_Time;
+
+/// 日期格式为 @"HH:mm"
+extern NSString *const NSDateFormat_Hour_Min;
+
+/// 日期格式为 @"mm:ss"
+extern NSString *const NSDateFormat_Min_Sec;
+
 /// 日期格式为 @"yyyy"
 extern NSString *const NSDateFormat_Year;
 
