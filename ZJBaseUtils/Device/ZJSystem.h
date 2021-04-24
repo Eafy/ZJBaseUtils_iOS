@@ -37,7 +37,7 @@ extern CGFloat ZJSysVersion(void);
 + (BOOL)isSimulator;
 
 /// 获取Bundle ID
-+ (NSString *)bundleId;
++ (NSString *)appBundleID;
 
 /// 项目名称
 + (NSString *)projectName;

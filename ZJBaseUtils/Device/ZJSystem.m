@@ -25,8 +25,8 @@ extern CGFloat ZJSysVersion(void) {
     return TARGET_IPHONE_SIMULATOR | TARGET_OS_SIMULATOR;
 }
 
-+ (NSString *)bundleId {
-    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
++ (NSString *)appBundleID {
+    return [[NSBundle mainBundle] bundleIdentifier];
 }
 
 + (NSString *)projectName {
