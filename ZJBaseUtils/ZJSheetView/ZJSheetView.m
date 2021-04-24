@@ -150,6 +150,15 @@
     bottom += 8;
     
     self.bgView.zj_height = bottom;
+    
+    if (_topCustomView) {
+        if (CGRectEqualToRect(_topCustomView.frame, CGRectZero)) {
+            self.topCustomView.zj_top = ZJStatusBarHeight() + 20;
+            self.topCustomView.zj_left = 20;
+            self.topCustomView.zj_width = ZJScreenWidth() - 40;
+            self.topCustomView.zj_height = ZJScreenHeight() - bottom - self.topCustomView.zj_top - 60;
+        }
+    }
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
@@ -195,6 +204,14 @@
 - (void)setTitleFont:(UIFont *)titleFont {
     _titleFont = titleFont;
     self.titleLB.font = titleFont;
+}
+
+- (void)setTopCustomView:(UIView *)topCustomView {
+    if (_topCustomView) {
+        [_topCustomView removeFromSuperview];
+    }
+    _topCustomView = topCustomView;
+    [self.maskView addSubview:topCustomView];
 }
 
 #pragma mark -

@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 背景遮罩透明度，默认0.7
 @property (nonatomic,assign) CGFloat maskAlpha;
 
+/// 顶部自定义视图
+@property (nonatomic,strong) UIView *topCustomView;
+
 + (instancetype)sheetView;
 
 + (instancetype)sheetViewWithTitle:(NSString * _Nullable)title;
