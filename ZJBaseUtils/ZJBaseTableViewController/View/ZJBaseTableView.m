@@ -93,7 +93,10 @@
 
 - (void)setSetupDatas:(NSArray<ZJSettingItemGroup *> *)setupDatas {
     self.datasArray = setupDatas;
-    [self reloadData];
+    if (setupDatas.count == 0 && !self.tableFooterView) {
+        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    [super reloadData];
 }
 
 - (void)reloadData
