@@ -75,8 +75,8 @@
     if (!_maskView) {
         _maskView = [[UIView alloc] initWithFrame:self.bounds];
         _maskView.backgroundColor = ZJColorFromRrgWithAlpha(0x0, self.maskAlpha);
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTapMaskView)];
-//        [_maskView addGestureRecognizer:tap];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTapMaskView)];
+        [_maskView addGestureRecognizer:tap];
     }
     return _maskView;
 }
@@ -276,6 +276,12 @@
          [self.btnArray removeAllObjects];
          [self.lineViewArray removeAllObjects];
      }];
+}
+
+- (void)clickedTapMaskView {
+    if (self.isTapMaskHide) {
+        [self dismiss];
+    }
 }
 
 @end

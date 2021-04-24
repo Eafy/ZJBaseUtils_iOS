@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) CGFloat cornerRadius;
 /// 背景遮罩透明度，默认0.7
 @property (nonatomic,assign) CGFloat maskAlpha;
+/// 点击遮罩层隐藏，默认false
+@property (nonatomic,assign) BOOL isTapMaskHide;
 
 /// 顶部自定义视图
 @property (nonatomic,strong) UIView *topCustomView;
