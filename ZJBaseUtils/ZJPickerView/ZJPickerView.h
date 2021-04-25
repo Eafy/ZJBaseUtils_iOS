@@ -35,6 +35,9 @@ typedef NS_ENUM(NSInteger, ZJPickerViewStyle) {
 /// 数据源（时间选择器不需要设置）
 @property (nonatomic,strong) NSArray<ZJPickerItem *> * _Nullable itemsArray;
 
+/// 设置当前日期（日期选择器类型才有效）
+@property (nonatomic,strong) NSDate *selectDate;
+
 /// 滑动每个一个列时是否重置下一列
 @property (nonatomic,assign) BOOL isResetNext;
 
@@ -49,14 +52,14 @@ typedef NS_ENUM(NSInteger, ZJPickerViewStyle) {
 @property (nonatomic,strong) NSString *okTitle;
 /// 确认标题颜色
 @property (nonatomic,strong) UIColor *okTitleColor;
-/// 确认标题颜色
+/// 确认标题颜色,默认常规16
 @property (nonatomic,strong) UIFont *okTitleFont;
 
 /// 取消按钮标题
 @property (nonatomic,strong) NSString *cancelTitle;
 /// 取消标题颜色
 @property (nonatomic,strong) UIColor *cancelTitleColor;
-/// 取消标题颜色
+/// 取消标题颜色,默认常规16
 @property (nonatomic,strong) UIFont *cancelTitleFont;
 
 /// 顶部视图高度，默认56

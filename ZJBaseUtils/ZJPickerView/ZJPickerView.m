@@ -423,6 +423,11 @@
     [self updateItemsArray:array];
 }
 
+- (void)setSelectDate:(NSDate *)selectDate {
+    _selectDate = selectDate;
+    [self.dateModel updateCurrentDate:selectDate];
+}
+
 #pragma mark -
 
 - (void)clickedOKAction

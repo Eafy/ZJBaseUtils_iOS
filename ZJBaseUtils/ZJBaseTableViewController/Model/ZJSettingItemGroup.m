@@ -43,4 +43,10 @@
     return nil;
 }
 
+- (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
+    if (index < self.items.count) {
+        [self.items replaceObjectAtIndex:index withObject:anObject];
+    }
+}
+
 @end

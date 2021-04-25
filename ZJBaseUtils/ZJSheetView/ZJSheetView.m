@@ -214,6 +214,7 @@
     [self.maskView addSubview:topCustomView];
 }
 
+
 #pragma mark -
 
 - (void)addAction:(ZJSheetAction *)action {
@@ -272,6 +273,7 @@
          self.bgView.zj_top = ZJScreenHeight();
      } completion:^(BOOL finished) {
          @strongify(self);
+         [self.topCustomView removeFromSuperview];
          [self removeFromSuperview];
          [self.btnArray removeAllObjects];
          [self.lineViewArray removeAllObjects];

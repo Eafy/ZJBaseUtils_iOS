@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id <UITableViewDataSource> dataSourceSelf;
 @property (nonatomic, weak, nullable) id <UITableViewDelegate> delegateSelf;
 
-@property (nonatomic,strong,readonly) NSArray * _Nullable datasArray;
+@property (readonly) NSArray * _Nullable dataSourceArray;
 
 /// Item或上一个界面透传过来的数据
 @property (nonatomic,strong) ZJBaseTVPrivateData *privateData;
@@ -36,8 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 更新数据
 - (void)updateData;
 
-/// 已存在数据
-- (NSArray *)datasArray;
+/// 更新集群数据
+/// @param section 第几个集群
+- (void)updateDataWithSection:(NSUInteger)section;
+
+/// 更新某行数据
+/// @param section 第几个集群
+/// @param row 行数
+- (void)updateDataWithSection:(NSUInteger)section row:(NSUInteger)row;
 
 #pragma mark - 
 

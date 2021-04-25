@@ -259,6 +259,8 @@
 
 - (CGSize)zj_sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize
 {
+    if (!font) return CGSizeZero;
+    
     CGSize textSize;
     if (CGSizeEqualToSize(maxSize, CGSizeZero)) {
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];

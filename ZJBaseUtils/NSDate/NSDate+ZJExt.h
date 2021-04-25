@@ -59,6 +59,10 @@ extern NSString *const NSDateFormat_Sec;
 /// @param dateFormatStr 时间格式字符串，如，‘MM-dd’
 - (NSString *)zj_toString:(NSString *)dateFormatStr;
 
+/// 获取日期字符串(UTC)
+/// @param dateFormatStr 时间格式字符串，如，‘MM-dd’
+- (NSString *)zj_toUTCString:(NSString *)dateFormatStr;
+
 /// 转换为本地时区的Date
 - (NSDate *)zj_localDate;
 
@@ -73,6 +77,9 @@ extern NSString *const NSDateFormat_Sec;
 
 /// 获取当天零点时间
 - (NSDate *)zj_zero;
+
+/// 获取当月1号零点时间
+- (NSDate *)zj_monthBegin;
 
 /// 是否为闰年
 - (BOOL)zj_isLeapYear;

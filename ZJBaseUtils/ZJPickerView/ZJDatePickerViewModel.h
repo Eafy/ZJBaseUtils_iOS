@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSMutableArray<NSString *> *minuteArray;
 @property (nonatomic,strong) NSMutableArray<NSString *> *secondArray;
 
+/// 更新当前日期
+/// @param date 日期
+- (void)updateCurrentDate:(NSDate *)date;
 - (void)updateDays:(NSString *)year mon:(NSString *)mon;
 
 /// 获取年的索引

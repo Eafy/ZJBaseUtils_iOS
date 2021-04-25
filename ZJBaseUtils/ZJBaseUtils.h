@@ -32,6 +32,7 @@
 #import "UIImage+ZJExt.h"
 #import "UIImage+ZJQR.h"
 #import "UISearchBar+ZJExt.h"
+#import "CLLocation+ZJExt.h"
 
 #import "UIView+ZJExt.h"
 #import "UIView+ZJFrame.h"

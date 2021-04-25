@@ -11,6 +11,7 @@
 #import "UIView+ZJFrame.h"
 #import "UIColor+ZJExt.h"
 #import "ZJScreen.h"
+#import "NSString+ZJExt.h"
 
 @interface ZJSettingTextFieldItem () <UITextFieldDelegate>
 
@@ -93,7 +94,14 @@
 
 - (void)updateDiffDataWithCell:(ZJSettingTableViewCell *)cell
 {
-    self.detailTextField.zj_width = cell.zj_width - cell.textLabel.zj_width - 50;
+    CGFloat width = [cell.textLabel.text zj_sizeWithFont:cell.textLabel.font maxSize:CGSizeZero].width;
+    if (width == 0) {
+        width = cell.textLabel.zj_width;
+    }
+    if (width > cell.zj_width * 0.66) {
+        width = cell.zj_width * 0.66;
+    }
+    self.detailTextField.zj_width = cell.zj_width - width - 50;
     self.detailTextField.zj_height = cell.contentView.zj_height/2.0;
 }
 

@@ -14,6 +14,7 @@
 @interface ZJDatePickerViewModel ()
 
 @property (nonatomic,strong) NSDate *daysDate;
+@property (nonatomic,strong) NSDate *currentDate;
 
 @end
 
@@ -21,7 +22,7 @@
 
 - (NSMutableArray<NSString *> *)yearArray {
     if (!_yearArray) {
-        NSInteger start = [[NSDate date] year];
+        NSInteger start = [self.currentDate year];
         
         NSMutableArray *array = [NSMutableArray array];
         for (NSInteger i = -ZJDatePickerViewModelYearCount/2; i < ZJDatePickerViewModelYearCount/2; i++) {
@@ -47,7 +48,7 @@
 
 - (NSMutableArray<NSString *> *)dayArray {
     if (!_dayArray) {
-        NSDate *date = self.daysDate ? self.daysDate : [NSDate date];
+        NSDate *date = self.daysDate ? self.daysDate : self.currentDate;
         NSInteger days = [date days];
 
         NSMutableArray *array = [NSMutableArray array];
@@ -98,6 +99,15 @@
 
 #pragma mark -
 
+- (NSDate *)currentDate {
+    return _currentDate ? _currentDate : [NSDate date];
+}
+
+- (void)updateCurrentDate:(NSDate *)date
+{
+    _currentDate = date;
+}
+
 - (void)updateDays:(NSString *)year mon:(NSString *)mon {
     _daysDate = [NSDate zj_timeFromString:[NSString stringWithFormat:@"%04ld-%02d-01 00:00:00", [year integerValue], [mon intValue]] formatter:NSDateFormat_yyyy_MM_dd_HH_mm_ss];
     _dayArray = nil;
@@ -129,7 +139,7 @@
         return value - 1;
     }
     
-    NSString *date = [NSString stringWithFormat:@"%02ld", [[NSDate date] month]];
+    NSString *date = [NSString stringWithFormat:@"%02ld", [self.currentDate month]];
     for (NSInteger i=0; i<self.monthArray.count; i++) {
         NSString *dateT = [self.monthArray objectAtIndex:i];
         if ([dateT isEqualToString:date]) {
@@ -148,7 +158,7 @@
         return value - 1;
     }
     
-    NSString *date = [NSString stringWithFormat:@"%02ld", [[NSDate date] day]];
+    NSString *date = [NSString stringWithFormat:@"%02ld", [self.currentDate day]];
     for (NSInteger i=0; i<self.dayArray.count; i++) {
         NSString *dateT = [self.dayArray objectAtIndex:i];
         if ([dateT isEqualToString:date]) {
@@ -167,7 +177,7 @@
         return value;
     }
     
-    NSString *date = [NSString stringWithFormat:@"%02ld", [[NSDate date] hour]];
+    NSString *date = [NSString stringWithFormat:@"%02ld", [self.currentDate hour]];
     for (NSInteger i=0; i<self.hourArray.count; i++) {
         NSString *dateT = [self.hourArray objectAtIndex:i];
         if ([dateT isEqualToString:date]) {
@@ -186,7 +196,7 @@
         return value;
     }
     
-    NSString *date = [NSString stringWithFormat:@"%02ld", [[NSDate date] min]];
+    NSString *date = [NSString stringWithFormat:@"%02ld", [self.currentDate min]];
     for (NSInteger i=0; i<self.minuteArray.count; i++) {
         NSString *dateT = [self.minuteArray objectAtIndex:i];
         if ([dateT isEqualToString:date]) {
@@ -205,7 +215,7 @@
         return value;
     }
     
-    NSString *date = [NSString stringWithFormat:@"%02ld", [[NSDate date] sec]];
+    NSString *date = [NSString stringWithFormat:@"%02ld", [self.currentDate sec]];
     for (NSInteger i=0; i<self.secondArray.count; i++) {
         NSString *dateT = [self.secondArray objectAtIndex:i];
         if ([dateT isEqualToString:date]) {

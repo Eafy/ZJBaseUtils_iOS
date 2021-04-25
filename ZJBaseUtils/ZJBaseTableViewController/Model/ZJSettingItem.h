@@ -59,6 +59,8 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 /// 是否可点击，Arrow默认可点击
 @property (nonatomic,assign) BOOL isSelection;
 
+@property (nonatomic,assign) UITableViewCellSelectionStyle selectionStyle;
+
 /// 右侧多视图，即第Arrow左侧视图
 @property (nonatomic,strong) UIView *multiArrowView;
 

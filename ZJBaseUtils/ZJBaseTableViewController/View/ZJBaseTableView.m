@@ -16,7 +16,7 @@
 
 @interface ZJBaseTableView () <UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) NSArray * _Nullable datasArray;      //TableView数据源
+@property (nonatomic,strong) NSMutableArray * _Nullable datasArray;      //TableView数据源
 @property (nonatomic,strong) UIViewController *currentViewController;
 
 @end
@@ -26,8 +26,6 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.dataSource = self;
-        self.delegate = self;
         if (@available(iOS 11.0, *)) {
             self.estimatedRowHeight = 0;
             self.estimatedSectionHeaderHeight = 0;
@@ -40,8 +38,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
-        self.dataSource = self;
-        self.delegate = self;
         if (@available(iOS 11.0, *)) {
             self.estimatedRowHeight = 0;
             self.estimatedSectionHeaderHeight = 0;
@@ -57,8 +53,6 @@
     self = [super initWithFrame:frame style:UITableViewStyleGrouped];
     if (self) {
         self.currentViewController = parentViewCtl;
-        self.dataSource = self;
-        self.delegate = self;
         if (@available(iOS 11.0, *)) {
             self.estimatedRowHeight = 0;
             self.estimatedSectionHeaderHeight = 0;
@@ -79,11 +73,15 @@
 
 #pragma mark - UITableViewDataLoad
 
-- (NSArray *)datasArray {
+- (NSMutableArray *)datasArray {
     if (!_datasArray) {
-        _datasArray = [NSArray array];
+        _datasArray = [NSMutableArray array];
     }
     return _datasArray;
+}
+
+- (NSArray *)dataSourceArray {
+    return self.datasArray;
 }
 
 - (NSArray<ZJSettingItemGroup *> *)setupDatas
@@ -92,7 +90,7 @@
 }
 
 - (void)setSetupDatas:(NSArray<ZJSettingItemGroup *> *)setupDatas {
-    self.datasArray = setupDatas;
+    self.datasArray = [NSMutableArray arrayWithArray:setupDatas];
     if (setupDatas.count == 0 && !self.tableFooterView) {
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
@@ -105,7 +103,7 @@
         self.privateData.config.lineColor = self.backgroundColor;
     }
     if (self.datasArray.count == 0) {
-        self.datasArray = [self setupDatas];
+        self.datasArray = [NSMutableArray arrayWithArray:[self setupDatas]];[NSMutableArray arrayWithArray:[self setupDatas]];
     }
 
     if (self.datasArray.count == 0 && !self.tableFooterView) {
@@ -116,12 +114,37 @@
 
 - (void)updateData
 {
-    self.datasArray = [self setupDatas];
+    self.datasArray = [NSMutableArray arrayWithArray:[self setupDatas]];
     
     __weak ZJBaseTableView *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf reloadData];
     });
+}
+
+- (void)updateDataWithSection:(NSUInteger)section
+{
+    NSArray *array = [self setupDatas];
+    if (section >= array.count) return;
+    ZJSettingItemGroup *group = [array objectAtIndex:section];
+    
+    if (section >= self.datasArray.count) return;
+    [self.datasArray replaceObjectAtIndex:section withObject:group];
+    [super reloadData];
+}
+
+- (void)updateDataWithSection:(NSUInteger)section row:(NSUInteger)row
+{
+    NSArray *array = [self setupDatas];
+    if (section >= array.count) return;
+    ZJSettingItemGroup *group = [array objectAtIndex:section];
+    if (row >= group.items.count) return;
+    ZJSettingItem *itemT = [group.items objectAtIndex:row];
+    
+    if (section >= self.datasArray.count) return;
+    group = [self.datasArray objectAtIndex:section];
+    [group replaceObjectAtIndex:row withObject:itemT];
+    [super reloadData];
 }
 
 #pragma mark - 

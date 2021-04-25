@@ -23,7 +23,7 @@
 @property (nonatomic,strong) UIImageView *backgroundImgView;
 @property (nonatomic,assign) BOOL isFirstDidLoad;
 
-@property (nonatomic,strong) NSArray * _Nullable datasArray;      //TableView数据源
+@property (nonatomic,strong) NSMutableArray * _Nullable datasArray;      //TableView数据源
 
 @end
 
@@ -584,11 +584,15 @@
 
 #pragma mark - UITableViewDataLoad
 
-- (NSArray *)datasArray {
+- (NSMutableArray *)datasArray {
     if (!_datasArray) {
-        _datasArray = [NSArray array];
+        _datasArray = [NSMutableArray array];
     }
     return _datasArray;
+}
+
+- (NSArray *)dataSourceArray {
+    return self.datasArray;
 }
 
 - (NSArray<ZJSettingItemGroup *> *)setupDatas
@@ -603,7 +607,7 @@
     }
     
     if (self.datasArray.count == 0) {
-        self.datasArray = [self setupDatas];
+        self.datasArray = [NSMutableArray arrayWithArray:[self setupDatas]];
     }
     if (self.datasArray.count == 0 && !self.tableView.tableFooterView) {
         self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -613,12 +617,37 @@
 
 - (void)updateData
 {
-    self.datasArray = [self setupDatas];
+    self.datasArray =[NSMutableArray arrayWithArray:[self setupDatas]];
     
     __weak ZJBaseTableViewController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf reloadData];
     });
+}
+
+- (void)updateDataWithSection:(NSUInteger)section
+{
+    NSArray *array = [self setupDatas];
+    if (section >= array.count) return;
+    ZJSettingItemGroup *group = [array objectAtIndex:section];
+    
+    if (section >= self.datasArray.count) return;
+    [self.datasArray replaceObjectAtIndex:section withObject:group];
+    [self.tableView reloadData];
+}
+
+- (void)updateDataWithSection:(NSUInteger)section row:(NSUInteger)row
+{
+    NSArray *array = [self setupDatas];
+    if (section >= array.count) return;
+    ZJSettingItemGroup *group = [array objectAtIndex:section];
+    if (row >= group.items.count) return;
+    ZJSettingItem *itemT = [group.items objectAtIndex:row];
+    
+    if (section >= self.datasArray.count) return;
+    group = [self.datasArray objectAtIndex:section];
+    [group replaceObjectAtIndex:row withObject:itemT];
+    [self.tableView reloadData];
 }
 
 #pragma mark -

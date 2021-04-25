@@ -36,6 +36,14 @@ NSString *const NSDateFormat_Sec = @"ss";
     return [dateFormat stringFromDate:self];
 }
 
+- (NSString *)zj_toUTCString:(NSString *)dateFormatStr
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [dateFormat setDateFormat:dateFormatStr];
+    return [dateFormat stringFromDate:self];
+}
+
 - (NSDate *)zj_localDate
 {
     NSTimeZone *zone = [NSTimeZone systemTimeZone];
@@ -75,6 +83,20 @@ NSString *const NSDateFormat_Sec = @"ss";
     components.minute = 0;
     components.second = 0;
     components.nanosecond = 0;
+    
+    NSTimeInterval ts = [[calendar dateFromComponents:components] timeIntervalSince1970];
+    return [NSDate dateWithTimeIntervalSince1970:ts];
+}
+
+- (NSDate *)zj_monthBegin
+{
+    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSUIntegerMax fromDate:self];
+    components.hour = 0;
+    components.minute = 0;
+    components.second = 0;
+    components.nanosecond = 0;
+    components.day = 1;
     
     NSTimeInterval ts = [[calendar dateFromComponents:components] timeIntervalSince1970];
     return [NSDate dateWithTimeIntervalSince1970:ts];

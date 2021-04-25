@@ -209,8 +209,8 @@
 - (void)clickedAssistBtnAction:(UIButton *)btn
 {
     if (self.style == ZJInputTextViewStylePassword) {
-        btn.selected = !btn.selected;
         self.inputTextField.secureTextEntry = btn.selected;
+        btn.selected = !btn.selected;
     } else if (self.style == ZJInputTextViewStyleVerificationCode) {
         self.assistBtn.selected = !self.assistBtn.selected;
         self.assistBtn.userInteractionEnabled = !self.assistBtn.selected;

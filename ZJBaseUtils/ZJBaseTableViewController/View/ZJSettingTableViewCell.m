@@ -348,12 +348,7 @@
     [self.item updateDiffDataWithCell:self];
     [self.item updateDiffConfigWithCell:self config:self.tableViewConfig];
     
-    if (self.item.isSelection) {
-        self.selectionStyle = UITableViewCellSelectionStyleDefault;
-    } else {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
+    self.selectionStyle = self.item.selectionStyle;
     if (self.item.subTitle && self.item.detailTitle) {
         if (self.tableViewConfig.cellSubTitleColor) [self.detailTextLabel setTextColor:self.tableViewConfig.cellSubTitleColor];
         if (self.tableViewConfig.cellSubTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellSubTitleFont];
