@@ -36,6 +36,8 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 @property (nonatomic,assign) NSInteger tag;
 /// 临时数据值（内部不使用）
 @property (nonatomic,assign) NSInteger tempValue;
+/// 识别码（用户自定义识别码）
+@property (nonatomic,copy) NSString *identifier;
 
 /// 图标
 @property (nonatomic,copy) NSString * _Nullable icon;
@@ -60,8 +62,9 @@ typedef NS_ENUM(NSUInteger, ZJSettingItemType) {
 @property (nonatomic,assign) BOOL isSelection;
 
 @property (nonatomic,assign) UITableViewCellSelectionStyle selectionStyle;
+@property (nonatomic,assign) UITableViewCellAccessoryType accessoryType;
 
-/// 右侧多视图，即第Arrow左侧视图
+/// 右侧多视图，即Arrow视图左侧视图
 @property (nonatomic,strong) UIView *multiArrowView;
 
 #pragma mark - 自定义区

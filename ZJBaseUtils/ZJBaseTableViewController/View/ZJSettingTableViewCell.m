@@ -59,6 +59,7 @@
     cell.tag = item.tag;
     cell.cornerType = 0;
     cell.item = item;
+    cell.accessoryType = item.accessoryType;
     
     return cell;
 }
@@ -167,7 +168,7 @@
         if (self.accessoryView) {
             self.detailTextLabel.zj_right = self.accessoryView.zj_left - detailTextSpace;
         } else {
-            self.detailTextLabel.zj_right = self.contentView.zj_right - detailTextSpace - (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator ? 0 : self.tableViewConfig.arrowRightSpace);
+            self.detailTextLabel.zj_right = self.contentView.zj_right - detailTextSpace - (self.accessoryType != UITableViewCellAccessoryNone ? 0 : self.tableViewConfig.arrowRightSpace);
         }
         self.detailTextLabel.zj_centerY = self.contentView.zj_centerY;
     }
@@ -322,6 +323,9 @@
         item.iconView.zj_centerY = self.tableViewConfig.rowHeight/2.0;
         [self.contentView addSubview:item.iconView];
     }
+    if (_item && _item.customView) {
+        [_item.customView removeFromSuperview];
+    }
     _item = item;
     
     self.accessoryView = self.arrowImgView;
@@ -354,6 +358,10 @@
         if (self.tableViewConfig.cellSubTitleFont) [self.detailTextLabel setFont:self.tableViewConfig.cellSubTitleFont];
         if (self.tableViewConfig.cellDetailTitleColor) [self.subTitleLabel setTextColor:self.tableViewConfig.cellDetailTitleColor];
         if (self.tableViewConfig.cellSubTitleFont) [self.subTitleLabel setFont:self.tableViewConfig.cellDetailTitleFont];
+    }
+    
+    if (item.customView) {
+        [self.contentView addSubview:item.customView];
     }
 }
 

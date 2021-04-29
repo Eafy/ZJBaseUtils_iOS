@@ -620,12 +620,12 @@
             NSString *mon = [itemT.titleArray objectAtIndex:[pickerView selectedRowInComponent:0]];
             [self.dateModel updateDays:year mon:mon];
             
-            pickerView = [self.pickerViewArray objectAtIndex:2];    //天
-            [pickerView reloadAllComponents];
-            
-            ZJPickerItem *item = [[ZJPickerItem alloc] init];   //更新
-            item.titleArray = self.dateModel.dayArray;
-            [self replaceArrayAtComponent:2 item:item];
+            item = [self.itemsArray objectAtIndex:2];
+            item.titleArray = self.dateModel.dayArray;      //天
+            if (item.selectIndex >= item.titleArray.count) {
+                item.selectIndex = item.titleArray.count - 1;
+            }
+            [[self.pickerViewArray objectAtIndex:2] reloadAllComponents];
         }
     }
     

@@ -115,7 +115,7 @@
 
 - (NSInteger)indexYear:(NSInteger)value {
     if (value <= 0) {
-        value = ZJDatePickerViewModelYearCount/2 - 1;
+        value = ZJDatePickerViewModelYearCount/2;
         if (value < self.yearArray.count) {
             return value;
         }

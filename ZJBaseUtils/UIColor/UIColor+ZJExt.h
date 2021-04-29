@@ -28,7 +28,7 @@ extern UIColor *ZJColorFromRGB(NSInteger rgb);
 /// RGB整形数带透明度值转Color
 /// @param rgb rgb数值
 /// @param alpha 透明度（0~1.0）
-extern UIColor *ZJColorFromRrgWithAlpha(NSInteger rgb, CGFloat alpha);
+extern UIColor *ZJColorFromRgbWithAlpha(NSInteger rgb, CGFloat alpha);
 /// HEX或HEXA转换为RGB颜色
 /// @param str HEX或HEXA字符串
 extern UIColor *ZJColorFromHex(NSString *str);

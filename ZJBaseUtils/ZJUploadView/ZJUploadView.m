@@ -164,7 +164,7 @@
             break;
         case ZJUploadViewStyleUploading:
         {
-            self.backgroundColor = ZJColorFromRrgWithAlpha(0x181E28, 0.7);
+            self.backgroundColor = ZJColorFromRgbWithAlpha(0x181E28, 0.7);
             [self zj_cornerWithRadius:4];
             UIImage *img = [self.showImgBtn imageForState:UIControlStateNormal];
             if (img) {

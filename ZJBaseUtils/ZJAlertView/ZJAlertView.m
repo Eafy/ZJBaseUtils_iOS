@@ -318,7 +318,7 @@
 
 - (void)setMaskAlpha:(CGFloat)maskAlpha {
     _maskAlpha = maskAlpha;
-    self.maskView.backgroundColor = ZJColorFromRrgWithAlpha(0x0, maskAlpha);
+    self.maskView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, maskAlpha);
 }
 
 - (void)setTitleColor:(UIColor *)titleColor {

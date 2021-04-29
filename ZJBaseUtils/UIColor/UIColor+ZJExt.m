@@ -20,7 +20,7 @@ UIColor *ZJColorFromRGB(NSInteger rgb) {
     return [UIColor zj_color:rgb];
 }
 
-UIColor *ZJColorFromRrgWithAlpha(NSInteger rgb, CGFloat alpha) {
+UIColor *ZJColorFromRgbWithAlpha(NSInteger rgb, CGFloat alpha) {
     return [UIColor zj_color:rgb a:alpha];
 }
 

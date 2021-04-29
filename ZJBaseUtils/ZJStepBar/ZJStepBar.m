@@ -47,7 +47,7 @@
         _titleFont = [UIFont systemFontOfSize:14.f];
         _circleNorColor = ZJColorFromRGB(0x8690A8);
         _circleSelColor = ZJColorFromRGB(0x3D7DFF);
-        _circleAnimColor = ZJColorFromRrgWithAlpha(0x3D7DFF, 0.1);
+        _circleAnimColor = ZJColorFromRgbWithAlpha(0x3D7DFF, 0.1);
         _progressNorColor = ZJColorFromRGB(0xBCC4D4);
         _progressSelColor = ZJColorFromRGB(0x3D7DFF);
         _progressLineHeight = 2.0;

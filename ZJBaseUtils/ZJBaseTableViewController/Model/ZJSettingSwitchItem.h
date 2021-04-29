@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZJSettingSwitchItem : ZJSettingItem
 
 /// SwitchBtn操作之后的响应
-@property (nonatomic,copy) void(^ _Nullable switchBtnBlock)(UISwitch * _Nonnull switchBtn);
+@property (nonatomic,copy) void(^ _Nullable switchBtnBlock)(ZJSettingSwitchItem *item, UISwitch * _Nonnull switchBtn);
 /// SwitchBtn的值
 @property (nonatomic,assign) BOOL value;
 /// SwitchBtn的使能

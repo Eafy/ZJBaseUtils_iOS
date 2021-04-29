@@ -81,7 +81,7 @@
 
     if (self.style == ZJButtonStyleLine) {
         if (!self.lineColor) return;
-        self.layer.borderColor = enabled ? self.lineColor.CGColor : ZJColorFromRrgWithAlpha(self.lineColor.zj_toHexNumber, 0.3).CGColor;
+        self.layer.borderColor = enabled ? self.lineColor.CGColor : ZJColorFromRgbWithAlpha(self.lineColor.zj_toHexNumber, 0.3).CGColor;
     }
 }
 

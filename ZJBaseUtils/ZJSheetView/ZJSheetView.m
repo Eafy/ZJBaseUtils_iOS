@@ -74,7 +74,7 @@
 {
     if (!_maskView) {
         _maskView = [[UIView alloc] initWithFrame:self.bounds];
-        _maskView.backgroundColor = ZJColorFromRrgWithAlpha(0x0, self.maskAlpha);
+        _maskView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, self.maskAlpha);
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTapMaskView)];
         [_maskView addGestureRecognizer:tap];
     }
@@ -180,7 +180,7 @@
 
 - (void)setMaskAlpha:(CGFloat)maskAlpha {
     _maskAlpha = maskAlpha;
-    self.maskView.backgroundColor = ZJColorFromRrgWithAlpha(0x0, maskAlpha);
+    self.maskView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, maskAlpha);
 }
 
 - (void)setTitle:(NSString *)title {

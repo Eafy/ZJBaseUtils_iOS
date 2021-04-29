@@ -281,7 +281,7 @@
         self.maskRightView.zj_width = width/4.0 * 3;
         self.maskRightView.zj_right = self.zj_width;
         self.maskRightView.zj_height = self.zj_height;
-        [self.maskRightView zj_gradientWithColors:@[ZJColorFromRrgWithAlpha(0xFFFFFF, 0.35), ZJColorFromRrgWithAlpha(0xFFFFFF, 1)] percents:@[@0, @1] opacity:1 type:ZJGradientTypeFromLeftToRight];
+        [self.maskRightView zj_gradientWithColors:@[ZJColorFromRgbWithAlpha(0xFFFFFF, 0.35), ZJColorFromRgbWithAlpha(0xFFFFFF, 1)] percents:@[@0, @1] opacity:1 type:ZJGradientTypeFromLeftToRight];
     }
 }
 

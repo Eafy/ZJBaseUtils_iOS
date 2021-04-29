@@ -76,7 +76,7 @@
 - (void)switchBtnChange:(UISwitch *)switchBtn
 {
     if (_switchBtnBlock) {
-        self.switchBtnBlock(switchBtn);
+        self.switchBtnBlock(self, switchBtn);
     }
 }
 
