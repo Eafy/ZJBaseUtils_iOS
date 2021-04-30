@@ -141,7 +141,7 @@
 - (UIButton *)okBtn
 {
     if (!_okBtn) {
-        _okBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.topViewHeight, self.topViewHeight)];
+        _okBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.topViewHeight + 20, self.topViewHeight)];
         _okBtn.backgroundColor = [UIColor clearColor];
         [_okBtn setTitle:NSLocalizedString(@"OK", nil) forState:UIControlStateNormal];
         [_okBtn setTitleColor:ZJColorFromHex(@"#3D7DFF") forState:UIControlStateNormal];
