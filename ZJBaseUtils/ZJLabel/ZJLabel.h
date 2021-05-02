@@ -43,6 +43,15 @@ typedef NS_ENUM(NSUInteger, ZJLabelStyle) {
 /// 边框线条颜色
 @property (nonatomic,strong) UIColor *lineColor;
 
+#pragma mark - 渐变色
+
+/// 渐变色开关
+@property (nonatomic,assign) BOOL isGradientEnable;
+/// 渐变颜色
+@property (nonatomic,strong) NSArray<UIColor *> *gradientColors;
+/// 渐变百分比
+@property (nonatomic,strong) NSArray<NSNumber *> *gradientPercents;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -575,33 +575,48 @@
 
 - (void)dismiss
 {
-    if (self.animationStyle == ZJAlertViewStyleAnimation2) {
-        [self hideAnimation2WithLayer:self.alertView.layer durationTime:0.25];
-    } else {
-        [self hideAnimation1WithLayer:self.alertView.layer durationTime:0.25];
+    [self dismissWithAnimation:YES];
+}
+
+- (void)dismissWithAnimation:(BOOL)animation
+{
+    if (animation) {
+        if (self.animationStyle == ZJAlertViewStyleAnimation2) {
+            [self hideAnimation2WithLayer:self.alertView.layer durationTime:0.25];
+        } else {
+            [self hideAnimation1WithLayer:self.alertView.layer durationTime:0.25];
+        }
     }
     if (_dismissHandle) {
         self.dismissHandle();
-        _dismissHandle = nil;
     }
     
-    @weakify(self);
-    [UIView animateWithDuration:0.25 animations:^{
-        @strongify(self);
-        self.alpha = 0;
-    } completion:^(BOOL finished) {
-        @strongify(self);
-        if (self->_customView) {
+    if (animation) {
+        @weakify(self);
+        [UIView animateWithDuration:0.25 animations:^{
+            @strongify(self);
+            self.alpha = 0;
+            [self resignFirstResponder];
+        } completion:^(BOOL finished) {
+            @strongify(self);
+            if (self->_customView) {
+                [self.customView removeFromSuperview];
+                self->_customView = nil;
+            }
+            [self removeFromSuperview];
+            [self.btnArray removeAllObjects];
+            [self.lineViewArray removeAllObjects];
+        }];
+    } else {
+        [self resignFirstResponder];
+        if (_customView) {
             [self.customView removeFromSuperview];
-            self->_customView = nil;
-        }
-        if (self->_inputTextField) {
-            self.inputTextField.delegate = nil;
+            _customView = nil;
         }
         [self removeFromSuperview];
         [self.btnArray removeAllObjects];
         [self.lineViewArray removeAllObjects];
-    }];
+    }
 }
 
 #pragma mark - 动画样式

@@ -134,4 +134,49 @@
     }
 }
 
+- (void)drawRect:(CGRect)rect
+{
+    if (self.isGradientEnable && self.gradientColors.count > 1 && self.gradientPercents.count > 1) {
+        
+        CGFloat *locations = malloc(sizeof(CGFloat) * self.gradientColors.count);
+        NSMutableArray *colorArray = [NSMutableArray array];
+        for (int i=0; i<self.gradientColors.count; i++) {
+            UIColor *color = [self.gradientColors objectAtIndex:i];
+            [colorArray addObject:(id)color.CGColor];
+            if (i < self.gradientPercents.count) {
+                locations[i] = [self.gradientPercents[i] floatValue];
+            } else {
+                locations[i] = 1.0;
+            }
+        }
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        // 获取文字mask
+        [self.text drawInRect:self.bounds withAttributes:@{ NSFontAttributeName: self.font }];
+        CGImageRef textMask = CGBitmapContextCreateImage(context);
+        
+        // 清空画布
+        CGContextClearRect(context, rect);
+        
+        // 设置蒙层
+        CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+        CGContextScaleCTM(context, 1.0, -1.0);
+        CGContextClipToMask(context, rect, textMask);
+        
+        // 绘制渐变
+        CGColorSpaceRef colorSpace = CGColorGetColorSpace([[self.gradientColors lastObject] CGColor]);
+        CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)colorArray, locations);
+        CGPoint start = CGPointMake(0, self.bounds.size.height / 2.0);
+        CGPoint end = CGPointMake(self.bounds.size.width, self.bounds.size.height / 2.0);
+        CGContextDrawLinearGradient(context, gradient, start, end, kCGGradientDrawsBeforeStartLocation);
+        
+        // 释放
+        CGColorSpaceRelease(colorSpace);
+        CGGradientRelease(gradient);
+        CGImageRelease(textMask);
+        free(locations);
+    }
+}
+
 @end

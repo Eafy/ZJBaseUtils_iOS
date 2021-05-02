@@ -172,7 +172,7 @@
 {
     if (!_navRightBtn) {
         _navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _navRightBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight());
+        _navRightBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + 20, ZJNavBarHeight());
         [_navRightBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
         [_navRightBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navRightBtn setBackgroundColor:[UIColor clearColor]];
