@@ -108,6 +108,10 @@ typedef NS_ENUM(NSInteger, ZJAlertViewAnimationStyle) {
 /// 移除
 - (void)dismiss;
 
+/// 移除
+/// @param animation 是否带动画
+- (void)dismissWithAnimation:(BOOL)animation;
+
 @end
 
 NS_ASSUME_NONNULL_END
