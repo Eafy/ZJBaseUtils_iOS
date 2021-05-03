@@ -157,7 +157,12 @@
             self.topCustomView.zj_left = 20;
             self.topCustomView.zj_width = ZJScreenWidth() - 40;
             self.topCustomView.zj_height = ZJScreenHeight() - bottom - self.topCustomView.zj_top - 60;
-        } else if (self.topCustomView.zj_height > ZJScreenHeight() - bottom - self.topCustomView.zj_top - 60) {
+        }
+        if (self.topCustomView.zj_width == 0) {
+            self.topCustomView.zj_left = 20;
+            self.topCustomView.zj_width = ZJScreenWidth() - 40;
+        }
+        if (self.topCustomView.zj_height > ZJScreenHeight() - bottom - self.topCustomView.zj_top - 60) {
             self.topCustomView.zj_height = ZJScreenHeight() - bottom - self.topCustomView.zj_top - 60;
         }
     }
