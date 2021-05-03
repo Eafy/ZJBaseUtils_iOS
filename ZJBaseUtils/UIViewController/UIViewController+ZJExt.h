@@ -21,12 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 退出所有控制器，直到与window.rootViewController或destVc相等为止
 /// @param destVc 目标控制器
-+ (void)exitViewController:(Class _Nonnull)destVc;
++ (void)exitViewController:(Class _Nullable)destVc;
 
 /// 推出所有控制器直到toVc
 /// @param currentVc 当前控制器
 /// @param toVc 目标控制器
-+ (void)exitViewController:(UIViewController * _Nullable)currentVc toVC:(Class _Nonnull)toVc;
++ (void)exitViewController:(UIViewController * _Nullable)currentVc toVC:(Class _Nullable)toVc;
 
 #pragma mark -
 

@@ -65,13 +65,13 @@
     return isFind?presentedVC:nil;
 }
 
-+ (void)exitViewController:(Class _Nonnull)destVc
++ (void)exitViewController:(Class _Nullable)destVc
 {
     NSInteger searchCount = 0;
     UIViewController *vc = [UIViewController zj_currentViewController];
 
     do {
-        if (!vc || [vc isKindOfClass:destVc]) {
+        if (!vc || (destVc && [vc isKindOfClass:destVc])) {
             break;
         } else {
             searchCount ++;
@@ -91,16 +91,16 @@
                 vc = vcTemp;
             }
         }
-    } while (vc && searchCount < 128);
+    } while (vc && searchCount < 64);
 }
 
-+ (void)exitViewController:(UIViewController * _Nullable)currentVc toVC:(Class _Nonnull)toVc
++ (void)exitViewController:(UIViewController * _Nullable)currentVc toVC:(Class _Nullable)toVc
 {
     NSInteger searchCount = 0;
     UIViewController *vc = currentVc;
     
     do {
-        if (!vc || [vc isKindOfClass:toVc]) {
+        if (!vc || (toVc && [vc isKindOfClass:toVc])) {
             break;
         } else {
             searchCount ++;
@@ -120,7 +120,7 @@
                 vc = vcTemp;
             }
         }
-    } while (vc && searchCount < 128);
+    } while (vc && searchCount < 64);
 }
 
 #pragma mark -
