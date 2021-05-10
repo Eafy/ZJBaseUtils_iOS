@@ -53,7 +53,7 @@
     [borderLayer setLineWidth:width];
     if (space > 0 && length > 0) {
         [borderLayer setLineJoin:kCALineJoinRound];
-        [borderLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:length],[NSNumber numberWithFloat:space],nil]];
+        [borderLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithFloat:length], [NSNumber numberWithFloat:space],nil]];
     }
     borderLayer.strokeColor = strokeColor.CGColor;
     [self.layer addSublayer:borderLayer];
