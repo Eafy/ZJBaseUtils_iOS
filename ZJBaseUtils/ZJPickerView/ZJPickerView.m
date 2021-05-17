@@ -489,6 +489,7 @@
     if (row >= item.titleArray.count) return;
     UIPickerView *pickerView = [self.pickerViewArray objectAtIndex:component];
     if (row != [pickerView selectedRowInComponent:0]) {
+        item.selectIndex = row;
         [pickerView selectRow:row inComponent:0 animated:animated];
     }
 }
