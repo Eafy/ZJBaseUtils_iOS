@@ -7,6 +7,7 @@
 //
 
 #import "ZJTextField.h"
+#import "UIView+ZJFrame.h"
 
 @interface ZJTextField ()
 
@@ -27,10 +28,17 @@
     }
 }
 
+- (CGRect)textRectForBounds:(CGRect)bounds {
+    return CGRectMake(bounds.origin.x + self.textInnerMargin + self.leftView.zj_right, bounds.origin.y, bounds.size.width, bounds.size.height);
+}
+
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectMake(bounds.origin.x + self.textInnerMargin + self.leftView.zj_right, bounds.origin.y, bounds.size.width, bounds.size.height);
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [self setupLeftViewWidth];
     if (_clearBtn) {
         self.clearBtn.bounds = CGRectMake(0, 0, self.bounds.size.height-2, self.bounds.size.height-2);
     }
@@ -59,21 +67,6 @@
         self.rightViewMode = UITextFieldViewModeNever;
         self.rightView = nil;
         _clearBtn = nil;
-    }
-}
-
-- (void)setupLeftViewWidth {
-    if (self.leftWidth <= 0) {
-        self.leftView = nil;
-        self.leftViewMode = UITextFieldViewModeNever;
-    } else {
-        if (self.leftView) {
-            self.leftView.frame = CGRectMake(0, 0, self.leftWidth, self.leftView.bounds.size.height);
-        } else {
-            UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.leftWidth, self.bounds.size.height)];
-            self.leftView = rightView;
-        }
-        self.leftViewMode = UITextFieldViewModeAlways;
     }
 }
 

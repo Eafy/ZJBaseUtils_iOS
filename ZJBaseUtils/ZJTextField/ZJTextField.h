@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,weak) id<ZJTextFieldDelegate> zj_delegate;
 
-/// 输入框左视图宽度，默认12
-@property (nonatomic,assign) CGFloat leftWidth;
+/// 输入框文字左侧间距，默认0
+@property (nonatomic,assign) CGFloat textInnerMargin;
 
 /// 输入框清除按钮图片
 @property (nonatomic,copy) NSString * _Nullable clearBtnImageName;

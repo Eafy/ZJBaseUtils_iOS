@@ -117,7 +117,10 @@
     if (!self.placeholderFont && config.textFieldPlaceholderFont) {
         [dic setValue:config.textFieldPlaceholderFont forKey:NSFontAttributeName];
     }
-    if (self.placeholder && dic.count > 0) {
+    if ((self.detailTextField.placeholder || self.placeholder) && dic.count > 0) {
+        if (self.detailTextField.placeholder) {
+            self.placeholder = self.detailTextField.placeholder;
+        }
         NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.placeholder attributes:dic];
         self.detailTextField.attributedPlaceholder = attrString;
     }
