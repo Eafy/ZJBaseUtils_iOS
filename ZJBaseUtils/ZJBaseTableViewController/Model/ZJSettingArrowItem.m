@@ -27,4 +27,9 @@
     }
 }
 
+- (void)updateDiffConfigWithCell:(ZJSettingTableViewCell *)cell config:(ZJBaseTVConfig *)config
+{
+    
+}
+
 @end

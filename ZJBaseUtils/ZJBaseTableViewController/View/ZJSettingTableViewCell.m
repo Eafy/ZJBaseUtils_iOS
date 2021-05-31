@@ -234,11 +234,13 @@
 {
     if (self.item.accessoryView && _arrowImgView != self.item.accessoryView) {
         _arrowImgView = (UIImageView *)self.item.accessoryView;
-    } else if (self.item.arrowIcon) {
-        if (![NSString zj_isEmpty:self.item.arrowIcon]) {
-            if (![self.item.arrowIcon isEqualToString:self.arrowIcon]) {
+    } else if (self.item.arrowIcon || self.tableViewConfig.arrowIconName) {
+        NSString *iconName = self.item.arrowIcon ? self.item.arrowIcon : self.tableViewConfig.arrowIconName;
+        if (![NSString zj_isEmpty:iconName]) {
+            if (![iconName isEqualToString:self.arrowIcon]) {
                 if (_arrowImgView) [_arrowImgView removeFromSuperview];
-                UIImage *arrowImg = [UIImage imageNamed:self.item.arrowIcon];
+                self.arrowIcon = iconName;
+                UIImage *arrowImg = [UIImage imageNamed:iconName];
                 if (arrowImg) {
                     _arrowImgView = [[UIImageView alloc] initWithImage:arrowImg];
                 }

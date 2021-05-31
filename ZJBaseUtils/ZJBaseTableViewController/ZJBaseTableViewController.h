@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIButton * _Nullable navRightSubBtn;
 /// 左辅助按钮是否显示上一级标题，默认NO；
 @property (nonatomic,assign) BOOL isNavLeftSubTitle;
-/// 页面退出返回给上层控制器的数据
+/// 页面退出前返回给上层控制器的数据
 @property (nonatomic,strong) id _Nullable returnBeforeData;
 /// 返回之前需要执行的Block
 @property (nonatomic,copy) void (^ _Nullable returnBeforeOption)(id _Nullable data);

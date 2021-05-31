@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 头视图右边距，默认5
 @property (nonatomic,assign) CGFloat iconRightSpace;
 
+/// 左侧Icon图标名称
+@property (nonatomic,copy) NSString *arrowIconName;
 /// 箭头左边间距，默认5，仅右侧多视图时生效
 @property (nonatomic,assign) CGFloat arrowLeftSpace;
 /// 箭头右边间距，默认5，需要设置ZJSettingItem:-arrowIcon视图参数，否则无效
