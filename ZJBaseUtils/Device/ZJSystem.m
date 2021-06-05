@@ -34,7 +34,8 @@ extern CGFloat ZJSysVersion(void) {
 }
 
 + (NSString *)appName {
-    NSString *appName = NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", nil);
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     if (!appName) {
         appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleExecutableKey];
     }
