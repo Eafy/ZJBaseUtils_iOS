@@ -41,10 +41,6 @@
 {
     if (!_switchBtn) {
         _switchBtn = [[UISwitch alloc] init];
-        _switchBtn.thumbTintColor = ZJColorFromRGB(0xFFFFFF);
-        _switchBtn.tintColor = ZJColorFromRGB(0xBCC4D4);
-        _switchBtn.onTintColor = ZJColorFromRGB(0x3D7DFF);
-        _switchBtn.backgroundColor = [UIColor clearColor];
         [_switchBtn addTarget:self action:@selector(switchBtnChange:) forControlEvents:UIControlEventValueChanged];
     }
     return _switchBtn;
