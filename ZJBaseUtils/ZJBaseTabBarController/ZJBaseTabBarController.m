@@ -454,6 +454,9 @@
             _backgroundImgView.contentMode = UIViewContentModeScaleAspectFill;
             [self.view insertSubview:_backgroundImgView atIndex:0];
         }
+    } else if (_backgroundImgView && (!backgroundImgName || backgroundImgName.length == 0)) {
+        [_backgroundImgView removeFromSuperview];
+        _backgroundImgView = nil
     }
 }
 
