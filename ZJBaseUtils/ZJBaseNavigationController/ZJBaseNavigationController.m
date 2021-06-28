@@ -93,7 +93,7 @@
         }
     } else if (_backgroundImgView && (!backgroundImgName || backgroundImgName.length == 0)) {
         [_backgroundImgView removeFromSuperview];
-        _backgroundImgView = nil
+        _backgroundImgView = nil;
     }
 }
 
