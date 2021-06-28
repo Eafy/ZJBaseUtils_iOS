@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSArray<Class> *hideNavBarArray;
 
 /// 设置背景图片
-@property (nonatomic,copy) NSString *backgroundImgName;
+@property (nonatomic,copy) NSString * _Nullable backgroundImgName;
 /// 子控制器的背景颜色
 @property (nonatomic,strong) UIColor *backgroundColor;
 
