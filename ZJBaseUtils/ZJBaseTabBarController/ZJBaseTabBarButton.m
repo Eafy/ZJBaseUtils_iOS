@@ -9,12 +9,13 @@
 #import "ZJBaseTabBarButton.h"
 #import "UIView+ZJFrame.h"
 #import "CAAnimation+ZJExt.h"
+#import "UIView+ZJExt.h"
 
 @interface ZJBaseTabBarButton ()
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *titleLB;
-@property (nonatomic, strong) CALayer *waterRippleLayer;
+@property (nonatomic, strong) CAShapeLayer *waterRippleLayer;
 
 @end
 
@@ -93,14 +94,14 @@
 
 - (void )waterRippleAnimation
 {
-    if (!_waterRippleLayer) {
-        _waterRippleLayer = [CALayer layer];
-        _waterRippleLayer.bounds =  CGRectMake(0, 0, self.imageView.zj_bottom, self.imageView.zj_bottom);
-        _waterRippleLayer.position = CGPointMake(self.imageView.zj_width/2.0, self.imageView.zj_height/2.0);
-        _waterRippleLayer.contentsScale = [UIScreen mainScreen].scale;
-    } else {
-        [self.waterRippleLayer removeFromSuperlayer];
+    if (!_imageView || self.imageView.zj_height <= 0) {
+        return;
     }
+    [self.waterRippleLayer removeFromSuperlayer];
+    _waterRippleLayer = [CAShapeLayer layer];
+    _waterRippleLayer.bounds =  CGRectMake(0, 0, self.imageView.zj_bottom, self.imageView.zj_bottom);
+    _waterRippleLayer.position = self.imageView.center;
+    _waterRippleLayer.contentsScale = [UIScreen mainScreen].scale;
     
     CGFloat pulseAnimationDuration = 0.3;
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
@@ -123,20 +124,17 @@
     fadeOutAnim.duration = pulseAnimationDuration;
     
     animationGroup.animations = @[imageAnimation, pulseAnimation, fadeOutAnim];
-    [_waterRippleLayer addAnimation:animationGroup forKey:@"pulse"];
-    
-    [self.imageView.layer insertSublayer:_waterRippleLayer atIndex:0];
+    [self.waterRippleLayer addAnimation:animationGroup forKey:@"pulse"];
+    [self.layer insertSublayer:self.waterRippleLayer below:self.imageView.layer];
 }
 
 - (UIImage*)haloImageWithRadius:(CGFloat)radius
 {
-    CGPoint center = CGPointMake(radius, radius);
-    CGRect imageBounds = CGRectMake(0, 0, center.x*2, center.y*2);
+    CGRect imageBounds = CGRectMake(0, 0, radius*2, radius*2);
     
-    UIGraphicsBeginImageContextWithOptions(imageBounds.size, NO, 0);
-    UIColor* ringColor = [UIColor blueColor];
+    UIGraphicsBeginImageContextWithOptions(imageBounds.size, NO, UIScreen.mainScreen.scale);
+    UIColor *ringColor = [UIColor blueColor];
     [ringColor setFill];
-    [ringColor setStroke];
     
     UIBezierPath *ringPath = [UIBezierPath bezierPathWithRoundedRect:imageBounds cornerRadius:imageBounds.size.height/2];
     ringPath.usesEvenOddFillRule = YES;

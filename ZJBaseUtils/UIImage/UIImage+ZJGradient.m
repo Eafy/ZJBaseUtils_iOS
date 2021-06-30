@@ -24,7 +24,7 @@
         }
     }
     
-    UIGraphicsBeginImageContextWithOptions(size, YES, 1.0);
+    UIGraphicsBeginImageContextWithOptions(size, YES, UIScreen.mainScreen.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
@@ -80,7 +80,7 @@
     CGFloat x1 = endPoint.x - startPoint.x + startRadius + endRadius;
     CGFloat y1 = endPoint.y - startPoint.y + startRadius + endRadius;
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(x1, y1), YES, 1.0);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(x1, y1), YES, UIScreen.mainScreen.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
@@ -112,7 +112,7 @@
         }
     }
     
-    UIGraphicsBeginImageContextWithOptions(size, YES, 1.0);
+    UIGraphicsBeginImageContextWithOptions(size, YES, UIScreen.mainScreen.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
