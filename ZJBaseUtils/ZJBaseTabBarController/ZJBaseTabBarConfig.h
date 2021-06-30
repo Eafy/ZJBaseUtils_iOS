@@ -21,9 +21,10 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigLayoutType) {
 typedef NS_ENUM(NSInteger, ZJBTBConfigAnimType) {
     ZJBTBConfigAnimTypeNormal,          //无动画
     ZJBTBConfigAnimTypeRotationY,       //Y轴旋转
-    ZJBTBConfigAnimTypeBoundsMin,       //缩小
-    ZJBTBConfigAnimTypeBoundsMax,       //放大
-    ZJBTBConfigAnimTypeScale,           //缩放动画
+    ZJBTBConfigAnimTypeBoundsMin,       //缩小还原动画
+    ZJBTBConfigAnimTypeBoundsMax,       //放大还原动画
+    ZJBTBConfigAnimTypeEnlarge,         //放大动画
+    ZJBTBConfigAnimTypeWaterRipple,     //水波纹效果
 };
 
 /// 凸起效果
@@ -66,7 +67,8 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
 
 /// 图片缩放时的大小 ，默认 ：1.30
 @property (nonatomic, assign) CGFloat imageScaleRatio;
-
+/// 水波纹动画演示，默认
+@property (nonatomic, strong) UIColor *animTyWaterRippleColor;
 
 /// ZJBTBConfigAnimTypeCenterRaised模式图片大小，默认 ：(40*40)
 @property (nonatomic, assign) CGSize centerImageSize;

@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *titleLB;
+@property (nonatomic, strong) CALayer *waterRippleLayer;
 
 @end
 
@@ -90,6 +91,62 @@
     [self insertSubview:roundView atIndex:0];
 }
 
+- (void )waterRippleAnimation
+{
+    if (!_waterRippleLayer) {
+        _waterRippleLayer = [CALayer layer];
+        _waterRippleLayer.bounds =  CGRectMake(0, 0, self.imageView.zj_bottom, self.imageView.zj_bottom);
+        _waterRippleLayer.position = CGPointMake(self.imageView.zj_width/2.0, self.imageView.zj_height/2.0);
+        _waterRippleLayer.contentsScale = [UIScreen mainScreen].scale;
+    } else {
+        [self.waterRippleLayer removeFromSuperlayer];
+    }
+    
+    CGFloat pulseAnimationDuration = 0.3;
+    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
+    animationGroup.duration = pulseAnimationDuration;
+    animationGroup.repeatCount = 1.0;
+    
+    CAKeyframeAnimation *imageAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+    imageAnimation.values = @[(id)[[self haloImageWithRadius:self.waterRippleLayer.bounds.size.width/2.0] CGImage]];    //可调整脉冲宽度
+    imageAnimation.duration = pulseAnimationDuration;
+    imageAnimation.calculationMode = kCAAnimationLinear;    //kCAAnimationDiscrete，kCAAnimationLinear;
+    
+    CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.xy"];
+    pulseAnimation.fromValue = @0.2;   //调整脉冲起始大小
+    pulseAnimation.toValue = @1.0;
+    pulseAnimation.duration = pulseAnimationDuration;
+    
+    CABasicAnimation *fadeOutAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeOutAnim.fromValue = @1.0;
+    fadeOutAnim.toValue = @0.0;
+    fadeOutAnim.duration = pulseAnimationDuration;
+    
+    animationGroup.animations = @[imageAnimation, pulseAnimation, fadeOutAnim];
+    [_waterRippleLayer addAnimation:animationGroup forKey:@"pulse"];
+    
+    [self.imageView.layer insertSublayer:_waterRippleLayer atIndex:0];
+}
+
+- (UIImage*)haloImageWithRadius:(CGFloat)radius
+{
+    CGPoint center = CGPointMake(radius, radius);
+    CGRect imageBounds = CGRectMake(0, 0, center.x*2, center.y*2);
+    
+    UIGraphicsBeginImageContextWithOptions(imageBounds.size, NO, 0);
+    UIColor* ringColor = [UIColor blueColor];
+    [ringColor setFill];
+    [ringColor setStroke];
+    
+    UIBezierPath *ringPath = [UIBezierPath bezierPathWithRoundedRect:imageBounds cornerRadius:imageBounds.size.height/2];
+    ringPath.usesEvenOddFillRule = YES;
+    [ringPath fill];
+    
+    UIImage *ringImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return ringImage;
+}
 #pragma mark -
 
 - (void)setSelected:(BOOL)selected
@@ -103,12 +160,14 @@
         
         if (self.config.animType == ZJBTBConfigAnimTypeRotationY) {
              [self.imageView.layer addAnimation:[CAAnimation zj_rotationYAnimation:360] forKey:@"rotateAnimation"];
-        } else if (self.config.animType == ZJBTBConfigAnimTypeScale) {
+        } else if (self.config.animType == ZJBTBConfigAnimTypeEnlarge) {
             [self scaleAnimation];
         } else if (self.config.animType == ZJBTBConfigAnimTypeBoundsMin) {
             [self.imageView.layer addAnimation:[CAAnimation zj_boundsAnimation:CGPointMake(12, 12)] forKey:@"min"];
         } else if (self.config.animType == ZJBTBConfigAnimTypeBoundsMax) {
             [self.imageView.layer addAnimation:[CAAnimation zj_boundsAnimation:CGPointMake(46, 46)] forKey:@"max"];
+        } else if (self.config.animType ==  ZJBTBConfigAnimTypeWaterRipple) {
+            [self waterRippleAnimation];
         }
     } else {
         [self.imageView.layer removeAllAnimations];
