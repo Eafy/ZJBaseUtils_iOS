@@ -69,6 +69,8 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
 @property (nonatomic, assign) CGFloat imageScaleRatio;
 /// 水波纹动画演示，默认
 @property (nonatomic, strong) UIColor *animTyWaterRippleColor;
+/// 水波纹动画大小，默认图片底部到顶部+5
+@property (nonatomic, assign) CGSize animTyWaterRippleSize;
 
 /// ZJBTBConfigAnimTypeCenterRaised模式图片大小，默认 ：(40*40)
 @property (nonatomic, assign) CGSize centerImageSize;

@@ -94,37 +94,42 @@
 
 - (void )waterRippleAnimation
 {
-    if (!_imageView || self.imageView.zj_height <= 0) {
+    if (!_imageView || self.imageView.zj_height <= 0 || self.imageView.zj_centerX <= 0) {
         return;
+    }
+    if (!self.config.animTyWaterRippleSize.height && !self.config.animTyWaterRippleSize.width) {
+        self.config.animTyWaterRippleSize = CGSizeMake(self.imageView.zj_bottom + 10, self.imageView.zj_bottom + 10);
     }
     [self.waterRippleLayer removeFromSuperlayer];
     _waterRippleLayer = [CAShapeLayer layer];
-    _waterRippleLayer.bounds =  CGRectMake(0, 0, self.imageView.zj_bottom, self.imageView.zj_bottom);
+    _waterRippleLayer.bounds = CGRectMake(0, 0, self.config.animTyWaterRippleSize.width, self.config.animTyWaterRippleSize.height);
     _waterRippleLayer.position = self.imageView.center;
     _waterRippleLayer.contentsScale = [UIScreen mainScreen].scale;
-    
     CGFloat pulseAnimationDuration = 0.3;
-    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
-    animationGroup.duration = pulseAnimationDuration;
-    animationGroup.repeatCount = 1.0;
+
     
     CAKeyframeAnimation *imageAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
     imageAnimation.values = @[(id)[[self haloImageWithRadius:self.waterRippleLayer.bounds.size.width/2.0] CGImage]];    //可调整脉冲宽度
     imageAnimation.duration = pulseAnimationDuration;
     imageAnimation.calculationMode = kCAAnimationLinear;    //kCAAnimationDiscrete，kCAAnimationLinear;
     
-    CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.xy"];
+    CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     pulseAnimation.fromValue = @0.2;   //调整脉冲起始大小
     pulseAnimation.toValue = @1.0;
     pulseAnimation.duration = pulseAnimationDuration;
     
-    CABasicAnimation *fadeOutAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeOutAnim.fromValue = @1.0;
-    fadeOutAnim.toValue = @0.0;
-    fadeOutAnim.duration = pulseAnimationDuration;
+//    CABasicAnimation *fadeOutAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//    fadeOutAnim.fromValue = @1.0;
+//    fadeOutAnim.toValue = @0.0;
+//    fadeOutAnim.duration = pulseAnimationDuration;
     
-    animationGroup.animations = @[imageAnimation, pulseAnimation, fadeOutAnim];
-    [self.waterRippleLayer addAnimation:animationGroup forKey:@"pulse"];
+    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
+    animationGroup.duration = pulseAnimationDuration;
+    animationGroup.repeatCount = 1.0;
+    animationGroup.animations = @[imageAnimation, pulseAnimation];
+    animationGroup.removedOnCompletion = YES;
+    animationGroup.fillMode = kCAFillModeForwards;
+    [self.waterRippleLayer addAnimation:animationGroup forKey:nil];
     [self.layer insertSublayer:self.waterRippleLayer below:self.imageView.layer];
 }
 
@@ -133,7 +138,7 @@
     CGRect imageBounds = CGRectMake(0, 0, radius*2, radius*2);
     
     UIGraphicsBeginImageContextWithOptions(imageBounds.size, NO, UIScreen.mainScreen.scale);
-    UIColor *ringColor = [UIColor blueColor];
+    UIColor *ringColor = self.config.animTyWaterRippleColor ? self.config.animTyWaterRippleColor : [UIColor blueColor];
     [ringColor setFill];
     
     UIBezierPath *ringPath = [UIBezierPath bezierPathWithRoundedRect:imageBounds cornerRadius:imageBounds.size.height/2];
@@ -145,6 +150,7 @@
     
     return ringImage;
 }
+
 #pragma mark -
 
 - (void)setSelected:(BOOL)selected
@@ -164,7 +170,7 @@
             [self.imageView.layer addAnimation:[CAAnimation zj_boundsAnimation:CGPointMake(12, 12)] forKey:@"min"];
         } else if (self.config.animType == ZJBTBConfigAnimTypeBoundsMax) {
             [self.imageView.layer addAnimation:[CAAnimation zj_boundsAnimation:CGPointMake(46, 46)] forKey:@"max"];
-        } else if (self.config.animType ==  ZJBTBConfigAnimTypeWaterRipple) {
+        } else if (self.config.animType == ZJBTBConfigAnimTypeWaterRipple) {
             [self waterRippleAnimation];
         }
     } else {
