@@ -48,7 +48,7 @@
     
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.navigationController.delegate = self;
-    self.isLeftSidesliEnable = YES;
+    self.isLeftSlideEnable = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -506,7 +506,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     if ([gestureRecognizer isKindOfClass:[UIScreenEdgePanGestureRecognizer class]]) {
-        if (self.isLeftSidesliEnable && self.navigationController.viewControllers.count > 1) {
+        if (self.isLeftSlideEnable && self.navigationController.viewControllers.count > 1) {
             self.isLeftSideslipBack = YES;
             return YES;
         }

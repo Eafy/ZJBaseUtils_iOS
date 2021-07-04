@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 页面是否可见，即在Top
 @property (nonatomic,assign) BOOL isVisible;
 /// 是否开启左侧边栏右滑返回，默认开启
-@property (nonatomic,assign) BOOL isLeftSidesliEnable;
+@property (nonatomic,assign) BOOL isLeftSlideEnable;
 /// 导航栏右侧点击进入下一个控制器
 @property (nonatomic,strong) UIViewController * _Nullable nextViewController;
 

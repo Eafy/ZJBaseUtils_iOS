@@ -144,7 +144,7 @@
     }
     
     ZJBaseViewController *topViewController = self.viewControllers.lastObject;
-    if (![topViewController isKindOfClass:[ZJBaseViewController class]] || !topViewController.isLeftSidesliEnable) {
+    if (![topViewController isKindOfClass:[ZJBaseViewController class]] || !topViewController.isLeftSlideEnable) {
         return NO;
     }
     
