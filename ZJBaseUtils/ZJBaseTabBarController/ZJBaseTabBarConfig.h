@@ -65,6 +65,8 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
 
 #pragma mark - 动画参数
 
+/// 动画时长，默认0.3
+@property (nonatomic, assign) CGFloat animTyDuration;
 /// 图片缩放时的大小 ，默认 ：1.30
 @property (nonatomic, assign) CGFloat imageScaleRatio;
 /// 水波纹动画演示，默认

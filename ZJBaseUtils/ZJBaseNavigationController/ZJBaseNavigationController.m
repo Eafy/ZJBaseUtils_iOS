@@ -10,8 +10,11 @@
 #import "ZJBaseViewController.h"
 #import "ZJBaseTableViewController.h"
 #import "ZJBaseTabBarController.h"
+#import "ZJScreen.h"
 
-@interface ZJBaseNavigationController ()
+@interface ZJBaseNavigationController () <UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) UIPanGestureRecognizer *leftPopGestureRecognizer;
 
 @end
 
@@ -52,6 +55,22 @@
 
 #pragma mark -
 
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
+{
+    if (self = [super initWithRootViewController:rootViewController]) {
+        self.leftSlideCustomEdge = ZJScreenWidth()/3.0;
+    }
+    return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.leftSlideCustomEdge = ZJScreenWidth()/3.0;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -67,6 +86,16 @@
         if ([viewController respondsToSelector:@selector(isHideNavBar)]) {
             [self setNavigationBarHidden:((ZJBaseViewController *)viewController).isHideNavBar animated:YES];
         }
+    }
+    
+    if (self.isLeftSlideCustomEnable && ![self.interactivePopGestureRecognizer.view.gestureRecognizers containsObject:self.leftPopGestureRecognizer]) {
+        self.interactivePopGestureRecognizer.enabled = NO;
+        [self.interactivePopGestureRecognizer.view addGestureRecognizer:self.leftPopGestureRecognizer];
+        NSArray *gesTargets = [self.interactivePopGestureRecognizer valueForKey:@"targets"];
+        id popGesTarget = [gesTargets.firstObject valueForKey:@"target"];
+        SEL gesTargetsAction = NSSelectorFromString(@"handleNavigationTransition:");
+        self.leftPopGestureRecognizer.delegate = self;
+        [self.leftPopGestureRecognizer addTarget:popGesTarget action:gesTargetsAction];
     }
 }
 
@@ -92,6 +121,50 @@
             viewCtl.backgroundImgName = backgroundImgName;
         }
     }
+}
+
+#pragma mark -
+
+- (UIPanGestureRecognizer *)leftPopGestureRecognizer
+{
+    if (!_leftPopGestureRecognizer) {
+        _leftPopGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
+        _leftPopGestureRecognizer.maximumNumberOfTouches = 1;
+    }
+    return _leftPopGestureRecognizer;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer != _leftPopGestureRecognizer) {
+        return YES;
+    }
+    if (self.viewControllers.count <= 1) {
+        return NO;
+    }
+    
+    ZJBaseViewController *topViewController = self.viewControllers.lastObject;
+    if (![topViewController isKindOfClass:[ZJBaseViewController class]] || !topViewController.isLeftSidesliEnable) {
+        return NO;
+    }
+    
+    CGPoint beginningLocation = [gestureRecognizer locationInView:gestureRecognizer.view];
+    if (self.leftSlideCustomEdge > 0 && beginningLocation.x > self.leftSlideCustomEdge) {
+        return NO;
+    }
+
+    if ([[self valueForKey:@"_isTransitioning"] boolValue]) {
+        return NO;
+    }
+    
+    CGPoint translation = [gestureRecognizer translationInView:gestureRecognizer.view];
+    BOOL isLeftToRight = [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionLeftToRight;
+    CGFloat multiplier = isLeftToRight ? 1 : - 1;
+    if ((translation.x * multiplier) <= 0) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

@@ -105,7 +105,7 @@
     _waterRippleLayer.bounds = CGRectMake(0, 0, self.config.animTyWaterRippleSize.width, self.config.animTyWaterRippleSize.height);
     _waterRippleLayer.position = self.imageView.center;
     _waterRippleLayer.contentsScale = [UIScreen mainScreen].scale;
-    CGFloat pulseAnimationDuration = 0.3;
+    CGFloat pulseAnimationDuration = self.config.animTyDuration;;
 
     
     CAKeyframeAnimation *imageAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];

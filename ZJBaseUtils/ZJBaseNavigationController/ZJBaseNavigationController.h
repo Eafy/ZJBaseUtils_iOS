@@ -26,6 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否显示返回按钮标题，默认NO
 @property (nonatomic,assign) BOOL isShowNavBackTitle;
 
+/// 自定义左侧右滑手势，默认关闭
+@property (nonatomic,assign) BOOL isLeftSlideCustomEnable;
+/// 自定义左侧右滑手势区域，默认左侧全屏区域1/3
+@property (nonatomic,assign) CGFloat leftSlideCustomEdge;
+
 //系统导航栏
 @property (nonatomic,strong) UIColor *barTintColor;     //导航栏背景颜色
 @property (nonatomic,strong) UIColor *barTitleColor;    //导航栏标题颜色，首次需要设置
