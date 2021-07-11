@@ -30,6 +30,46 @@ singleton_m();
     return (authStatus == PHAuthorizationStatusAuthorized);
 }
 
++ (void)allPhotoAssets:(void (^)(PHAsset *asset))completion
+{
+    [ZJSystem requestPhotoPermission:^(BOOL success) {
+        if (success) {
+            PHFetchOptions *options = [[PHFetchOptions alloc] init];
+            options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+            PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:options];
+            if (assetsFetchResults) {
+                for (PHAsset *asset in assetsFetchResults) {
+                    if (asset && completion) completion(asset);
+                }
+            } else {
+                if (completion) completion(nil);
+            }
+        } else {
+            if (completion) completion(nil);
+        }
+    }];
+}
+
++ (void)allVideoAssets:(void (^)(PHAsset *asset))completion
+{
+    [ZJSystem requestPhotoPermission:^(BOOL success) {
+        if (success) {
+            PHFetchOptions *options = [[PHFetchOptions alloc] init];
+            options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+            PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeVideo options:options];
+            if (assetsFetchResults) {
+                for (PHAsset *asset in assetsFetchResults) {
+                    if (asset && completion) completion(asset);
+                }
+            } else {
+                if (completion) completion(nil);
+            }
+        } else {
+            if (completion) completion(nil);
+        }
+    }];
+}
+
 + (void)latestPhotoAsset:(ZJAssetHandler _Nullable)callBack
 {
     [ZJSystem requestPhotoPermission:^(BOOL success) {

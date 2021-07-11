@@ -442,10 +442,12 @@
     if (backgroundImgName && [self isViewLoaded]) {
         UIImage *img = [UIImage imageNamed:backgroundImgName];
         if (img) {
-            _backgroundImgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+            if (!_backgroundImgView) {
+                _backgroundImgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+                _backgroundImgView.contentMode = UIViewContentModeScaleAspectFill;
+                [self.view insertSubview:_backgroundImgView atIndex:0];
+            }
             _backgroundImgView.image = img;
-            _backgroundImgView.contentMode = UIViewContentModeScaleAspectFill;
-            [self.view insertSubview:_backgroundImgView atIndex:0];
         }
     } else if (_backgroundImgView && (!backgroundImgName || backgroundImgName.length == 0)) {
         [_backgroundImgView removeFromSuperview];

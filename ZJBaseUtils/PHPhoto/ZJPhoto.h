@@ -27,6 +27,12 @@ singleton_h();
 //是否有访问相册权限
 + (BOOL)isAuthorized;
 
+/// 获取所有图片(无权限或无数据回调nil)
++ (void)allPhotoAssets:(void (^)(PHAsset *asset))completion;
+
+/// 获取所有视频(无权限或无数据回调nil)
++ (void)allVideoAssets:(void (^)(PHAsset *asset))completion;
+
 /// 获取最后一张图片
 + (void)latestPhotoAsset:(ZJAssetHandler _Nullable)callBack;
 
