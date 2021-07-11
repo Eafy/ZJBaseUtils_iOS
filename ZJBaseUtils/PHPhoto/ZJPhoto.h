@@ -28,10 +28,10 @@ singleton_h();
 + (BOOL)isAuthorized;
 
 /// 获取所有图片(无权限或无数据回调nil)
-+ (void)allPhotoAssets:(void (^)(PHAsset *asset))completion;
++ (void)allPhotoAssets:(void (^)(PHAsset *_Nullable asset))completion;
 
 /// 获取所有视频(无权限或无数据回调nil)
-+ (void)allVideoAssets:(void (^)(PHAsset *asset))completion;
++ (void)allVideoAssets:(void (^)(PHAsset *_Nullable asset))completion;
 
 /// 获取最后一张图片
 + (void)latestPhotoAsset:(ZJAssetHandler _Nullable)callBack;

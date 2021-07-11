@@ -30,7 +30,7 @@ singleton_m();
     return (authStatus == PHAuthorizationStatusAuthorized);
 }
 
-+ (void)allPhotoAssets:(void (^)(PHAsset *asset))completion
++ (void)allPhotoAssets:(void (^)(PHAsset *_Nullable asset))completion
 {
     [ZJSystem requestPhotoPermission:^(BOOL success) {
         if (success) {
@@ -50,7 +50,7 @@ singleton_m();
     }];
 }
 
-+ (void)allVideoAssets:(void (^)(PHAsset *asset))completion
++ (void)allVideoAssets:(void (^)(PHAsset *_Nullable asset))completion
 {
     [ZJSystem requestPhotoPermission:^(BOOL success) {
         if (success) {
