@@ -45,11 +45,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 截图部分图像
 /// @param mCGRect 截取的范围
-- (UIImage*)zj_subImageWithRect:(CGRect)mCGRect;
+- (UIImage *)zj_subImageWithRect:(CGRect)mCGRect;
 
 /// 按给定的方向旋转图片
 /// @param orient 要翻转的方向
-- (UIImage*)zj_rotate:(UIImageOrientation)orient;
+- (UIImage *)zj_rotate:(UIImageOrientation)orient;
 
 /// 垂直翻转
 - (UIImage *)zj_rotateVertical;

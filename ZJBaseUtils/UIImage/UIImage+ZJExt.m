@@ -141,14 +141,14 @@
     return img;
 }
 
-- (UIImage*)zj_subImageWithRect:(CGRect)mCGRect
+- (UIImage *)zj_subImageWithRect:(CGRect)mCGRect
 {
     if (!self) return nil;
-    /*如若centerBool为Yes则是由中心点取mCGRect范围的图片*/
     float imgwidth = self.size.width;
     float imgheight = self.size.height;
     float viewwidth = mCGRect.size.width;
     float viewheight = mCGRect.size.height;
+    
     CGRect rect;
     if (viewheight < viewwidth) {
         if (imgwidth <= imgheight) {
@@ -193,7 +193,7 @@
     return smallImage;
 }
 
-- (UIImage*)zj_rotate:(UIImageOrientation)orient
+- (UIImage *)zj_rotate:(UIImageOrientation)orient
 {
     CGRect bnds = CGRectZero;
     UIImage* copy = nil;
