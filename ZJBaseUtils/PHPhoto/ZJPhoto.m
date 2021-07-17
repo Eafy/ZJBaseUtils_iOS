@@ -239,7 +239,16 @@ singleton_m();
 {
     if (!url) return nil;
     NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:opts];
+    AVURLAsset *asset = nil;
+    if ([url.absoluteString hasPrefix:@"http://"] || [url.absoluteString hasPrefix:@"https://"]) {
+        NSURL *urlT = [[NSURL alloc] initFileURLWithPath:url.absoluteString];
+        if (urlT) {
+            asset = [AVURLAsset URLAssetWithURL:urlT options:opts];
+        }
+    }
+    if (asset == nil) {
+        asset = [AVURLAsset URLAssetWithURL:url options:opts];
+    }
     return [self firstFrameWithVideoAsset:asset];
 }
 
