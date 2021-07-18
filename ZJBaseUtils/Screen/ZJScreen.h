@@ -75,8 +75,11 @@ singleton_h();
 /// 缩放基准长度
 @property (nonatomic, assign, readonly) CGFloat scaleStandardLength;
 
-/// 获取当前的KeyWindow窗口
+/// 获取当前的KeyWindow窗口（主Window，不一定是最前面的）
 + (UIWindow * _Nullable)keyWindow;
+
+/// 获取当前最前面的Window（仅当frame为全屏时）
++ (UIWindow * _Nullable)frontWindow;
 
 @end
 

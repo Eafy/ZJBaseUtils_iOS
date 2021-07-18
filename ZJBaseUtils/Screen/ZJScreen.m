@@ -228,7 +228,13 @@ singleton_m();
     UIWindow *keyWindow = [UIApplication sharedApplication].delegate.window;
     if (keyWindow) return keyWindow;
     
+    return [self frontWindow];
+}
+
++ (UIWindow *)frontWindow
+{
     NSEnumerator *frontToBackWindows = [UIApplication.sharedApplication.windows reverseObjectEnumerator];
+    UIWindow *vaWindow = nil;
     for (UIWindow *window in frontToBackWindows) {
         BOOL isMainScreen = window.screen == UIScreen.mainScreen;
         BOOL isVisible = !window.hidden && window.alpha > 0;
@@ -236,11 +242,11 @@ singleton_m();
         BOOL isKeyWindow = window.isKeyWindow;
             
         if (isMainScreen && isVisible && isLevelNormal && isKeyWindow) {
-            return window;
+            vaWindow = window;
         }
     }
     
-    return nil;
+    return vaWindow;
 }
 
 @end
