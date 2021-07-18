@@ -46,7 +46,9 @@ singleton_h();
 + (void)deleteLatestVideo:(nullable void (^)(BOOL success))completion;
 
 /// 获取本地沙盒视频长度（秒）
-+ (CGFloat)videoTimeWithLocalPath:(NSString *_Nonnull)filePath;
+/// @param filePath 路径
+/// @param options 视频参数
++ (CGFloat)videoTimeWithPath:(NSString *_Nonnull)filePath options:(NSDictionary * _Nullable)options;
 
 #pragma mark -
 
@@ -60,7 +62,8 @@ singleton_h();
 
 /// 获取视频的首帧图片
 /// @param url 地址
-- (UIImage * _Nullable)firstFrameWithVideoURL:(NSURL * _Nonnull)url;
+/// @param options 视频参数
+- (UIImage * _Nullable)firstFrameWithVideoURL:(NSURL *_Nonnull)url options:(NSDictionary * _Nullable)options;
 
 /// 保存图片到系统相册
 /// @param image 需要写入的图片

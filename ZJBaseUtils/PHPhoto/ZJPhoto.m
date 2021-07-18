@@ -185,12 +185,29 @@ singleton_m();
     }];
 }
 
-+ (CGFloat)videoTimeWithLocalPath:(NSString *_Nonnull)filePath
++ (CGFloat)videoTimeWithPath:(NSString *_Nonnull)filePath options:(NSDictionary *)options
 {
-    NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    NSURL *url = [NSURL fileURLWithPath:filePath];
-    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:options];//
-    return round(urlAsset.duration.value/(urlAsset.duration.timescale*1.0)); //获取视频时长，单位：秒
+    if (!filePath) return 0;
+    NSMutableDictionary *opts = NULL;
+    if (options) {
+        opts = [NSMutableDictionary dictionaryWithDictionary:options];
+    } else {
+        opts = [NSMutableDictionary dictionary];
+    }
+    [opts setValue:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    
+    NSURL *url = nil;
+    if ([filePath hasPrefix:@"http://"] || [filePath hasPrefix:@"https://"]) {
+        url = [NSURL URLWithString:filePath];
+    } else {
+        url = [NSURL fileURLWithPath:filePath];
+    }
+
+    if (url) {
+        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:opts];
+        return round(asset.duration.value/(asset.duration.timescale*1.0)); //获取视频时长，单位：秒
+    }
+    return 0;
 }
 
 #pragma mark -
@@ -235,20 +252,18 @@ singleton_m();
     return nil;
 }
 
-- (UIImage *)firstFrameWithVideoURL:(NSURL *)url
+- (UIImage *)firstFrameWithVideoURL:(NSURL *)url options:(NSDictionary *)options
 {
     if (!url) return nil;
-    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    AVURLAsset *asset = nil;
-    if ([url.absoluteString hasPrefix:@"http://"] || [url.absoluteString hasPrefix:@"https://"]) {
-        NSURL *urlT = [[NSURL alloc] initFileURLWithPath:url.absoluteString];
-        if (urlT) {
-            asset = [AVURLAsset URLAssetWithURL:urlT options:opts];
-        }
+    NSMutableDictionary *opts = NULL;
+    if (options) {
+        opts = [NSMutableDictionary dictionaryWithDictionary:options];
+    } else {
+        opts = [NSMutableDictionary dictionary];
     }
-    if (asset == nil) {
-        asset = [AVURLAsset URLAssetWithURL:url options:opts];
-    }
+    [opts setObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    
+    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:opts];
     return [self firstFrameWithVideoAsset:asset];
 }
 
