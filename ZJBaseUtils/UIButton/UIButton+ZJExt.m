@@ -13,56 +13,49 @@
 
 - (void)zj_layoutWithEdgeInsetsStyle:(ZJButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space
 {
-    self.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    // 1. 得到imageView和titleLabel的宽、高
+    CGFloat imageWith = self.imageView.frame.size.width;
+    CGFloat imageHeight = self.imageView.frame.size.height;
     
-    __weak UIButton *weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        // 1. 得到imageView和titleLabel的宽、高
-        CGFloat imageWith = weakSelf.imageView.frame.size.width;
-        CGFloat imageHeight = weakSelf.imageView.frame.size.height;
-        
-        CGFloat labelWidth = weakSelf.titleLabel.intrinsicContentSize.width;
-        CGFloat labelHeight = weakSelf.titleLabel.intrinsicContentSize.height;
-        
-        // 2. 声明全局的imageEdgeInsets和labelEdgeInsets
-        UIEdgeInsets imageEdgeInsets = UIEdgeInsetsZero;
-        UIEdgeInsets labelEdgeInsets = UIEdgeInsetsZero;
-        
-        // 3. 根据style和space得到imageEdgeInsets和labelEdgeInsets的值
-        switch (style) {
-            case ZJButtonEdgeInsetsStyleTop:
-            {
-                imageEdgeInsets = UIEdgeInsetsMake(-labelHeight-space/2.0, 0, 0, -labelWidth);
-                labelEdgeInsets = UIEdgeInsetsMake(0, -imageWith, -imageHeight-space/2.0, 0);
-            }
-                break;
-            case ZJButtonEdgeInsetsStyleLeft:
-            {
-                imageEdgeInsets = UIEdgeInsetsMake(0, -space/2.0, 0, space/2.0);
-                labelEdgeInsets = UIEdgeInsetsMake(0, space/2.0, 0, -space/2.0);
-            }
-                break;
-            case ZJButtonEdgeInsetsStyleBottom:
-            {
-                imageEdgeInsets = UIEdgeInsetsMake(0, 0, -labelHeight-space/2.0, -labelWidth);
-                labelEdgeInsets = UIEdgeInsetsMake(-imageHeight-space/2.0, -imageWith, 0, 0);
-            }
-                break;
-            case ZJButtonEdgeInsetsStyleRight:
-            {
-                imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth+space/2.0, 0, -labelWidth-space/2.0);
-                labelEdgeInsets = UIEdgeInsetsMake(0, -imageWith-space/2.0, 0, imageWith+space/2.0);
-            }
-                break;
-            default:
-                break;
+    CGFloat labelWidth = self.titleLabel.intrinsicContentSize.width;
+    CGFloat labelHeight = self.titleLabel.intrinsicContentSize.height;
+    
+    // 2. 声明全局的imageEdgeInsets和labelEdgeInsets
+    UIEdgeInsets imageEdgeInsets = UIEdgeInsetsZero;
+    UIEdgeInsets labelEdgeInsets = UIEdgeInsetsZero;
+    
+    // 3. 根据style和space得到imageEdgeInsets和labelEdgeInsets的值
+    switch (style) {
+        case ZJButtonEdgeInsetsStyleTop:
+        {
+            imageEdgeInsets = UIEdgeInsetsMake(-labelHeight-space/2.0, 0, 0, -labelWidth);
+            labelEdgeInsets = UIEdgeInsetsMake(0, -imageWith, -imageHeight-space/2.0, 0);
         }
-        
-        weakSelf.titleEdgeInsets = labelEdgeInsets;
-        weakSelf.imageEdgeInsets = imageEdgeInsets;
-    });
+            break;
+        case ZJButtonEdgeInsetsStyleLeft:
+        {
+            imageEdgeInsets = UIEdgeInsetsMake(0, -space/2.0, 0, space/2.0);
+            labelEdgeInsets = UIEdgeInsetsMake(0, space/2.0, 0, -space/2.0);
+        }
+            break;
+        case ZJButtonEdgeInsetsStyleBottom:
+        {
+            imageEdgeInsets = UIEdgeInsetsMake(0, 0, -labelHeight-space/2.0, -labelWidth);
+            labelEdgeInsets = UIEdgeInsetsMake(-imageHeight-space/2.0, -imageWith, 0, 0);
+        }
+            break;
+        case ZJButtonEdgeInsetsStyleRight:
+        {
+            imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth+space/2.0, 0, -labelWidth-space/2.0);
+            labelEdgeInsets = UIEdgeInsetsMake(0, -imageWith-space/2.0, 0, imageWith+space/2.0);
+        }
+            break;
+        default:
+            break;
+    }
+    
+    self.titleEdgeInsets = labelEdgeInsets;
+    self.imageEdgeInsets = imageEdgeInsets;
 }
 
 - (void)zj_layoutWithEdgeInsets:(CGPoint)imgPoint labelPoint:(CGPoint)labelPoint
