@@ -94,7 +94,7 @@ extern CGFloat ZJSysVersion(void) {
         NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
         NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
         if (uniqueKeyItem == nil || [uniqueKeyItem length] == 0) {
-            uniqueKeyItem = [[NSString stringWithFormat:@"%@%@", bundleID, @"zj_Keychain"] zj_md5String];
+            uniqueKeyItem = [[NSString zj_stringRandomWithSize:64] zj_md5String];
             [ZJSAMKeychain setPassword:uniqueKeyItem forService:bundleID account:@"zj_base_utils_device_UUID_keychain_account"];
         }
 
@@ -145,7 +145,7 @@ extern CGFloat ZJSysVersion(void) {
         
         NSString *uniqueKeyItem = [ZJSAMKeychain passwordForService:groupID account:@"zj_base_utils_device_UUID_keychain_account"];
         if (uniqueKeyItem == nil || [uniqueKeyItem length] == 0) {
-            uniqueKeyItem = [[NSString stringWithFormat:@"%@%@", groupID, @"zj_Keychain"] zj_md5String];
+            uniqueKeyItem = [[NSString zj_stringRandomWithSize:64] zj_md5String];
             [ZJSAMKeychain setPassword:uniqueKeyItem forService:groupID account:@"zj_base_utils_device_UUID_keychain_account"];
         }
 
@@ -178,7 +178,7 @@ extern CGFloat ZJSysVersion(void) {
         }
         
         if (uniqueKeyItem == nil || [uniqueKeyItem length] == 0) {
-            uniqueKeyItem = [[NSString stringWithFormat:@"%@%@", groupID, @"zj_Keychain"] zj_md5String];
+            uniqueKeyItem = [[NSString zj_stringRandomWithSize:64] zj_md5String];
             [ZJSAMKeychain setPassword:uniqueKeyItem forService:groupID account:@"zj_base_utils_device_UUID_keychain_account"];
         }
 
