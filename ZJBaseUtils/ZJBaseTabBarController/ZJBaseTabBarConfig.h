@@ -20,11 +20,13 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigLayoutType) {
 /// 点击动画类型
 typedef NS_ENUM(NSInteger, ZJBTBConfigAnimType) {
     ZJBTBConfigAnimTypeNormal,          //无动画
+    ZJBTBConfigAnimTypeCustom,          //自定义动画
     ZJBTBConfigAnimTypeRotationY,       //Y轴旋转
     ZJBTBConfigAnimTypeBoundsMin,       //缩小还原动画
     ZJBTBConfigAnimTypeBoundsMax,       //放大还原动画
     ZJBTBConfigAnimTypeEnlarge,         //放大动画
     ZJBTBConfigAnimTypeWaterRipple,     //水波纹效果
+    ZJBTBConfigAnimTypeWaterRippleBoundsScale,//水波纹效果 + 放大缩小再还原动画
 };
 
 /// 凸起效果
@@ -65,14 +67,18 @@ typedef NS_ENUM(NSInteger, ZJBTBConfigSelectEffectType) {
 
 #pragma mark - 动画参数
 
+/// 自定义动画
+@property (nonatomic, strong) CAAnimationGroup *customAnimation;
+/// 自定义Layer层动画，默认会添加CAShapeLayer
+@property (nonatomic, strong) CAAnimationGroup *customLayerAnimation;
 /// 动画时长，默认0.3
 @property (nonatomic, assign) CGFloat animTyDuration;
 /// 图片缩放时的大小 ，默认 ：1.30
 @property (nonatomic, assign) CGFloat imageScaleRatio;
-/// 水波纹动画演示，默认
-@property (nonatomic, strong) UIColor *animTyWaterRippleColor;
-/// 水波纹动画大小，默认图片底部到顶部+5
-@property (nonatomic, assign) CGSize animTyWaterRippleSize;
+/// 自定义Layer动画（水波纹动画可再次设置）
+@property (nonatomic, strong) UIColor *animTyCustomLayerColor;
+/// 自定义Layer大小，默认图片底部到顶部+10（水波纹动画可再次设置）
+@property (nonatomic, assign) CGSize animTyCustomLayerSize;
 
 /// ZJBTBConfigAnimTypeCenterRaised模式图片大小，默认 ：(40*40)
 @property (nonatomic, assign) CGSize centerImageSize;
