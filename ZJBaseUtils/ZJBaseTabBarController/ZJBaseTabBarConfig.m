@@ -30,6 +30,7 @@
        _centerImageOffset = -20.0f;
        
        _effectType = ZJBTBConfigSelectEffectTypeNormal;
+       _animTyDuration = 0.3;
    }
    return self;
 }
