@@ -630,10 +630,14 @@
 {
     self.datasArray =[NSMutableArray arrayWithArray:[self setupDatas]];
     
-    __weak ZJBaseTableViewController *weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf reloadData];
-    });
+    if ([NSThread isMainThread]) {
+        [self reloadData];
+    } else {
+        __weak ZJBaseTableViewController *weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf reloadData];
+        });
+    }
 }
 
 - (void)updateDataWithSection:(NSUInteger)section

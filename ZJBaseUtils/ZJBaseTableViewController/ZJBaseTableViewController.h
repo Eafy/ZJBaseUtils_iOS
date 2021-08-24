@@ -69,6 +69,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 自定义导航栏的主题标签
 @property (nonatomic,strong) UILabel *navBarTitleLB;
 
+/// 背景视图
+@property (readonly) UIImageView *backgroundImgView;
 /// 设置背景图片
 @property (nonatomic,copy) NSString * _Nullable backgroundImgName;
 /// 背景颜色
@@ -78,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark -
 
-/// 是否控制器首次加载
+/// 是否控制器首次加载，viewDidLoad为YES，viewWillDisappear将为NO
 @property (readonly) BOOL isFirstDidLoad;
 
 #pragma mark - 私有数据
