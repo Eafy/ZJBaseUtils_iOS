@@ -354,11 +354,6 @@
     UIView *navView = self.view;
     if (_navBarBgView) {
         navView = self.navBarBgView;
-        if (self.navLeftBtn.superview == self.navBarBgView) {
-            return;
-        }
-    } else if (self.navLeftBtn.superview == self.view) {
-        return;
     }
         
     [self.navLeftBtn removeFromSuperview];
@@ -417,6 +412,9 @@
         self.navRightSubBtn.zj_right = self.navRightBtn.zj_left - 8;
     }
     
+    self.navBarTitleLB.frame = CGRectMake(0, ZJStatusBarHeight(), ZJScreenWidth()/2.0, ZJNavBarHeight());
+    self.navBarTitleLB.zj_centerX = ZJScreenWidth()/2.0;
+    self.navBarTitleLB.zj_centerY = ZJStatusBarHeight() + ZJNavBarHeight()/2.0;
     [navView addSubview:self.navBarTitleLB];
 }
 
@@ -534,6 +532,17 @@
         navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
 }
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    if (self.isShowNavBarView) {
+        __weak ZJBaseTabBarController *weakSelf = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf addNavBarBtnForHide];
+        });
+    }
+}
+
 #pragma mark - UITabBarController
 
 - (ZJBaseTabBar *)customTabBar

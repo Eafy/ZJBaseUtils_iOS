@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CB1610C26D50E7400542C62 /* TestHorizontalViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1610B26D50E7400542C62 /* TestHorizontalViewController .swift */; };
 		0CF7053C25E6804B00F1A76C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7053B25E6804B00F1A76C /* AppDelegate.m */; };
 		0CF7053F25E6804B00F1A76C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7053E25E6804B00F1A76C /* SceneDelegate.m */; };
 		0CF7054225E6804B00F1A76C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7054125E6804B00F1A76C /* ViewController.m */; };
@@ -18,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CB1610A26D50E7300542C62 /* ZJBaseUtilsDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZJBaseUtilsDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		0CB1610B26D50E7400542C62 /* TestHorizontalViewController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestHorizontalViewController .swift"; sourceTree = "<group>"; };
+		0CB1610D26D50ED400542C62 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0CF7053725E6804B00F1A76C /* ZJBaseUtilsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJBaseUtilsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF7053A25E6804B00F1A76C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0CF7053B25E6804B00F1A76C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,11 +78,14 @@
 				0CF7053E25E6804B00F1A76C /* SceneDelegate.m */,
 				0CF7054025E6804B00F1A76C /* ViewController.h */,
 				0CF7054125E6804B00F1A76C /* ViewController.m */,
+				0CB1610B26D50E7400542C62 /* TestHorizontalViewController .swift */,
 				0CF7054325E6804B00F1A76C /* Main.storyboard */,
 				0CF7054625E6804D00F1A76C /* Assets.xcassets */,
 				0CF7054825E6804D00F1A76C /* LaunchScreen.storyboard */,
 				0CF7054B25E6804D00F1A76C /* Info.plist */,
 				0CF7054C25E6804D00F1A76C /* main.m */,
+				0CB1610A26D50E7300542C62 /* ZJBaseUtilsDemo-Bridging-Header.h */,
+				0CB1610D26D50ED400542C62 /* PrefixHeader.pch */,
 			);
 			path = ZJBaseUtilsDemo;
 			sourceTree = "<group>";
@@ -132,6 +139,7 @@
 				TargetAttributes = {
 					0CF7053625E6804B00F1A76C = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -213,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CB1610C26D50E7400542C62 /* TestHorizontalViewController .swift in Sources */,
 				0CF7054225E6804B00F1A76C /* ViewController.m in Sources */,
 				0CF7053C25E6804B00F1A76C /* AppDelegate.m in Sources */,
 				0CF7054D25E6804D00F1A76C /* main.m in Sources */,
@@ -360,8 +369,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EB9K2L27BQ;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZJBaseUtilsDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -370,6 +381,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.eafy.ZJBaseUtilsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZJBaseUtilsDemo/ZJBaseUtilsDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -380,8 +394,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EB9K2L27BQ;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZJBaseUtilsDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -390,6 +406,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.eafy.ZJBaseUtilsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZJBaseUtilsDemo/ZJBaseUtilsDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

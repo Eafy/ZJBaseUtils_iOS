@@ -82,10 +82,6 @@ singleton_m();
 
 - (void)initData
 {
-    _screenFrame = [UIScreen mainScreen].bounds;
-    _screenHeight = self.screenFrame.size.height;
-    _screenWidth = self.screenFrame.size.width;
-
     _navBarHeight = 44.0;
     if (@available(iOS 13.0, *)) {
         _isIPad = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
@@ -96,15 +92,25 @@ singleton_m();
     self.scaleStandard = ZJScreenSizeType8;
 }
 
+- (CGRect)screenFrame {
+    return [UIScreen mainScreen].bounds;
+}
+
+- (CGFloat)screenWidth {
+    return self.screenFrame.size.width;
+}
+
+- (CGFloat)screenHeight {
+    return self.screenFrame.size.height;
+}
+
 - (CGFloat)statusBarHeight
 {
-    if (_statusBarHeight == 0) {
-        if (@available(iOS 13.0, *)) {
-            UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
-            _statusBarHeight = statusBarManager.statusBarFrame.size.height;
-        } else {
-            _statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-        }
+    if (@available(iOS 13.0, *)) {
+        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+        _statusBarHeight = statusBarManager.statusBarFrame.size.height;
+    } else {
+        _statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
     }
     
     return _statusBarHeight;
@@ -215,9 +221,9 @@ singleton_m();
     }
     
     if (_isIPad) {
-        kZJScale = _screenHeight/667.0 + 0.5;
+        kZJScale = self.screenHeight/667.0 + 0.5;
     } else {
-        kZJScale = _screenHeight/_scaleStandardLength;
+        kZJScale = self.screenHeight/_scaleStandardLength;
     }
 }
 
