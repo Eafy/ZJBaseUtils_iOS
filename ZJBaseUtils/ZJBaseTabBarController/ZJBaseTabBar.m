@@ -239,6 +239,9 @@
         self.layer.shadowOpacity = self.config.topLineConfig.shadowOpacity;
         self.layer.shadowRadius = self.config.topLineConfig.shadowRadius;
         self.layer.shadowPath = self.config.topLineConfig.shadowPath;
+        if (!self.layer.shadowPath) {
+            self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+        }
     } else if (self.config.topLineConfig.type == ZJBTBConfigTopLineTypeClear) {
         self.shadowImage = [UIImage new];
     }

@@ -52,6 +52,7 @@
     self.layer.shadowOffset = CGSizeMake(0,8);
     self.layer.shadowOpacity = 1;
     self.layer.shadowRadius = 8;
+    self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
 }
 
 - (UILabel *)titleLabel {
