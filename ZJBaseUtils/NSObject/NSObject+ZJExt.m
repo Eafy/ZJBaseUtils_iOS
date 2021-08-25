@@ -50,7 +50,7 @@
 
 + (Class)findClass:(NSString *)className
 {
-    if (className) return nil;
+    if (!className) return nil;
     
     Class cls = NSClassFromString(className);
     if (!cls) {
