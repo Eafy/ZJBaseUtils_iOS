@@ -9,6 +9,8 @@
 #import "ZJScreen.h"
 
 CGFloat kZJScale = 1.0;
+CGFloat kZJScaleV = 1.0;
+CGFloat kZJScaleH = 1.0;
 
 CGRect ZJScreenFrame() {
     return ZJScreen.shared.screenFrame;
@@ -67,6 +69,22 @@ CGFloat ZJScale() {
     }
 }
 
+CGFloat ZJScaleV(void) {
+    if (ZJIsIPad()) {
+        return ZJScreenHeight()/667.0 + 0.5;
+    } else {
+        return ZJScreenHeight()/ZJScreen.shared.scaleStandardLength;
+    }
+}
+
+CGFloat ZJScaleH(void) {
+    if (ZJIsIPad()) {
+        return ZJScreenWidth()/375.0 + 0.5;
+    } else {
+        return ZJScreenWidth()/ZJScreen.shared.scaleStandardWidthLength;
+    }
+}
+
 @interface ZJScreen ()
 
 @property (nonatomic, assign) CGFloat statusBarHeight;    //状态栏高度
@@ -82,6 +100,9 @@ singleton_m();
 
 - (void)initData
 {
+    _scaleStandardLength = 667.0;
+    _scaleStandardWidthLength = 375.0;
+    
     _navBarHeight = 44.0;
     if (@available(iOS 13.0, *)) {
         _isIPad = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
@@ -176,17 +197,17 @@ singleton_m();
 {
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    if (width == 414 && height == 896) {
+    if (width == 414.0 && height == 896.0) {
         return ZJScreenSizeTypeXsMax;
-    } else if (width == 375 && height == 812) {
+    } else if (width == 375.0 && height == 812.0) {
         return ZJScreenSizeTypeX;
-    } else if (width == 414 && height == 736) {
+    } else if (width == 414.0 && height == 736.0) {
         return ZJScreenSizeType8P;
-    } else if (width == 375 && height == 667) {
+    } else if (width == 375.0 && height == 667.0) {
         return ZJScreenSizeType8;
-    } else if (width == 320 && height == 568) {
+    } else if (width == 320.0 && height == 568.0) {
         return ZJScreenSizeType5S;
-    } else if (width == 320 && height == 480) {
+    } else if (width == 320.0 && height == 480.0) {
         return ZJScreenSizeType4S;
     }
 
@@ -198,32 +219,43 @@ singleton_m();
     _scaleStandard = scaleStandard;
     switch (scaleStandard) {
         case ZJScreenSizeType4S:
-            _scaleStandardLength = 480;
+            _scaleStandardLength = 480.0;
+            _scaleStandardWidthLength = 320.0;
             break;
         case ZJScreenSizeType5S:
-            _scaleStandardLength = 568;
+            _scaleStandardLength = 568.0;
+            _scaleStandardWidthLength = 320.0;
             break;
         case ZJScreenSizeType8:
-            _scaleStandardLength = 667;
+            _scaleStandardLength = 667.0;
+            _scaleStandardWidthLength = 375.0;
             break;
         case ZJScreenSizeType8P:
-            _scaleStandardLength = 736;
+            _scaleStandardLength = 736.0;
+            _scaleStandardWidthLength = 414.0;
             break;
         case ZJScreenSizeTypeX:
-            _scaleStandardLength = 812;
+            _scaleStandardLength = 812.0;
+            _scaleStandardWidthLength = 375.0;
             break;
         case ZJScreenSizeTypeXr:
-            _scaleStandardLength = 896;
+            _scaleStandardLength = 896.0;
+            _scaleStandardWidthLength = 414.0;
             break;
         default:
-            _scaleStandardLength = 667;
+            _scaleStandardLength = 667.0;
+            _scaleStandardWidthLength = 375.0;
             break;
     }
     
     if (_isIPad) {
         kZJScale = self.screenHeight/667.0 + 0.5;
+        kZJScaleV = self.screenHeight/667.0 + 0.5;
+        kZJScaleH = self.screenWidth/375.0 + 0.5;
     } else {
-        kZJScale = self.screenHeight/_scaleStandardLength;
+        kZJScale = self.screenHeight/self.scaleStandardLength;
+        kZJScaleV = self.screenHeight/self.scaleStandardLength;
+        kZJScaleH = self.screenWidth/self.scaleStandardWidthLength;
     }
 }
 

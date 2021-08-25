@@ -34,7 +34,9 @@ extern CGFloat ZJSafeAreaTop(void);
 extern CGFloat ZJSafeAreaBottom(void);
 extern ZJScreenSizeType ZJscreenSizeType(void);
 extern BOOL ZJIsIPad(void);
-extern CGFloat ZJScale(void);   //针对于8的缩放比
+extern CGFloat ZJScale(void);   //针对于8的缩放比（高比）
+extern CGFloat ZJScaleV(void);   //针对于8的缩放比（高比）
+extern CGFloat ZJScaleH(void);   //针对于8的缩放比（宽比）
 
 #ifndef kZJScreen
 #define kZJScreen
@@ -51,6 +53,8 @@ extern CGFloat ZJScale(void);   //针对于8的缩放比
 #define kZJscreenSizeType ZJScreen.shared.screenSizeType
 #define kZJIsIPad ZJScreen.shared.isIPad
 extern CGFloat kZJScale;
+extern CGFloat kZJScaleV;
+extern CGFloat kZJScaleH;
 #endif
 
 @interface ZJScreen : NSObject
@@ -72,8 +76,10 @@ singleton_h();
 
 /// 缩放标准类型，默认ZJScreenSizeType8
 @property (nonatomic, assign) ZJScreenSizeType scaleStandard;
-/// 缩放基准长度
+/// 缩放基准长度（高度）
 @property (nonatomic, assign, readonly) CGFloat scaleStandardLength;
+/// 缩放基准长度（宽度）
+@property (nonatomic, assign, readonly) CGFloat scaleStandardWidthLength;
 
 /// 获取当前的KeyWindow窗口（主Window，不一定是最前面的）
 + (UIWindow * _Nullable)keyWindow;
