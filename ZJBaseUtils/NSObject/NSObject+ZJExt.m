@@ -48,6 +48,23 @@
 
 #pragma mark - StaticAPI
 
++ (Class)findClass:(NSString *)className
+{
+    if (className) return nil;
+    
+    Class cls = NSClassFromString(className);
+    if (!cls) {
+        NSString *appName = NSBundle.mainBundle.infoDictionary[@"CFBundleExecutable"];
+        if (appName) {
+            appName = [NSString stringWithFormat:@"_TtC%ld%@%ld%@", appName.length, appName, className.length, className];
+        }
+        if (appName) {
+            cls = NSClassFromString(appName);
+        }
+    }
+    return cls;
+}
+
 + (NSDictionary *)zj_dictionaryWithProperty:(objc_property_t)property
 {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];

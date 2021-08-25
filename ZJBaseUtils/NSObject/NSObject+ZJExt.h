@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - StaticAPI
 
+/// 查找类
+/// @param className 类名
++ (Class)findClass:(NSString *)className;
+
 /// 获取类的属性列表
 + (NSArray *)zj_propertyList;
 
