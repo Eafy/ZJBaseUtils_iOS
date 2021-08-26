@@ -34,9 +34,12 @@ extern CGFloat ZJSafeAreaTop(void);
 extern CGFloat ZJSafeAreaBottom(void);
 extern ZJScreenSizeType ZJscreenSizeType(void);
 extern BOOL ZJIsIPad(void);
-extern CGFloat ZJScale(void);   //针对于8的缩放比（垂直高比）
-extern CGFloat ZJScaleV(void);   //针对于8的缩放比（垂直高比）
-extern CGFloat ZJScaleH(void);   //针对于8的缩放比（水平宽比）
+/// 垂直高缩放比（注意设置scaleStandard）
+extern CGFloat ZJScale(void);
+/// 垂直（高）缩放比（注意设置scaleStandard）
+extern CGFloat ZJScaleV(void);
+/// 水平（宽）缩放比（注意设置scaleStandard）
+extern CGFloat ZJScaleH(void);
 
 #ifndef kZJScreen
 #define kZJScreen

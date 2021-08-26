@@ -25,6 +25,8 @@
     self.btn1.frame = CGRectMake(40, self.view.zj_centerY - 20, ZJScreenWidth() - 80, 40);
     [self.btn1 addTarget:self action:@selector(clickedTestBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btn1];
+    
+    NSLog(@"-------%@", ZJScreenFrame());
 }
 
 - (void)clickedTestBtnAction:(UIButton *)btn
