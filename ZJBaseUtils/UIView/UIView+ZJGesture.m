@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIView+ZJGesture.h"
+#import <ZJBaseUtils/UIView+ZJGesture.h>
 #import <objc/runtime.h>
 
 @interface UIView()

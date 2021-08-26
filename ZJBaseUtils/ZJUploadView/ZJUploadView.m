@@ -6,15 +6,15 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJUploadView.h"
-#import "UIView+ZJExt.h"
-#import "UIColor+ZJExt.h"
-#import "NSString+ZJIMGExt.h"
-#import "UIButton+ZJExt.h"
-#import "UIView+ZJFrame.h"
-#import "UIImage+ZJExt.h"
-#import "ZJLocalization.h"
-#import "ZJBundleRes.h"
+#import <ZJBaseUtils/ZJUploadView.h>
+#import <ZJBaseUtils/UIView+ZJExt.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/NSString+ZJIMGExt.h>
+#import <ZJBaseUtils/UIButton+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIImage+ZJExt.h>
+#import <ZJBaseUtils/ZJLocalization.h>
+#import <ZJBaseUtils/ZJBundleRes.h>
 
 @implementation ZJUploadViewStyleState
 @end
@@ -185,7 +185,7 @@
 
 - (void)handleStyleState:(ZJUploadViewStyle)style
 {
-    ZJUploadViewStyleState *styleState = [self.styleStateDic objectForKey:[NSString stringWithFormat:@"%lu", style]];
+    ZJUploadViewStyleState *styleState = [self.styleStateDic objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)style]];
     if (styleState) {
         UIControlState controlState = style == ZJUploadViewStyleDisable ? UIControlStateDisabled : UIControlStateNormal;
         self.showImgBtn.enabled = style != ZJUploadViewStyleDisable;

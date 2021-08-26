@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 #import <UIKit/UIKit.h>
-#import "ZJSingleton.h"
-#import "ZJPHAsset.h"
+#import <ZJBaseUtils/ZJSingleton.h>
+#import <ZJBaseUtils/ZJPHAsset.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

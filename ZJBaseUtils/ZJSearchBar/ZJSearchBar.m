@@ -6,10 +6,10 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSearchBar.h"
-#import "UISearchBar+ZJExt.h"
-#import "UIColor+ZJExt.h"
-#import "ZJBaseUtils.h"
+#import <ZJBaseUtils/ZJSearchBar.h>
+#import <ZJBaseUtils/UISearchBar+ZJExt.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/ZJBaseUtils.h>
 
 @interface ZJSearchBar () <UISearchBarDelegate>
 

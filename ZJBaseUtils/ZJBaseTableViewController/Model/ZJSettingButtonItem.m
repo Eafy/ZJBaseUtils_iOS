@@ -6,11 +6,11 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingButtonItem.h"
-#import "ZJBaseTVConfig.h"
-#import "ZJSettingTableViewCellExt.h"
-#import "UIView+ZJFrame.h"
-#import "NSString+ZJExt.h"
+#import <ZJBaseUtils/ZJSettingButtonItem.h>
+#import <ZJBaseUtils/ZJBaseTVConfig.h>
+#import <ZJBaseUtils/ZJSettingTableViewCellExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
 
 @interface ZJSettingButtonItem()
 

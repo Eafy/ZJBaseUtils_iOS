@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIImage+ZJQR.h"
-#import "UIImage+ZJExt.h"
+#import <ZJBaseUtils/UIImage+ZJQR.h>
+#import <ZJBaseUtils/UIImage+ZJExt.h>
 
 @implementation UIImage (ZJQR)
 

@@ -6,9 +6,9 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingItem.h"
-#import "ZJSettingTableViewCell.h"
-#import "ZJBaseTVConfig.h"
+#import <ZJBaseUtils/ZJSettingItem.h>
+#import <ZJBaseUtils/ZJSettingTableViewCell.h>
+#import <ZJBaseUtils/ZJBaseTVConfig.h>
 
 @implementation ZJSettingItem
 

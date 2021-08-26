@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingCustomViewItem.h"
-#import "ZJSettingTableViewCell.h"
+#import <ZJBaseUtils/ZJSettingCustomViewItem.h>
+#import <ZJBaseUtils/ZJSettingTableViewCell.h>
 
 @implementation ZJSettingCustomViewItem
 

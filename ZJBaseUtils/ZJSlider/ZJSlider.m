@@ -6,12 +6,12 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSlider.h"
+#import <ZJBaseUtils/ZJSlider.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import "UIView+ZJExt.h"
-#import "UIView+ZJFrame.h"
-#import "UIView+ZJShadow.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/UIView+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIView+ZJShadow.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 @interface ZJSlider()
 
@@ -337,10 +337,10 @@
     if (self.isShowTopSign) {
         
         if (self.isShowShapingSign) {
-            self.signCountTopLeftLB.text = [NSString stringWithFormat:@"%ld", (NSInteger)(self.selectedMinValue)];
+            self.signCountTopLeftLB.text = [NSString stringWithFormat:@"%ld", (long)(self.selectedMinValue)];
             if (self.isShowShapingSign) {
-                self.signCountSideLeftLB.text = [NSString stringWithFormat:@"%ld", (NSInteger)self.minValue];
-                self.signCountSideRightLB.text = [NSString stringWithFormat:@"%ld", (NSInteger)self.maxValue];
+                self.signCountSideLeftLB.text = [NSString stringWithFormat:@"%ld", (long)self.minValue];
+                self.signCountSideRightLB.text = [NSString stringWithFormat:@"%ld", (long)self.maxValue];
             }
         } else {
             self.signCountTopLeftLB.text = [NSString stringWithFormat:@"%.2f", self.selectedMinValue];

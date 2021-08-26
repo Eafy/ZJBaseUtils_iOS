@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJPHAsset.h"
+#import <ZJBaseUtils/ZJPHAsset.h>
 
 @implementation ZJPHAsset
 

@@ -6,12 +6,12 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSegmentedControl.h"
-#import "UIColor+ZJExt.h"
-#import "UIImage+ZJExt.h"
-#import "UIView+ZJFrame.h"
-#import "UIButton+ZJExt.h"
-#import "UIView+ZJGradient.h"
+#import <ZJBaseUtils/ZJSegmentedControl.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/UIImage+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIButton+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJGradient.h>
 
 #define kZJSegmentedControlItemIndexStart 1024
 

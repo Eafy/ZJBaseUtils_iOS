@@ -6,11 +6,11 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingLabelItem.h"
-#import "ZJSettingTableViewCellExt.h"
-#import "UIColor+ZJExt.h"
-#import "ZJLocalization.h"
-#import "UIView+ZJFrame.h"
+#import <ZJBaseUtils/ZJSettingLabelItem.h>
+#import <ZJBaseUtils/ZJSettingTableViewCellExt.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/ZJLocalization.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
 
 @implementation ZJSettingLabelItem
 

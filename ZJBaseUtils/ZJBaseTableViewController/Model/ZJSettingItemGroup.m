@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingItemGroup.h"
-#import "ZJSettingItem.h"
+#import <ZJBaseUtils/ZJSettingItemGroup.h>
+#import <ZJBaseUtils/ZJSettingItem.h>
 
 @implementation ZJSettingItemGroup
 

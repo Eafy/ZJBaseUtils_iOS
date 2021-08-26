@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSFileManager+ZJExt.h"
+#import <ZJBaseUtils/NSFileManager+ZJExt.h>
 #import <CoreServices/CoreServices.h>
 
 @implementation NSFileManager (ZJExt)

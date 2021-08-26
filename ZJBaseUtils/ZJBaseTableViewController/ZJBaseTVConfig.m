@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTVConfig.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/ZJBaseTVConfig.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 #import <objc/runtime.h>
 
 @interface ZJBaseTVConfig ()

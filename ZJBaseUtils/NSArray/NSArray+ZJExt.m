@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSArray+ZJExt.h"
+#import <ZJBaseUtils/NSArray+ZJExt.h>
 
 @implementation NSArray (ZJExt)
 

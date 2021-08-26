@@ -6,11 +6,11 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTBBadge.h"
-#import "CAAnimation+ZJExt.h"
-#import "UIView+ZJFrame.h"
-#import "UIColor+ZJExt.h"
-#import "NSString+ZJExt.h"
+#import <ZJBaseUtils/ZJBaseTBBadge.h>
+#import <ZJBaseUtils/CAAnimation+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
 
 @implementation ZJBaseTBBadge
 

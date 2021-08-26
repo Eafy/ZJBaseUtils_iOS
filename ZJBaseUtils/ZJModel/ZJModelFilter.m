@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJModelFilter.h"
+#import <ZJBaseUtils/ZJModelFilter.h>
 
 @implementation ZJModelFilter
 

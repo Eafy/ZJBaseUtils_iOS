@@ -6,16 +6,16 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJInputPlayPwdView.h"
-#import "ZJTextField.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/ZJInputPlayPwdView.h>
+#import <ZJBaseUtils/ZJTextField.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 @interface ZJInputPlayPwdView() <UITextFieldDelegate, ZJTextFieldDelegate>
 
 @property (nonatomic,strong) NSMutableArray *textFieldsArray;
 @property (nonatomic,strong) NSMutableArray *textArray;
 /// 0：首次，1：向前，2：向后
-@property (nonatomic,assign) BOOL isJumpType;
+@property (nonatomic,assign) NSInteger isJumpType;
 
 @end
 

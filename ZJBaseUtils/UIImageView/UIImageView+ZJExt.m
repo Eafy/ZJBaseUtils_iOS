@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIImageView+ZJExt.h"
-#import "UIImage+ZJExt.h"
+#import <ZJBaseUtils/UIImageView+ZJExt.h>
+#import <ZJBaseUtils/UIImage+ZJExt.h>
 
 @implementation UIImageView (ZJExt)
 

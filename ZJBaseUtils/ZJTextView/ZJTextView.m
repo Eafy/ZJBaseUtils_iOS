@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJTextView.h"
+#import <ZJBaseUtils/ZJTextView.h>
 
 @interface ZJTextView ()
 

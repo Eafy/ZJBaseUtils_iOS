@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingItem.h"
-#import "ZJRatingView.h"
+#import <ZJBaseUtils/ZJSettingItem.h>
+#import <ZJBaseUtils/ZJRatingView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

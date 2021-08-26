@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIButton+ZJGradient.h"
+#import <ZJBaseUtils/UIButton+ZJGradient.h>
 
 @implementation UIButton (ZJGradient)
 

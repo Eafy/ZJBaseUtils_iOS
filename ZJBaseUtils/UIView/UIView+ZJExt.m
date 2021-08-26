@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIView+ZJExt.h"
+#import <ZJBaseUtils/UIView+ZJExt.h>
 
 @implementation UIView (ZJExt)
 

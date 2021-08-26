@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSString+ZJIMGExt.h"
+#import <ZJBaseUtils/NSString+ZJIMGExt.h>
 
 @implementation NSString (ZJIMGExt)
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJSheetAction.h"
+#import <ZJBaseUtils/ZJSheetAction.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

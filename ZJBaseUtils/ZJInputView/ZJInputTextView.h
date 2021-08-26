@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJLine.h"
+#import <ZJBaseUtils/ZJLine.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

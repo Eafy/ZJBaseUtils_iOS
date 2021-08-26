@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJScreen.h"
+#import <ZJBaseUtils/ZJScreen.h>
 
 CGFloat kZJScale = 1.0;
 CGFloat kZJScaleV = 1.0;

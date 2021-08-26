@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJRatingStarView.h"
-#import "ZJRatingView.h"
+#import <ZJBaseUtils/ZJRatingStarView.h>
+#import <ZJBaseUtils/ZJRatingView.h>
 
 @interface ZJRatingStarView ()
 

@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJThread.h"
+#import <ZJBaseUtils/ZJThread.h>
 
 @interface ZJThread ()
 

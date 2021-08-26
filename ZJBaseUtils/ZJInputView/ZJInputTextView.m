@@ -6,12 +6,12 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJInputTextView.h"
-#import "UIColor+ZJExt.h"
-#import "ZJLine.h"
-#import "NSString+ZJExt.h"
-#import "UIView+ZJFrame.h"
-#import "ZJBundleRes.h"
+#import <ZJBaseUtils/ZJInputTextView.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/ZJLine.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/ZJBundleRes.h>
 
 @interface ZJInputTextView ()
 

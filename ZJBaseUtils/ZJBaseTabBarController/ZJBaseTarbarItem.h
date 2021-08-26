@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "ZJBaseTabBarConfig.h"
+#import <ZJBaseUtils/ZJBaseTabBarConfig.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

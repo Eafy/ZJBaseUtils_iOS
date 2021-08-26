@@ -6,13 +6,13 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSheetView.h"
-#import "UIView+ZJFrame.h"
-#import "UIColor+ZJExt.h"
-#import "ZJScreen.h"
-#import "NSString+ZJExt.h"
-#import "ZJUtilsDef.h"
-#import "ZJLocalization.h"
+#import <ZJBaseUtils/ZJSheetView.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
+#import <ZJBaseUtils/ZJUtilsDef.h>
+#import <ZJBaseUtils/ZJLocalization.h>
 
 @interface ZJSheetView ()
 

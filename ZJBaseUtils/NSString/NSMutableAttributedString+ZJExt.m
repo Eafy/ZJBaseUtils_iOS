@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSMutableAttributedString+ZJExt.h"
+#import <ZJBaseUtils/NSMutableAttributedString+ZJExt.h>
 
 @implementation NSMutableAttributedString (ZJExt)
 

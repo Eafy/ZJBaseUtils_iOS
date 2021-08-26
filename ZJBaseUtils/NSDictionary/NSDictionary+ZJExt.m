@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSDictionary+ZJExt.h"
+#import <ZJBaseUtils/NSDictionary+ZJExt.h>
 
 @implementation NSDictionary (ZJExt)
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJAlertAction.h"
+#import <ZJBaseUtils/ZJAlertAction.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

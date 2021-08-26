@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingItem.h"
+#import <ZJBaseUtils/ZJSettingItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

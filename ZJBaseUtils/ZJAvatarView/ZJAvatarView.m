@@ -6,7 +6,7 @@
 //  Copyright © 2021 ZJ. All rights reserved.
 //
 
-#import "ZJAvatarView.h"
+#import <ZJBaseUtils/ZJAvatarView.h>
 
 @implementation ZJAvatarView
 

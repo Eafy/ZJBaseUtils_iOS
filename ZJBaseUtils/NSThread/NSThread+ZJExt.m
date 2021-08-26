@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSThread+ZJExt.h"
+#import <ZJBaseUtils/NSThread+ZJExt.h>
 #include <objc/runtime.h>
 
 static const void *kZJCustomConditionKey = &kZJCustomConditionKey;

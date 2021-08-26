@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJModelPairs.h"
+#import <ZJBaseUtils/ZJModelPairs.h>
 
 @implementation ZJModelPairs
 

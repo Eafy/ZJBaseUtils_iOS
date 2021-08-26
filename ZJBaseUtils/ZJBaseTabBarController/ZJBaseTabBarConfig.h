@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJBaseTabBarTopLineConfig.h"
+#import <ZJBaseUtils/ZJBaseTabBarTopLineConfig.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

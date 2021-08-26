@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "CAAnimation+ZJExt.h"
+#import <ZJBaseUtils/CAAnimation+ZJExt.h>
 #import <UIKit/UIKit.h>
 
 #define Angle2Radian(angle) ((angle) / 180.0 * M_PI)

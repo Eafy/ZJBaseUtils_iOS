@@ -7,18 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJBaseTVPrivateData.h"
-#import "ZJSettingItemGroup.h"
-#import "ZJSettingItem.h"
-#import "ZJSettingCustomViewItem.h"
-#import "ZJSettingArrowItem.h"
-#import "ZJSettingSwitchItem.h"
-#import "ZJSettingLabelItem.h"
-#import "ZJSettingTextFieldItem.h"
-#import "ZJSettingRadioItem.h"
-#import "ZJSettingScoreItem.h"
-#import "ZJSettingStepperItem.h"
-#import "ZJSettingButtonItem.h"
+#import <ZJBaseUtils/ZJBaseTVPrivateData.h>
+#import <ZJBaseUtils/ZJSettingItemGroup.h>
+#import <ZJBaseUtils/ZJSettingItem.h>
+#import <ZJBaseUtils/ZJSettingCustomViewItem.h>
+#import <ZJBaseUtils/ZJSettingArrowItem.h>
+#import <ZJBaseUtils/ZJSettingSwitchItem.h>
+#import <ZJBaseUtils/ZJSettingLabelItem.h>
+#import <ZJBaseUtils/ZJSettingTextFieldItem.h>
+#import <ZJBaseUtils/ZJSettingRadioItem.h>
+#import <ZJBaseUtils/ZJSettingScoreItem.h>
+#import <ZJBaseUtils/ZJSettingStepperItem.h>
+#import <ZJBaseUtils/ZJSettingButtonItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

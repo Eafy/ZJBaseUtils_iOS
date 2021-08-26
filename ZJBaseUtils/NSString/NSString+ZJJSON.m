@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSString+ZJJSON.h"
+#import <ZJBaseUtils/NSString+ZJJSON.h>
 
 @implementation NSString (ZJJSON)
 

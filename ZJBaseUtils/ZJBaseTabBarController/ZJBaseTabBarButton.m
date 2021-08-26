@@ -6,10 +6,10 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTabBarButton.h"
-#import "UIView+ZJFrame.h"
-#import "CAAnimation+ZJExt.h"
-#import "UIView+ZJExt.h"
+#import <ZJBaseUtils/ZJBaseTabBarButton.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/CAAnimation+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJExt.h>
 
 @interface ZJBaseTabBarButton ()
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZJBaseTVConfig.h"
+#import <ZJBaseUtils/ZJBaseTVConfig.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

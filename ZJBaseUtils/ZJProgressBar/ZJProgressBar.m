@@ -6,9 +6,9 @@
 //  Copyright © 2021 ZJ. All rights reserved.
 //
 
-#import "ZJProgressBar.h"
-#import "UIColor+ZJExt.h"
-#import "UIView+ZJFrame.h"
+#import <ZJBaseUtils/ZJProgressBar.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
 
 @interface ZJProgressBar ()
 

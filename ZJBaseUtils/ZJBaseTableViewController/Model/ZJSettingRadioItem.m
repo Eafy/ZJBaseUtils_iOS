@@ -6,14 +6,14 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingRadioItem.h"
-#import "UIView+ZJFrame.h"
-#import "ZJScreen.h"
-#import "UIButton+ZJExt.h"
-#import "UIColor+ZJExt.h"
-#import "ZJBaseTVConfig.h"
-#import "ZJSettingTableViewCellExt.h"
-#import "ZJBundleRes.h"
+#import <ZJBaseUtils/ZJSettingRadioItem.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/UIButton+ZJExt.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/ZJBaseTVConfig.h>
+#import <ZJBaseUtils/ZJSettingTableViewCellExt.h>
+#import <ZJBaseUtils/ZJBundleRes.h>
 
 @interface ZJSettingRadioItem ()
 

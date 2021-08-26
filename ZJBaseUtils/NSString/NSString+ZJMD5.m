@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSString+ZJMD5.h"
-#import "NSString+ZJExt.h"
+#import <ZJBaseUtils/NSString+ZJMD5.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonHMAC.h>
 

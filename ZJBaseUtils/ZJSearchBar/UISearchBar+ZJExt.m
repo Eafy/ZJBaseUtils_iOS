@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UISearchBar+ZJExt.h"
+#import <ZJBaseUtils/UISearchBar+ZJExt.h>
 
 
 @implementation UISearchBar (ZJExt)

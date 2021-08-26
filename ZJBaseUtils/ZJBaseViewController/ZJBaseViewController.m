@@ -6,12 +6,12 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseViewController.h"
-#import "ZJScreen.h"
-#import "ZJSystem.h"
-#import "UIView+ZJFrame.h"
-#import "UIColor+ZJExt.h"
-#import "ZJBundleRes.h"
+#import <ZJBaseUtils/ZJBaseViewController.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/ZJSystem.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/ZJBundleRes.h>
 
 @interface ZJBaseViewController () <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 

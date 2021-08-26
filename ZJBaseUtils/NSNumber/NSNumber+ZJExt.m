@@ -6,7 +6,7 @@
 //  Copyright © 2021 ZJ. All rights reserved.
 //
 
-#import "NSNumber+ZJExt.h"
+#import <ZJBaseUtils/NSNumber+ZJExt.h>
 
 @implementation NSNumber (ZJExt)
 

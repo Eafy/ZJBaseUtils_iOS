@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIView+ZJFrame.h"
+#import <ZJBaseUtils/UIView+ZJFrame.h>
 
 @implementation UIView (ZJFrame)
 

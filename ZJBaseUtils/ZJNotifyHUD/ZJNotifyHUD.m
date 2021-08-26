@@ -6,13 +6,13 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJNotifyHUD.h"
-#import "ZJScreen.h"
-#import "NSString+ZJExt.h"
-#import "UIColor+ZJExt.h"
-#import "UIView+ZJFrame.h"
-#import "ZJBundleRes.h"
-#import "NSString+ZJExt.h"
+#import <ZJBaseUtils/ZJNotifyHUD.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/ZJBundleRes.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
 
 @interface ZJNotifyHUD ()
 
@@ -333,7 +333,7 @@ static ZJNotifyHUD *_shared;
         }
     }
     
-    [self hideUsingAnimation:animated];
+    [self hideUsingAnimation:[animated boolValue]];
 }
 
 - (void)hide

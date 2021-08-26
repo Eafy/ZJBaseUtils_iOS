@@ -6,14 +6,14 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTabBarController.h"
-#import "ZJBaseTabBar.h"
-#import "ZJBaseTabBarButton.h"
-#import "ZJLocalization.h"
-#import "ZJScreen.h"
-#import "ZJSystem.h"
-#import "UIView+ZJFrame.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/ZJBaseTabBarController.h>
+#import <ZJBaseUtils/ZJBaseTabBar.h>
+#import <ZJBaseUtils/ZJBaseTabBarButton.h>
+#import <ZJBaseUtils/ZJLocalization.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/ZJSystem.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 @interface ZJBaseTabBarController () <ZJBaseTabBarDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 

@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJPickerItem.h"
+#import <ZJBaseUtils/ZJPickerItem.h>
 
 @implementation ZJPickerItem
 

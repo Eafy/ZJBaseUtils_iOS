@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSData+ZJAESDES.h"
+#import <ZJBaseUtils/NSData+ZJAESDES.h>
 
 @implementation NSData (ZJAESDES)
 

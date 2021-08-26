@@ -5,8 +5,8 @@
 //  Created by eafy on 2020/11/14.
 //
 
-#import "ZJBaseTarbarItem.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/ZJBaseTarbarItem.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 @implementation ZJBaseTarbarItem
 

@@ -6,11 +6,11 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJButton.h"
-#import "UIColor+ZJExt.h"
-#import "UIImage+ZJExt.h"
-#import "UIView+ZJExt.h"
-#import "UIView+ZJFrame.h"
+#import <ZJBaseUtils/ZJButton.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/UIImage+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
 
 @implementation ZJButton
 

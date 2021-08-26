@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJBaseTarbarItem.h"
+#import <ZJBaseUtils/ZJBaseTarbarItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

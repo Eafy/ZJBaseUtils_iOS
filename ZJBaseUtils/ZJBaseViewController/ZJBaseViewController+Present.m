@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseViewController+Present.h"
-#import "ZJBaseNavigationController.h"
+#import <ZJBaseUtils/ZJBaseViewController+Present.h>
+#import <ZJBaseUtils/ZJBaseNavigationController.h>
 
 @implementation ZJBaseViewController (Present)
 

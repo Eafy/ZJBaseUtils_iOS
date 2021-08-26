@@ -6,13 +6,13 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJAlertView.h"
-#import "UIView+ZJFrame.h"
-#import "UIColor+ZJExt.h"
-#import "ZJScreen.h"
-#import "NSString+ZJExt.h"
-#import "ZJUtilsDef.h"
-#import "ZJBundleRes.h"
+#import <ZJBaseUtils/ZJAlertView.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
+#import <ZJBaseUtils/ZJUtilsDef.h>
+#import <ZJBaseUtils/ZJBundleRes.h>
 
 @interface ZJAlertView () <UITextFieldDelegate>
 

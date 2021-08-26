@@ -6,9 +6,9 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJLine.h"
-#import "UIColor+ZJExt.h"
-#import "UIView+ZJExt.h"
+#import <ZJBaseUtils/ZJLine.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJExt.h>
 
 @interface ZJLine ()
 

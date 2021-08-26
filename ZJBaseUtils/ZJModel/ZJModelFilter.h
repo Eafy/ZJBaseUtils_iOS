@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZJModel.h"
+#import <ZJBaseUtils/ZJModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

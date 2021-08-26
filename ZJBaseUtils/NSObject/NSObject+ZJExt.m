@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSObject+ZJExt.h"
+#import <ZJBaseUtils/NSObject+ZJExt.h>
 #import <objc/runtime.h>
 
 @implementation NSObject (ZJExt)
@@ -56,7 +56,7 @@
     if (!cls) {
         NSString *appName = NSBundle.mainBundle.infoDictionary[@"CFBundleExecutable"];
         if (appName) {
-            appName = [NSString stringWithFormat:@"_TtC%ld%@%ld%@", appName.length, appName, className.length, className];
+            appName = [NSString stringWithFormat:@"_TtC%lu%@%lu%@", (unsigned long)appName.length, appName, (unsigned long)className.length, className];
         }
         if (appName) {
             cls = NSClassFromString(appName);

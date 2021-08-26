@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 UIColor *ZJColor(NSInteger r, NSInteger g, NSInteger b) {
     return [UIColor zj_color:r g:g b:b];

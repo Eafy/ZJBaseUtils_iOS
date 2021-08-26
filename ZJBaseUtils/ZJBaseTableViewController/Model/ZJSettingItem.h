@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJBaseTVPrivateData.h"
+#import <ZJBaseUtils/ZJBaseTVPrivateData.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

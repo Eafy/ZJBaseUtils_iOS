@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIImage+ZJGradient.h"
+#import <ZJBaseUtils/UIImage+ZJGradient.h>
 
 @implementation UIImage (ZJGradient)
 

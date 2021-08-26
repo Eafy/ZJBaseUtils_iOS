@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIView+ZJShadow.h"
+#import <ZJBaseUtils/UIView+ZJShadow.h>
 
 @implementation UIView (ZJShadow)
 

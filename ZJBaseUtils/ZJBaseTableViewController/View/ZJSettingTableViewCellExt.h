@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingTableViewCell.h"
+#import <ZJBaseUtils/ZJSettingTableViewCell.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

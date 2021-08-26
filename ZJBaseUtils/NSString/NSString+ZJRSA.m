@@ -6,9 +6,9 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSString+ZJRSA.h"
-#import "NSData+ZJRSA.h"
-#import "NSData+ZJExt.h"
+#import <ZJBaseUtils/NSString+ZJRSA.h>
+#import <ZJBaseUtils/NSData+ZJRSA.h>
+#import <ZJBaseUtils/NSData+ZJExt.h>
 
 @implementation NSString (ZJRSA)
 

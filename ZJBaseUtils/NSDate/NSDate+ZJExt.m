@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "NSDate+ZJExt.h"
+#import <ZJBaseUtils/NSDate+ZJExt.h>
 
 @implementation NSDate (ZJExt)
 

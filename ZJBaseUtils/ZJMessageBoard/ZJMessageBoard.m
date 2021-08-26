@@ -6,11 +6,11 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJMessageBoard.h"
-#import "UIColor+ZJExt.h"
-#import "UIView+ZJFrame.h"
-#import "ZJLocalization.h"
-#import "NSString+ZJExt.h"
+#import <ZJBaseUtils/ZJMessageBoard.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/ZJLocalization.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
 
 @interface ZJMessageBoard () <UITextViewDelegate>
 

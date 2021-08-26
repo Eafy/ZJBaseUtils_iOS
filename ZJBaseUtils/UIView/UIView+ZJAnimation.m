@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIView+ZJAnimation.h"
+#import <ZJBaseUtils/UIView+ZJAnimation.h>
 
 NSString *const kZJView360RotateTransform = @"kZJView360RotateTransform";
 

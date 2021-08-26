@@ -6,10 +6,10 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJModel.h"
-#import "NSObject+ZJExt.h"
+#import <ZJBaseUtils/ZJModel.h>
+#import <ZJBaseUtils/NSObject+ZJExt.h>
 #import <objc/runtime.h>
-#import "ZJModelPairs.h"
+#import <ZJBaseUtils/ZJModelPairs.h>
 
 @implementation ZJModel
 

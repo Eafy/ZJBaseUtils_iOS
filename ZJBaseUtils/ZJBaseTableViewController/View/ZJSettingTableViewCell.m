@@ -6,16 +6,16 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingTableViewCellExt.h"
-#import "ZJBaseTVConfig.h"
-#import "UIColor+ZJExt.h"
-#import "ZJSystem.h"
-#import "ZJScreen.h"
-#import "UIView+ZJFrame.h"
-#import "NSString+ZJExt.h"
-#import "ZJLocalization.h"
-#import "UIImageView+ZJExt.h"
-#import "UIView+ZJExt.h"
+#import <ZJBaseUtils/ZJSettingTableViewCellExt.h>
+#import <ZJBaseUtils/ZJBaseTVConfig.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/ZJSystem.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
+#import <ZJBaseUtils/ZJLocalization.h>
+#import <ZJBaseUtils/UIImageView+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJExt.h>
 
 @interface ZJSettingTableViewCell()
 

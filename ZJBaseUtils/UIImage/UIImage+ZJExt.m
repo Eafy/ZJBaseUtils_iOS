@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIImage+ZJExt.h"
-#import "NSFileManager+ZJExt.h"
+#import <ZJBaseUtils/UIImage+ZJExt.h>
+#import <ZJBaseUtils/NSFileManager+ZJExt.h>
 
 @implementation UIImage (ZJExt)
 

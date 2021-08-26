@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZJPickerView.h"
+#import <ZJBaseUtils/ZJPickerView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

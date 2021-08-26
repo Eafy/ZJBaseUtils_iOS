@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseViewController.h"
+#import <ZJBaseUtils/ZJBaseViewController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

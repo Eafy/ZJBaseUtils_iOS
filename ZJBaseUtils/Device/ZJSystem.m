@@ -6,14 +6,14 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSystem.h"
+#import <ZJBaseUtils/ZJSystem.h>
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>
 #import <CoreLocation/CoreLocation.h>
 #import <UserNotifications/UserNotifications.h>
-#import "ZJSAMKeychain.h"
-#import "NSString+ZJExt.h"
-#import "NSString+ZJMD5.h"
+#import <ZJBaseUtils/ZJSAMKeychain.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
+#import <ZJBaseUtils/NSString+ZJMD5.h>
 
 extern CGFloat ZJSysVersion(void) {
     return [[[UIDevice currentDevice] systemVersion] doubleValue];

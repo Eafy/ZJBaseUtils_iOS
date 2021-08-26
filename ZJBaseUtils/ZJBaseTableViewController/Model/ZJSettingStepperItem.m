@@ -6,10 +6,10 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingStepperItem.h"
-#import "UIView+ZJFrame.h"
-#import "ZJSettingTableViewCellExt.h"
-#import "ZJBundleRes.h"
+#import <ZJBaseUtils/ZJSettingStepperItem.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/ZJSettingTableViewCellExt.h>
+#import <ZJBaseUtils/ZJBundleRes.h>
 
 @interface ZJSettingStepperItem () <UITextFieldDelegate>
 

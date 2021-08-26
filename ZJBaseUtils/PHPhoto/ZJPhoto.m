@@ -6,11 +6,11 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJPhoto.h"
-#import "PHAsset+ZJExt.h"
-#import "NSFileManager+ZJExt.h"
+#import <ZJBaseUtils/ZJPhoto.h>
+#import <ZJBaseUtils/PHAsset+ZJExt.h>
+#import <ZJBaseUtils/NSFileManager+ZJExt.h>
 #import <AVFoundation/AVFoundation.h>
-#import "ZJSystem.h"
+#import <ZJBaseUtils/ZJSystem.h>
 
 @interface ZJPhoto ()
 

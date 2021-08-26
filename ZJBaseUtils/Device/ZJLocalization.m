@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJLocalization.h"
+#import <ZJBaseUtils/ZJLocalization.h>
 
 NSString *const kLocalizationLanguageEn = @"en";     //英文
 NSString *const kLocalizationLanguageZh_Hans = @"zh-Hans";     //简体中文

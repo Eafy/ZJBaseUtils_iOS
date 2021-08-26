@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSwitch.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/ZJSwitch.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 @implementation ZJSwitch
 

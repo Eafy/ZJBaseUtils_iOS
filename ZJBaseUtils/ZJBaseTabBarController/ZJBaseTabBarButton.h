@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJBaseTBBadge.h"
-#import "ZJBaseTarbarItem.h"
+#import <ZJBaseUtils/ZJBaseTBBadge.h>
+#import <ZJBaseUtils/ZJBaseTarbarItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

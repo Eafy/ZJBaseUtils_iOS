@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "UIViewController+ZJExt.h"
+#import <ZJBaseUtils/UIViewController+ZJExt.h>
 
 @implementation UIViewController (ZJExt)
 

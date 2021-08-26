@@ -6,9 +6,9 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingScoreItem.h"
-#import "UIView+ZJFrame.h"
-#import "ZJSettingTableViewCellExt.h"
+#import <ZJBaseUtils/ZJSettingScoreItem.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/ZJSettingTableViewCellExt.h>
 
 @interface ZJSettingScoreItem ()
 

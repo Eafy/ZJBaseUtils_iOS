@@ -6,9 +6,9 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingSwitchItem.h"
-#import "ZJBaseTVConfig.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/ZJSettingSwitchItem.h>
+#import <ZJBaseUtils/ZJBaseTVConfig.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 @implementation ZJSettingSwitchItem
 @dynamic value;

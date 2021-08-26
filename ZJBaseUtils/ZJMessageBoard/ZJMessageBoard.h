@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJTextView.h"
+#import <ZJBaseUtils/ZJTextView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

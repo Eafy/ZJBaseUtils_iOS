@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
-#import "PHAsset+ZJExt.h"
+#import <ZJBaseUtils/PHAsset+ZJExt.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

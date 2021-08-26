@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBundleRes.h"
+#import <ZJBaseUtils/ZJBundleRes.h>
 
 /// 保存默认的资源包路径
 static NSString *_defaultBundleResImagePath = nil;

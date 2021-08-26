@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJSettingArrowItem.h"
-#import "ZJSettingTableViewCellExt.h"
+#import <ZJBaseUtils/ZJSettingArrowItem.h>
+#import <ZJBaseUtils/ZJSettingTableViewCellExt.h>
 
 @implementation ZJSettingArrowItem
 

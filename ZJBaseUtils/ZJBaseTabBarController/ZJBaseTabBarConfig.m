@@ -6,8 +6,8 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTabBarConfig.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/ZJBaseTabBarConfig.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 @implementation ZJBaseTabBarConfig
 

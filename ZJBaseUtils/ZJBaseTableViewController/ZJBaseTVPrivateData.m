@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTVPrivateData.h"
+#import <ZJBaseUtils/ZJBaseTVPrivateData.h>
 #import <objc/runtime.h>
 
 @implementation ZJBaseTVPrivateData

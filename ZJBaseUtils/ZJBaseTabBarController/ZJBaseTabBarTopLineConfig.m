@@ -6,7 +6,7 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTabBarTopLineConfig.h"
+#import <ZJBaseUtils/ZJBaseTabBarTopLineConfig.h>
 
 @implementation ZJBaseTabBarTopLineConfig
 

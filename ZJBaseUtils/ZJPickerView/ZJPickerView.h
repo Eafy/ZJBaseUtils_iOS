@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJPickerItem.h"
+#import <ZJBaseUtils/ZJPickerItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

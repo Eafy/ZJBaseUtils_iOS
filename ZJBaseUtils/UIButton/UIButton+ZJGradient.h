@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UIImage+ZJGradient.h"
+#import <ZJBaseUtils/UIImage+ZJGradient.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

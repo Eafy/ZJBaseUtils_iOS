@@ -6,11 +6,11 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJLabel.h"
-#import "UIColor+ZJExt.h"
-#import "UIView+ZJExt.h"
-#import "UIView+ZJGesture.h"
-#import "ZJUtilsDef.h"
+#import <ZJBaseUtils/ZJLabel.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJExt.h>
+#import <ZJBaseUtils/UIView+ZJGesture.h>
+#import <ZJBaseUtils/ZJUtilsDef.h>
 
 @interface ZJLabel ()
 

@@ -6,13 +6,13 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTableView.h"
-#import "ZJBaseTableViewController.h"
-#import "ZJScreen.h"
-#import "ZJSystem.h"
-#import "UIView+ZJFrame.h"
-#import "ZJLocalization.h"
-#import "NSString+ZJExt.h"
+#import <ZJBaseUtils/ZJBaseTableView.h>
+#import <ZJBaseUtils/ZJBaseTableViewController.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/ZJSystem.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/ZJLocalization.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
 
 @interface ZJBaseTableView () <UITableViewDelegate,UITableViewDataSource>
 

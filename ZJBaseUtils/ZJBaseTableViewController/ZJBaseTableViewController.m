@@ -6,16 +6,16 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJBaseTableViewController.h"
-#import "ZJSettingItem.h"
-#import "ZJScreen.h"
-#import "ZJSystem.h"
-#import "UIView+ZJFrame.h"
-#import "ZJLocalization.h"
-#import "NSString+ZJExt.h"
-#import "ZJBaseTVConfig.h"
-#import "ZJBaseTableView.h"
-#import "UIColor+ZJExt.h"
+#import <ZJBaseUtils/ZJBaseTableViewController.h>
+#import <ZJBaseUtils/ZJSettingItem.h>
+#import <ZJBaseUtils/ZJScreen.h>
+#import <ZJBaseUtils/ZJSystem.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/ZJLocalization.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
+#import <ZJBaseUtils/ZJBaseTVConfig.h>
+#import <ZJBaseUtils/ZJBaseTableView.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
 
 @interface ZJBaseTableViewController () <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 

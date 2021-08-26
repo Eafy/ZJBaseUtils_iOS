@@ -6,12 +6,12 @@
 //  Copyright © 2020 ZJ. All rights reserved.
 //
 
-#import "ZJStepBar.h"
-#import "UIView+ZJFrame.h"
-#import "UIColor+ZJExt.h"
-#import "NSString+ZJExt.h"
-#import "ZJBundleRes.h"
-#import "UIView+ZJExt.h"
+#import <ZJBaseUtils/ZJStepBar.h>
+#import <ZJBaseUtils/UIView+ZJFrame.h>
+#import <ZJBaseUtils/UIColor+ZJExt.h>
+#import <ZJBaseUtils/NSString+ZJExt.h>
+#import <ZJBaseUtils/ZJBundleRes.h>
+#import <ZJBaseUtils/UIView+ZJExt.h>
 
 #define kZJStepsView_ProgressLineTagStart 10240
 #define kZJStepsView_CircleTagStart 11240
