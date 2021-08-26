@@ -30,7 +30,7 @@ extern CGFloat ZJScreenHeight(void);
 extern CGFloat ZJScreenWidth(void);
 /// 状态栏高度（包含安全区域）
 extern CGFloat ZJStatusBarHeight(void);
-/// 状态栏高度
+/// 导航栏高度
 extern CGFloat ZJNavBarHeight(void);
 /// 导航栏+状态栏（包含安全区域）
 extern CGFloat ZJNavStatusBarHeight(void);
