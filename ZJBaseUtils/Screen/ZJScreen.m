@@ -133,6 +133,9 @@ singleton_m();
     } else {
         _statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
     }
+    if (_statusBarHeight == 0) {
+        _statusBarHeight = ZJSafeAreaTop() + 20.0;
+    }
     
     return _statusBarHeight;
 }

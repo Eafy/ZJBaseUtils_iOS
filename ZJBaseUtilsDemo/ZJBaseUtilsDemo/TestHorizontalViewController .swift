@@ -9,6 +9,13 @@ import Foundation
 
 class TestHorizontalViewController: ZJBaseViewController {
     
+    static var vvv: CGFloat = {
+       let v1 = ZJStatusBarHeight()
+        
+        debugPrint("----------->\(v1)")
+        return v1
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         isHideNavBar = true
@@ -18,6 +25,7 @@ class TestHorizontalViewController: ZJBaseViewController {
         
         navLeftBtn?.backgroundColor = .blue
         navRightBtn?.backgroundColor = .red
+        let v2 = TestHorizontalViewController.vvv;
     }
     
     override func viewWillAppear(_ animated: Bool) {

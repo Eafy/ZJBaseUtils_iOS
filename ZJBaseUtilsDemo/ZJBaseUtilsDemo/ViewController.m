@@ -26,7 +26,9 @@
     [self.btn1 addTarget:self action:@selector(clickedTestBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btn1];
     
-    NSLog(@"-------%@", ZJScreenFrame());
+    CGFloat v1 = ZJStatusBarHeight();
+    CGFloat v2 = ZJScreenWidth();
+    NSLog(@"1----------->%f    %f", v1, v2);
 }
 
 - (void)clickedTestBtnAction:(UIButton *)btn
