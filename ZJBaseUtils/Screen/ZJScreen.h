@@ -22,19 +22,30 @@ typedef NS_ENUM(NSInteger, ZJScreenSizeType) {
     ZJScreenSizeTypeXsMax = ZJScreenSizeTypeXr,     //414*896
 };
 
+/// 屏幕的Frame
 extern CGRect ZJScreenFrame(void);
+/// 屏幕高度
 extern CGFloat ZJScreenHeight(void);
+/// 屏幕宽度
 extern CGFloat ZJScreenWidth(void);
+/// 状态栏高度（包含安全区域）
 extern CGFloat ZJStatusBarHeight(void);
+/// 状态栏高度
 extern CGFloat ZJNavBarHeight(void);
+/// 导航栏+状态栏（包含安全区域）
 extern CGFloat ZJNavStatusBarHeight(void);
+/// Tabar高度（包含安全区域）
 extern CGFloat ZJTabarBarHeight(void);
+/// 顶部和底部的安全区域总高度，44.0+34.0
 extern CGFloat ZJSafeAreaInsetsHeight(void);
+/// 顶部安全区域，24.0
 extern CGFloat ZJSafeAreaTop(void);
+/// 底部安全区域，34.0
 extern CGFloat ZJSafeAreaBottom(void);
+/// 屏幕参考机型类型
 extern ZJScreenSizeType ZJscreenSizeType(void);
 extern BOOL ZJIsIPad(void);
-/// 垂直高缩放比（注意设置scaleStandard）
+/// 垂直高缩放比，等同于ZJScaleV（注意设置scaleStandard）
 extern CGFloat ZJScale(void);
 /// 垂直（高）缩放比（注意设置scaleStandard）
 extern CGFloat ZJScaleV(void);
@@ -80,9 +91,9 @@ singleton_h();
 /// 缩放标准类型，默认ZJScreenSizeType8
 @property (nonatomic, assign) ZJScreenSizeType scaleStandard;
 /// 缩放基准长度（高度）
-@property (nonatomic, assign, readonly) CGFloat scaleStandardLength;
+@property (nonatomic, assign, readonly) CGFloat scaleStandardHeight;
 /// 缩放基准长度（宽度）
-@property (nonatomic, assign, readonly) CGFloat scaleStandardWidthLength;
+@property (nonatomic, assign, readonly) CGFloat scaleStandardWidth;
 
 /// 获取当前的KeyWindow窗口（主Window，不一定是最前面的）
 + (UIWindow * _Nullable)keyWindow;

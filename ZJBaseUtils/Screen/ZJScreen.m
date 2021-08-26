@@ -65,7 +65,7 @@ CGFloat ZJScale() {
     if (ZJIsIPad()) {
         return ZJScreenHeight()/667.0 + 0.5;
     } else {
-        return ZJScreenHeight()/ZJScreen.shared.scaleStandardLength;
+        return ZJScreenHeight()/ZJScreen.shared.scaleStandardHeight;
     }
 }
 
@@ -73,7 +73,7 @@ CGFloat ZJScaleV(void) {
     if (ZJIsIPad()) {
         return ZJScreenHeight()/667.0 + 0.5;
     } else {
-        return ZJScreenHeight()/ZJScreen.shared.scaleStandardLength;
+        return ZJScreenHeight()/ZJScreen.shared.scaleStandardHeight;
     }
 }
 
@@ -81,7 +81,7 @@ CGFloat ZJScaleH(void) {
     if (ZJIsIPad()) {
         return ZJScreenWidth()/375.0 + 0.5;
     } else {
-        return ZJScreenWidth()/ZJScreen.shared.scaleStandardWidthLength;
+        return ZJScreenWidth()/ZJScreen.shared.scaleStandardWidth;
     }
 }
 
@@ -100,8 +100,8 @@ singleton_m();
 
 - (void)initData
 {
-    _scaleStandardLength = 667.0;
-    _scaleStandardWidthLength = 375.0;
+    _scaleStandardHeight = 667.0;
+    _scaleStandardWidth = 375.0;
     
     _navBarHeight = 44.0;
     if (@available(iOS 13.0, *)) {
@@ -219,32 +219,32 @@ singleton_m();
     _scaleStandard = scaleStandard;
     switch (scaleStandard) {
         case ZJScreenSizeType4S:
-            _scaleStandardLength = 480.0;
-            _scaleStandardWidthLength = 320.0;
+            _scaleStandardHeight = 480.0;
+            _scaleStandardWidth = 320.0;
             break;
         case ZJScreenSizeType5S:
-            _scaleStandardLength = 568.0;
-            _scaleStandardWidthLength = 320.0;
+            _scaleStandardHeight = 568.0;
+            _scaleStandardWidth = 320.0;
             break;
         case ZJScreenSizeType8:
-            _scaleStandardLength = 667.0;
-            _scaleStandardWidthLength = 375.0;
+            _scaleStandardHeight = 667.0;
+            _scaleStandardWidth = 375.0;
             break;
         case ZJScreenSizeType8P:
-            _scaleStandardLength = 736.0;
-            _scaleStandardWidthLength = 414.0;
+            _scaleStandardHeight = 736.0;
+            _scaleStandardWidth = 414.0;
             break;
         case ZJScreenSizeTypeX:
-            _scaleStandardLength = 812.0;
-            _scaleStandardWidthLength = 375.0;
+            _scaleStandardHeight = 812.0;
+            _scaleStandardWidth = 375.0;
             break;
         case ZJScreenSizeTypeXr:
-            _scaleStandardLength = 896.0;
-            _scaleStandardWidthLength = 414.0;
+            _scaleStandardHeight = 896.0;
+            _scaleStandardWidth = 414.0;
             break;
         default:
-            _scaleStandardLength = 667.0;
-            _scaleStandardWidthLength = 375.0;
+            _scaleStandardHeight = 667.0;
+            _scaleStandardWidth = 375.0;
             break;
     }
     
@@ -253,9 +253,9 @@ singleton_m();
         kZJScaleV = self.screenHeight/667.0 + 0.5;
         kZJScaleH = self.screenWidth/375.0 + 0.5;
     } else {
-        kZJScale = self.screenHeight/self.scaleStandardLength;
-        kZJScaleV = self.screenHeight/self.scaleStandardLength;
-        kZJScaleH = self.screenWidth/self.scaleStandardWidthLength;
+        kZJScale = self.screenHeight/self.scaleStandardHeight;
+        kZJScaleV = self.screenHeight/self.scaleStandardHeight;
+        kZJScaleH = self.screenWidth/self.scaleStandardWidth;
     }
 }
 
