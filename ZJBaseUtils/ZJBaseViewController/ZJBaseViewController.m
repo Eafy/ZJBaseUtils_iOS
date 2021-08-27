@@ -117,7 +117,7 @@
             }
         }
         
-        [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
+        [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScaleH()]];
         [_navLeftBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navLeftBtn setBackgroundColor:[UIColor clearColor]];
         [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -141,7 +141,7 @@
     if (!_navLeftSubBtn) {
         _navLeftSubBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _navLeftSubBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight());
-        [_navLeftSubBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
+        [_navLeftSubBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScaleH()]];
         [_navLeftSubBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navLeftSubBtn setBackgroundColor:[UIColor clearColor]];
         [_navLeftSubBtn addTarget:self action:@selector(navLeftSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -166,7 +166,7 @@
     if (!_navRightBtn) {
         _navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _navRightBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + 20, ZJNavBarHeight());
-        [_navRightBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
+        [_navRightBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScaleH()]];
         [_navRightBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navRightBtn setBackgroundColor:[UIColor clearColor]];
         [_navRightBtn addTarget:self action:@selector(navRightBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -189,7 +189,7 @@
     if (!_navRightSubBtn) {
         _navRightSubBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _navRightSubBtn.frame = CGRectMake(0, 0, ZJNavBarHeight() + (ZJIsIPad()?30:0), ZJNavBarHeight());
-        [_navRightSubBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScale()]];
+        [_navRightSubBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScaleH()]];
         [_navRightSubBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navRightSubBtn setBackgroundColor:[UIColor clearColor]];
         [_navRightSubBtn addTarget:self action:@selector(navRightSubBtnAction) forControlEvents:UIControlEventTouchUpInside];

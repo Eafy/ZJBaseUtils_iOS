@@ -45,12 +45,10 @@ extern CGFloat ZJSafeAreaBottom(void);
 /// 屏幕参考机型类型
 extern ZJScreenSizeType ZJscreenSizeType(void);
 extern BOOL ZJIsIPad(void);
-/// 垂直高缩放比，等同于ZJScaleV（注意设置scaleStandard）
-extern CGFloat ZJScale(void);
-/// 垂直（高）缩放比（注意设置scaleStandard）
-extern CGFloat ZJScaleV(void);
-/// 水平（宽）缩放比（注意设置scaleStandard）
+/// 高度缩放比（注意设置scaleStandard）
 extern CGFloat ZJScaleH(void);
+/// 宽度缩放比（注意设置scaleStandard）
+extern CGFloat ZJScaleW(void);
 
 #ifndef kZJScreen
 #define kZJScreen
@@ -66,9 +64,8 @@ extern CGFloat ZJScaleH(void);
 #define kZJSafeAreaBottom ZJScreen.shared.safeAreaBottom
 #define kZJscreenSizeType ZJScreen.shared.screenSizeType
 #define kZJIsIPad ZJScreen.shared.isIPad
-extern CGFloat kZJScale;
-extern CGFloat kZJScaleV;
 extern CGFloat kZJScaleH;
+extern CGFloat kZJScaleW;
 #endif
 
 @interface ZJScreen : NSObject

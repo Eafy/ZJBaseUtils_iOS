@@ -8,9 +8,8 @@
 
 #import <ZJBaseUtils/ZJScreen.h>
 
-CGFloat kZJScale = 1.0;
-CGFloat kZJScaleV = 1.0;
 CGFloat kZJScaleH = 1.0;
+CGFloat kZJScaleW = 1.0;
 
 CGRect ZJScreenFrame() {
     return ZJScreen.shared.screenFrame;
@@ -61,23 +60,15 @@ BOOL ZJIsIPad() {
     return ZJScreen.shared.isIPad;
 }
 
-CGFloat ZJScale() {
-    if (ZJIsIPad()) {
-        return ZJScreenHeight()/667.0 + 0.5;
-    } else {
-        return ZJScreenHeight()/ZJScreen.shared.scaleStandardHeight;
-    }
-}
-
-CGFloat ZJScaleV(void) {
-    if (ZJIsIPad()) {
-        return ZJScreenHeight()/667.0 + 0.5;
-    } else {
-        return ZJScreenHeight()/ZJScreen.shared.scaleStandardHeight;
-    }
-}
-
 CGFloat ZJScaleH(void) {
+    if (ZJIsIPad()) {
+        return ZJScreenHeight()/667.0 + 0.5;
+    } else {
+        return ZJScreenHeight()/ZJScreen.shared.scaleStandardHeight;
+    }
+}
+
+CGFloat ZJScaleW(void) {
     if (ZJIsIPad()) {
         return ZJScreenWidth()/375.0 + 0.5;
     } else {
@@ -252,13 +243,11 @@ singleton_m();
     }
     
     if (_isIPad) {
-        kZJScale = self.screenHeight/667.0 + 0.5;
-        kZJScaleV = self.screenHeight/667.0 + 0.5;
-        kZJScaleH = self.screenWidth/375.0 + 0.5;
+        kZJScaleH = self.screenHeight/667.0 + 0.5;
+        kZJScaleW = self.screenWidth/375.0 + 0.5;
     } else {
-        kZJScale = self.screenHeight/self.scaleStandardHeight;
-        kZJScaleV = self.screenHeight/self.scaleStandardHeight;
-        kZJScaleH = self.screenWidth/self.scaleStandardWidth;
+        kZJScaleH = self.screenHeight/self.scaleStandardHeight;
+        kZJScaleW = self.screenWidth/self.scaleStandardWidth;
     }
 }
 
