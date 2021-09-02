@@ -19,7 +19,7 @@
         result = [[self dataUsingEncoding:NSUTF8StringEncoding] zj_aesDesWithType:type key:key ccOperation:operation options:options iv:iv];
         result = [result base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
     } else {
-        result = [[self dataUsingEncoding:NSUTF8StringEncoding] zj_aesDesWithType:type key:key ccOperation:kCCDecrypt options:options iv:iv];
+        result = [[[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters] zj_aesDesWithType:type key:key ccOperation:kCCDecrypt options:options iv:iv];
     }
     
     if (result) {
