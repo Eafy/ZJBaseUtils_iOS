@@ -267,7 +267,7 @@ singleton_m();
     return [self firstFrameWithVideoAsset:asset];
 }
 
-- (void)saveImage:(UIImage *_Nonnull)image toAlbum:(NSString *_Nullable)album handler:(ZJAlbumSaveHandler _Nullable)handler
+- (void)saveImage:(UIImage *_Nonnull)image toAlbum:(NSString *_Nonnull)album handler:(ZJAlbumSaveHandler _Nullable)handler
 {
     __block NSString *localIdentifier = nil;
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
@@ -319,7 +319,7 @@ singleton_m();
     }
 }
 
-- (void)saveVideo:(NSString *_Nonnull)filePath toAlbum:(NSString *_Nullable)album handler:(ZJAlbumSaveHandler _Nullable)handler
+- (void)saveVideo:(NSString *_Nonnull)filePath toAlbum:(NSString *_Nonnull)album handler:(ZJAlbumSaveHandler _Nullable)handler
 {
     __block NSString *localIdentifier = nil;
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{

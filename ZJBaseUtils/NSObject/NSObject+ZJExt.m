@@ -45,7 +45,6 @@
     [[self class] zj_replaceMethod:oldMethod newMethod:newMethod];
 }
 
-
 #pragma mark - StaticAPI
 
 + (Class)findClass:(NSString *)className

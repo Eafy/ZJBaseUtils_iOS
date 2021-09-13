@@ -69,7 +69,7 @@ singleton_h();
 /// @param image 需要写入的图片
 /// @param album 相册名称，如果相册不存在，则新建相册
 /// @param handler 回调
-- (void)saveImage:(UIImage *_Nonnull)image toAlbum:(NSString *_Nullable)album handler:(ZJAlbumSaveHandler _Nullable)handler;
+- (void)saveImage:(UIImage *_Nonnull)image toAlbum:(NSString *_Nonnull)album handler:(ZJAlbumSaveHandler _Nullable)handler;
 
 /// 读取系统相册图片
 /// @param url localIdentifier或assets-library
@@ -80,7 +80,7 @@ singleton_h();
 /// @param filePath 沙盒视频文件路径
 /// @param album 相册名称
 /// @param handler 回调
-- (void)saveVideo:(NSString *_Nonnull)filePath toAlbum:(NSString *_Nullable)album handler:(ZJAlbumSaveHandler _Nullable)handler;
+- (void)saveVideo:(NSString *_Nonnull)filePath toAlbum:(NSString *_Nonnull)album handler:(ZJAlbumSaveHandler _Nullable)handler;
 
 /// 读取系统相册视频文件缩略图及时长
 /// @param url localIdentifier或assets-library

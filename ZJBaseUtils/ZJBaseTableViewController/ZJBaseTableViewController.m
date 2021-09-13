@@ -60,6 +60,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    if (self.isHideNavBar) {
+        [self.navigationController setNavigationBarHidden:!self.isHideNavBar animated:YES];
+    }
     self.isVisible = NO;
     self.isFirstDidLoad = NO;
 }
@@ -499,7 +502,7 @@
     [self releaseCtlData];
     
     if (!self.isLeftSideslipBack) {
-        if (self.navigationController.viewControllers.count == 1) {
+        if (self.navigationController.viewControllers.count == 1 || !self.navigationController) {
             [self dismissViewControllerAnimated:YES completion:self.returnAfterOption];
             _returnAfterOption = nil;
         } else {
