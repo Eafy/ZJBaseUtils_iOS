@@ -54,7 +54,7 @@ UIColor *ZJColorRandom() {
     range.location = 0;
     range.length = 2;
     if (cString.length == 8) {
-        //r
+        //r 0x11111111
         range.location = isAHex ? 6 : 0;
         NSString *rString = [cString substringWithRange:range];
         //g

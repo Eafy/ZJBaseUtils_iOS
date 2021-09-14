@@ -22,6 +22,7 @@
 @property (nonatomic,assign) BOOL isLeftSideslipBack;     //是左侧边栏右滑返回
 @property (nonatomic,strong) UIImageView *backgroundImgView;
 @property (nonatomic,assign) BOOL isFirstDidLoad;
+@property (nonatomic,assign) UIInterfaceOrientation inInterfaceOrientation;
 
 @property (nonatomic,strong) NSMutableArray * _Nullable datasArray;      //TableView数据源
 
@@ -734,6 +735,31 @@
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     return [ZJBaseTableView tableView:tableView titleForFooterInSection:section datasArray:self.datasArray];
+}
+
+#pragma mark - 强制横竖屏切换
+
+/// 横竖屏切换
+/// #需要在- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window接口返回指定方向
+/// @param orientation 方向
+- (void)interfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        self.inInterfaceOrientation = orientation;
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        
+        [invocation setArgument:&orientation atIndex:2];    //从2开始是因为0 1两个参数已经被selector和target占用
+        [invocation invoke];
+    }
+}
+
+- (UIInterfaceOrientation)interfaceOrientation
+{
+    return self.inInterfaceOrientation;
 }
 
 @end

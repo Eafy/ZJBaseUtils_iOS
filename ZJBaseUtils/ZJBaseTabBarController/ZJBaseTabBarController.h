@@ -125,6 +125,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param index  索引号
 - (void)showBadgeNumberValue:(NSString *)badgeValue atIndex:(NSInteger)index;
 
+#pragma mark - 强制横竖屏切换
+
+/// 横竖屏切换
+/// #需要在- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window接口返回指定方向
+/// @param orientation 方向
+- (void)interfaceOrientation:(UIInterfaceOrientation)orientation;
+
+/// 屏幕方向（当设置之后才生效）
+- (UIInterfaceOrientation)interfaceOrientation;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
