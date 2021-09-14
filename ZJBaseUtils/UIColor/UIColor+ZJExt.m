@@ -42,8 +42,8 @@ UIColor *ZJColorRandom() {
     //去除空格
     NSString *cString = [[hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     //把开头截取
-    if ([cString hasPrefix:@"0x"]) cString = [cString substringFromIndex:2];
-    if ([cString hasPrefix:@"#"]) cString = [cString substringFromIndex:1];
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+    else if ([cString hasPrefix:@"#"]) cString = [cString substringFromIndex:1];
     //6位或8位(带透明度)
     if ([cString length] < 6) {
         return nil;
@@ -54,8 +54,9 @@ UIColor *ZJColorRandom() {
     range.location = 0;
     range.length = 2;
     if (cString.length == 8) {
-        //r 0x11111111
-        range.location = isAHex ? 6 : 0;
+        
+        //r
+        range.location = 0;
         NSString *rString = [cString substringWithRange:range];
         //g
         range.location = 2;
@@ -64,8 +65,18 @@ UIColor *ZJColorRandom() {
         range.location = 4;
         NSString *bString = [cString substringWithRange:range];
         //a
-        range.location = isAHex ? 0 : 6;
+        range.location = 6;
         NSString *aString = [cString substringWithRange:range];
+        if (isAHex) {
+            range.location = 0;
+            aString = [cString substringWithRange:range];
+            range.location = 2;
+            rString = [cString substringWithRange:range];
+            range.location = 4;
+            gString = [cString substringWithRange:range];
+            range.location = 6;
+            bString = [cString substringWithRange:range];
+        }
 
         [[NSScanner scannerWithString:aString] scanHexInt:&a];
         [[NSScanner scannerWithString:rString] scanHexInt:&r];
