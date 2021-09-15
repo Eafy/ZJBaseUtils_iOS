@@ -25,6 +25,7 @@
         self.width = 6;
         self.bgColor = ZJColorFromRGB(0xE8ECF1);
         self.color = ZJColorFromRGB(0x3D7DFF);
+        self.isAutoUpdateLB = YES;
     }
     
     return self;
@@ -142,7 +143,7 @@
     }
     _progress = progress;
     [self updateBezierPath];
-    if (self.isShowProgressLabel) {
+    if (self.isShowProgressLabel && self.isAutoUpdateLB) {
         self.progressLB.text = [NSString stringWithFormat:@"%d%%", (int)(progress * 100)];
     }
 }
