@@ -122,7 +122,7 @@
 		0C84836425D279C700B75FD2 /* ZJAvatarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836225D279C700B75FD2 /* ZJAvatarView.h */; };
 		0C84836525D279C700B75FD2 /* ZJAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84836325D279C700B75FD2 /* ZJAvatarView.m */; };
 		0C84836B25D279CF00B75FD2 /* ZJProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84836925D279CF00B75FD2 /* ZJProgressBar.m */; };
-		0C84836C25D279CF00B75FD2 /* ZJProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836A25D279CF00B75FD2 /* ZJProgressBar.h */; };
+		0C84836C25D279CF00B75FD2 /* ZJProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836A25D279CF00B75FD2 /* ZJProgressBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84837125D27A5700B75FD2 /* ZJDatePickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836F25D27A5700B75FD2 /* ZJDatePickerViewModel.h */; };
 		0C84837225D27A5700B75FD2 /* ZJDatePickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84837025D27A5700B75FD2 /* ZJDatePickerViewModel.m */; };
 		0C91FF99256BCB5600F30981 /* ZJPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C91FF97256BCB5600F30981 /* ZJPickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1162,6 +1162,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C84836C25D279CF00B75FD2 /* ZJProgressBar.h in Headers */,
 				0C0034722634F92F00C5A04B /* CLLocation+ZJExt.h in Headers */,
 				0C5E7BE02580E25B0056CFCB /* UIView+ZJShadow.h in Headers */,
 				0C268846257FA51E00171010 /* ZJSlider.h in Headers */,
@@ -1223,7 +1224,6 @@
 				0C98FDE0257A30CD005C9DB4 /* ZJNetRoute.hpp in Headers */,
 				0C50B880251E4F0C0032CB2F /* ZJSettingSwitchItem.h in Headers */,
 				0CCF75CC24EC075600794878 /* UIView+ZJGesture.h in Headers */,
-				0C84836C25D279CF00B75FD2 /* ZJProgressBar.h in Headers */,
 				0C50B886251E4F0C0032CB2F /* ZJSettingCustomViewItem.h in Headers */,
 				0C95697024E2D96A00C9A6C5 /* NSDate+ZJExt.h in Headers */,
 				0C68204C26032C3C0048DCDB /* ZJNotifyHUD.h in Headers */,

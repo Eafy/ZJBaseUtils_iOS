@@ -15,10 +15,19 @@ typedef NS_ENUM(NSUInteger, ZJProgressBarStyle) {
     ZJProgressBarHorizontal //水平
 };
 
+typedef NS_ENUM(NSUInteger, ZJProgressBarAnimation) {
+    ZJProgressBarAnimationClockwise,     //顺时针
+    ZJProgressBarAnimationCounterClockwise  //逆时针
+};
+
 @interface ZJProgressBar : UIView
 
 /// 样式
 @property (nonatomic,assign) ZJProgressBarStyle style;
+/// 动画样式
+@property (nonatomic,assign) ZJProgressBarAnimation animationStyle;
+/// 圆形进度条起始位置（弧度，相对顶点位置）
+@property (nonatomic,assign) CGFloat startAngle;
 
 /// 进度条颜色，默认0x3D7DFF
 @property (nonatomic,strong) UIColor *color;
@@ -27,7 +36,7 @@ typedef NS_ENUM(NSUInteger, ZJProgressBarStyle) {
 /// 进度值(0~1.0)
 @property (nonatomic,assign) CGFloat progress;
 /// 进度条宽度，默认6
-@property (nonatomic,assign) CGFloat width;
+@property (nonatomic,assign) CGFloat progressWidth;
 /// 是否显示进度标签(默认隐藏)
 @property (nonatomic,assign) BOOL isShowProgressLabel;
 /// 是否自动更新标签，默认YES，仅当已显示才更新
