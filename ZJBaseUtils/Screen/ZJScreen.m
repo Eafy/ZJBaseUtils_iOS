@@ -166,7 +166,7 @@ singleton_m();
     if (_safeAreaTop == 0) {
         if (@available(iOS 11.0, *)) {
             UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
-            if (safeAreaInsets.top > 0) {
+            if (safeAreaInsets.top > 20) {
                 _safeAreaTop = safeAreaInsets.top - 20.0f;
             }
         }
