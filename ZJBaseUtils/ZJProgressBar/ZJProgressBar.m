@@ -26,6 +26,7 @@
         self.bgColor = ZJColorFromRGB(0xE8ECF1);
         self.color = ZJColorFromRGB(0x3D7DFF);
         self.isAutoUpdateLB = YES;
+        self.isClockwise = YES;
         self.startAngle = 0;
     }
     
@@ -96,11 +97,10 @@
         }
         
         UIBezierPath *bezierPath = nil;
-        if (self.animationStyle == ZJProgressBarAnimationCounterClockwise) {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2)*self.progress + self.startAngle clockwise:NO];
-            self.frontFillLayer.path = bezierPath.CGPath;
-        } else {
+        if (self.isClockwise) {
             bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:(self.startAngle - M_PI_2) endAngle:4*M_PI_2*self.progress - M_PI_2 + self.startAngle clockwise:YES];
+        } else {
+            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2)*self.progress + self.startAngle clockwise:NO];
         }
         self.frontFillLayer.path = bezierPath.CGPath;
     } else if (self.style == ZJProgressBarHorizontal) {
@@ -111,10 +111,10 @@
         
         CGFloat width = self.zj_width * self.progress;
         UIBezierPath *bezierPath = nil;
-        if (self.animationStyle == ZJProgressBarAnimationCounterClockwise) {
-            bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.zj_width - width, 0, width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
-        } else {
+        if (self.isClockwise) {
             bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
+        } else {
+            bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.zj_width - width, 0, width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
         }
         self.frontFillLayer.path = bezierPath.CGPath;
     }

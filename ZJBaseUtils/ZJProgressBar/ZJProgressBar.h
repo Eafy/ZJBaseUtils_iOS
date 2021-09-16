@@ -15,17 +15,12 @@ typedef NS_ENUM(NSUInteger, ZJProgressBarStyle) {
     ZJProgressBarHorizontal //水平
 };
 
-typedef NS_ENUM(NSUInteger, ZJProgressBarAnimation) {
-    ZJProgressBarAnimationClockwise,     //顺时针
-    ZJProgressBarAnimationCounterClockwise  //逆时针
-};
-
 @interface ZJProgressBar : UIView
 
 /// 样式
 @property (nonatomic,assign) ZJProgressBarStyle style;
-/// 动画样式
-@property (nonatomic,assign) ZJProgressBarAnimation animationStyle;
+/// 是否是顺时针，默认YES
+@property (nonatomic,assign) BOOL isClockwise;
 /// 圆形进度条起始位置（弧度，相对顶点位置）
 @property (nonatomic,assign) CGFloat startAngle;
 
