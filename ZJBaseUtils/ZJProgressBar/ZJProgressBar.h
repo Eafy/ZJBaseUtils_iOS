@@ -23,6 +23,8 @@ typedef NS_ENUM(NSUInteger, ZJProgressBarStyle) {
 @property (nonatomic,assign) BOOL isClockwise;
 /// 圆形进度条起始位置（弧度，相对顶点位置）
 @property (nonatomic,assign) CGFloat startAngle;
+/// 动画时长，默认0.1秒（0表示无动画）
+@property (nonatomic,assign) CGFloat animationDuration;
 
 /// 进度条颜色，默认0x3D7DFF
 @property (nonatomic,strong) UIColor *color;
@@ -32,6 +34,8 @@ typedef NS_ENUM(NSUInteger, ZJProgressBarStyle) {
 @property (nonatomic,assign) CGFloat progress;
 /// 进度条宽度，默认6
 @property (nonatomic,assign) CGFloat progressWidth;
+
+
 /// 是否显示进度标签(默认隐藏)
 @property (nonatomic,assign) BOOL isShowProgressLabel;
 /// 是否自动更新标签，默认YES，仅当已显示才更新
