@@ -29,6 +29,20 @@
 @implementation ZJBaseTabBarController
 @synthesize config = _config;
 
+- (instancetype)init {
+    if (self = [super init]) {
+        if (@available(iOS 15.0, *)) {
+            UITabBarAppearance *bar = [[UITabBarAppearance alloc] init];
+            bar.backgroundEffect = nil;
+            bar.shadowColor = UIColor.clearColor;
+            bar.backgroundColor = UIColor.whiteColor;
+            self.tabBar.scrollEdgeAppearance = bar;
+            self.tabBar.standardAppearance = bar;
+        }
+    }
+    return self;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

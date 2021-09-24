@@ -53,12 +53,27 @@
     }
 }
 
+#pragma mark - iOS 15适配
+
+- (void)adaptToIOS15
+{
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        appearance.backgroundColor = [UIColor whiteColor];
+        appearance.shadowColor = [UIColor clearColor];
+        appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleRegular];
+        self.navigationBar.scrollEdgeAppearance = appearance;
+        self.navigationBar.standardAppearance = appearance;
+    }
+}
+
 #pragma mark -
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
     if (self = [super initWithRootViewController:rootViewController]) {
         self.leftSlideCustomEdge = ZJScreenWidth()/3.0;
+        [self adaptToIOS15];
     }
     return self;
 }
@@ -67,6 +82,7 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.leftSlideCustomEdge = ZJScreenWidth()/3.0;
+        [self adaptToIOS15];
     }
     return self;
 }

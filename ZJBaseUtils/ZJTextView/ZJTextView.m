@@ -29,10 +29,10 @@
 - (void)initDefaultData {
     _placeLeftSpace = 8.0;
     _placeTopSpace = 8.0;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(zjTextViewTextDidChange:) name:UITextViewTextDidChangeNotification object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(zj_TextViewTextDidChange:) name:UITextViewTextDidChangeNotification object:self];
 }
 
-- (void)zjTextViewTextDidChange:(NSNotification *)noti {
+- (void)zj_TextViewTextDidChange:(NSNotification *)noti {
     if (noti.object == self) {
         [self setNeedsDisplay];
     }

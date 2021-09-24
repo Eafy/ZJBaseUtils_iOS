@@ -559,6 +559,17 @@
 
 #pragma mark - ZJBaseTableViewController特有接口
 
+#pragma mark - iOS 15适配
+
+- (void)adaptToIOS15
+{
+    if (@available(iOS 15.0, *)) {
+        self.tableView.sectionHeaderTopPadding = 0;
+    }
+}
+
+#pragma mark -
+
 - (instancetype)init
 {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -587,6 +598,7 @@
 
 - (void)initDefaultData
 {
+    [self adaptToIOS15];
 }
 
 - (ZJBaseTVPrivateData *)privateData
