@@ -14,7 +14,6 @@
 
 @property (nonatomic,strong) CAShapeLayer *backGroundLayer;         //背景图层
 @property (nonatomic,strong) CAShapeLayer *frontFillLayer;          //用来填充的图层
-
 @end
 
 @implementation ZJProgressBar
@@ -22,6 +21,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
+        self.progressLB.text = @"0%";
         self.progressWidth = 6;
         self.bgColor = ZJColorFromRGB(0xE8ECF1);
         self.color = ZJColorFromRGB(0x3D7DFF);
@@ -38,8 +38,11 @@
     if (!_backGroundLayer) {
         _backGroundLayer = [CAShapeLayer layer];
         _backGroundLayer.lineCap = kCALineCapRound;
-        _backGroundLayer.fillColor = nil;
+        _backGroundLayer.fillColor = [UIColor clearColor].CGColor;
         _backGroundLayer.path = nil;
+        _backGroundLayer.frame = self.bounds;
+        _backGroundLayer.lineWidth = self.progressWidth;
+        _backGroundLayer.strokeColor = self.bgColor.CGColor;
         [self.layer insertSublayer:_backGroundLayer atIndex:0];
     }
     return _backGroundLayer;
@@ -49,8 +52,11 @@
     if (!_frontFillLayer) {
         _frontFillLayer = [CAShapeLayer layer];
         _frontFillLayer.lineCap = kCALineCapRound;
-        _frontFillLayer.fillColor = nil;
+        _frontFillLayer.fillColor = [UIColor clearColor].CGColor;
         _frontFillLayer.path = nil;
+        _frontFillLayer.frame = self.bounds;
+        _frontFillLayer.lineWidth = self.progressWidth;
+        _frontFillLayer.strokeColor = self.color.CGColor;
         [self.layer addSublayer:_frontFillLayer];
     }
     return _frontFillLayer;
@@ -93,7 +99,7 @@
 - (void)updateBezierPath {
     UIBezierPath *bezierPath = nil;
     if (self.style == ZJProgressBarRound) {
-        if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.progressWidth) {
+        if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
             UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:0 endAngle:M_PI*2 clockwise:YES];
             self.backGroundLayer.path = bezierPath.CGPath;
         }
@@ -104,7 +110,7 @@
             bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2)*self.progress + self.startAngle clockwise:NO];
         }
     } else if (self.style == ZJProgressBarHorizontal) {
-        if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.progressWidth) {
+        if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
             UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.zj_width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
             self.backGroundLayer.path = bezierPath.CGPath;
         }
@@ -119,15 +125,15 @@
     
     if (!bezierPath) return;
     self.frontFillLayer.path = bezierPath.CGPath;
-    if (self.animationDuration > 0) {
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        animation.fromValue = [NSNumber numberWithFloat:self.progress];
-        animation.toValue = [NSNumber numberWithFloat:1];
+    if (self.animationDuration > 0 && self.progress > 0) {
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
+        animation.fromValue = (__bridge id _Nullable)(self.frontFillLayer.path);
+        animation.toValue = (__bridge id _Nullable)(bezierPath.CGPath);
         animation.duration = self.animationDuration;
         animation.repeatCount = 1;
-        animation.removedOnCompletion = NO;
         animation.fillMode = kCAFillModeForwards;
-        [self.frontFillLayer addAnimation:animation forKey:@"movingAnimation"];
+        animation.removedOnCompletion = NO;
+        [self.frontFillLayer addAnimation:animation forKey:@"strokeEndAnimation"];
     }
 }
 
