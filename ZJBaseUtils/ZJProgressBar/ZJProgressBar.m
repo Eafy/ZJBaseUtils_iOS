@@ -90,7 +90,6 @@
     }
     
     self.frontFillLayer.path = [self getNewBezierPath].CGPath;
-    self.frontFillLayer.strokeEnd = self.progress;
     if (self.isShowProgressLabel) {
         self.progressLB.zj_centerX = self.zj_width/2;
         if (self.style == ZJProgressBarRound) {
@@ -102,6 +101,7 @@
 }
 
 - (UIBezierPath *)getNewBezierPath {
+    CGFloat progress = self.animationDuration <= 0 ? self.progress : 1.0;
     UIBezierPath *bezierPath = nil;
     if (self.style == ZJProgressBarRound) {
         if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
@@ -110,38 +110,9 @@
         }
         
         if (self.isClockwise) {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:(self.startAngle - M_PI_2) endAngle:4*M_PI_2 - M_PI_2 + self.startAngle clockwise:YES];
+            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:(self.startAngle - M_PI_2) endAngle:4*M_PI_2*progress - M_PI_2 + self.startAngle clockwise:YES];
         } else {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2) + self.startAngle clockwise:NO];
-        }
-    } else if (self.style == ZJProgressBarHorizontal) {
-        if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
-            UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.zj_width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
-            self.backGroundLayer.path = bezierPath.CGPath;
-        }
-        
-        CGFloat width = self.zj_width * self.progress;
-        if (self.isClockwise) {
-            bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
-        } else {
-            bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.zj_width - width, 0, width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
-        }
-    }
-    return bezierPath;
-}
-
-- (void)updateBezierPath {
-    UIBezierPath *bezierPath = nil;
-    if (self.style == ZJProgressBarRound) {
-        if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
-            UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:0 endAngle:M_PI*2 clockwise:YES];
-            self.backGroundLayer.path = bezierPath.CGPath;
-        }
-        
-        if (self.isClockwise) {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:(self.startAngle - M_PI_2) endAngle:4*M_PI_2*self.progress - M_PI_2 + self.startAngle clockwise:YES];
-        } else {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2)*self.progress + self.startAngle clockwise:NO];
+            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2)*progress + self.startAngle clockwise:NO];
         }
     } else if (self.style == ZJProgressBarHorizontal) {
         if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
@@ -157,13 +128,12 @@
         }
     }
     
-    if (!bezierPath) return;
-    self.frontFillLayer.path = bezierPath.CGPath;
+    return bezierPath;
 }
 
 - (void)updatePathAnimation {
     if (self.animationDuration <= 0) {
-        [self updateBezierPath];
+        self.frontFillLayer.path = [self getNewBezierPath].CGPath;
         return;
     }
     
