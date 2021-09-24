@@ -28,7 +28,7 @@
 - (void)adaptToIOS15
 {
     if (@available(iOS 15.0, *)) {
-//        self.sectionHeaderTopPadding = 0;
+        self.sectionHeaderTopPadding = 0;
     }
 }
 
