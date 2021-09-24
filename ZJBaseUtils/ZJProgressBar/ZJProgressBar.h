@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, ZJProgressBarStyle) {
 @property (nonatomic,assign) BOOL isClockwise;
 /// 圆形进度条起始位置（弧度，相对顶点位置）
 @property (nonatomic,assign) CGFloat startAngle;
-/// 动画时长，默认0.1秒
+/// 动画时长，默认0.1秒(0表示无动画)
 @property (nonatomic,assign) CGFloat animationDuration;
 
 /// 进度条颜色，默认0x3D7DFF
