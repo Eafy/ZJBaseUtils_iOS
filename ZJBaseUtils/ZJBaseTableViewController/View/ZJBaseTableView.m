@@ -23,6 +23,17 @@
 
 @implementation ZJBaseTableView
 
+#pragma mark - iOS 15适配
+
+- (void)adaptToIOS15
+{
+    if (@available(iOS 15.0, *)) {
+        self.sectionHeaderTopPadding = 0;
+    }
+}
+
+#pragma mark -
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -31,6 +42,7 @@
             self.estimatedSectionHeaderHeight = 0;
             self.estimatedSectionFooterHeight = 0;
         }
+        [self adaptToIOS15];
     }
     
     return self;
@@ -43,6 +55,7 @@
             self.estimatedSectionHeaderHeight = 0;
             self.estimatedSectionFooterHeight = 0;
         }
+        [self adaptToIOS15];
     }
     
     return self;
@@ -50,14 +63,14 @@
 
 - (instancetype)initWithFrame:(CGRect)frame parentViewController:(UIViewController *)parentViewCtl
 {
-    self = [super initWithFrame:frame style:UITableViewStyleGrouped];
-    if (self) {
+    if (self = [super initWithFrame:frame style:UITableViewStyleGrouped]) {
         self.currentViewController = parentViewCtl;
         if (@available(iOS 11.0, *)) {
             self.estimatedRowHeight = 0;
             self.estimatedSectionHeaderHeight = 0;
             self.estimatedSectionFooterHeight = 0;
         }
+        [self adaptToIOS15];
     }
     
     return self;
