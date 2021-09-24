@@ -1,5 +1,5 @@
 //
-//  ZJProgressBar.m
+//  ZJProgressBar.h
 //  ZJBaseUtils
 //
 //  Created by eafy on 2021/1/29.
@@ -14,6 +14,8 @@
 
 @property (nonatomic,strong) CAShapeLayer *backGroundLayer;         //背景图层
 @property (nonatomic,strong) CAShapeLayer *frontFillLayer;          //用来填充的图层
+@property (nonatomic,assign) CGFloat oldProgress;
+
 @end
 
 @implementation ZJProgressBar
@@ -21,7 +23,6 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
-        self.progressLB.text = @"0%";
         self.progressWidth = 6;
         self.bgColor = ZJColorFromRGB(0xE8ECF1);
         self.color = ZJColorFromRGB(0x3D7DFF);
@@ -37,6 +38,7 @@
 - (CAShapeLayer *)backGroundLayer {
     if (!_backGroundLayer) {
         _backGroundLayer = [CAShapeLayer layer];
+        _backGroundLayer.backgroundColor = [UIColor clearColor].CGColor;
         _backGroundLayer.lineCap = kCALineCapRound;
         _backGroundLayer.fillColor = [UIColor clearColor].CGColor;
         _backGroundLayer.path = nil;
@@ -51,6 +53,7 @@
 - (CAShapeLayer *)frontFillLayer {
     if (!_frontFillLayer) {
         _frontFillLayer = [CAShapeLayer layer];
+        _frontFillLayer.backgroundColor = [UIColor clearColor].CGColor;
         _frontFillLayer.lineCap = kCALineCapRound;
         _frontFillLayer.fillColor = [UIColor clearColor].CGColor;
         _frontFillLayer.path = nil;
@@ -69,6 +72,7 @@
         _progressLB.textColor = ZJColorFromRGB(0x5A6482);
         _progressLB.font = [UIFont boldSystemFontOfSize:16];
         _progressLB.textAlignment = NSTextAlignmentCenter;
+        _progressLB.text = @"0%";
 //        [_progressLB sizeToFit];
     }
     return _progressLB;
@@ -85,7 +89,8 @@
         self.frontFillLayer.frame = self.backGroundLayer.frame;
     }
     
-    [self updateBezierPath];
+    self.frontFillLayer.path = [self getNewBezierPath].CGPath;
+    self.frontFillLayer.strokeEnd = self.progress;
     if (self.isShowProgressLabel) {
         self.progressLB.zj_centerX = self.zj_width/2;
         if (self.style == ZJProgressBarRound) {
@@ -96,7 +101,7 @@
     }
 }
 
-- (void)updateBezierPath {
+- (UIBezierPath *)getNewBezierPath {
     UIBezierPath *bezierPath = nil;
     if (self.style == ZJProgressBarRound) {
         if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
@@ -105,9 +110,9 @@
         }
         
         if (self.isClockwise) {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:(self.startAngle - M_PI_2) endAngle:4*M_PI_2*self.progress - M_PI_2 + self.startAngle clockwise:YES];
+            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:(self.startAngle - M_PI_2) endAngle:4*M_PI_2 - M_PI_2 + self.startAngle clockwise:YES];
         } else {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2)*self.progress + self.startAngle clockwise:NO];
+            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2) + self.startAngle clockwise:NO];
         }
     } else if (self.style == ZJProgressBarHorizontal) {
         if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
@@ -122,45 +127,45 @@
             bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.zj_width - width, 0, width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
         }
     }
-    
-    if (!bezierPath) return;
-    self.frontFillLayer.path = bezierPath.CGPath;
-    if (self.animationDuration > 0 && self.progress > 0) {
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
-        animation.fromValue = (__bridge id _Nullable)(self.frontFillLayer.path);
-        animation.toValue = (__bridge id _Nullable)(bezierPath.CGPath);
-        animation.duration = self.animationDuration;
-        animation.repeatCount = 1;
-        animation.fillMode = kCAFillModeForwards;
-        animation.removedOnCompletion = NO;
-        [self.frontFillLayer addAnimation:animation forKey:@"strokeEndAnimation"];
+    return bezierPath;
+}
+
+- (void)updatePathAnimation {
+    if (self.style == ZJProgressBarRound) {
+        CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+        pathAnimation.duration = self.animationDuration;
+        pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        pathAnimation.fromValue = [NSNumber numberWithFloat:self.oldProgress];
+        pathAnimation.toValue = [NSNumber numberWithFloat:self.progress];
+        pathAnimation.fillMode = kCAFillModeForwards;
+        pathAnimation.removedOnCompletion = NO;
+        
+        [self.frontFillLayer addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
+    } else {
+        [self setNeedsLayout];
     }
+    self.oldProgress = self.progress;
 }
 
 - (void)setStyle:(ZJProgressBarStyle)style {
     _style = style;
-    self.backGroundLayer.path = nil;
     [self setNeedsLayout];
 }
 
 - (void)setColor:(UIColor *)color {
     _color = color;
     self.frontFillLayer.strokeColor = color.CGColor;
-    [self updateBezierPath];
 }
 
 - (void)setBgColor:(UIColor *)bgColor {
     _bgColor = bgColor;
     self.backGroundLayer.strokeColor = bgColor.CGColor;
-    self.backGroundLayer.path = nil;
-    [self updateBezierPath];
 }
 
 - (void)setProgressWidth:(CGFloat)progressWidth {
     _progressWidth = progressWidth;
     self.backGroundLayer.lineWidth = progressWidth;
     self.frontFillLayer.lineWidth = progressWidth;
-    self.backGroundLayer.path = nil;
     [self setNeedsLayout];
 }
 
@@ -171,7 +176,7 @@
         progress = 1.0;
     }
     _progress = progress;
-    [self updateBezierPath];
+    [self updatePathAnimation];
     if (self.isShowProgressLabel && self.isAutoUpdateLB) {
         self.progressLB.text = [NSString stringWithFormat:@"%d%%", (int)(progress * 100)];
     }
