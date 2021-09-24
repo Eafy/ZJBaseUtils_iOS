@@ -91,7 +91,7 @@
         self.frontFillLayer.cornerRadius = self.progressWidth/2;
         self.frontFillLayer.backgroundColor = self.color.CGColor;
         if (self.progress == 0) {
-            self.frontFillLayer.frame = CGRectMake(0, self.backGroundLayer.frame.origin.y, 0, self.progressWidth);
+            self.frontFillLayer.frame = CGRectMake(self.isClockwise ? 0 : self.backGroundLayer.frame.size.width, self.backGroundLayer.frame.origin.y, 0, self.progressWidth);
         }
     }
     
@@ -144,10 +144,10 @@
         CGFloat width = self.backGroundLayer.bounds.size.width * self.progress;
         if (self.animationDuration > 0) {
             [UIView animateWithDuration:self.animationDuration animations:^{
-                self.frontFillLayer.frame = CGRectMake(0, self.backGroundLayer.frame.origin.y, width, self.progressWidth);
+                self.frontFillLayer.frame = CGRectMake(self.isClockwise ? 0 : self.backGroundLayer.frame.size.width - width, self.backGroundLayer.frame.origin.y, width, self.progressWidth);
             }];
         } else {
-            self.frontFillLayer.frame = CGRectMake(0, self.backGroundLayer.frame.origin.y, width, self.progressWidth);
+            self.frontFillLayer.frame = CGRectMake(self.isClockwise ? 0 : self.backGroundLayer.frame.size.width - width, self.backGroundLayer.frame.origin.y, width, self.progressWidth);
         }
     }
     self.oldProgress = self.progress;

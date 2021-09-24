@@ -564,7 +564,7 @@
 - (void)adaptToIOS15
 {
     if (@available(iOS 15.0, *)) {
-        self.tableView.sectionHeaderTopPadding = 0;
+//        self.tableView.sectionHeaderTopPadding = 0;
     }
 }
 

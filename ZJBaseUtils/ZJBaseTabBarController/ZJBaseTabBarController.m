@@ -36,7 +36,7 @@
             bar.backgroundEffect = nil;
             bar.shadowColor = UIColor.clearColor;
             bar.backgroundColor = UIColor.whiteColor;
-            self.tabBar.scrollEdgeAppearance = bar;
+//            self.tabBar.scrollEdgeAppearance = bar;
             self.tabBar.standardAppearance = bar;
         }
     }
