@@ -74,7 +74,6 @@
         _progressLB.font = [UIFont boldSystemFontOfSize:16];
         _progressLB.textAlignment = NSTextAlignmentCenter;
         _progressLB.text = @"0%";
-//        [_progressLB sizeToFit];
     }
     return _progressLB;
 }
@@ -108,7 +107,6 @@
 }
 
 - (UIBezierPath *)getNewBezierPath {
-    CGFloat progress = self.animationDuration <= 0 ? self.progress : 1.0;
     UIBezierPath *bezierPath = nil;
     if (self.style == ZJProgressBarRound) {
         if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
@@ -117,9 +115,9 @@
         }
         
         if (self.isClockwise) {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:(self.startAngle - M_PI_2) endAngle:4*M_PI_2*progress - M_PI_2 + self.startAngle clockwise:YES];
+            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:(self.startAngle - M_PI_2) endAngle:4*M_PI_2 - M_PI_2 + self.startAngle clockwise:YES];
         } else {
-            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2)*progress + self.startAngle clockwise:NO];
+            bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2) + self.startAngle clockwise:NO];
         }
     }
     
@@ -130,7 +128,7 @@
     
     if (self.style == ZJProgressBarRound) {
         if (self.animationDuration <= 0) {
-            self.frontFillLayer.path = [self getNewBezierPath].CGPath;
+            self.frontFillLayer.strokeEnd = self.progress;
             return;
         }
         CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -144,9 +142,13 @@
         [self.frontFillLayer addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
     } else {
         CGFloat width = self.backGroundLayer.bounds.size.width * self.progress;
-        [UIView animateWithDuration:self.animationDuration animations:^{
+        if (self.animationDuration > 0) {
+            [UIView animateWithDuration:self.animationDuration animations:^{
+                self.frontFillLayer.frame = CGRectMake(0, self.backGroundLayer.frame.origin.y, width, self.progressWidth);
+            }];
+        } else {
             self.frontFillLayer.frame = CGRectMake(0, self.backGroundLayer.frame.origin.y, width, self.progressWidth);
-        }];
+        }
     }
     self.oldProgress = self.progress;
 }
