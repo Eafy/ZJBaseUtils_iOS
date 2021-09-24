@@ -42,9 +42,9 @@
         _backGroundLayer.lineCap = kCALineCapRound;
         _backGroundLayer.fillColor = [UIColor clearColor].CGColor;
         _backGroundLayer.path = nil;
-        _backGroundLayer.frame = self.bounds;
         _backGroundLayer.lineWidth = self.progressWidth;
         _backGroundLayer.strokeColor = self.bgColor.CGColor;
+        _frontFillLayer.frame = CGRectZero;
         [self.layer insertSublayer:_backGroundLayer atIndex:0];
     }
     return _backGroundLayer;
@@ -57,9 +57,10 @@
         _frontFillLayer.lineCap = kCALineCapRound;
         _frontFillLayer.fillColor = [UIColor clearColor].CGColor;
         _frontFillLayer.path = nil;
-        _frontFillLayer.frame = self.bounds;
         _frontFillLayer.lineWidth = self.progressWidth;
         _frontFillLayer.strokeColor = self.color.CGColor;
+        _frontFillLayer.strokeEnd = 0;
+        _frontFillLayer.frame = CGRectZero;
         [self.layer addSublayer:_frontFillLayer];
     }
     return _frontFillLayer;
@@ -86,7 +87,13 @@
         self.frontFillLayer.frame = self.bounds;
     } else {
         self.backGroundLayer.frame = CGRectMake(0, self.zj_height - self.progressWidth, self.zj_width, self.progressWidth);
-        self.frontFillLayer.frame = self.backGroundLayer.frame;
+        self.backGroundLayer.cornerRadius = self.progressWidth/2;
+        self.backGroundLayer.backgroundColor = self.bgColor.CGColor;
+        self.frontFillLayer.cornerRadius = self.progressWidth/2;
+        self.frontFillLayer.backgroundColor = self.color.CGColor;
+        if (self.progress == 0) {
+            self.frontFillLayer.frame = CGRectMake(0, self.backGroundLayer.frame.origin.y, 0, self.progressWidth);
+        }
     }
     
     self.frontFillLayer.path = [self getNewBezierPath].CGPath;
@@ -114,41 +121,32 @@
         } else {
             bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.zj_width/2.0, self.zj_height/2.0) radius:(CGRectGetWidth(self.bounds)-self.progressWidth)/2.f startAngle:3*M_PI_2 + self.startAngle endAngle:3*M_PI_2-(4*M_PI_2)*progress + self.startAngle clockwise:NO];
         }
-    } else if (self.style == ZJProgressBarHorizontal) {
-        if (!self.backGroundLayer.path || self.backGroundLayer.bounds.size.width != self.zj_width || self.backGroundLayer.bounds.size.height != self.zj_height) {
-            UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.zj_width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
-            self.backGroundLayer.path = bezierPath.CGPath;
-        }
-        
-        CGFloat width = self.zj_width * self.progress;
-        if (self.isClockwise) {
-            bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
-        } else {
-            bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.zj_width - width, 0, width, self.progressWidth/4) cornerRadius:self.progressWidth/2];
-        }
     }
     
     return bezierPath;
 }
 
 - (void)updatePathAnimation {
-    if (self.animationDuration <= 0) {
-        self.frontFillLayer.path = [self getNewBezierPath].CGPath;
-        return;
-    }
     
     if (self.style == ZJProgressBarRound) {
+        if (self.animationDuration <= 0) {
+            self.frontFillLayer.path = [self getNewBezierPath].CGPath;
+            return;
+        }
         CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
         pathAnimation.duration = self.animationDuration;
         pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-        pathAnimation.fromValue = [NSNumber numberWithFloat:self.oldProgress];
+        pathAnimation.fromValue = [NSNumber numberWithFloat:self.progress - self.oldProgress > 0 ? self.oldProgress : 0];
         pathAnimation.toValue = [NSNumber numberWithFloat:self.progress];
         pathAnimation.fillMode = kCAFillModeForwards;
         pathAnimation.removedOnCompletion = NO;
         
         [self.frontFillLayer addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
     } else {
-        [self setNeedsLayout];
+        CGFloat width = self.backGroundLayer.bounds.size.width * self.progress;
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            self.frontFillLayer.frame = CGRectMake(0, self.backGroundLayer.frame.origin.y, width, self.progressWidth);
+        }];
     }
     self.oldProgress = self.progress;
 }
@@ -161,11 +159,13 @@
 - (void)setColor:(UIColor *)color {
     _color = color;
     self.frontFillLayer.strokeColor = color.CGColor;
+    [self setNeedsLayout];
 }
 
 - (void)setBgColor:(UIColor *)bgColor {
     _bgColor = bgColor;
     self.backGroundLayer.strokeColor = bgColor.CGColor;
+    [self setNeedsLayout];
 }
 
 - (void)setProgressWidth:(CGFloat)progressWidth {
