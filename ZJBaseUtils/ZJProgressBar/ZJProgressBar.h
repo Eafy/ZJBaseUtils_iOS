@@ -43,6 +43,9 @@ typedef NS_ENUM(NSUInteger, ZJProgressBarStyle) {
 /// 进度条标签文本（懒加载）
 @property (nonatomic,strong) UILabel *progressLB;
 
+/// 重置进度（初始进度）
+- (void)reset:(CGFloat)progress;
+
 @end
 
 NS_ASSUME_NONNULL_END

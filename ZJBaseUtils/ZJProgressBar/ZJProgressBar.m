@@ -86,6 +86,7 @@
         self.frontFillLayer.frame = self.bounds;
         self.backGroundLayer.path = [self getNewBezierPath].CGPath;
         self.frontFillLayer.path = [self getNewBezierPath].CGPath;
+        self.frontFillLayer.strokeEnd = self.progress;
     } else {
         self.backGroundLayer.frame = CGRectMake(0, self.zj_height - self.progressWidth, self.zj_width, self.progressWidth);
         self.backGroundLayer.cornerRadius = self.progressWidth/2;
@@ -124,6 +125,7 @@
     
     if (self.style == ZJProgressBarRound) {
         if (self.animationDuration <= 0) {
+            [self.frontFillLayer removeAllAnimations];
             self.frontFillLayer.strokeEnd = self.progress;
             return;
         }
@@ -201,6 +203,12 @@
         [_progressLB removeFromSuperview];
         _progressLB = nil;
     }
+}
+
+#pragma mark -
+
+- (void)reset:(CGFloat)progress {
+    self.oldProgress = self.progress = progress;
 }
 
 @end
