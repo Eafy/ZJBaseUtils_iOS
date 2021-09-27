@@ -106,16 +106,18 @@
 
 - (void)initNavigationBar {
     if (!self.barTintColor) {
-        self.barTintColor = [self sysBarTintColor];
+        _barTintColor = [self sysBarTintColor];
     }
     if (!self.barTitleColor) {
-        self.barTitleColor = [self sysBarTitleColor];
+        _barTitleColor = [self sysBarTitleColor];
     }
     if (!self.barTitleFont) {
-        self.barTitleFont = [self sysBarTitleFont];
+        _barTitleFont = [self sysBarTitleFont];
     }
     
-    self.barTintColor = self.barTintColor;
+    if (!self.isHideNavBar) {
+        self.barTintColor = self.barTintColor;
+    }
     self.barTitleColor = self.barTitleColor;
     self.barTitleFont = self.barTitleFont;
     
@@ -449,7 +451,7 @@
         UINavigationBarAppearance *appearance = self.navigationBar.scrollEdgeAppearance;
         appearance.backgroundColor = barTintColor;
         self.navigationBar.scrollEdgeAppearance = appearance;
-//        self.navigationBar.standardAppearance = appearance;
+        self.navigationBar.standardAppearance = appearance;
     }
 }
 
@@ -467,7 +469,7 @@
             [titleTextAttributes setValue:self.barTitleColor forKey:NSForegroundColorAttributeName];
             appearance.titleTextAttributes = titleTextAttributes;
             self.navigationBar.scrollEdgeAppearance = appearance;
-//            self.navigationBar.standardAppearance = appearance;
+            self.navigationBar.standardAppearance = appearance;
         }
     }
 }
@@ -488,7 +490,7 @@
             [titleTextAttributes setValue:self.barTitleFont forKey:NSFontAttributeName];
             appearance.titleTextAttributes = titleTextAttributes;
             self.navigationBar.scrollEdgeAppearance = appearance;
-//            self.navigationBar.standardAppearance = appearance;
+            self.navigationBar.standardAppearance = appearance;
         }
     }
 }
