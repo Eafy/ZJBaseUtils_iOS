@@ -150,12 +150,12 @@
         
         if (self.item.detailTitle) {    //有详细
             self.subTitleLabel.zj_centerY = self.contentView.zj_centerY;
-            CGFloat preRight = (self.textLabel.zj_right > self.detailTextLabel.zj_right ? self.textLabel.zj_right : self.detailTextLabel.zj_right) + self.tableViewConfig.iconRightSpace;  //计算子标题坐标
+            CGFloat preRight = self.textLabel.zj_left + (self.textLabel.zj_width > self.detailTextLabel.zj_width ? self.textLabel.zj_width : self.detailTextLabel.zj_width) + self.tableViewConfig.iconRightSpace;  //计算子标题坐标   //适配iOS 15，不能使用self.detailTextLabel.zj_right，位置好像还没调整
             self.subTitleLabel.zj_left = preRight;
             if (self.accessoryView) {
                 self.subTitleLabel.zj_width = self.accessoryView.zj_left - preRight - detailTextSpace;
             } else {
-                self.subTitleLabel.zj_width = self.contentView.zj_right - preRight - detailTextSpace;
+                self.subTitleLabel.zj_width = self.zj_width - self.tableViewConfig.marginRight - self.tableViewConfig.arrowRightSpace - preRight;
             }
             self.detailTextLabel.zj_left = self.textLabel.zj_left;
         } else {
@@ -164,6 +164,7 @@
             [self.subTitleLabel sizeToFit];
         }
     } else {
+        [self.subTitleLabel removeFromSuperview];
         self.textLabel.zj_centerY = self.contentView.zj_centerY;
         if (self.accessoryView) {
             self.detailTextLabel.zj_right = self.accessoryView.zj_left - detailTextSpace;
@@ -324,6 +325,8 @@
         }
         item.iconView.zj_centerY = self.tableViewConfig.rowHeight/2.0;
         [self.contentView addSubview:item.iconView];
+    } else if (self.imageView.image) {
+        self.imageView.image = nil;
     }
     if (_item && _item.customView) {
         [_item.customView removeFromSuperview];

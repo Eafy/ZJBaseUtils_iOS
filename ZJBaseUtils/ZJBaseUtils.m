@@ -7,3 +7,13 @@
 //
 
 #import <ZJBaseUtils/ZJBaseUtils.h>
+
+@implementation ZJBaseUtils
+
++ (void)config {
+    if (@available(iOS 15.0, *)) {
+        [UITableView appearance].sectionHeaderTopPadding = 0;
+    }
+}
+
+@end

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 背景视图左边的间距，默认15
 @property (nonatomic,assign) CGFloat marginLeft;
 
-/// 背景视图有边的间距，默认10
+/// 背景视图右边的间距，默认10
 @property (nonatomic,assign) CGFloat marginRight;
 
 /// 头视图左边距，默认0，即不设置

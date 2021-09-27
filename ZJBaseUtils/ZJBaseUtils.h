@@ -83,3 +83,10 @@
 #import <ZJBaseUtils/ZJBaseTableViewController.h>
 #import <ZJBaseUtils/ZJBaseTableView.h>
 #import <ZJBaseUtils/ZJBaseTabBarController.h>
+
+@interface ZJBaseUtils : NSObject
+
+/// 配置基础库
++ (void)config;
+
+@end

@@ -20,8 +20,7 @@
 
 @implementation ZJBaseNavigationController
 
-+ (void)handleJumpWithNavigationController:(UINavigationController *)navCtl viewController:(UIViewController *)viewCtl
-{
++ (void)handleJumpWithNavigationController:(UINavigationController *)navCtl viewController:(UIViewController *)viewCtl {
     // 判断是否是基础导航控制器
     if ([navCtl isKindOfClass:[ZJBaseNavigationController class]]) {
         ZJBaseNavigationController *nav = (ZJBaseNavigationController *)navCtl;
@@ -53,24 +52,9 @@
     }
 }
 
-#pragma mark - iOS 15适配
-
-- (void)adaptToIOS15
-{
-    if (@available(iOS 15.0, *)) {
-        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
-        appearance.backgroundColor = [UIColor whiteColor];
-        appearance.shadowColor = [UIColor clearColor];
-        appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleRegular];
-        self.navigationBar.scrollEdgeAppearance = appearance;
-        self.navigationBar.standardAppearance = appearance;
-    }
-}
-
 #pragma mark -
 
-- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
-{
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
     if (self = [super initWithRootViewController:rootViewController]) {
         self.leftSlideCustomEdge = ZJScreenWidth()/3.0;
         [self adaptToIOS15];
@@ -78,8 +62,7 @@
     return self;
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.leftSlideCustomEdge = ZJScreenWidth()/3.0;
         [self adaptToIOS15];
@@ -93,8 +76,7 @@
     self.modalPresentationStyle = UIModalPresentationFullScreen;
 }
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     [ZJBaseNavigationController handleJumpWithNavigationController:self viewController:viewController];
     
     [super pushViewController:viewController animated:animated];
@@ -115,8 +97,7 @@
     }
 }
 
-- (void)setBackgroundColor:(UIColor *)backgroundColor
-{
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
     _backgroundColor = backgroundColor;
     if (self.viewControllers.count == 1) {
         ZJBaseViewController *viewCtl = self.viewControllers[0];
@@ -127,8 +108,7 @@
     }
 }
 
-- (void)setBackgroundImgName:(NSString *)backgroundImgName
-{
+- (void)setBackgroundImgName:(NSString *)backgroundImgName {
     _backgroundImgName = backgroundImgName;
     if (self.viewControllers.count == 1) {
         ZJBaseViewController *viewCtl = self.viewControllers[0];
@@ -141,8 +121,7 @@
 
 #pragma mark -
 
-- (UIPanGestureRecognizer *)leftPopGestureRecognizer
-{
+- (UIPanGestureRecognizer *)leftPopGestureRecognizer {
     if (!_leftPopGestureRecognizer) {
         _leftPopGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
         _leftPopGestureRecognizer.maximumNumberOfTouches = 1;
@@ -150,8 +129,7 @@
     return _leftPopGestureRecognizer;
 }
 
-- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
-{
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer != _leftPopGestureRecognizer) {
         return YES;
     }
@@ -181,6 +159,83 @@
     }
     
     return YES;
+}
+
+#pragma mark - iOS 15适配
+
+- (void)adaptToIOS15 {
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        appearance.backgroundColor = [UIColor whiteColor];
+        appearance.shadowColor = [UIColor clearColor];
+        appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleRegular];
+        self.navigationBar.scrollEdgeAppearance = appearance;
+        self.navigationBar.standardAppearance = appearance;
+    }
+}
+
+- (void)setBarTintColor:(UIColor *)barTintColor {
+    _barTintColor = barTintColor;
+    if (!self.barTintColor) return;
+    
+    self.navigationController.navigationBar.barTintColor = self.barTintColor;
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = self.navigationController.navigationBar.standardAppearance;
+        appearance.backgroundColor = self.barTintColor;
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+        self.navigationController.navigationBar.standardAppearance = appearance;
+    }
+}
+
+- (void)setBarTitleColor:(UIColor *)barTitleColor {
+    _barTitleColor = barTitleColor;
+    if (!self.barTitleColor) return;
+    
+    [self updataSysTitleTextAttributes];
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = self.navigationController.navigationBar.standardAppearance;
+        NSMutableDictionary<NSAttributedStringKey, id> *titleTextAttributes = [NSMutableDictionary dictionaryWithDictionary:appearance.titleTextAttributes];
+        [titleTextAttributes setValue:self.barTitleColor forKey:NSForegroundColorAttributeName];
+        appearance.titleTextAttributes = titleTextAttributes;
+        
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+        self.navigationController.navigationBar.standardAppearance = appearance;
+    }
+}
+
+- (void)setBarTitleFont:(UIFont *)barTitleFont {
+    _barTitleFont = barTitleFont;
+    if (!self.barTitleFont) return;
+    
+    [self updataSysTitleTextAttributes];
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = self.navigationController.navigationBar.standardAppearance;
+        NSMutableDictionary<NSAttributedStringKey, id> *titleTextAttributes = [NSMutableDictionary dictionaryWithDictionary:appearance.titleTextAttributes];
+        [titleTextAttributes setValue:self.barTitleFont forKey:NSFontAttributeName];
+        appearance.titleTextAttributes = titleTextAttributes;
+        
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+        self.navigationController.navigationBar.standardAppearance = appearance;
+    }
+}
+
+- (void)updataSysTitleTextAttributes {
+    NSMutableDictionary<NSAttributedStringKey, id> *titleTextAttributes = [NSMutableDictionary dictionary];
+    if (self.navigationController.navigationBar.titleTextAttributes) {
+        titleTextAttributes = [NSMutableDictionary dictionaryWithDictionary:self.navigationController.navigationBar.titleTextAttributes];
+    }
+    BOOL ret = NO;
+    if (self.barTitleColor) {
+        [titleTextAttributes setValue:self.barTitleColor forKey:NSForegroundColorAttributeName];
+        ret = YES;
+    }
+    if (self.barTitleFont) {
+        [titleTextAttributes setValue:self.barTitleFont forKey:NSFontAttributeName];
+        ret = YES;
+    }
+    if (ret) {
+        [self.navigationController.navigationBar setTitleTextAttributes:titleTextAttributes];
+    }
 }
 
 @end

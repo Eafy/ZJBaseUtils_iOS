@@ -1,19 +1,21 @@
 //
-//  ZJBaseTableViewController.h
+//  ZJBaseVCSharedAPI.h
 //  ZJBaseUtils
 //
-//  Created by eafy on 2020/9/14.
-//  Copyright © 2020 ZJ. All rights reserved.
+//  Created by eafy on 2021/9/26.
+//  Copyright © 2021 ZJ. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <ZJBaseUtils/ZJSettingTableViewCell.h>
+#import <ZJBaseUtils/ZJBaseViewController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJBaseTableViewController : UITableViewController
+@protocol ZJBaseVCSharedAPIDelegate;
 
-#pragma mark - UIViewController·导航及通用设置
+@interface ZJBaseVCSharedAPI : NSObject
+
+@property (nonatomic,weak) id<ZJBaseVCSharedAPIDelegate> delegate;
 
 /// 页面是否可见，即在Top
 @property (nonatomic,assign) BOOL isVisible;
@@ -89,45 +91,26 @@ NS_ASSUME_NONNULL_BEGIN
 /// 屏幕方向（当设置之后才生效）
 - (UIInterfaceOrientation)interfaceOrientation;
 
-#pragma mark - ZJBaseTableViewController特有接口
+#pragma mark - 下面是提供给外部调用
 
-/// Item或上一个界面透传过来的数据(私有数据)
-@property (nonatomic,strong) ZJBaseTVPrivateData *privateData;
+/// 标题
+@property (nonatomic,copy) NSString *title;
 
-/// 安全区域设置
-@property (nonatomic,assign) UIScrollViewContentInsetAdjustmentBehavior insetAdjustmentBehavior API_AVAILABLE(ios(11.0),tvos(11.0));
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewDidAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
+- (void)viewDidDisappear:(BOOL)animated;
+- (void)viewDidLoad;
+- (void)releaseData;
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator;
 
-@property (readonly) NSArray * _Nullable dataSourceArray;
+@end
 
-/// 加载数据，需要重载
-- (NSArray<ZJSettingItemGroup *> *)setupDatas;
+#pragma mark - 
 
-/// 加载数据(不刷新源数据)
-- (void)reloadData;
+@protocol ZJBaseVCSharedAPIDelegate <NSObject>
 
-/// 更新数据
-- (void)updateData;
-
-/// 更新集群数据
-/// @param section 第几个集群
-- (void)updateDataWithSection:(NSUInteger)section;
-
-/// 更新某行数据
-/// @param section 第几个集群
-/// @param row 行数
-- (void)updateDataWithSection:(NSUInteger)section row:(NSUInteger)row;
-
-#pragma mark -
-
-/// 获取Item
-/// @param section 第几段
-/// @param row 第几行
-- (ZJSettingItem * _Nullable)itemWithSection:(NSUInteger)section row:(NSUInteger)row;
-
-/// 获取Cell
-/// @param section 第几段
-/// @param row 第几行
-- (UITableViewCell *)cellWithSection:(NSUInteger)section row:(NSUInteger)row;
+- (ZJBaseVCSharedAPI *)sharedAPI;
 
 @end
 
