@@ -240,7 +240,7 @@
 #pragma mark - 强制横竖屏切换
 
 - (void)interfaceOrientation:(UIInterfaceOrientation)orientation {
-    [self.sharedAPI interfaceOrientation];
+    [self.sharedAPI interfaceOrientation:orientation];
 }
 
 - (UIInterfaceOrientation)interfaceOrientation {
