@@ -2,6 +2,31 @@
 
 `ZJBaseUtils`是iOS平台obj-C语言的工具集，提供通用、高集成的扩展接口、功能组件及UI组件；
 
+## 常见问题
+
+### Xcode13在Release模式下SwiftUI报错
+
+```shell
+platform :ios, '10.0'
+inhibit_all_warnings!
+#....
+
+#解决Xcode13在Release模式下SwiftUI报错问题
+pre_install do |installer|
+    remove_swiftui()
+end
+def remove_swiftui
+  system("rm -rf ./Pods/Kingfisher/Sources/SwiftUI")
+  code_file = "./Pods/Kingfisher/Sources/General/KFOptionsSetter.swift" #处理Kingfisher
+  code_text = File.read(code_file)
+  code_text.gsub!(/#if canImport\(SwiftUI\) \&\& canImport\(Combine\)(.|\n)+#endif/,'')
+  system("rm -rf " + code_file)
+  aFile = File.new(code_file, 'w+')
+  aFile.syswrite(code_text)
+  aFile.close()
+end
+```
+
 ## API扩展
 
 ### 基础类型扩展
