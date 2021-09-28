@@ -282,7 +282,11 @@
         [_navLeftBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScaleH()]];
         [_navLeftBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navLeftBtn setBackgroundColor:[UIColor clearColor]];
-        [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        if ([self.delegate respondsToSelector:@selector(navLeftBtnAction)]) {
+            [_navLeftBtn addTarget:self.delegate action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        } else {
+            [_navLeftBtn addTarget:self action:@selector(navLeftBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        }
         if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
             _navLeftBtn.imageView.transform = CGAffineTransformMakeScale(-1, 1);
             [_navLeftBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
@@ -306,7 +310,11 @@
         [_navLeftSubBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScaleH()]];
         [_navLeftSubBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navLeftSubBtn setBackgroundColor:[UIColor clearColor]];
-        [_navLeftSubBtn addTarget:self action:@selector(navLeftSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        if ([self.delegate respondsToSelector:@selector(navLeftSubBtnAction)]) {
+            [_navLeftSubBtn addTarget:self.delegate action:@selector(navLeftSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        } else {
+            [_navLeftSubBtn addTarget:self action:@selector(navLeftSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        }
         if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
             _navLeftSubBtn.imageView.transform = CGAffineTransformMakeScale(-1, 1);
             [_navLeftSubBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
@@ -331,7 +339,11 @@
         [_navRightBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScaleH()]];
         [_navRightBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navRightBtn setBackgroundColor:[UIColor clearColor]];
-        [_navRightBtn addTarget:self action:@selector(navRightBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        if ([self.delegate respondsToSelector:@selector(navRightBtnAction)]) {
+            [_navRightBtn addTarget:self.delegate action:@selector(navRightBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        } else {
+            [_navRightBtn addTarget:self action:@selector(navRightBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        }
         if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
             [_navRightBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
             [_navRightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
@@ -354,7 +366,11 @@
         [_navRightSubBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f*ZJScaleH()]];
         [_navRightSubBtn setTitleColor:ZJColorFromRGB(0x3D7DFF) forState:UIControlStateNormal];
         [_navRightSubBtn setBackgroundColor:[UIColor clearColor]];
-        [_navRightSubBtn addTarget:self action:@selector(navRightSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        if ([self.delegate respondsToSelector:@selector(navRightSubBtnAction)]) {
+            [_navRightSubBtn addTarget:self.delegate action:@selector(navRightSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        } else {
+            [_navRightSubBtn addTarget:self action:@selector(navRightSubBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        }
         if ([ZJSystem currentLanguageType] == ZJ_SYS_LANGUAGE_TYPE_Hebrew) {
             [_navRightSubBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
             [_navRightSubBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
