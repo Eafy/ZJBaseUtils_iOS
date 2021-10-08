@@ -47,7 +47,7 @@
 
 #pragma mark - StaticAPI
 
-+ (Class)findClass:(NSString *)className
++ (Class)zj_findClass:(NSString *)className
 {
     if (!className) return nil;
     
