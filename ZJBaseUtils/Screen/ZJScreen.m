@@ -257,8 +257,11 @@ singleton_m();
 
 + (UIWindow *)keyWindow
 {
-    UIWindow *keyWindow = [UIApplication sharedApplication].delegate.window;
-    if (keyWindow) return keyWindow;
+    if ([UIApplication sharedApplication].delegate && [[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
+        if ([UIApplication sharedApplication].delegate.window) {
+            return [UIApplication sharedApplication].delegate.window;
+        }
+    }
     
     return [self frontWindow];
 }
