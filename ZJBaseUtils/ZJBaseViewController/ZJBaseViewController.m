@@ -43,7 +43,11 @@
 }
 
 - (void)dealloc {
-    [self.sharedAPI releaseData];
+    if (_sharedAPI) {
+        [_sharedAPI releaseData];
+        _sharedAPI.delegate = nil;
+        _sharedAPI = nil;
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
