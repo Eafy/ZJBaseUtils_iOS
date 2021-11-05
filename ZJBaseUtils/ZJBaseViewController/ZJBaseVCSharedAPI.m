@@ -381,6 +381,10 @@
                 [_navRightSubBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
             }
         }
+        
+        if (self.navRightBtn.zj_width == ZJNavBarHeight() + 20) {
+            self.navRightBtn.zj_width = ZJNavBarHeight();
+        }
     }
 
     return _navRightSubBtn;
