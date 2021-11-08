@@ -158,19 +158,24 @@
 
 - (void)setColor:(UIColor *)color {
     _color = color;
-    self.frontFillLayer.strokeColor = color.CGColor;
+    if (!_frontFillLayer) return;
     if (self.style == ZJProgressBarHorizontal) {
         self.frontFillLayer.backgroundColor = color.CGColor;
+    } else {
+        self.frontFillLayer.strokeColor = color.CGColor;
     }
 }
 
 - (void)setBgColor:(UIColor *)bgColor {
     _bgColor = bgColor;
-    self.backGroundLayer.strokeColor = bgColor.CGColor;
+    if (!_backGroundLayer) return;
     if (self.style == ZJProgressBarHorizontal) {
         self.backGroundLayer.backgroundColor = bgColor.CGColor;
+    } else {
+        self.backGroundLayer.strokeColor = bgColor.CGColor;
     }
 }
+
 
 - (void)setProgressWidth:(CGFloat)progressWidth {
     _progressWidth = progressWidth;
