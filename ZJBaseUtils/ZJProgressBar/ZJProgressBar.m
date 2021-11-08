@@ -16,6 +16,8 @@
 @property (nonatomic,strong) CAShapeLayer *frontFillLayer;          //用来填充的图层
 @property (nonatomic,assign) CGFloat oldProgress;
 
+@property (nonatomic,strong) UIColor *backGroundLayerBgColor;
+
 @end
 
 @implementation ZJProgressBar
@@ -30,6 +32,7 @@
         self.isClockwise = YES;
         self.startAngle = 0;
         self.animationDuration = 0.1;
+        self.backGroundLayerBgColor = [UIColor clearColor];
     }
     
     return self;
@@ -40,7 +43,11 @@
         _backGroundLayer = [CAShapeLayer layer];
         _backGroundLayer.backgroundColor = [UIColor clearColor].CGColor;
         _backGroundLayer.lineCap = kCALineCapRound;
-        _backGroundLayer.fillColor = [UIColor clearColor].CGColor;
+        if (self.style == ZJProgressBarRound) {
+            _backGroundLayer.fillColor = self.backGroundLayerBgColor.CGColor;
+        } else {
+            _backGroundLayer.fillColor = [UIColor clearColor].CGColor;
+        }
         _backGroundLayer.path = nil;
         _backGroundLayer.lineWidth = self.progressWidth;
         _backGroundLayer.strokeColor = self.bgColor.CGColor;
@@ -176,6 +183,15 @@
     }
 }
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    _backGroundLayerBgColor = backgroundColor;
+    if (!_backGroundLayer) return;
+    if (self.style == ZJProgressBarRound) {
+        self.backGroundLayer.fillColor = backgroundColor.CGColor;
+    } else {
+        self.backGroundLayer.fillColor = [UIColor clearColor].CGColor;
+    }
+}
 
 - (void)setProgressWidth:(CGFloat)progressWidth {
     _progressWidth = progressWidth;
