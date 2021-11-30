@@ -38,6 +38,8 @@ typedef NS_ENUM(NSInteger, ZJAlertViewAnimationStyle) {
 @property (nonatomic,copy) NSString * _Nullable title;
 /// 消息内容
 @property (nonatomic,copy) NSString * _Nullable message;
+/// 消息内容(富文本)
+@property (nonatomic,strong) NSMutableAttributedString * _Nullable attributedMessage;
 /// 标题视图图片名称
 @property (nonatomic,copy) NSString * _Nullable titleImageName;
 /// 关闭按钮图片名称

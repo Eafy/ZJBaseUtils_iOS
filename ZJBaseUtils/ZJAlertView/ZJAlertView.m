@@ -282,6 +282,19 @@
     }
 }
 
+- (void)setAttributedMessage:(NSMutableAttributedString *)attributedMessage {
+    _attributedMessage = attributedMessage;
+    if (attributedMessage) {
+        self.messageLB.attributedText = attributedMessage;
+        if (!self.messageLB.superview) {
+            [self.alertView addSubview:self.messageLB];
+        }
+    } else if (_messageLB && self.messageLB.text.length == 0) {
+        [self.messageLB removeFromSuperview];
+        _messageLB = nil;
+    }
+}
+
 - (void)setTitleImageName:(NSString *)titleImageName {
     _titleImageName = titleImageName;
     if (titleImageName && ![titleImageName isEqualToString:@""]) {
@@ -428,7 +441,12 @@
     }
         
     if (_titleLB) {
-        CGSize size = [self.titleLB.text zj_sizeWithFont:self.titleLB.font maxSize:CGSizeMake(self.titleLB.zj_width, self.titleLB.zj_height*2)];
+        CGSize size = CGSizeZero;
+        if (self.attributedMessage.length > 0) {
+            size = [self.attributedMessage boundingRectWithSize:(CGSize){self.messageLB.zj_width, 400} options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+        } else {
+            size = [self.messageLB.text zj_sizeWithFont:self.messageLB.font maxSize:CGSizeMake(self.messageLB.zj_width, 400)];
+        }
         if (size.height > self.titleLB.zj_height) {
             self.titleLB.numberOfLines = 2;
             self.titleLB.zj_height = size.height;
