@@ -582,7 +582,6 @@
     if (_returnBeforeOption) {
         self.returnBeforeOption(self.returnBeforeData);
     }
-    [self releaseData];
 
     if (!self.isLeftSideslipBack) {
         if (self.navCtl.viewControllers.count == 1 || !self.navCtl) {
@@ -595,8 +594,11 @@
                 _returnAfterOption = nil;
             }
         }
+    } else if (_returnAfterOption) {
+        self.returnAfterOption();
     }
-    self.isLeftSideslipBack = NO;
+    
+    [self releaseData];
 }
 
 - (void)navLeftSubBtnAction {

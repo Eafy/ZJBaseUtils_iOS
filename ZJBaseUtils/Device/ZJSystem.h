@@ -36,6 +36,12 @@ extern CGFloat ZJSysVersion(void);
 /// 是否是模拟器
 + (BOOL)isSimulator;
 
+/// 系统版本
++ (NSString *)systemVersion;
+
+/// 系统型号
++ (NSString *)systemType;
+
 /// 获取Bundle ID
 + (NSString *)appBundleID;
 
