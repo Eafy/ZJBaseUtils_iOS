@@ -33,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取路径
 - (NSString * _Nullable)assetPath;
 
+#pragma mark -
+
+/// 是否是GIF图片
+- (BOOL)isGIF;
+
 @end
 
 NS_ASSUME_NONNULL_END

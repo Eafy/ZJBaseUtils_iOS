@@ -7,6 +7,8 @@
 //
 
 #import <ZJBaseUtils/PHAsset+ZJExt.h>
+#import <CoreServices/UTCoreTypes.h>
+#import <UniformTypeIdentifiers/UTCoreTypes.h>
 
 @implementation PHAsset (ZJExt)
 
@@ -54,6 +56,17 @@
 
 - (NSString * _Nullable)assetPath {
     return self.burstIdentifier;
+}
+
+#pragma mark -
+
+- (BOOL)isGIF {
+    PHAssetResource *res = [[PHAssetResource assetResourcesForAsset:self] firstObject];
+    if (@available(iOS 14.0, *)) {
+        return res.uniformTypeIdentifier && [res.uniformTypeIdentifier isEqualToString:UTTypeGIF.identifier];
+    } else {
+        return res.uniformTypeIdentifier && [res.uniformTypeIdentifier isEqualToString:@"com.compuserve.gif"];
+    }
 }
 
 @end
