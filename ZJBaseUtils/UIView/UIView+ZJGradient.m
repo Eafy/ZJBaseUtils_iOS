@@ -12,21 +12,8 @@
 
 - (void)zj_gradientWithColors:(NSArray<UIColor *> *_Nonnull)colors percents:(NSArray<NSNumber *> *_Nonnull)percents opacity:(CGFloat)opacity type:(ZJGradientType)type
 {
-    
-    NSMutableArray *locations = [NSMutableArray array];
-    NSMutableArray *colorArray = [NSMutableArray array];
-    for (int i=0; i<colors.count; i++) {
-        UIColor *color = [colors objectAtIndex:i];
-        [colorArray addObject:(id)color.CGColor];
-        if (i < percents.count) {
-            [locations addObject:percents[i]];
-        } else {
-            locations[i] = [NSNumber numberWithFloat:1.0];
-        }
-    }
-    
-    CGPoint start;
-    CGPoint end;
+    CGPoint start = CGPointZero;
+    CGPoint end = CGPointZero;
     switch (type) {
         case ZJGradientTypeFromTopToBottom:
             start = CGPointMake(0.5, 0.0);
@@ -47,12 +34,29 @@
         default:
             break;
     }
+
+    [self zj_gradientWithColors:colors percents:percents opacity:opacity startPoint:start endPoint:end];
+}
+
+- (void)zj_gradientWithColors:(NSArray<UIColor *> *_Nonnull)colors percents:(NSArray<NSNumber *> *_Nonnull)percents opacity:(CGFloat)opacity startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
+{
+    NSMutableArray *locations = [NSMutableArray array];
+    NSMutableArray *colorArray = [NSMutableArray array];
+    for (int i=0; i<colors.count; i++) {
+        UIColor *color = [colors objectAtIndex:i];
+        [colorArray addObject:(id)color.CGColor];
+        if (i < percents.count) {
+            [locations addObject:percents[i]];
+        } else {
+            locations[i] = [NSNumber numberWithFloat:1.0];
+        }
+    }
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.colors = colorArray;
     gradientLayer.locations = percents;
-    gradientLayer.startPoint = start;
-    gradientLayer.endPoint = end;
+    gradientLayer.startPoint = startPoint;
+    gradientLayer.endPoint = endPoint;
     gradientLayer.frame = self.bounds;
     gradientLayer.opacity = opacity;
     

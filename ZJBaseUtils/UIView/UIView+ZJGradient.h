@@ -26,6 +26,14 @@ typedef NS_ENUM(NSInteger, ZJGradientType) {
 /// @param type 渐变色的方向
 - (void)zj_gradientWithColors:(NSArray<UIColor *> *_Nonnull)colors percents:(NSArray<NSNumber *> *_Nonnull)percents opacity:(CGFloat)opacity type:(ZJGradientType)type;
 
+/// 颜色渐变
+/// @param colors 渐变颜色的数组
+/// @param percents 渐变颜色的占比数组
+/// @param opacity 透明度
+/// @param startPoint 渐变起点
+/// @param endPoint 渐变终点
+- (void)zj_gradientWithColors:(NSArray<UIColor *> *_Nonnull)colors percents:(NSArray<NSNumber *> *_Nonnull)percents opacity:(CGFloat)opacity startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
+
 @end
 
 NS_ASSUME_NONNULL_END

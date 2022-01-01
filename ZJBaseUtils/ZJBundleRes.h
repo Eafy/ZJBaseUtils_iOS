@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJBundleRes : NSObject
 
+/// 获取资源包
+/// @param bundleName 资源包名称
++ (NSBundle *)bundleWithBundleName:(NSString *)bundleName;
+
 /// 获取bundle包内默认路径
 /// @param imageName 图片名称
 + (nullable NSString *)imageNamePath:(NSString * _Nullable)imageName;
