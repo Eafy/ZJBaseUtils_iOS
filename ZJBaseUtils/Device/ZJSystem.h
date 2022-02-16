@@ -124,6 +124,13 @@ extern CGFloat ZJSysVersion(void);
 /// 定位权限（若未申请则会申请）
 + (BOOL)canLocationPermission;
 
+/// 通讯录权限
++ (BOOL)canContactsPermission;
+
+/// 请求通讯录权限
+/// @param handler 回调
++ (void)requestContactsPermission:(void(^)(BOOL success))handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

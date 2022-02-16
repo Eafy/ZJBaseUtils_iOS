@@ -12,6 +12,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UserNotifications/UserNotifications.h>
 #import <sys/utsname.h>
+#import <Contacts/Contacts.h>
 #import <ZJBaseUtils/ZJSAMKeychain.h>
 #import <ZJBaseUtils/NSString+ZJExt.h>
 #import <ZJBaseUtils/NSString+ZJMD5.h>
@@ -433,6 +434,28 @@ extern CGFloat ZJSysVersion(void) {
         return YES;
     } else {
         return YES;
+    }
+}
+
++ (BOOL)canContactsPermission
+{
+    CNAuthorizationStatus state = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+    if (state == CNAuthorizationStatusDenied ||
+        state == CNAuthorizationStatusRestricted) {
+        return NO;
+    }
+    return YES;
+}
+
++ (void)requestContactsPermission:(void(^)(BOOL success))handler
+{
+    CNAuthorizationStatus state = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+    if (state == kCLAuthorizationStatusNotDetermined) {
+        [[[CNContactStore alloc] init] requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (handler) handler(granted);
+        }];
+    } else if (handler) {
+        handler(NO);
     }
 }
 
