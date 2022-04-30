@@ -35,3 +35,20 @@
 }
 
 @end
+
+@implementation NSMutableDictionary (ZJExt)
+
++ (instancetype)dictionaryWithDic:(NSDictionary *)dic {
+    if (!dic) {
+        return [NSMutableDictionary dictionaryWithDictionary:dic];
+    }
+    return [NSMutableDictionary dictionary];
+}
+
+- (void)addEntriesFromDic:(NSDictionary *)dic {
+    if (!dic) {
+        [self addEntriesFromDictionary:dic];
+    }
+}
+
+@end

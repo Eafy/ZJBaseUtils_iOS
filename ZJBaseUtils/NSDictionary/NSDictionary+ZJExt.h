@@ -21,4 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface NSMutableDictionary (ZJExt)
+
+/// 生成NSMutableDictionary对象
+/// @param dic 可为空
++ (instancetype)dictionaryWithDic:(NSDictionary * _Nullable)dic;
+
+/// 添加字典
+/// @param dic 字段数据，可为空
+- (void)addEntriesFromDic:(NSDictionary * _Nullable)dic;
+
+@end
+
 NS_ASSUME_NONNULL_END
