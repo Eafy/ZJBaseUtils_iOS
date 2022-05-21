@@ -315,17 +315,23 @@ extern CGFloat ZJSysVersion(void) {
 
 + (BOOL)canRecordPermission
 {
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    return session.recordPermission == AVAudioSessionRecordPermissionGranted;
+}
+
++ (void)requestRecordPermission:(void(^)(BOOL success))handler {
     __block BOOL bCanRecord = YES;
     AVAudioSession *session = [AVAudioSession sharedInstance];
     if (session.recordPermission == AVAudioSessionRecordPermissionUndetermined) {
         [session requestRecordPermission:^(BOOL granted) {
-            bCanRecord = granted;
+            if (handler) handler(granted);
         }];
+        return;
     } else if (session.recordPermission == AVAudioSessionRecordPermissionDenied) {
         bCanRecord = NO;
     }
     
-    return bCanRecord;
+    if (handler) handler(bCanRecord);
 }
 
 + (BOOL)canCameraPermission

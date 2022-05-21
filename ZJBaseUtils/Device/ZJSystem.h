@@ -101,8 +101,12 @@ extern CGFloat ZJSysVersion(void);
 /// 打开设置界面
 + (BOOL)openSetting;
 
-/// 麦克风权限（若未申请则会申请）
+/// 是否有麦克风权限（不申请）
 + (BOOL)canRecordPermission;
+
+/// 请求麦克风权限
+/// @param handler 回调
++ (void)requestRecordPermission:(void(^)(BOOL success))handler;
 
 /// 判断摄像机权限（不申请）
 + (BOOL)canCameraPermission;
