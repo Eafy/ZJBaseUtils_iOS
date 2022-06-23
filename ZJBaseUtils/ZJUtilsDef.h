@@ -41,6 +41,7 @@
 #ifndef weakSelfDef
 #define weakSelfDef
 #define weakSelf(a) __weak typeof(a) weakSelf = a;
+#define strongSelf(a) __strong __typeof(a) strongSelf = a;
 #endif
 
 #ifndef NSLonglong
