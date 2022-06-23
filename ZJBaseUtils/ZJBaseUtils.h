@@ -77,6 +77,7 @@
 #import <ZJBaseUtils/ZJCalendarView.h>
 #import <ZJBaseUtils/ZJAvatarView.h>
 #import <ZJBaseUtils/ZJProgressBar.h>
+#import <ZJBaseUtils/ZJSensorManager.h>
 
 #import <ZJBaseUtils/ZJBaseViewController.h>
 #import <ZJBaseUtils/ZJBaseNavigationController.h>
