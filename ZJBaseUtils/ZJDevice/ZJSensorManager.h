@@ -15,10 +15,18 @@ NS_ASSUME_NONNULL_BEGIN
 singleton_h();
 
 /// 开启距离传感器
+/// @param handler 回调
 - (void)startProximity:(void (^ __nullable)(BOOL enable))handler;
 
 /// 停止距离传感器
 - (void)stopProximity;
+
+/// 开始电话接听监控
+/// @param handler 回调
+- (void)startCallMonitor:(void (^ __nullable)(BOOL enable))handler;
+
+/// 停止电话接听监控
+- (void)stopCallMonitor;
 
 @end
 
