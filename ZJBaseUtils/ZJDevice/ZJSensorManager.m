@@ -60,7 +60,7 @@ singleton_m();
 
 #pragma mark -
 
-- (void)startCallMonitor:(void (^ __nullable)(BOOL enable))handler {
+- (void)startCallMonitor:(void (^ __nullable)(NSInteger type))handler {
     _callMonitorCB = handler;
     if (_callCenter) return;
 //    if (_callObserver) return;
@@ -75,9 +75,11 @@ singleton_m();
             [self.callCenter setCallEventHandler:^(CTCall * _Nonnull call) {
                 @strongify(self);
                 if ([call.callState isEqual:CTCallStateIncoming] || [call.callState isEqual:CTCallStateDialing]) {
-                    self.callMonitorCB(YES);
+                    self.callMonitorCB(1);
+                } else if ([call.callState isEqual:CTCallStateConnected]) {
+                    self.callMonitorCB(2);
                 } else {
-                    self.callMonitorCB(NO);
+                    self.callMonitorCB(0);
                 }
             }];
 //        }

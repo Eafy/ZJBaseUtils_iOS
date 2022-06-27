@@ -22,8 +22,8 @@ singleton_h();
 - (void)stopProximity;
 
 /// 开始电话接听监控
-/// @param handler 回调
-- (void)startCallMonitor:(void (^ __nullable)(BOOL enable))handler;
+/// @param handler 回调，type：0，挂断，1：来电或拨号，2：接通
+- (void)startCallMonitor:(void (^ __nullable)(NSInteger type))handler;
 
 /// 停止电话接听监控
 - (void)stopCallMonitor;
