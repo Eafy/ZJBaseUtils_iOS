@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) CTCallCenter *callCenter;
 //@property (nonatomic, strong) CXCallObserver *callObserver;     //在国内无法过审
-@property (nonatomic,copy) void (^ callMonitorCB)(BOOL enable);
+@property (nonatomic,copy) void (^ callMonitorCB)(NSInteger enable);
 
 @end
 
