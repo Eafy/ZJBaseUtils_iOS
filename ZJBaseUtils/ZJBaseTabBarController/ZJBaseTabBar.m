@@ -122,9 +122,37 @@
     [self addSubview:btn];
 }
 
-- (void)setSelectedIndex:(NSUInteger)selectedIndex
-{
-    [self handleSelectedIndex:selectedIndex];
+- (void)updateItem:(ZJBaseTarbarItem * _Nullable)item atIndex:(NSUInteger)index {
+    if (index >= self.tabBarBtnArray.count) return;
+    ZJBaseTabBarButton *btn = [self.tabBarBtnArray objectAtIndex:index];
+    btn.item = item;
+    btn.config = self.config;
+}
+
+- (void)updateNormalAtIndex:(NSUInteger)index title:(NSString *)title imgName:(NSString *)imgName {
+    if (index >= self.tabBarBtnArray.count) return;
+    ZJBaseTabBarButton *btn = [self.tabBarBtnArray objectAtIndex:index];
+    ZJBaseTarbarItem *item = btn.item;
+    if (title) {
+        item.norTitleName = title;
+    }
+    if (imgName) {
+        item.norImageName = imgName;
+    }
+    [self updateItem:item atIndex:index];
+}
+
+- (void)updateSelectedAtIndex:(NSUInteger)index title:(NSString *)title imgName:(NSString *)imgName {
+    if (index >= self.tabBarBtnArray.count) return;
+    ZJBaseTabBarButton *btn = [self.tabBarBtnArray objectAtIndex:index];
+    ZJBaseTarbarItem *item = btn.item;
+    if (title) {
+        item.selTitleName = title;
+    }
+    if (imgName) {
+        item.selImageName = imgName;
+    }
+    [self updateItem:item atIndex:index];
 }
 
 - (void)addCustomBtn:(UIButton *)btn atIndex:(NSInteger)index clickedBlock:(ZJBTBCustomBtnBlock)btnClickBlock
@@ -135,6 +163,11 @@
     _customBtnClickBlock = btnClickBlock;
     
     [self addSubview:btn];
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex
+{
+    [self handleSelectedIndex:selectedIndex];
 }
 
 - (void)setConfig:(ZJBaseTabBarConfig *)config

@@ -261,6 +261,13 @@ singleton_m();
         if ([UIApplication sharedApplication].delegate.window) {
             return [UIApplication sharedApplication].delegate.window;
         }
+    } else if (@available(iOS 13.0, *)) {
+        for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes) {
+            if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                UIWindow *keyWindow = windowScene.windows.firstObject;
+                if (keyWindow) return keyWindow;
+            }
+        }
     }
     
     return [self frontWindow];
@@ -273,10 +280,10 @@ singleton_m();
     for (UIWindow *window in frontToBackWindows) {
         BOOL isMainScreen = window.screen == UIScreen.mainScreen;
         BOOL isVisible = !window.hidden && window.alpha > 0;
-        BOOL isLevelNormal = window.windowLevel == UIWindowLevelNormal;
+//        BOOL isLevelNormal = window.windowLevel == UIWindowLevelNormal;
         BOOL isKeyWindow = window.isKeyWindow;
             
-        if (isMainScreen && isVisible && isLevelNormal && isKeyWindow) {
+        if (isMainScreen && isVisible && isKeyWindow) {
             vaWindow = window;
         }
     }

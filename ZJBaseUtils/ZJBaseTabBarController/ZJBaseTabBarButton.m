@@ -90,6 +90,7 @@
     _selected = selected;
     if (selected) {
         self.imageView.image = [UIImage imageNamed:self.item.selImageName];
+        self.titleLB.text = self.item.selTitleName;
         
         if (self.config.animType == ZJBTBConfigAnimTypeCustom && self.config.customAnimation) {
             [self.imageView.layer addAnimation:self.config.customAnimation forKey:@"customAnimation"];
@@ -116,6 +117,7 @@
     } else {
         [self.imageView.layer removeAllAnimations];
         self.imageView.image = [UIImage imageNamed:self.item.norImageName];
+        self.titleLB.text = self.item.norTitleName;
     }
     
     self.titleLB.textColor = self.selected ? self.config.selTitleColor : self.config.norTitleColor;
@@ -127,9 +129,11 @@
     _item = item;
     self.titleLB.text = item.norTitleName;
     if (self.selected) {
+        self.titleLB.text = item.selTitleName;
         self.imageView.image = [UIImage imageNamed:item.selImageName];
     } else {
-        self.imageView.image = [UIImage imageNamed:item.norImageName];        
+        self.titleLB.text = item.norTitleName;
+        self.imageView.image = [UIImage imageNamed:item.norImageName];
     }
 }
 

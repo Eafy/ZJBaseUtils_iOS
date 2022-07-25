@@ -46,6 +46,23 @@ typedef void (^ZJBTBCustomBtnBlock) (UIButton * _Nonnull btn, NSInteger index);
 /// @param item 句柄参数
 - (void)addItem:(ZJBaseTarbarItem * _Nullable)item;
 
+/// 更新句柄信息
+/// @param item 句柄数据
+/// @param index 索引号
+- (void)updateItem:(ZJBaseTarbarItem * _Nullable)item atIndex:(NSUInteger)index;
+
+/// 更新普通(未选中)的标题和图片信息
+/// @param index 索引号
+/// @param title 标题，nil表示不设置
+/// @param imgName 图片名称，nil表示不设置
+- (void)updateNormalAtIndex:(NSUInteger)index title:(NSString *)title imgName:(NSString *)imgName;
+
+/// 更新选中的标题和图片信息
+/// @param index 索引号
+/// @param title 标题，nil表示不设置
+/// @param imgName 图片名称，nil表示不设置
+- (void)updateSelectedAtIndex:(NSUInteger)index title:(NSString *)title imgName:(NSString *)imgName;
+
 /// 添加自定义按钮
 /// @param btn 自定义按钮
 /// @param index 插入第几个位置
