@@ -98,6 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 全局参数配置（必须要在加载之前配置）
 @property (nonatomic, strong) ZJBaseTabBarConfig *config;
 
+/// 震动反馈，默认false
+@property (nonatomic, assign) BOOL isVibrationFeedback API_AVAILABLE(ios(10.0));
+
 /// 更新了config的内部参数，必须刷新
 - (void)updateConfig;
 

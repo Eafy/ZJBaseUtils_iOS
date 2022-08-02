@@ -377,6 +377,13 @@
 
 - (void)didTabBarSelectedFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex {
     self.selectedIndex = toIndex;
+    if (@available(iOS 10.0, *)) {
+        if (self.isVibrationFeedback) {
+            UIImpactFeedbackGenerator *feedBackGenertor = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+            [feedBackGenertor impactOccurred];
+        }
+    }
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
         if (toIndex < self.viewControllers.count) {
             UIViewController *vc = [self.viewControllers objectAtIndex:toIndex];
