@@ -64,15 +64,6 @@
             [tempArray addObject:tabBarButton];
         }
     }
-    
-    for (int i = 0; i < tempArray.count; i++) {
-        UIView *view = tempArray[i];
-        if ([view isKindOfClass:[UIButton class]]) {
-            [tempArray insertObject:view atIndex:view.tag];
-            [tempArray removeLastObject];
-            break;
-        }
-    }
 
     CGFloat viewW = self.zj_width / self.totalItems;
     CGFloat viewH = 49;
@@ -155,9 +146,9 @@
     [self updateItem:item atIndex:index];
 }
 
-- (void)addCustomBtn:(UIButton *)btn atIndex:(NSInteger)index clickedBlock:(ZJBTBCustomBtnBlock)btnClickBlock
+- (void)addCustomBtn:(UIButton *)btn clickedBlock:(ZJBTBCustomBtnBlock)btnClickBlock
 {
-    btn.tag = index;
+    btn.tag = self.totalItems;
     [btn addTarget:self action:@selector(clickedCustomBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.totalItems ++;
     _customBtnClickBlock = btnClickBlock;
@@ -285,6 +276,7 @@
     if (_customBtnClickBlock) {
         self.customBtnClickBlock(sender, sender.tag);
     }
+    [self clickedBtnTapAction:sender];
 }
 
 #pragma mark - 移除系统的UITabBarItem功能
