@@ -65,8 +65,12 @@ typedef void (^ZJBTBCustomBtnBlock) (UIButton * _Nonnull btn, NSInteger index);
 
 /// 添加自定义按钮
 /// @param btn 自定义按钮
+- (void)addCustomBtn:(UIButton *)btn;
+
+/// 设置自定义按钮的点击回调
 /// @param btnClickBlock 点击回调
-- (void)addCustomBtn:(UIButton *)btn clickedBlock:(ZJBTBCustomBtnBlock)btnClickBlock;
+/// @param isTrigSelected 设置selectedIndex是否触发自定义按钮的回调
+- (void)setCustomBtnClickedBlock:(ZJBTBCustomBtnBlock _Nullable)btnClickBlock isTrigSelected:(BOOL)isSelectedTrig;
 
 /// 按钮集合
 - (NSArray *)tabBarButtonArray;

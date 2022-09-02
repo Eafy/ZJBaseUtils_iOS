@@ -383,7 +383,7 @@
         }
     }
     
-    self.selectedIndex = toIndex;
+    super.selectedIndex = toIndex;
     if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
         if (toIndex < self.viewControllers.count) {
             UIViewController *vc = [self.viewControllers objectAtIndex:toIndex];

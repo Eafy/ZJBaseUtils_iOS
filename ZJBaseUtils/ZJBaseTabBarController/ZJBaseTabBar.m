@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSMutableArray *tabBarBtnArray;
 
 @property (nonatomic, copy) ZJBTBCustomBtnBlock customBtnClickBlock;
+/// 设置selectedIndex是否触发自定义按钮的回调
+@property (nonatomic, assign) BOOL isTriggerCustomBtnCB;
 
 @end
 
@@ -116,6 +118,7 @@
 - (void)updateItem:(ZJBaseTarbarItem * _Nullable)item atIndex:(NSUInteger)index {
     if (index >= self.tabBarBtnArray.count) return;
     ZJBaseTabBarButton *btn = [self.tabBarBtnArray objectAtIndex:index];
+    if (![btn isKindOfClass:[ZJBaseTabBarButton class]]) return;
     btn.item = item;
     btn.config = self.config;
 }
@@ -123,6 +126,7 @@
 - (void)updateNormalAtIndex:(NSUInteger)index title:(NSString *)title imgName:(NSString *)imgName {
     if (index >= self.tabBarBtnArray.count) return;
     ZJBaseTabBarButton *btn = [self.tabBarBtnArray objectAtIndex:index];
+    if (![btn isKindOfClass:[ZJBaseTabBarButton class]]) return;
     ZJBaseTarbarItem *item = btn.item;
     if (title) {
         item.norTitleName = title;
@@ -136,6 +140,7 @@
 - (void)updateSelectedAtIndex:(NSUInteger)index title:(NSString *)title imgName:(NSString *)imgName {
     if (index >= self.tabBarBtnArray.count) return;
     ZJBaseTabBarButton *btn = [self.tabBarBtnArray objectAtIndex:index];
+    if (![btn isKindOfClass:[ZJBaseTabBarButton class]]) return;
     ZJBaseTarbarItem *item = btn.item;
     if (title) {
         item.selTitleName = title;
@@ -146,18 +151,32 @@
     [self updateItem:item atIndex:index];
 }
 
-- (void)addCustomBtn:(UIButton *)btn clickedBlock:(ZJBTBCustomBtnBlock)btnClickBlock
+- (void)addCustomBtn:(UIButton *)btn
 {
     btn.tag = self.totalItems;
     [btn addTarget:self action:@selector(clickedCustomBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.totalItems ++;
-    _customBtnClickBlock = btnClickBlock;
     
+    [self.tabBarBtnArray addObject:btn];
     [self addSubview:btn];
+}
+
+- (void)setCustomBtnClickedBlock:(ZJBTBCustomBtnBlock _Nullable)btnClickBlock isTrigSelected:(BOOL)isSelectedTrig
+{
+    self.customBtnClickBlock = btnClickBlock;
+    self.isTriggerCustomBtnCB = isSelectedTrig;
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
+    if (self.isTriggerCustomBtnCB && _customBtnClickBlock) {
+        if (selectedIndex < self.tabBarBtnArray.count) {
+            UIButton *btn = [self.tabBarBtnArray objectAtIndex:selectedIndex];
+            if (![btn isKindOfClass:[ZJBaseTabBarButton class]]) {
+                self.customBtnClickBlock(btn, btn.tag);
+            }
+        }
+    }
     [self handleSelectedIndex:selectedIndex];
 }
 
@@ -166,6 +185,7 @@
     _config = config;
     
     for (ZJBaseTabBarButton *btn in self.tabBarBtnArray) {
+        if (![btn isKindOfClass:[ZJBaseTabBarButton class]]) continue;
         btn.config = config;
     }
     
@@ -212,7 +232,7 @@
 
 #pragma mark - 
 
-- (void)clickedBtnTapAction:(UIButton *)btn
+- (BOOL)clickedBtnTapAction:(UIButton *)btn
 {
     NSInteger selectedIndex = self.selectedIndex;
     
@@ -228,6 +248,7 @@
             [self.delegate didTabBarSelectedFrom:selectedIndex to:btn.tag];
         }
     }
+    return ret;
 }
 
 - (void)handleSelectedIndex:(NSInteger)selectedIndex
@@ -235,7 +256,7 @@
     _selectedIndex = selectedIndex;
     for (int i = 0; i < self.tabBarBtnArray.count; i++) {
         ZJBaseTabBarButton *btn = self.tabBarBtnArray[i];
-        if (i == selectedIndex) {
+        if (btn.tag == selectedIndex) {
             btn.selected = YES;
         } else {
             btn.selected = NO;
@@ -273,10 +294,9 @@
 
 - (void)clickedCustomBtnAction:(UIButton *)sender
 {
-    if (_customBtnClickBlock) {
+    if ([self clickedBtnTapAction:sender] && _customBtnClickBlock) {
         self.customBtnClickBlock(sender, sender.tag);
     }
-    [self clickedBtnTapAction:sender];
 }
 
 #pragma mark - 移除系统的UITabBarItem功能
