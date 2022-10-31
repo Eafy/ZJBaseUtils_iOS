@@ -70,7 +70,7 @@ typedef void (^ZJBTBCustomBtnBlock) (UIButton * _Nonnull btn, NSInteger index);
 /// 设置自定义按钮的点击回调
 /// @param btnClickBlock 点击回调
 /// @param isTrigSelected 设置selectedIndex是否触发自定义按钮的回调
-- (void)setCustomBtnClickedBlock:(ZJBTBCustomBtnBlock _Nullable)btnClickBlock isTrigSelected:(BOOL)isSelectedTrig;
+- (void)setCustomBtnClickedBlock:(ZJBTBCustomBtnBlock _Nullable)btnClickBlock isTrigSelected:(BOOL)isTrigSelected;
 
 /// 按钮集合
 - (NSArray *)tabBarButtonArray;

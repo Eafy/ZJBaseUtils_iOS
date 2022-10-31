@@ -217,8 +217,8 @@
 
 #pragma mark - 强制横竖屏切换
 
-- (void)interfaceOrientation:(UIInterfaceOrientation)orientation {
-    [self.sharedAPI interfaceOrientation:orientation];
+- (void)interfaceOrientation:(UIInterfaceOrientation)orientation errorHandler:(nullable void (^)(NSError *error))errorHandler {
+    [self.sharedAPI interfaceOrientation:orientation errorHandler:errorHandler];
 }
 
 - (UIInterfaceOrientation)interfaceOrientation {

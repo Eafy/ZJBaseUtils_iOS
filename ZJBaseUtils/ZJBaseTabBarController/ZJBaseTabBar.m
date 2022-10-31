@@ -161,10 +161,10 @@
     [self addSubview:btn];
 }
 
-- (void)setCustomBtnClickedBlock:(ZJBTBCustomBtnBlock _Nullable)btnClickBlock isTrigSelected:(BOOL)isSelectedTrig
+- (void)setCustomBtnClickedBlock:(ZJBTBCustomBtnBlock _Nullable)btnClickBlock isTrigSelected:(BOOL)isTrigSelected
 {
     self.customBtnClickBlock = btnClickBlock;
-    self.isTriggerCustomBtnCB = isSelectedTrig;
+    self.isTriggerCustomBtnCB = isTrigSelected;
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex

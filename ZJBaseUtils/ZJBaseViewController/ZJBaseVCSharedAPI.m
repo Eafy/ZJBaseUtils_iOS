@@ -645,17 +645,40 @@
 /// 横竖屏切换
 /// #需要在- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window接口返回指定方向
 /// @param orientation 方向
-- (void)interfaceOrientation:(UIInterfaceOrientation)orientation {
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+- (void)interfaceOrientation:(UIInterfaceOrientation)orientation errorHandler:(nullable void (^)(NSError *error))errorHandler {
+    if (@available(iOS 16.0, *)) {
         self.inInterfaceOrientation = orientation;
-        SEL selector = NSSelectorFromString(@"setOrientation:");
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-
-        [invocation setSelector:selector];
-        [invocation setTarget:[UIDevice currentDevice]];
-
-        [invocation setArgument:&orientation atIndex:2];    //从2开始是因为0 1两个参数已经被selector和target占用
-        [invocation invoke];
+        if (orientation <= UIInterfaceOrientationLandscapeRight) {
+            self.inInterfaceOrientation = 1 << orientation;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIViewController *vc = [self currentVC];
+            [vc setNeedsUpdateOfSupportedInterfaceOrientations];
+            [vc.navigationController setNeedsUpdateOfSupportedInterfaceOrientations];
+            
+            NSArray *array = [[[UIApplication sharedApplication] connectedScenes] allObjects];
+            UIWindowScene *scene = (UIWindowScene *)array[0];
+            UIWindowSceneGeometryPreferencesIOS *geometryPreferences = [[UIWindowSceneGeometryPreferencesIOS alloc] initWithInterfaceOrientations:self.inInterfaceOrientation];
+            [scene requestGeometryUpdateWithPreferences:geometryPreferences
+                                           errorHandler:^(NSError * _Nonnull error) {
+                if (errorHandler) errorHandler(error);
+            }];
+        });
+    } else {
+        self.inInterfaceOrientation = orientation;
+        if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+            SEL selector = NSSelectorFromString(@"setOrientation:");
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+            
+            [invocation setSelector:selector];
+            [invocation setTarget:[UIDevice currentDevice]];
+            
+            [invocation setArgument:&orientation atIndex:2];    //从2开始是因为0 1两个参数已经被selector和target占用
+            [invocation invoke];
+            if (errorHandler) errorHandler(nil);
+        } else {
+            if (errorHandler) errorHandler([NSError errorWithDomain:@"org.eafy.ZJBaseUtils" code:-1 userInfo:nil]);
+        }
     }
 }
 
