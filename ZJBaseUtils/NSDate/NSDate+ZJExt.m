@@ -187,6 +187,9 @@ NSString *const NSDateFormat_Sec = @"ss";
     NSDateFormatter *formater = [[NSDateFormatter alloc]init];
     [formater setDateFormat:formatter];
     NSDate *date = [formater dateFromString:dateStr];
+    if (!date) {
+        return [NSDate date];
+    }
     return date;
 }
 
