@@ -118,7 +118,7 @@
     return NO;
 }
 
-- (void)zj_moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles {
++ (void)zj_moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles {
     NSArray<NSString *> *files = [NSFileManager zj_fileLists:dir];
     NSString *tempPath = dir;
     BOOL isDir = NO;
@@ -130,7 +130,7 @@
         }
         
         if (isDir) {
-            [self moveDir:[dir stringByAppendingPathComponent:name] toDir:[toDir stringByAppendingPathComponent:name] isCover:isCover excludeFiles:excludeFiles];
+            [self zj_moveDir:[dir stringByAppendingPathComponent:name] toDir:[toDir stringByAppendingPathComponent:name] isCover:isCover excludeFiles:excludeFiles];
         } else {
             [NSFileManager zj_createDirectory:toDir];
             if (!isCover && [NSFileManager zj_isExist:[toDir stringByAppendingPathComponent:name]]) {   //不覆盖，且存在文件
