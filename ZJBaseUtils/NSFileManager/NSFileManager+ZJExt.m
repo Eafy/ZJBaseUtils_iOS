@@ -121,6 +121,7 @@
 + (void)zj_moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles {
     NSArray<NSString *> *files = [NSFileManager zj_fileLists:dir];
     NSString *tempPath = dir;
+    NSString *tempToPath = dir;
     BOOL isDir = NO;
     for (NSString *name in files) {
         tempPath = [dir stringByAppendingPathComponent:name];
@@ -133,10 +134,15 @@
             [self zj_moveDir:[dir stringByAppendingPathComponent:name] toDir:[toDir stringByAppendingPathComponent:name] isCover:isCover excludeFiles:excludeFiles];
         } else {
             [NSFileManager zj_createDirectory:toDir];
-            if (!isCover && [NSFileManager zj_isExist:[toDir stringByAppendingPathComponent:name]]) {   //不覆盖，且存在文件
-                continue;
+            tempToPath = [toDir stringByAppendingPathComponent:name];
+            if ([NSFileManager zj_isExist:tempToPath]) {
+                if (isCover) {
+                    [NSFileManager zj_delete:tempToPath];
+                } else {
+                    continue;
+                }
             }
-            [NSFileManager zj_move:tempPath toPath:[toDir stringByAppendingPathComponent:name]];
+            [NSFileManager zj_move:tempPath toPath:tempToPath];
         }
     }
 }
