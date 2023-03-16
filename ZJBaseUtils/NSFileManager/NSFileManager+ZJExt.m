@@ -118,6 +118,29 @@
     return NO;
 }
 
+- (void)moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles {
+    NSArray<NSString *> *files = [NSFileManager zj_fileLists:dir];
+    NSString *tempPath = dir;
+    BOOL isDir = NO;
+    for (NSString *name in files) {
+        tempPath = [dir stringByAppendingPathComponent:name];
+        isDir = [NSFileManager zj_isExistDirectory:tempPath];
+        if (!isDir && [excludeFiles containsObject:name]) {  //是排除的文件
+            continue;
+        }
+        
+        if (isDir) {
+            [self moveDir:[dir stringByAppendingPathComponent:name] toDir:[toDir stringByAppendingPathComponent:name] isCover:isCover excludeFiles:excludeFiles];
+        } else {
+            [NSFileManager zj_createDirectory:toDir];
+            if (!isCover && [NSFileManager zj_isExist:[toDir stringByAppendingPathComponent:name]]) {   //不覆盖，且存在文件
+                continue;
+            }
+            [NSFileManager zj_move:tempPath toPath:[toDir stringByAppendingPathComponent:name]];
+        }
+    }
+}
+
 + (BOOL)zj_write:(NSString *)path data:(NSData *)data isAppend:(Boolean)isAppend
 {
     if (!path || !data) return NO;

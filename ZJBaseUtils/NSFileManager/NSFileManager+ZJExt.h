@@ -64,6 +64,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param toPath 新文件路径
 + (BOOL)zj_move:(NSString *)path toPath:(NSString *)toPath;
 
+/// 移动文件夹文件到另1个文件夹(主要用来做文件批量新增)
+/// @param dir 当前文件夹
+/// @param toDir 目标文件夹
+/// @param isCover 是否覆盖文件
+/// @param excludeFiles 需要排除的文件
+- (void)moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles;
+
 /// 往文件中写入数据
 /// @param path 文件路径
 /// @param data 待写入数据
