@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param toDir 目标文件夹
 /// @param isCover 是否覆盖文件
 /// @param excludeFiles 需要排除的文件
-- (void)moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles;
+- (void)zj_moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles;
 
 /// 往文件中写入数据
 /// @param path 文件路径

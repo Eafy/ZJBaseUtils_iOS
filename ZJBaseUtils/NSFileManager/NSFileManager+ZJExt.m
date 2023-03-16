@@ -118,7 +118,7 @@
     return NO;
 }
 
-- (void)moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles {
+- (void)zj_moveDir:(NSString *)dir toDir:(NSString *)toDir isCover:(BOOL)isCover excludeFiles:(NSArray<NSString *> *)excludeFiles {
     NSArray<NSString *> *files = [NSFileManager zj_fileLists:dir];
     NSString *tempPath = dir;
     BOOL isDir = NO;
