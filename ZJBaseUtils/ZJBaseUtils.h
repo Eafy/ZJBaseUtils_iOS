@@ -27,6 +27,7 @@
 #import <ZJBaseUtils/NSThread+ZJExt.h>
 #import <ZJBaseUtils/CAAnimation+ZJExt.h>
 #import <ZJBaseUtils/NSNumber+ZJExt.h>
+#import <ZJBaseUtils/NSUserDefaults+ZJExt.h>
 
 #import <ZJBaseUtils/UIColor+ZJExt.h>
 #import <ZJBaseUtils/UIImage+ZJExt.h>
@@ -78,6 +79,7 @@
 #import <ZJBaseUtils/ZJAvatarView.h>
 #import <ZJBaseUtils/ZJProgressBar.h>
 #import <ZJBaseUtils/ZJSensorManager.h>
+#import <ZJBaseUtils/ZJGpsUtils.h>
 
 #import <ZJBaseUtils/ZJBaseViewController.h>
 #import <ZJBaseUtils/ZJBaseNavigationController.h>
