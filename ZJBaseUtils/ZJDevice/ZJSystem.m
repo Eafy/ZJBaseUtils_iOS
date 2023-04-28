@@ -410,22 +410,24 @@ extern CGFloat ZJSysVersion(void) {
     }
 }
 
-+ (BOOL)canNotificationPermission
++ (void)canNotificationPermission:(void(^)(BOOL success))handler;
 {
     __block BOOL bCan = YES;
     if (@available(iOS 10.0, *)) {
         [[UNUserNotificationCenter currentNotificationCenter] getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
             if (settings.authorizationStatus == UNAuthorizationStatusDenied) {
-                bCan = NO;
+                if (handler) handler(NO);
+            } else {
+                if (handler) handler(YES);
             }
         }];
     } else {
         if ([[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone) {
-            bCan = NO;
+            if (handler) handler(NO);
+        } else {
+            if (handler) handler(YES);
         }
     }
-    
-    return bCan;
 }
 
 + (BOOL)canLocationPermission

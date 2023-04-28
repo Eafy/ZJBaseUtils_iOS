@@ -123,7 +123,7 @@ extern CGFloat ZJSysVersion(void);
 + (void)requestPhotoPermission:(void(^)(BOOL success))handler;
 
 /// 通知权限（若未申请则会申请）
-+ (BOOL)canNotificationPermission;
++ (void)canNotificationPermission:(void(^)(BOOL success))handler;
 
 /// 定位权限（若未申请则会申请）
 + (BOOL)canLocationPermission;
