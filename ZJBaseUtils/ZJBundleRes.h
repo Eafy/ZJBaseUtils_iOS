@@ -35,6 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param imageName 图片名称
 + (nullable UIImage *)imageNamedWithBundle:(NSString *)bundleName imageName:(NSString * _Nullable)imageName;
 
+/// 从Bundle中获取plist文件并转换为字典
+/// @param bundleName bundle名称，nil从main中获取
+/// @param name plist名称
++ (nullable NSDictionary *)plistWithBundleName:(NSString * _Nullable)bundleName plistName:(NSString *)name;
 
 @end
 

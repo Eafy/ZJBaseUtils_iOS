@@ -99,4 +99,25 @@ static NSString *_defaultBundleResImagePath = nil;
     return nil;
 }
 
++ (nullable NSDictionary *)plistWithBundleName:(NSString * _Nullable)bundleName plistName:(NSString *)name {
+    if (!name || name.length == 0) return nil;
+    NSBundle *bundle = [NSBundle mainBundle];
+    if (bundleName != nil) {
+         bundle = [self bundleWithBundleName:bundleName];
+    }
+    NSURL *url = [bundle URLForResource:name withExtension:@"plist"];
+    if (!url) return nil;
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:url.path];
+    return dic;
+    
+//    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+//    if (!data) return nil;
+//    NSError *error = nil;
+//    NSDictionary *dic = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:nil error:&error];
+//    if (!dic && !error) {
+//        return dic;
+//    }
+//    return nil;
+}
+
 @end
