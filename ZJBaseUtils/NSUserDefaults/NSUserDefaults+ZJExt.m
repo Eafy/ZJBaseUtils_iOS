@@ -2,7 +2,7 @@
 //  NSUserDefaults+ZJExt.m
 //  ZJBaseUtils
 //
-//  Created by sean on 2023/4/26.
+//  Created by eafy on 2023/4/26.
 //  Copyright © 2023 ZJ. All rights reserved.
 //
 
@@ -13,51 +13,51 @@ static NSString *__gZJGroupIdStr = nil;
 
 @implementation NSUserDefaults (ZJExt)
 
-+ (void)setGroupIdForUserDefaults:(NSString *)groupId {
++ (void)zj_setGroupIdForUserDefaults:(NSString *)groupId {
     __gZJGroupIdStr = groupId;
 }
 
-+ (NSUserDefaults *)getUserDefaults {
++ (NSUserDefaults *)zj_getUserDefaults {
     if (!__gZJGroupIdStr) {
         __gZJGroupIdStr = [NSString stringWithFormat:@"group.%@", [ZJSystem appBundleID]];
     }
     return [[NSUserDefaults alloc] initWithSuiteName:__gZJGroupIdStr];
 }
 
-+ (void)setWidgetValue:(nullable id)value forKey:(nullable NSString *)key {
++ (void)zj_setWidgetValue:(nullable id)value forKey:(nullable NSString *)key {
     if (!key) return;
-    NSUserDefaults *userDefaults = [self getUserDefaults];
+    NSUserDefaults *userDefaults = [self zj_getUserDefaults];
     [userDefaults setValue:value forKey:key];
     [userDefaults synchronize];
 }
 
-+ (void)setWidgetDicValue:(nullable NSDictionary *)dic {
++ (void)zj_setWidgetDicValue:(nullable NSDictionary *)dic {
     if (!dic || dic.count == 0) return;
-    NSUserDefaults *userDefaults = [self getUserDefaults];
+    NSUserDefaults *userDefaults = [self zj_getUserDefaults];
     for (NSString *key in dic.allKeys) {
         [userDefaults setValue:[dic objectForKey:key] forKey:key];
     }
     [userDefaults synchronize];
 }
 
-+ (void)removeWidgetValueForKey:(nullable NSString *)key {
++ (void)zj_removeWidgetValueForKey:(nullable NSString *)key {
     if (!key) return;
-    NSUserDefaults *userDefaults = [self getUserDefaults];
+    NSUserDefaults *userDefaults = [self zj_getUserDefaults];
     [userDefaults removeObjectForKey:key];
     [userDefaults synchronize];
 }
 
-+ (void)removeWidgetValuesForKeys:(nullable NSArray *)keys {
++ (void)zj_removeWidgetValuesForKeys:(nullable NSArray *)keys {
     if (!keys || keys.count == 0) return;
-    NSUserDefaults *userDefaults = [self getUserDefaults];
+    NSUserDefaults *userDefaults = [self zj_getUserDefaults];
     for (NSString *key in keys) {
         [userDefaults removeObjectForKey:key];
     }
     [userDefaults synchronize];
 }
 
-+ (void)removeWidgetAllValue {
-    NSUserDefaults *userDefaults = [self getUserDefaults];
++ (void)zj_removeWidgetAllValue {
+    NSUserDefaults *userDefaults = [self zj_getUserDefaults];
     NSDictionary *dic = [userDefaults dictionaryRepresentation];
     for (NSString *key in dic.allKeys) {
         [userDefaults removeObjectForKey:key];
@@ -65,9 +65,9 @@ static NSString *__gZJGroupIdStr = nil;
     [userDefaults synchronize];
 }
 
-+ (nullable id)widgetValueForKey:(nullable NSString *)key {
++ (nullable id)zj_widgetValueForKey:(nullable NSString *)key {
     if (!key) return nil;
-    NSUserDefaults *userDefaults = [self getUserDefaults];
+    NSUserDefaults *userDefaults = [self zj_getUserDefaults];
     return [userDefaults valueForKey:key];
 }
 

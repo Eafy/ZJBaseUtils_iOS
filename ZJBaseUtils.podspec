@@ -12,6 +12,15 @@ Pod::Spec.new do |s|
   s.author       = 'Eafy'
   s.requires_arc = true
   s.ios.deployment_target   = '11.0'
+  s.pod_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+    'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'armv7s armv7'
+  }
+  s.user_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+    'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'armv7s armv7'
+  }
+  
   s.frameworks = 'GLKit','AVFoundation','CoreLocation','AssetsLibrary','SystemConfiguration','Photos','Security','UIKit','CoreText','CoreServices','UserNotifications','CoreTelephony'
 
   s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "v#{s.version}"}
