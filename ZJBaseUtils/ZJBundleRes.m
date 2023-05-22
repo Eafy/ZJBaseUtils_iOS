@@ -71,7 +71,7 @@ static NSString *_defaultBundleResImagePath = nil;
     if (img) return img;
     
     NSString *filePath = [self imageNamePath:imageName];
-    if ([NSFileManager zj_isExist:filePath]) {
+    if (filePath) {
         return [[UIImage alloc] initWithContentsOfFile:filePath];
     }
     return nil;
@@ -94,7 +94,7 @@ static NSString *_defaultBundleResImagePath = nil;
 + (nullable UIImage *)imageNamedWithBundle:(NSString *)bundleName imageName:(NSString * _Nullable)imageName
 {
     NSString *filePath = [self imageNamedPathWithBundle:bundleName imageName:imageName];
-    if ([NSFileManager zj_isExist:filePath]) {
+    if (filePath) {
         return [[UIImage alloc] initWithContentsOfFile:filePath];
     }
     return nil;
