@@ -80,6 +80,7 @@
 #import <ZJBaseUtils/ZJProgressBar.h>
 #import <ZJBaseUtils/ZJSensorManager.h>
 #import <ZJBaseUtils/ZJGpsUtils.h>
+#import <ZJBaseUtils/ZJCrashMonitor.h>
 
 #import <ZJBaseUtils/ZJBaseViewController.h>
 #import <ZJBaseUtils/ZJBaseNavigationController.h>
