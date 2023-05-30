@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 
 NSString *const kZJCrashName = @"kZJCrashName";
-NSString *const kZJCrashReason = @"kZJCrashName";
-NSString *const kZJCrashStackSymbols = @"kZJCrashName";
+NSString *const kZJCrashReason = @"kZJCrashReason";
+NSString *const kZJCrashStackSymbols = @"kZJCrashStackSymbols";
 NSString *const kZJCrashCount = @"kZJCrashCount";
 
 typedef void (^ZJCrashMonitorCb)(NSDictionary *info);

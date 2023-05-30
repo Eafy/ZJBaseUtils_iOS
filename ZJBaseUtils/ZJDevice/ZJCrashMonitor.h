@@ -25,8 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)registerCrashHandler:(nullable void (^)(NSDictionary *info))infoCb;
 
 /// 检测启动连续闪退次数
-/// - Parameter intervalTime: 启动闪退最小间隔时间(秒)
-/// - Parameter count: 连续闪退次数
+/// - Parameter intervalTime: 启动闪退最小间隔时间(秒)，0使用默认值5
+/// - Parameter count: 连续闪退次数，0使用默认值3
 + (BOOL)checkCrashCountOnLaunch:(CGFloat)intervalTime count:(NSInteger)count API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));
 
 /// 清除连续闪退次数
