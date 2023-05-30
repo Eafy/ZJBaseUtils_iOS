@@ -34,6 +34,9 @@ static void uncaughtExceptionHandler(NSException *exception) {
     NSString *reason = [exception reason];
     // 异常名称
     NSString *name = [exception name];
+    NSLog(@"CrashName: %@", name);
+    NSLog(@"CrashReason: %@", reason);
+    NSLog(@"CrashStackSymbols: %@", stackArray);
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setValue:name forKey:kZJCrashName];
