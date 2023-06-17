@@ -18,8 +18,8 @@
 		0C1B8B522566BF750057B513 /* UIImage+ZJQR.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C1B8B502566BF750057B513 /* UIImage+ZJQR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C1B8B532566BF750057B513 /* UIImage+ZJQR.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1B8B512566BF750057B513 /* UIImage+ZJQR.m */; };
 		0C20FA232A22F367006BF0E2 /* ZJSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20FA212A22F366006BF0E2 /* ZJSystem.m */; };
-		0C20FA242A22F367006BF0E2 /* ZJSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C20FA222A22F366006BF0E2 /* ZJSystem.h */; };
-		0C20FA322A230ACD006BF0E2 /* ZJCrashMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C20FA302A230ACD006BF0E2 /* ZJCrashMonitor.h */; };
+		0C20FA242A22F367006BF0E2 /* ZJSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C20FA222A22F366006BF0E2 /* ZJSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C20FA322A230ACD006BF0E2 /* ZJCrashMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C20FA302A230ACD006BF0E2 /* ZJCrashMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C20FA332A230ACD006BF0E2 /* ZJCrashMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20FA312A230ACD006BF0E2 /* ZJCrashMonitor.m */; };
 		0C2587EE258234EA00985486 /* ZJAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2587EA258234EA00985486 /* ZJAlertAction.m */; };
 		0C2587EF258234EA00985486 /* ZJAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C2587EB258234EA00985486 /* ZJAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -71,7 +71,7 @@
 		0C64972F2563AEC60052DBCA /* PHAsset+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C64972D2563AEC60052DBCA /* PHAsset+ZJExt.m */; };
 		0C6497322563B37D0052DBCA /* ZJPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C6497302563B37D0052DBCA /* ZJPhoto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C6497332563B37D0052DBCA /* ZJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6497312563B37D0052DBCA /* ZJPhoto.m */; };
-		0C68204C26032C3C0048DCDB /* ZJNotifyHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C68204A26032C3C0048DCDB /* ZJNotifyHUD.h */; };
+		0C68204C26032C3C0048DCDB /* ZJNotifyHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C68204A26032C3C0048DCDB /* ZJNotifyHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C68204D26032C3C0048DCDB /* ZJNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C68204B26032C3C0048DCDB /* ZJNotifyHUD.m */; };
 		0C68EDD62562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C68EDD42562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C68EDD72562806400D3CF9F /* ZJBaseTabBarTopLineConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C68EDD52562806400D3CF9F /* ZJBaseTabBarTopLineConfig.m */; };
@@ -83,53 +83,53 @@
 		0C720667255BEEE0005789C7 /* ZJBaseTVPrivateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C720665255BEEE0005789C7 /* ZJBaseTVPrivateData.m */; };
 		0C72066A255BEFE4005789C7 /* ZJBaseTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C720668255BEFE4005789C7 /* ZJBaseTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C72066B255BEFE4005789C7 /* ZJBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C720669255BEFE4005789C7 /* ZJBaseTableView.m */; };
-		0C80D4882864813C0013DD88 /* ZJSensorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C80D4862864813C0013DD88 /* ZJSensorManager.h */; };
+		0C80D4882864813C0013DD88 /* ZJSensorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C80D4862864813C0013DD88 /* ZJSensorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C80D4892864813C0013DD88 /* ZJSensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C80D4872864813C0013DD88 /* ZJSensorManager.m */; };
 		0C843CC32575036E00B48DED /* ZJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C843CC12575036D00B48DED /* ZJTextField.m */; };
 		0C843CC42575036E00B48DED /* ZJTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C843CC22575036D00B48DED /* ZJTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0C8482E225D2779100B75FD2 /* ZJStepBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482E025D2779100B75FD2 /* ZJStepBar.h */; };
+		0C8482E225D2779100B75FD2 /* ZJStepBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482E025D2779100B75FD2 /* ZJStepBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C8482E325D2779100B75FD2 /* ZJStepBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8482E125D2779100B75FD2 /* ZJStepBar.m */; };
-		0C8482EA25D277E700B75FD2 /* ZJBundleRes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482E825D277E600B75FD2 /* ZJBundleRes.h */; };
+		0C8482EA25D277E700B75FD2 /* ZJBundleRes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482E825D277E600B75FD2 /* ZJBundleRes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C8482EB25D277E700B75FD2 /* ZJBundleRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8482E925D277E600B75FD2 /* ZJBundleRes.m */; };
-		0C8482F325D2782700B75FD2 /* UISearchBar+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482EF25D2782700B75FD2 /* UISearchBar+ZJExt.h */; };
+		0C8482F325D2782700B75FD2 /* UISearchBar+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482EF25D2782700B75FD2 /* UISearchBar+ZJExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C8482F425D2782700B75FD2 /* ZJSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8482F025D2782700B75FD2 /* ZJSearchBar.m */; };
-		0C8482F525D2782700B75FD2 /* ZJSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482F125D2782700B75FD2 /* ZJSearchBar.h */; };
+		0C8482F525D2782700B75FD2 /* ZJSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482F125D2782700B75FD2 /* ZJSearchBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C8482F625D2782700B75FD2 /* UISearchBar+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8482F225D2782700B75FD2 /* UISearchBar+ZJExt.m */; };
-		0C8482FB25D2783C00B75FD2 /* UIView+ZJAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482F925D2783C00B75FD2 /* UIView+ZJAnimation.h */; };
+		0C8482FB25D2783C00B75FD2 /* UIView+ZJAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C8482F925D2783C00B75FD2 /* UIView+ZJAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C8482FC25D2783C00B75FD2 /* UIView+ZJAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8482FA25D2783C00B75FD2 /* UIView+ZJAnimation.m */; };
 		0C84830225D2784900B75FD2 /* ZJLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84830025D2784900B75FD2 /* ZJLine.m */; };
-		0C84830325D2784900B75FD2 /* ZJLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84830125D2784900B75FD2 /* ZJLine.h */; };
+		0C84830325D2784900B75FD2 /* ZJLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84830125D2784900B75FD2 /* ZJLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84830B25D2787700B75FD2 /* ZJInputPlayPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84830725D2787700B75FD2 /* ZJInputPlayPwdView.m */; };
-		0C84830C25D2787700B75FD2 /* ZJInputTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84830825D2787700B75FD2 /* ZJInputTextView.h */; };
+		0C84830C25D2787700B75FD2 /* ZJInputTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84830825D2787700B75FD2 /* ZJInputTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84830D25D2787700B75FD2 /* ZJInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84830925D2787700B75FD2 /* ZJInputTextView.m */; };
-		0C84830E25D2787700B75FD2 /* ZJInputPlayPwdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84830A25D2787700B75FD2 /* ZJInputPlayPwdView.h */; };
-		0C84831425D2787E00B75FD2 /* ZJSwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84831225D2787E00B75FD2 /* ZJSwitch.h */; };
+		0C84830E25D2787700B75FD2 /* ZJInputPlayPwdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84830A25D2787700B75FD2 /* ZJInputPlayPwdView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C84831425D2787E00B75FD2 /* ZJSwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84831225D2787E00B75FD2 /* ZJSwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84831525D2787E00B75FD2 /* ZJSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84831325D2787E00B75FD2 /* ZJSwitch.m */; };
-		0C84831B25D2788500B75FD2 /* ZJButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84831925D2788500B75FD2 /* ZJButton.h */; };
+		0C84831B25D2788500B75FD2 /* ZJButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84831925D2788500B75FD2 /* ZJButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84831C25D2788500B75FD2 /* ZJButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84831A25D2788500B75FD2 /* ZJButton.m */; };
-		0C84832225D2788B00B75FD2 /* ZJLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84832025D2788B00B75FD2 /* ZJLabel.h */; };
+		0C84832225D2788B00B75FD2 /* ZJLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84832025D2788B00B75FD2 /* ZJLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84832325D2788B00B75FD2 /* ZJLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84832125D2788B00B75FD2 /* ZJLabel.m */; };
-		0C84832925D2789000B75FD2 /* ZJSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84832725D2789000B75FD2 /* ZJSegmentedControl.h */; };
+		0C84832925D2789000B75FD2 /* ZJSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84832725D2789000B75FD2 /* ZJSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84832A25D2789000B75FD2 /* ZJSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84832825D2789000B75FD2 /* ZJSegmentedControl.m */; };
-		0C84833025D2789500B75FD2 /* ZJUploadView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84832E25D2789500B75FD2 /* ZJUploadView.h */; };
+		0C84833025D2789500B75FD2 /* ZJUploadView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84832E25D2789500B75FD2 /* ZJUploadView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84833125D2789500B75FD2 /* ZJUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84832F25D2789500B75FD2 /* ZJUploadView.m */; };
 		0C84834325D2789E00B75FD2 /* ZJCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84833725D2789E00B75FD2 /* ZJCalendarView.m */; };
 		0C84834425D2789E00B75FD2 /* ZJCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84833825D2789E00B75FD2 /* ZJCalendarCollectionViewCell.m */; };
 		0C84834525D2789E00B75FD2 /* ZJCalendarCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84833925D2789E00B75FD2 /* ZJCalendarCollectionReusableView.m */; };
-		0C84834625D2789E00B75FD2 /* ZJCalendarMonth.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84833A25D2789E00B75FD2 /* ZJCalendarMonth.h */; };
+		0C84834625D2789E00B75FD2 /* ZJCalendarMonth.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84833A25D2789E00B75FD2 /* ZJCalendarMonth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84834725D2789E00B75FD2 /* ZJCalendarWeekTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84833B25D2789E00B75FD2 /* ZJCalendarWeekTitleView.m */; };
 		0C84834825D2789E00B75FD2 /* ZJCalendarCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84833C25D2789E00B75FD2 /* ZJCalendarCenter.m */; };
-		0C84834925D2789E00B75FD2 /* ZJCalendarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84833D25D2789E00B75FD2 /* ZJCalendarView.h */; };
-		0C84834A25D2789E00B75FD2 /* ZJCalendarCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84833E25D2789E00B75FD2 /* ZJCalendarCollectionViewCell.h */; };
+		0C84834925D2789E00B75FD2 /* ZJCalendarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84833D25D2789E00B75FD2 /* ZJCalendarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C84834A25D2789E00B75FD2 /* ZJCalendarCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84833E25D2789E00B75FD2 /* ZJCalendarCollectionViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84834B25D2789E00B75FD2 /* ZJCalendarMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84833F25D2789E00B75FD2 /* ZJCalendarMonth.m */; };
-		0C84834C25D2789E00B75FD2 /* ZJCalendarCollectionReusableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84834025D2789E00B75FD2 /* ZJCalendarCollectionReusableView.h */; };
-		0C84834D25D2789E00B75FD2 /* ZJCalendarCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84834125D2789E00B75FD2 /* ZJCalendarCenter.h */; };
-		0C84834E25D2789E00B75FD2 /* ZJCalendarWeekTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84834225D2789E00B75FD2 /* ZJCalendarWeekTitleView.h */; };
-		0C84836425D279C700B75FD2 /* ZJAvatarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836225D279C700B75FD2 /* ZJAvatarView.h */; };
+		0C84834C25D2789E00B75FD2 /* ZJCalendarCollectionReusableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84834025D2789E00B75FD2 /* ZJCalendarCollectionReusableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C84834D25D2789E00B75FD2 /* ZJCalendarCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84834125D2789E00B75FD2 /* ZJCalendarCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C84834E25D2789E00B75FD2 /* ZJCalendarWeekTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84834225D2789E00B75FD2 /* ZJCalendarWeekTitleView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C84836425D279C700B75FD2 /* ZJAvatarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836225D279C700B75FD2 /* ZJAvatarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84836525D279C700B75FD2 /* ZJAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84836325D279C700B75FD2 /* ZJAvatarView.m */; };
 		0C84836B25D279CF00B75FD2 /* ZJProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84836925D279CF00B75FD2 /* ZJProgressBar.m */; };
 		0C84836C25D279CF00B75FD2 /* ZJProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836A25D279CF00B75FD2 /* ZJProgressBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0C84837125D27A5700B75FD2 /* ZJDatePickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836F25D27A5700B75FD2 /* ZJDatePickerViewModel.h */; };
+		0C84837125D27A5700B75FD2 /* ZJDatePickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C84836F25D27A5700B75FD2 /* ZJDatePickerViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C84837225D27A5700B75FD2 /* ZJDatePickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C84837025D27A5700B75FD2 /* ZJDatePickerViewModel.m */; };
 		0C91FF99256BCB5600F30981 /* ZJPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C91FF97256BCB5600F30981 /* ZJPickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C91FF9A256BCB5600F30981 /* ZJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C91FF98256BCB5600F30981 /* ZJPickerView.m */; };
@@ -153,7 +153,7 @@
 		0C9569A224E4326D00C9A6C5 /* NSData+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9569A024E4326D00C9A6C5 /* NSData+ZJExt.m */; };
 		0C98FD702577A5EC005C9DB4 /* ZJSettingButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C98FD6E2577A5EC005C9DB4 /* ZJSettingButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C98FD712577A5EC005C9DB4 /* ZJSettingButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C98FD6F2577A5EC005C9DB4 /* ZJSettingButtonItem.m */; };
-		0C98FDE0257A30CD005C9DB4 /* ZJNetRoute.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0C98FDDF257A30CD005C9DB4 /* ZJNetRoute.hpp */; };
+		0C98FDE0257A30CD005C9DB4 /* ZJNetRoute.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0C98FDDF257A30CD005C9DB4 /* ZJNetRoute.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C9D9A8B255F98BE0026C980 /* ZJBaseTBBadge.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9D9A89255F98BE0026C980 /* ZJBaseTBBadge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C9D9A8C255F98BE0026C980 /* ZJBaseTBBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9D9A8A255F98BE0026C980 /* ZJBaseTBBadge.m */; };
 		0C9D9A93255F995D0026C980 /* CAAnimation+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9D9A91255F995D0026C980 /* CAAnimation+ZJExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -163,7 +163,7 @@
 		0CA0211A251F76D200A9F216 /* ZJModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CA02118251F76D200A9F216 /* ZJModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CA0211B251F76D200A9F216 /* ZJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA02119251F76D200A9F216 /* ZJModel.m */; };
 		0CA0B5E32701D8C700E00D44 /* ZJBaseVCSharedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA0B5E12701D8C700E00D44 /* ZJBaseVCSharedAPI.m */; };
-		0CA0B5E42701D8C700E00D44 /* ZJBaseVCSharedAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CA0B5E22701D8C700E00D44 /* ZJBaseVCSharedAPI.h */; };
+		0CA0B5E42701D8C700E00D44 /* ZJBaseVCSharedAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CA0B5E22701D8C700E00D44 /* ZJBaseVCSharedAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CA3ADEB25340907009782ED /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA3ADEA25340907009782ED /* CoreServices.framework */; };
 		0CA3AE0125357D1A009782ED /* ZJModelFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CA3ADFF25357D1A009782ED /* ZJModelFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CA3AE0225357D1A009782ED /* ZJModelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA3AE0025357D1A009782ED /* ZJModelFilter.m */; };
@@ -179,12 +179,13 @@
 		0CB590CB2515F5D30092E854 /* NSString+ZJIMGExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB590C92515F5D30092E854 /* NSString+ZJIMGExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB590D92515F71C0092E854 /* ZJBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB590D72515F71C0092E854 /* ZJBaseNavigationController.m */; };
 		0CB590DA2515F71C0092E854 /* ZJBaseNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB590D82515F71C0092E854 /* ZJBaseNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0CBBF72F29F9394700F79E24 /* ZJGpsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CBBF72D29F9394700F79E24 /* ZJGpsUtils.h */; };
+		0CBBF72F29F9394700F79E24 /* ZJGpsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CBBF72D29F9394700F79E24 /* ZJGpsUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CBBF73029F9394700F79E24 /* ZJGpsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBF72E29F9394700F79E24 /* ZJGpsUtils.m */; };
 		0CBBF73529F939C200F79E24 /* NSUserDefaults+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CBBF73329F939C200F79E24 /* NSUserDefaults+ZJExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CBBF73629F939C200F79E24 /* NSUserDefaults+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBF73429F939C200F79E24 /* NSUserDefaults+ZJExt.m */; };
 		0CC127C8256507C900C33366 /* ZJSystem+WiFi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC127C6256507C900C33366 /* ZJSystem+WiFi.m */; };
 		0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC127C7256507C900C33366 /* ZJSystem+WiFi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CC273572A35629F00DF5603 /* ZJVideoSamplePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC2730C2A35522900DF5603 /* ZJVideoSamplePlayView.swift */; };
 		0CC5EFD52539420F0083546A /* ZJModelPairs.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC5EFD32539420F0083546A /* ZJModelPairs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CC5EFD62539420F0083546A /* ZJModelPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5EFD42539420F0083546A /* ZJModelPairs.m */; };
 		0CCF759724E8E71000794878 /* NSString+ZJSHA.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF759524E8E71000794878 /* NSString+ZJSHA.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -217,7 +218,6 @@
 		0CCF75D124EC0CD200794878 /* UIView+ZJFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75CF24EC0CD200794878 /* UIView+ZJFrame.m */; };
 		0CCF75D624EC0DAD00794878 /* UIViewController+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF75D424EC0DAD00794878 /* UIViewController+ZJExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CCF75D724EC0DAD00794878 /* UIViewController+ZJExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75D524EC0DAD00794878 /* UIViewController+ZJExt.m */; };
-		0CCF75DA24EC107400794878 /* ZJSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF75D824EC107400794878 /* ZJSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CCF75DB24EC107400794878 /* ZJSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75D924EC107400794878 /* ZJSystem.m */; };
 		0CCF75DF24EC125900794878 /* ZJScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF75DD24EC125900794878 /* ZJScreen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CCF75E024EC125900794878 /* ZJScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF75DE24EC125900794878 /* ZJScreen.m */; };
@@ -241,12 +241,12 @@
 		0CEB8CBF256B9E4100BFD910 /* ZJBaseUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEB8CBD256B9E4100BFD910 /* ZJBaseUtils.m */; };
 		0CFBF56025230CFA00D55386 /* ZJSettingTextFieldItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF55E25230CFA00D55386 /* ZJSettingTextFieldItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CFBF56125230CFA00D55386 /* ZJSettingTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFBF55F25230CFA00D55386 /* ZJSettingTextFieldItem.m */; };
-		0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */; };
+		0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF56A2524785C00D55386 /* ZJSettingTableViewCellExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CFBF56E25249A3200D55386 /* ZJSettingRadioItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFBF56C25249A3200D55386 /* ZJSettingRadioItem.m */; };
 		0CFBF56F25249A3200D55386 /* ZJSettingRadioItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFBF56D25249A3200D55386 /* ZJSettingRadioItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CFF856F256644FE0000E9C9 /* ZJBaseViewController+Present.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF856D256644FD0000E9C9 /* ZJBaseViewController+Present.m */; };
-		0CFF8570256644FE0000E9C9 /* ZJBaseViewController+Present.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFF856E256644FE0000E9C9 /* ZJBaseViewController+Present.h */; };
-		0CFF8573256645040000E9C9 /* ZJBaseTableViewController+Present.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFF8571256645040000E9C9 /* ZJBaseTableViewController+Present.h */; };
+		0CFF8570256644FE0000E9C9 /* ZJBaseViewController+Present.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFF856E256644FE0000E9C9 /* ZJBaseViewController+Present.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CFF8573256645040000E9C9 /* ZJBaseTableViewController+Present.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CFF8571256645040000E9C9 /* ZJBaseTableViewController+Present.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CFF8574256645040000E9C9 /* ZJBaseTableViewController+Present.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF8572256645040000E9C9 /* ZJBaseTableViewController+Present.m */; };
 /* End PBXBuildFile section */
 
@@ -441,6 +441,7 @@
 		0CBBF73429F939C200F79E24 /* NSUserDefaults+ZJExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+ZJExt.m"; sourceTree = "<group>"; };
 		0CC127C6256507C900C33366 /* ZJSystem+WiFi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZJSystem+WiFi.m"; sourceTree = "<group>"; };
 		0CC127C7256507C900C33366 /* ZJSystem+WiFi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZJSystem+WiFi.h"; sourceTree = "<group>"; };
+		0CC2730C2A35522900DF5603 /* ZJVideoSamplePlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJVideoSamplePlayView.swift; sourceTree = "<group>"; };
 		0CC5EFD32539420F0083546A /* ZJModelPairs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJModelPairs.h; sourceTree = "<group>"; };
 		0CC5EFD42539420F0083546A /* ZJModelPairs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJModelPairs.m; sourceTree = "<group>"; };
 		0CCF759524E8E71000794878 /* NSString+ZJSHA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZJSHA.h"; sourceTree = "<group>"; };
@@ -596,6 +597,7 @@
 		0C279C4924E2D22E00474649 /* ZJBaseUtils */ = {
 			isa = PBXGroup;
 			children = (
+				0CC2730B2A35521A00DF5603 /* ZJMedia */,
 				0CBBF73229F939B300F79E24 /* NSUserDefaults */,
 				0C00346F2634F92F00C5A04B /* CLLocation */,
 				0C84836825D279CF00B75FD2 /* ZJProgressBar */,
@@ -1089,6 +1091,14 @@
 			path = NSUserDefaults;
 			sourceTree = "<group>";
 		};
+		0CC2730B2A35521A00DF5603 /* ZJMedia */ = {
+			isa = PBXGroup;
+			children = (
+				0CC2730C2A35522900DF5603 /* ZJVideoSamplePlayView.swift */,
+			);
+			path = ZJMedia;
+			sourceTree = "<group>";
+		};
 		0CCF75B124E9231700794878 /* NSDictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -1206,7 +1216,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C84836C25D279CF00B75FD2 /* ZJProgressBar.h in Headers */,
 				0C0034722634F92F00C5A04B /* CLLocation+ZJExt.h in Headers */,
 				0C5E7BE02580E25B0056CFCB /* UIView+ZJShadow.h in Headers */,
 				0C268846257FA51E00171010 /* ZJSlider.h in Headers */,
@@ -1215,77 +1224,54 @@
 				0C68EDD62562806400D3CF9F /* ZJBaseTabBarTopLineConfig.h in Headers */,
 				0C2A33DF2573A82000F53794 /* UIView+ZJGradient.h in Headers */,
 				0C1B8B522566BF750057B513 /* UIImage+ZJQR.h in Headers */,
-				0C84834D25D2789E00B75FD2 /* ZJCalendarCenter.h in Headers */,
 				0C9D9A93255F995D0026C980 /* CAAnimation+ZJExt.h in Headers */,
-				0CBBF72F29F9394700F79E24 /* ZJGpsUtils.h in Headers */,
 				0C9D9AAD256018110026C980 /* ZJBaseTabBarConfig.h in Headers */,
 				0C720666255BEEE0005789C7 /* ZJBaseTVPrivateData.h in Headers */,
-				0C84830325D2784900B75FD2 /* ZJLine.h in Headers */,
 				0CA3AE132535BDE1009782ED /* ZJModelFilterGet.h in Headers */,
 				0CA3AE0125357D1A009782ED /* ZJModelFilter.h in Headers */,
 				0CBBF73529F939C200F79E24 /* NSUserDefaults+ZJExt.h in Headers */,
 				0C08E9B126202D8400826239 /* NSNumber+ZJExt.h in Headers */,
 				0CC5EFD52539420F0083546A /* ZJModelPairs.h in Headers */,
 				0CA3AE172535BDEC009782ED /* ZJModelFilterSet.h in Headers */,
-				0CFF8570256644FE0000E9C9 /* ZJBaseViewController+Present.h in Headers */,
-				0C84834C25D2789E00B75FD2 /* ZJCalendarCollectionReusableView.h in Headers */,
 				0CFBF56F25249A3200D55386 /* ZJSettingRadioItem.h in Headers */,
-				0C84832925D2789000B75FD2 /* ZJSegmentedControl.h in Headers */,
-				0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */,
 				0CFBF56025230CFA00D55386 /* ZJSettingTextFieldItem.h in Headers */,
 				0CA0211A251F76D200A9F216 /* ZJModel.h in Headers */,
 				0C50B913251EF53A0032CB2F /* ZJThread.h in Headers */,
 				0C50B8B0251E516A0032CB2F /* UIImageView+ZJExt.h in Headers */,
 				0CB590DA2515F71C0092E854 /* ZJBaseNavigationController.h in Headers */,
-				0C8482F325D2782700B75FD2 /* UISearchBar+ZJExt.h in Headers */,
 				0CB590CB2515F5D30092E854 /* NSString+ZJIMGExt.h in Headers */,
-				0C84832225D2788B00B75FD2 /* ZJLabel.h in Headers */,
 				0CCF759724E8E71000794878 /* NSString+ZJSHA.h in Headers */,
 				0CCF75DF24EC125900794878 /* ZJScreen.h in Headers */,
-				0C84834E25D2789E00B75FD2 /* ZJCalendarWeekTitleView.h in Headers */,
 				0CCF75A324E9171400794878 /* NSData+ZJAESDES.h in Headers */,
 				0CB590AF2515F40E0092E854 /* UIButton+ZJExt.h in Headers */,
 				0CCF75D024EC0CD200794878 /* UIView+ZJFrame.h in Headers */,
 				0C95697324E2D96A00C9A6C5 /* NSArray+ZJExt.h in Headers */,
 				0CCF759F24E8EA1700794878 /* NSData+ZJRSA.h in Headers */,
-				0CCF75DA24EC107400794878 /* ZJSystem.h in Headers */,
 				0CCF75C324EC00EF00794878 /* UIImage+ZJExt.h in Headers */,
-				0C20FA322A230ACD006BF0E2 /* ZJCrashMonitor.h in Headers */,
 				0CCF75D624EC0DAD00794878 /* UIViewController+ZJExt.h in Headers */,
 				0C95696D24E2D96A00C9A6C5 /* ZJSingleton.h in Headers */,
 				0C95699224E2EF1000C9A6C5 /* NSFileManager+ZJExt.h in Headers */,
 				0C9569A124E4326D00C9A6C5 /* NSData+ZJExt.h in Headers */,
 				0CCF759B24E8E8C000794878 /* NSString+ZJRSA.h in Headers */,
 				0CCF75AF24E9221300794878 /* NSString+ZJJSON.h in Headers */,
-				0C8482FB25D2783C00B75FD2 /* UIView+ZJAnimation.h in Headers */,
 				0CCF75B424E9232700794878 /* NSDictionary+ZJExt.h in Headers */,
 				0CCF75B924E9238D00794878 /* NSThread+ZJExt.h in Headers */,
 				0C95699C24E42F4100C9A6C5 /* NSString+ZJExt.h in Headers */,
-				0C8482F525D2782700B75FD2 /* ZJSearchBar.h in Headers */,
 				0CB590BC2515F4680092E854 /* ZJBaseViewController.h in Headers */,
-				0C84831425D2787E00B75FD2 /* ZJSwitch.h in Headers */,
-				0C8482E225D2779100B75FD2 /* ZJStepBar.h in Headers */,
 				0C95698624E2D96A00C9A6C5 /* ZJUtilsDef.h in Headers */,
 				0C50B885251E4F0C0032CB2F /* ZJSettingItem.h in Headers */,
 				0C50B88E251E4F0C0032CB2F /* ZJSettingTableViewCell.h in Headers */,
 				0C95699724E4257D00C9A6C5 /* NSObject+ZJExt.h in Headers */,
-				0C98FDE0257A30CD005C9DB4 /* ZJNetRoute.hpp in Headers */,
 				0C50B880251E4F0C0032CB2F /* ZJSettingSwitchItem.h in Headers */,
 				0CCF75CC24EC075600794878 /* UIView+ZJGesture.h in Headers */,
 				0C50B886251E4F0C0032CB2F /* ZJSettingCustomViewItem.h in Headers */,
 				0C95697024E2D96A00C9A6C5 /* NSDate+ZJExt.h in Headers */,
-				0C68204C26032C3C0048DCDB /* ZJNotifyHUD.h in Headers */,
 				0C50B883251E4F0C0032CB2F /* ZJSettingArrowItem.h in Headers */,
-				0CA0B5E42701D8C700E00D44 /* ZJBaseVCSharedAPI.h in Headers */,
-				0C84834925D2789E00B75FD2 /* ZJCalendarView.h in Headers */,
 				0CCF75BE24E9285A00794878 /* UIColor+ZJExt.h in Headers */,
 				0C50B87E251E4F0C0032CB2F /* ZJBaseTableViewController.h in Headers */,
-				0C84834A25D2789E00B75FD2 /* ZJCalendarCollectionViewCell.h in Headers */,
-				0C80D4882864813C0013DD88 /* ZJSensorManager.h in Headers */,
 				0CCF75C824EC03BB00794878 /* UIView+ZJExt.h in Headers */,
 				0C50B889251E4F0C0032CB2F /* ZJSettingLabelItem.h in Headers */,
 				0C72066A255BEFE4005789C7 /* ZJBaseTableView.h in Headers */,
-				0CFF8573256645040000E9C9 /* ZJBaseTableViewController+Present.h in Headers */,
 				0C4C942C255ED29D008CED51 /* ZJBaseTabBar.h in Headers */,
 				0C4C9432255ED31F008CED51 /* ZJBaseTabBarButton.h in Headers */,
 				0C50B884251E4F0C0032CB2F /* ZJSettingItemGroup.h in Headers */,
@@ -1295,33 +1281,57 @@
 				0C4C94F5255F8038008CED51 /* ZJBaseTarbarItem.h in Headers */,
 				0C50B891251E4F0C0032CB2F /* ZJBaseTVConfig.h in Headers */,
 				0CEB8C63256B632100BFD910 /* ZJRatingView.h in Headers */,
-				0C84834625D2789E00B75FD2 /* ZJCalendarMonth.h in Headers */,
+				0C84830325D2784900B75FD2 /* ZJLine.h in Headers */,
+				0CFF8570256644FE0000E9C9 /* ZJBaseViewController+Present.h in Headers */,
+				0C84834C25D2789E00B75FD2 /* ZJCalendarCollectionReusableView.h in Headers */,
+				0C84832925D2789000B75FD2 /* ZJSegmentedControl.h in Headers */,
+				0CFBF56B2524785C00D55386 /* ZJSettingTableViewCellExt.h in Headers */,
+				0C84832225D2788B00B75FD2 /* ZJLabel.h in Headers */,
 				0C20FA242A22F367006BF0E2 /* ZJSystem.h in Headers */,
 				0CEB8C5E256B62A300BFD910 /* ZJSettingScoreItem.h in Headers */,
+				0C84834E25D2789E00B75FD2 /* ZJCalendarWeekTitleView.h in Headers */,
+				0C8482F325D2782700B75FD2 /* UISearchBar+ZJExt.h in Headers */,
 				0C7172DC2563FE8500950EE5 /* UIButton+ZJGradient.h in Headers */,
+				0C8482FB25D2783C00B75FD2 /* UIView+ZJAnimation.h in Headers */,
+				0C20FA322A230ACD006BF0E2 /* ZJCrashMonitor.h in Headers */,
 				0C91FF9D256BCB7100F30981 /* ZJPickerItem.h in Headers */,
+				0C8482F525D2782700B75FD2 /* ZJSearchBar.h in Headers */,
 				0CEB8C67256B632E00BFD910 /* ZJRatingStarView.h in Headers */,
+				0C84831425D2787E00B75FD2 /* ZJSwitch.h in Headers */,
 				0C64972E2563AEC60052DBCA /* PHAsset+ZJExt.h in Headers */,
+				0C8482E225D2779100B75FD2 /* ZJStepBar.h in Headers */,
 				0C2587F0258234EA00985486 /* ZJAlertAction.h in Headers */,
 				0C91FF99256BCB5600F30981 /* ZJPickerView.h in Headers */,
-				0C84837125D27A5700B75FD2 /* ZJDatePickerViewModel.h in Headers */,
-				0C84831B25D2788500B75FD2 /* ZJButton.h in Headers */,
-				0C84833025D2789500B75FD2 /* ZJUploadView.h in Headers */,
-				0C8482EA25D277E700B75FD2 /* ZJBundleRes.h in Headers */,
+				0C98FDE0257A30CD005C9DB4 /* ZJNetRoute.hpp in Headers */,
+				0C68204C26032C3C0048DCDB /* ZJNotifyHUD.h in Headers */,
+				0CA0B5E42701D8C700E00D44 /* ZJBaseVCSharedAPI.h in Headers */,
+				0C84834A25D2789E00B75FD2 /* ZJCalendarCollectionViewCell.h in Headers */,
 				0CEB8CA1256B9C3700BFD910 /* ZJSettingStepperItem.h in Headers */,
-				0C84830C25D2787700B75FD2 /* ZJInputTextView.h in Headers */,
+				0CFF8573256645040000E9C9 /* ZJBaseTableViewController+Present.h in Headers */,
+				0C84834925D2789E00B75FD2 /* ZJCalendarView.h in Headers */,
+				0CBBF72F29F9394700F79E24 /* ZJGpsUtils.h in Headers */,
+				0C80D4882864813C0013DD88 /* ZJSensorManager.h in Headers */,
 				0CEB816425877C8200DA453C /* ZJSheetAction.h in Headers */,
 				0CEB816525877C8200DA453C /* ZJSheetView.h in Headers */,
 				0C2587EF258234EA00985486 /* ZJAlertView.h in Headers */,
 				0CEB816C25877C9F00DA453C /* ZJMessageBoard.h in Headers */,
+				0C84834625D2789E00B75FD2 /* ZJCalendarMonth.h in Headers */,
+				0C20FA242A22F367006BF0E2 /* ZJSystem.h in Headers */,
+				0C84834D25D2789E00B75FD2 /* ZJCalendarCenter.h in Headers */,
 				0C0D605E258A0EC400E3CEF1 /* ZJRedDotView.h in Headers */,
 				0CEB815E25877C5F00DA453C /* ZJLocalization.h in Headers */,
+				0C84836C25D279CF00B75FD2 /* ZJProgressBar.h in Headers */,
 				0CC127C9256507C900C33366 /* ZJSystem+WiFi.h in Headers */,
-				0C84836425D279C700B75FD2 /* ZJAvatarView.h in Headers */,
+				0C84837125D27A5700B75FD2 /* ZJDatePickerViewModel.h in Headers */,
 				0C5E7BDC2580E2370056CFCB /* ZJTextView.h in Headers */,
+				0C84833025D2789500B75FD2 /* ZJUploadView.h in Headers */,
+				0C8482EA25D277E700B75FD2 /* ZJBundleRes.h in Headers */,
+				0C84830C25D2787700B75FD2 /* ZJInputTextView.h in Headers */,
+				0C84836425D279C700B75FD2 /* ZJAvatarView.h in Headers */,
 				0C84830E25D2787700B75FD2 /* ZJInputPlayPwdView.h in Headers */,
 				0C0D605A258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.h in Headers */,
 				0C7172D62563FB0600950EE5 /* UIImage+ZJGradient.h in Headers */,
+				0C84831B25D2788500B75FD2 /* ZJButton.h in Headers */,
 				0C9D9A8B255F98BE0026C980 /* ZJBaseTBBadge.h in Headers */,
 				0CCF75A724E91C3600794878 /* NSString+ZJAESDES.h in Headers */,
 				0CCF75AB24E91F7000794878 /* NSString+ZJMD5.h in Headers */,
@@ -1381,7 +1391,7 @@
 				TargetAttributes = {
 					0C279C4624E2D22E00474649 = {
 						CreatedOnToolsVersion = 11.6;
-						LastSwiftMigration = 1220;
+						LastSwiftMigration = 1420;
 					};
 					0C279C4F24E2D22F00474649 = {
 						CreatedOnToolsVersion = 11.6;
@@ -1528,6 +1538,7 @@
 				0CCF75C924EC03BB00794878 /* UIView+ZJExt.m in Sources */,
 				0C84834725D2789E00B75FD2 /* ZJCalendarWeekTitleView.m in Sources */,
 				0C84830B25D2787700B75FD2 /* ZJInputPlayPwdView.m in Sources */,
+				0CC273572A35629F00DF5603 /* ZJVideoSamplePlayView.swift in Sources */,
 				0C84834B25D2789E00B75FD2 /* ZJCalendarMonth.m in Sources */,
 				0C9D9A94255F995D0026C980 /* CAAnimation+ZJExt.m in Sources */,
 				0C9569A224E4326D00C9A6C5 /* NSData+ZJExt.m in Sources */,
@@ -1689,6 +1700,8 @@
 		0C279C5C24E2D22F00474649 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 129;
@@ -1696,6 +1709,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZJBaseUtils/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1704,11 +1718,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eafy.ZJBaseUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1718,6 +1735,8 @@
 		0C279C5D24E2D22F00474649 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 129;
@@ -1725,6 +1744,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZJBaseUtils/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1733,11 +1753,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eafy.ZJBaseUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1746,6 +1769,7 @@
 		0C279C5F24E2D22F00474649 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ZJBaseUtilsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1762,6 +1786,7 @@
 		0C279C6024E2D22F00474649 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ZJBaseUtilsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

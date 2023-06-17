@@ -93,14 +93,26 @@
 
 - (void)releaseData {
     _nextViewController = nil;
-    _navRightBtn = nil;
-    _navLeftBtn = nil;
     _returnBeforeOption = nil;
     _returnBeforeData = nil;
+    
+    _backgroundImgView = nil;
+    _backgroundColor = nil;
+    _barTintColor = nil;
+    _barTitleColor = nil;
+    _barTitleFont = nil;
+    _navBarBgView = nil;
+    _navBarTitleLB = nil;
+
+    _navLeftBtn = nil;
+    _navLeftSubBtn = nil;
+    _navRightBtn = nil;
+    _navRightSubBtn = nil;
 
     _isLeftSideslipBack = NO;
     if (self.delegate) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self.delegate];        
+        [[NSNotificationCenter defaultCenter] removeObserver:self.delegate];
+        _delegate = nil;
     }
 }
 

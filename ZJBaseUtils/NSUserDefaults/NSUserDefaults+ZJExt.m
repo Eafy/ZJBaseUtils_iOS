@@ -10,10 +10,14 @@
 #import <ZJBaseUtils/ZJSystem.h>
 
 static NSString *__gZJGroupIdStr = nil;
+static NSUserDefaults *__gZJUserDefaults = nil;
 
 @implementation NSUserDefaults (ZJExt)
 
 + (void)zj_setGroupIdForUserDefaults:(NSString *)groupId {
+    if (groupId && ![groupId isEqualToString:__gZJGroupIdStr]) {
+        __gZJUserDefaults = nil;
+    }
     __gZJGroupIdStr = groupId;
 }
 
@@ -21,7 +25,12 @@ static NSString *__gZJGroupIdStr = nil;
     if (!__gZJGroupIdStr) {
         __gZJGroupIdStr = [NSString stringWithFormat:@"group.%@", [ZJSystem appBundleID]];
     }
-    return [[NSUserDefaults alloc] initWithSuiteName:__gZJGroupIdStr];
+    if (__gZJUserDefaults) {
+        return __gZJUserDefaults;
+    } else {
+        __gZJUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:__gZJGroupIdStr];
+    }
+    return __gZJUserDefaults;
 }
 
 + (void)zj_setWidgetValue:(nullable id)value forKey:(nullable NSString *)key {

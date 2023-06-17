@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZJBaseUtils"
-  s.version      = "1.4.1"
+  s.version      = "1.4.2"
   s.summary      = "Provide common、general、basic API and extensions for iOS Platform."
 
   s.description  = <<-DESC
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'GLKit','AVFoundation','CoreLocation','AssetsLibrary','SystemConfiguration','Photos','Security','UIKit','CoreText','CoreServices','UserNotifications','CoreTelephony'
 
   s.source       = { :git => "https://github.com/Eafy/ZJBaseUtils_iOS.git", :tag => "v#{s.version}"}
-  s.source_files  = "ZJBaseUtils/*.{h,m,mm,c,hpp,cpp}", "ZJBaseUtils/**/*.{h,m,mm,c,hpp,cpp}"
+  s.source_files  = "ZJBaseUtils/*.{h,m,mm,c,hpp,cpp,swift}", "ZJBaseUtils/**/*.{h,m,mm,c,hpp,cpp,swift}"
   s.public_header_files = "ZJBaseUtils/*.h", "ZJBaseUtils/**/*.h"
   s.private_header_files = "ZJBaseUtils/**/ZJSAMKeychain.h","ZJBaseUtils/**/ZJNetRoute.hpp","ZJBaseUtils/**/ZJNetRoute.hpp", "ZJBaseUtils/**/ZJBaseVCSharedAPI.h"
   
