@@ -14,6 +14,26 @@ static NSUserDefaults *__gZJUserDefaults = nil;
 
 @implementation NSUserDefaults (ZJExt)
 
+- (BOOL)removeMagicKey:(NSString *)key type:(UserDefaultsKeySearchType)type {
+    if (!key || type < UserDefaultsKeySearchTypeEqual || type > UserDefaultsKeySearchTypeContains) return NO;
+    NSArray *keys = [[self dictionaryRepresentation] allKeys];
+    for (NSString *item in keys) {
+        if (type == UserDefaultsKeySearchTypeEqual && [item isEqualToString:key]) {
+            [self removeObjectForKey:item];
+        } else if (type == UserDefaultsKeySearchTypePrefix && [item hasPrefix:key]) {
+            [self removeObjectForKey:item];
+        } else if (type == UserDefaultsKeySearchTypeSuffix && [item hasSuffix:key]) {
+            [self removeObjectForKey:item];
+        } else if (type == UserDefaultsKeySearchTypeContains && [item containsString:key]) {
+            [self removeObjectForKey:item];
+        }
+    }
+    [self synchronize];
+    return YES;
+}
+
+#pragma mark -
+
 + (void)zj_setGroupIdForUserDefaults:(NSString *)groupId {
     if (groupId && ![groupId isEqualToString:__gZJGroupIdStr]) {
         __gZJUserDefaults = nil;

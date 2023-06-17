@@ -10,7 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 关键词搜索类型
+typedef enum : NSUInteger {
+    UserDefaultsKeySearchTypeEqual = 0,     //相等
+    UserDefaultsKeySearchTypePrefix,        //前缀
+    UserDefaultsKeySearchTypeSuffix,        //后缀
+    UserDefaultsKeySearchTypeContains,      //包含
+} UserDefaultsKeySearchType;
+
 @interface NSUserDefaults (ZJExt)
+
+/// 移除Key包含包含关键词的存档
+/// - Parameters:
+///   - key: 关键词
+///   - type: 搜索类型
+- (BOOL)removeMagicKey:(NSString *)key type:(UserDefaultsKeySearchType)type;
+    
+#pragma mark -
 
 /// 设置Group ID
 /// - Parameter groupId: groupId，若不设置则按照group.主App的BlundeID
