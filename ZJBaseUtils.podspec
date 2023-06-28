@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZJBaseUtils"
-  s.version      = "1.4.2"
+  s.version      = "1.4.3"
   s.summary      = "Provide common、general、basic API and extensions for iOS Platform."
 
   s.description  = <<-DESC
@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.author       = 'Eafy'
   s.requires_arc = true
   s.ios.deployment_target   = '11.0'
+  s.swift_version = '5.0'
   s.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
     'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'armv7s armv7'

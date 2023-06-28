@@ -83,7 +83,7 @@ static void uncaughtExceptionHandler(NSException *exception) {
             __gKillMessageObserver = nil;
         }
     });
-    if (crashCount > __gLaunchCrachCount) {
+    if (crashCount >= __gLaunchCrachCount) {
         return YES;
     }
     if (!__gKillMessageObserver) {
