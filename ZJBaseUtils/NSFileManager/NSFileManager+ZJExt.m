@@ -110,6 +110,7 @@
 
 + (BOOL)zj_move:(NSString *)path toPath:(NSString *)toPath
 {
+    if (!toPath) return NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:path]) {
         return [fileManager moveItemAtPath:path toPath:toPath error:nil];
