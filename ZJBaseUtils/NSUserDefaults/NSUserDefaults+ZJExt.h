@@ -20,10 +20,10 @@ typedef enum : NSUInteger {
 
 @interface NSUserDefaults (ZJExt)
 
-/// 移除Key包含包含关键词的存档
+/// 移除Key包含包含关键词的存档（NSUserDefaults归档）
 /// - Parameters:
 ///   - key: 关键词
-///   - type: 搜索类型
+///   - type: 搜索类型，0：全部相等，1：前缀，2：后置，3：包含
 - (BOOL)removeMagicKey:(NSString *)key type:(UserDefaultsKeySearchType)type;
     
 #pragma mark -
