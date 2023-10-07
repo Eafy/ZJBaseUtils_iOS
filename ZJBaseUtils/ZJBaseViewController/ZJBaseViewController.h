@@ -83,9 +83,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param orientation 方向
 - (void)interfaceOrientation:(UIInterfaceOrientation)orientation errorHandler:(nullable void (^)(NSError *error))errorHandler;
 
-/// 屏幕方向（当设置之后才生效）
-- (UIInterfaceOrientation)interfaceOrientation;
-
 @end
 
 NS_ASSUME_NONNULL_END

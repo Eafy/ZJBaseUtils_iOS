@@ -20,8 +20,6 @@
 
 /// 背景视图
 @property (nonatomic,strong) UIImageView *backgroundImgView;
-/// 屏幕方向
-@property (nonatomic,assign) UIInterfaceOrientation inInterfaceOrientation;
 
 @end
 
@@ -659,25 +657,17 @@
 /// @param orientation 方向
 - (void)interfaceOrientation:(UIInterfaceOrientation)orientation errorHandler:(nullable void (^)(NSError *error))errorHandler {
     if (@available(iOS 16.0, *)) {
-        self.inInterfaceOrientation = orientation;
-        if (orientation <= UIInterfaceOrientationLandscapeRight) {
-            self.inInterfaceOrientation = 1 << orientation;
-        }
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIViewController *vc = [self currentVC];
-            [vc setNeedsUpdateOfSupportedInterfaceOrientations];
-            [vc.navigationController setNeedsUpdateOfSupportedInterfaceOrientations];
-            
-            NSArray *array = [[[UIApplication sharedApplication] connectedScenes] allObjects];
-            UIWindowScene *scene = (UIWindowScene *)array[0];
-            UIWindowSceneGeometryPreferencesIOS *geometryPreferences = [[UIWindowSceneGeometryPreferencesIOS alloc] initWithInterfaceOrientations:self.inInterfaceOrientation];
-            [scene requestGeometryUpdateWithPreferences:geometryPreferences
-                                           errorHandler:^(NSError * _Nonnull error) {
+            [UIViewController attemptRotationToDeviceOrientation];
+            UIWindowScene *scene = (UIWindowScene *)[[[[UIApplication sharedApplication] connectedScenes] allObjects] firstObject];
+            UIWindowSceneGeometryPreferencesIOS *geometryPreferences = [[UIWindowSceneGeometryPreferencesIOS alloc] initWithInterfaceOrientations:orientation];
+            [scene requestGeometryUpdateWithPreferences:geometryPreferences errorHandler:^(NSError * _Nonnull error) {
                 if (errorHandler) errorHandler(error);
             }];
+            UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+            [rootViewController setNeedsUpdateOfSupportedInterfaceOrientations];
         });
     } else {
-        self.inInterfaceOrientation = orientation;
         if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
             SEL selector = NSSelectorFromString(@"setOrientation:");
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
@@ -692,10 +682,6 @@
             if (errorHandler) errorHandler([NSError errorWithDomain:@"org.eafy.ZJBaseUtils" code:-1 userInfo:nil]);
         }
     }
-}
-
-- (UIInterfaceOrientation)interfaceOrientation {
-    return self.inInterfaceOrientation;
 }
 
 

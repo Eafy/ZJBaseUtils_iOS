@@ -59,6 +59,7 @@
 		0C50B8B0251E516A0032CB2F /* UIImageView+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C50B8AE251E516A0032CB2F /* UIImageView+ZJExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C50B913251EF53A0032CB2F /* ZJThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C50B911251EF53A0032CB2F /* ZJThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C50B914251EF53A0032CB2F /* ZJThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50B912251EF53A0032CB2F /* ZJThread.m */; };
+		0C5226672AD19FE300F007F8 /* ZJSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CCF75D824EC107400794878 /* ZJSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C5E7BDC2580E2370056CFCB /* ZJTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C5E7BDA2580E2360056CFCB /* ZJTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C5E7BDD2580E2370056CFCB /* ZJTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E7BDB2580E2360056CFCB /* ZJTextView.m */; };
 		0C5E7BE02580E25B0056CFCB /* UIView+ZJShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C5E7BDE2580E25B0056CFCB /* UIView+ZJShadow.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1211,6 +1212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C0034722634F92F00C5A04B /* CLLocation+ZJExt.h in Headers */,
+				0C5226672AD19FE300F007F8 /* ZJSystem.h in Headers */,
 				0C5E7BE02580E25B0056CFCB /* UIView+ZJShadow.h in Headers */,
 				0C268846257FA51E00171010 /* ZJSlider.h in Headers */,
 				0C98FD702577A5EC005C9DB4 /* ZJSettingButtonItem.h in Headers */,
@@ -1709,7 +1711,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.6;
+				MARKETING_VERSION = 1.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eafy.ZJBaseUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1744,7 +1746,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.6;
+				MARKETING_VERSION = 1.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eafy.ZJBaseUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

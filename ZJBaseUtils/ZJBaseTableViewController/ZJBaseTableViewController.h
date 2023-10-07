@@ -86,9 +86,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param orientation 方向
 - (void)interfaceOrientation:(UIInterfaceOrientation)orientation errorHandler:(nullable void (^)(NSError *error))errorHandler;
 
-/// 屏幕方向（当设置之后才生效）
-- (UIInterfaceOrientation)interfaceOrientation;
-
 #pragma mark - ZJBaseTableViewController特有接口
 
 /// Item或上一个界面透传过来的数据(私有数据)

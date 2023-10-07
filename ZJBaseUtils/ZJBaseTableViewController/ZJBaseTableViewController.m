@@ -246,10 +246,6 @@
     [self.sharedAPI interfaceOrientation:orientation errorHandler:errorHandler];
 }
 
-- (UIInterfaceOrientation)interfaceOrientation {
-    return self.sharedAPI.interfaceOrientation;
-}
-
 #pragma mark - ZJBaseVCSharedAPIDelegate
 
 - (ZJBaseVCSharedAPI *)sharedAPI {
