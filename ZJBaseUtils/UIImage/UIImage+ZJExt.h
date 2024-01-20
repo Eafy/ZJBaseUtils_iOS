@@ -87,6 +87,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param height 图片的高
 + (UIImage *)zj_imageWithRGB:(char *)rgbBuff width:(NSInteger)width height:(NSInteger)height;
 
+#pragma mark -
+
+/// 获取开屏广告的launch图
++ (UIImage *)zj_launchImage;
+
 @end
 
 NS_ASSUME_NONNULL_END

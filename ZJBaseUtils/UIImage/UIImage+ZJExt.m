@@ -407,4 +407,44 @@
     return [img copy];
 }
 
+#pragma mark -
+
++ (UIImage *)zj_launchImage {
+    NSDictionary *dic = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UILaunchImages"];
+    if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+        NSString *viewOrientation = @"Portrait";
+        UIInterfaceOrientation status = [UIApplication sharedApplication].statusBarOrientation;
+        if (status == UIInterfaceOrientationLandscapeLeft|| status == UIInterfaceOrientationLandscapeRight) {
+            viewOrientation = @"Landscape";
+        }
+        
+//        CGSize viewSize = [UIScreen mainScreen].bounds.size;
+        for (NSDictionary *data in dic) {
+//            CGSize size = [data objectForKey:@"UILaunchImageSize"];
+            NSString *orientation = [data objectForKey:@"UILaunchImageOrientation"];
+            NSString *imgStr = [data objectForKey:@"UILaunchImageName"];
+            if (imgStr && [orientation isEqualToString:viewOrientation]) {
+                UIImage *img = [UIImage imageNamed:imgStr];
+                if (img) {
+                    return img;
+                }
+            }
+        }
+    }
+    
+    NSString *launchScreenName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UILaunchStoryboardName"];
+    if (!launchScreenName) return nil;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:launchScreenName bundle:[NSBundle mainBundle]];
+    if (!storyboard) return nil;
+    UIViewController *vc = storyboard.instantiateInitialViewController;
+    if (vc && vc.view.subviews.count > 0 && [vc.view.subviews[0] isKindOfClass:[UIImageView class]]) {
+        UIImageView *imgView = vc.view.subviews[0];
+        if ([imgView isKindOfClass:[UIImageView class]]) {
+            return imgView.image;
+        }
+    }
+    
+    return nil;
+}
+
 @end
