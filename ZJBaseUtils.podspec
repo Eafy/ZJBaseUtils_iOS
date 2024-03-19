@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   
   s.resource_bundles = {
     'ZJBundleRes' => ['ZJBaseUtils/Resources/*.png'],
-    'ZJBaseUtils.privacy' => 'ZJBaseUtils/PrivacyInfo.xcprivacy'
+    "#{s.name}_Privacy" => 'ZJBaseUtils/PrivacyInfo.xcprivacy'
   }
 
 end
