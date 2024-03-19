@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZJBaseUtils"
-  s.version      = "1.4.8"
+  s.version      = "1.4.9"
   s.summary      = "Provide common、general、basic API and extensions for iOS Platform."
 
   s.description  = <<-DESC
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
     'ZJBundleRes' => ['ZJBaseUtils/Resources/*.png']
   }
+  s.preserve_path = 'ZJBaseUtils/PrivacyInfo.xcprivacy'
 
 end
 

@@ -15,6 +15,7 @@
 		0C0D605A258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C0D6058258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C0D605E258A0EC400E3CEF1 /* ZJRedDotView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C0D605C258A0EC400E3CEF1 /* ZJRedDotView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C0D605F258A0EC400E3CEF1 /* ZJRedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0D605D258A0EC400E3CEF1 /* ZJRedDotView.m */; };
+		0C1269192BA93F3500C04BA9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0C1269182BA93F3500C04BA9 /* PrivacyInfo.xcprivacy */; };
 		0C1B8B522566BF750057B513 /* UIImage+ZJQR.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C1B8B502566BF750057B513 /* UIImage+ZJQR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C1B8B532566BF750057B513 /* UIImage+ZJQR.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1B8B512566BF750057B513 /* UIImage+ZJQR.m */; };
 		0C20FA322A230ACD006BF0E2 /* ZJCrashMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C20FA302A230ACD006BF0E2 /* ZJCrashMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -268,6 +269,7 @@
 		0C0D6058258A0EAC00E3CEF1 /* NSMutableAttributedString+ZJExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+ZJExt.h"; sourceTree = "<group>"; };
 		0C0D605C258A0EC400E3CEF1 /* ZJRedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJRedDotView.h; sourceTree = "<group>"; };
 		0C0D605D258A0EC400E3CEF1 /* ZJRedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJRedDotView.m; sourceTree = "<group>"; };
+		0C1269182BA93F3500C04BA9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		0C1B8B502566BF750057B513 /* UIImage+ZJQR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZJQR.h"; sourceTree = "<group>"; };
 		0C1B8B512566BF750057B513 /* UIImage+ZJQR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZJQR.m"; sourceTree = "<group>"; };
 		0C20FA302A230ACD006BF0E2 /* ZJCrashMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCrashMonitor.h; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 				0C8482E825D277E600B75FD2 /* ZJBundleRes.h */,
 				0C8482E925D277E600B75FD2 /* ZJBundleRes.m */,
 				0CE6F6DD255574E9009CE033 /* ZJBaseUtils.podspec */,
+				0C1269182BA93F3500C04BA9 /* PrivacyInfo.xcprivacy */,
 			);
 			path = ZJBaseUtils;
 			sourceTree = "<group>";
@@ -1416,6 +1419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C1269192BA93F3500C04BA9 /* PrivacyInfo.xcprivacy in Resources */,
 				0CE6F6DE255574E9009CE033 /* ZJBaseUtils.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1711,7 +1715,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.8;
+				MARKETING_VERSION = 1.4.9;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eafy.ZJBaseUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1746,7 +1750,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.8;
+				MARKETING_VERSION = 1.4.9;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eafy.ZJBaseUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
