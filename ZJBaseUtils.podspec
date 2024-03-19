@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZJBaseUtils"
-  s.version      = "1.4.9"
+  s.version      = "1.5.0"
   s.summary      = "Provide common、general、basic API and extensions for iOS Platform."
 
   s.description  = <<-DESC
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT"}
   s.author       = 'Eafy'
   s.requires_arc = true
-  s.ios.deployment_target   = '11.0'
+  s.ios.deployment_target   = '12.0'
   s.swift_version = '5.0'
   s.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
@@ -30,9 +30,9 @@ Pod::Spec.new do |s|
   s.private_header_files = "ZJBaseUtils/**/ZJSAMKeychain.h","ZJBaseUtils/**/ZJNetRoute.hpp","ZJBaseUtils/**/ZJNetRoute.hpp", "ZJBaseUtils/**/ZJBaseVCSharedAPI.h"
   
   s.resource_bundles = {
-    'ZJBundleRes' => ['ZJBaseUtils/Resources/*.png']
+    'ZJBundleRes' => ['ZJBaseUtils/Resources/*.png'],
+    'ZJBaseUtils.privacy' => 'ZJBaseUtils/PrivacyInfo.xcprivacy'
   }
-  s.preserve_path = 'ZJBaseUtils/PrivacyInfo.xcprivacy'
 
 end
 
