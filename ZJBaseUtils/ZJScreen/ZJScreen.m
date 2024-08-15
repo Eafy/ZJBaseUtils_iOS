@@ -104,6 +104,14 @@ singleton_m();
     self.scaleStandard = ZJScreenSizeType8;
 }
 
+- (UIWindow *)getWindow {
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    if (!window) {
+        window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return window;
+}
+
 - (CGRect)screenFrame {
     return [UIScreen mainScreen].bounds;
 }
@@ -119,7 +127,7 @@ singleton_m();
 - (CGFloat)statusBarHeight
 {
     if (@available(iOS 13.0, *)) {
-        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+        UIStatusBarManager *statusBarManager = [self getWindow].windowScene.statusBarManager;
         _statusBarHeight = statusBarManager.statusBarFrame.size.height;
     } else {
         _statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
@@ -140,7 +148,7 @@ singleton_m();
 {
     if (_tabarBarHeight == 0) {
         if (@available(iOS 11.0, *)) {
-            UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+            UIEdgeInsets safeAreaInsets = [[self getWindow] safeAreaInsets];
             _tabarBarHeight = safeAreaInsets.bottom + 49.0;
         } else {
             _tabarBarHeight = 49.0;
@@ -154,7 +162,7 @@ singleton_m();
 {
     if (_safeAreaInsetsHeight == 0) {
         if (@available(iOS 11.0, *)) {
-            UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+            UIEdgeInsets safeAreaInsets = [[self getWindow] safeAreaInsets];
             _safeAreaInsetsHeight = safeAreaInsets.bottom + safeAreaInsets.top;
         }
     }
@@ -165,7 +173,7 @@ singleton_m();
 {
     if (_safeAreaTop == 0) {
         if (@available(iOS 11.0, *)) {
-            UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+            UIEdgeInsets safeAreaInsets = [[self getWindow] safeAreaInsets];
             if (safeAreaInsets.top > 20) {
                 _safeAreaTop = safeAreaInsets.top - 20.0f;
             }
@@ -179,7 +187,7 @@ singleton_m();
 {
     if (_safeAreaBottom == 0) {
         if (@available(iOS 11.0, *)) {
-            UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication].windows.firstObject safeAreaInsets];
+            UIEdgeInsets safeAreaInsets = [[self getWindow] safeAreaInsets];
             _safeAreaBottom = safeAreaInsets.bottom;
         }
     }
