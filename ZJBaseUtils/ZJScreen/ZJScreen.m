@@ -11,23 +11,23 @@
 CGFloat kZJScaleH = 1.0;
 CGFloat kZJScaleW = 1.0;
 
-CGRect ZJScreenFrame() {
+CGRect ZJScreenFrame(void) {
     return ZJScreen.shared.screenFrame;
 }
 
-CGFloat ZJScreenHeight() {
+CGFloat ZJScreenHeight(void) {
     return ZJScreen.shared.screenHeight;
 }
 
-CGFloat ZJScreenWidth() {
+CGFloat ZJScreenWidth(void) {
     return ZJScreen.shared.screenWidth;
 }
 
-CGFloat ZJStatusBarHeight() {
+CGFloat ZJStatusBarHeight(void) {
     return ZJScreen.shared.statusBarHeight;
 }
 
-CGFloat ZJNavBarHeight() {
+CGFloat ZJNavBarHeight(void) {
     return ZJScreen.shared.navBarHeight;
 }
 
@@ -52,11 +52,11 @@ CGFloat ZJSafeAreaBottom(void) {
     return ZJScreen.shared.safeAreaBottom;
 }
 
-ZJScreenSizeType ZJscreenSizeType() {
+ZJScreenSizeType ZJscreenSizeType(void) {
     return ZJScreen.shared.screenSizeType;
 }
 
-BOOL ZJIsIPad() {
+BOOL ZJIsIPad(void) {
     return ZJScreen.shared.isIPad;
 }
 
@@ -149,7 +149,9 @@ singleton_m();
     if (_tabarBarHeight == 0) {
         if (@available(iOS 11.0, *)) {
             UIEdgeInsets safeAreaInsets = [[self getWindow] safeAreaInsets];
-            _tabarBarHeight = safeAreaInsets.bottom + 49.0;
+            CGFloat height = [[UITabBarController alloc] init].tabBar.frame.size.height;
+            if (height == 0) height = 49.0;
+            _tabarBarHeight = safeAreaInsets.bottom + height;
         } else {
             _tabarBarHeight = 49.0;
         }
