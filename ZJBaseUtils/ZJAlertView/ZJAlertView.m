@@ -17,7 +17,7 @@
 @interface ZJAlertView () <UITextFieldDelegate>
 
 /// 遮罩视图
-@property (nonatomic,strong) UIView *maskView;
+@property (nonatomic,strong) UIView *maskInsideView;
 /// 背景视图
 @property (nonatomic,strong) UIView *alertView;
 /// 关闭按钮
@@ -78,7 +78,7 @@
         super.backgroundColor = [UIColor clearColor];
         _cornerRadius = 8;
         
-        [self addSubview:self.maskView];
+        [self addSubview:self.maskInsideView];
     }
     return self;
 }
@@ -101,16 +101,16 @@
     return _lineViewArray;
 }
 
-- (UIView *)maskView
+- (UIView *)maskInsideView
 {
-    if (!_maskView) {
-        _maskView = [[UIView alloc] initWithFrame:self.bounds];
-        _maskView.backgroundColor = [UIColor clearColor];
+    if (!_maskInsideView) {
+        _maskInsideView = [[UIView alloc] initWithFrame:self.bounds];
+        _maskInsideView.backgroundColor = [UIColor clearColor];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTapMaskView)];
-        [_maskView addGestureRecognizer:tap];
+        [_maskInsideView addGestureRecognizer:tap];
     }
-    return _maskView;
+    return _maskInsideView;
 }
 
 - (UIView *)alertView {
@@ -120,7 +120,7 @@
         _alertView.backgroundColor = [UIColor whiteColor];
         _alertView.layer.cornerRadius = self.cornerRadius;
         _alertView.layer.masksToBounds = YES;
-        [self.maskView addSubview:_alertView];
+        [self.maskInsideView addSubview:_alertView];
     }
     return _alertView;
 }
@@ -254,7 +254,7 @@
     }
     _style = ZJAlertViewStyleCustom;
     _alertView = customView;
-    [self.maskView addSubview:_alertView];
+    [self.maskInsideView addSubview:_alertView];
 }
 
 - (void)setTitle:(NSString *)title {
@@ -331,7 +331,7 @@
 
 - (void)setMaskAlpha:(CGFloat)maskAlpha {
     _maskAlpha = maskAlpha;
-    self.maskView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, maskAlpha);
+    self.maskInsideView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, maskAlpha);
 }
 
 - (void)setTitleColor:(UIColor *)titleColor {

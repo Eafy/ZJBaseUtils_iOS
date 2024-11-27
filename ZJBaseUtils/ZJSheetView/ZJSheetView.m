@@ -17,7 +17,7 @@
 @interface ZJSheetView ()
 
 /// 遮罩视图
-@property (nonatomic,strong) UIView *maskView;
+@property (nonatomic,strong) UIView *maskInsideView;
 /// 背景视图
 @property (nonatomic,strong) UIView *bgView;
 /// 选择框视图
@@ -51,7 +51,7 @@
         _cornerRadius = 8;
         _maskAlpha = 0.7;
         
-        [self addSubview:self.maskView];
+        [self addSubview:self.maskInsideView];
     }
     return self;
 }
@@ -70,22 +70,22 @@
     return _lineViewArray;
 }
 
-- (UIView *)maskView
+- (UIView *)maskInsideView
 {
-    if (!_maskView) {
-        _maskView = [[UIView alloc] initWithFrame:self.bounds];
-        _maskView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, self.maskAlpha);
+    if (!_maskInsideView) {
+        _maskInsideView = [[UIView alloc] initWithFrame:self.bounds];
+        _maskInsideView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, self.maskAlpha);
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTapMaskView)];
-        [_maskView addGestureRecognizer:tap];
+        [_maskInsideView addGestureRecognizer:tap];
     }
-    return _maskView;
+    return _maskInsideView;
 }
 
 - (UIView *)bgView {
     if (!_bgView) {
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, ZJScreenHeight(), ZJScreenWidth(), 0)];
         _bgView.backgroundColor = [UIColor clearColor];
-        [self.maskView addSubview:_bgView];
+        [self.maskInsideView addSubview:_bgView];
     }
     return _bgView;
 }
@@ -187,7 +187,7 @@
 
 - (void)setMaskAlpha:(CGFloat)maskAlpha {
     _maskAlpha = maskAlpha;
-    self.maskView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, maskAlpha);
+    self.maskInsideView.backgroundColor = ZJColorFromRgbWithAlpha(0x0, maskAlpha);
 }
 
 - (void)setTitle:(NSString *)title {
@@ -218,7 +218,7 @@
         [_topCustomView removeFromSuperview];
     }
     _topCustomView = topCustomView;
-    [self.maskView addSubview:topCustomView];
+    [self.maskInsideView addSubview:topCustomView];
 }
 
 

@@ -24,7 +24,7 @@
 /// 背景星星颜色（画布模式）
 @property (nonatomic,strong) CAShapeLayer *backColorLayer;
 ///画布模式：遮罩层，图片模式：底视图
-@property (nonatomic,strong) ZJRatingStarView *maskView;
+@property (nonatomic,strong) ZJRatingStarView *maskInsideView;
 /// 前置视图（图片模式）
 @property (nonatomic,strong) ZJRatingStarView *frontStarView;
 /// 不是点击触发的布局
@@ -57,7 +57,7 @@
         _isImageMode = YES;
     } else {
         _isImageMode = NO;
-        [self.maskView removeFromSuperview];
+        [self.maskInsideView removeFromSuperview];
         if (_frontStarView) {
             [self.frontStarView removeFromSuperview];
             _frontStarView = nil;
@@ -68,8 +68,8 @@
 - (void)setDefaultImage:(UIImage *)defaultImage
 {
     _defaultImage = defaultImage;
-    if (_maskView) {
-        self.maskView.defaultImage = defaultImage;
+    if (_maskInsideView) {
+        self.maskInsideView.defaultImage = defaultImage;
     }
 }
 
@@ -95,8 +95,8 @@
 - (void)updateLayers
 {
     if (!self.isTouchLayout) {
-        self.maskView.frame = self.bounds;
-        [self.maskView updateViewConstrains];
+        self.maskInsideView.frame = self.bounds;
+        [self.maskInsideView updateViewConstrains];
     }
     
     if (self.isImageMode) {
@@ -114,29 +114,29 @@
         [path addLineToPoint:CGPointMake(self.frame.size.width, self.frame.size.height/2)];
         self.backColorLayer.path = path.CGPath;
         self.backColorLayer.lineWidth = self.frame.size.height;
-        self.backColorLayer.mask = self.maskView.layer;
+        self.backColorLayer.mask = self.maskInsideView.layer;
         self.backColorLayer.strokeEnd = self.firstScore / 10.0;
     }
     self.isTouchLayout = NO;
 }
 
-- (ZJRatingStarView *)maskView
+- (ZJRatingStarView *)maskInsideView
 {
-    if (!_maskView) {
-        _maskView = [[ZJRatingStarView alloc] initWithStarCount:self.starCount andSpace:self.starSpace];
-        _maskView.defaultImage = self.defaultImage;
+    if (!_maskInsideView) {
+        _maskInsideView = [[ZJRatingStarView alloc] initWithStarCount:self.starCount andSpace:self.starSpace];
+        _maskInsideView.defaultImage = self.defaultImage;
     }
     
-    return _maskView;
+    return _maskInsideView;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     UITouch * touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self];
-    CGPoint newPoint = [self convertPoint:touchPoint toView:self.maskView];
+    CGPoint newPoint = [self convertPoint:touchPoint toView:self.maskInsideView];
 
-    [self.maskView transformPointWithTouchPoint:newPoint completion:^(CGPoint transformPoint, CGFloat score) {
+    [self.maskInsideView transformPointWithTouchPoint:newPoint completion:^(CGPoint transformPoint, CGFloat score) {
         [self strokeWithTransformPoint:transformPoint score:score];
     }];
 }
@@ -145,16 +145,16 @@
 {
     UITouch * touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self];
-    CGPoint newPoint = [self convertPoint:touchPoint toView:self.maskView];
+    CGPoint newPoint = [self convertPoint:touchPoint toView:self.maskInsideView];
 
-    [self.maskView transformPointWithTouchPoint:newPoint completion:^(CGPoint transformPoint, CGFloat score) {
+    [self.maskInsideView transformPointWithTouchPoint:newPoint completion:^(CGPoint transformPoint, CGFloat score) {
         [self strokeWithTransformPoint:transformPoint score:score];
     }];
 }
 
 - (void)strokeWithTransformPoint:(CGPoint)point score:(CGFloat)score
 {
-    CGPoint newPoint = [self convertPoint:point fromView:self.maskView];
+    CGPoint newPoint = [self convertPoint:point fromView:self.maskInsideView];
     if (self.isImageMode) {
         self.isTouchLayout = YES;
         if (newPoint.x < 0)  newPoint.x = 0;
@@ -194,7 +194,7 @@
         _frontStarView.backgroundColor = [UIColor clearColor];
         _frontStarView.defaultImage = self.frontImage;
         
-        [self addSubview:self.maskView];
+        [self addSubview:self.maskInsideView];
         [self addSubview:self.frontStarView];
     }
     

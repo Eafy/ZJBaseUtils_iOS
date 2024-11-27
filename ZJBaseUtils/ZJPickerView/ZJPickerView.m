@@ -20,7 +20,7 @@
 /// 背景视图
 @property (nonatomic,strong) UIView *backView;
 /// 遮罩视图
-@property (nonatomic,strong) UIView *maskView;
+@property (nonatomic,strong) UIView *maskInsideView;
 
 @property (nonatomic,strong) NSMutableArray<UIPickerView *> *pickerViewArray;
 @property (nonatomic,assign) CGRect pickerFrame;
@@ -53,7 +53,7 @@
         self.backgroundColor = [UIColor whiteColor];
         
         [self setPickerFrame:frame];
-        [self addSubview:self.maskView];
+        [self addSubview:self.maskInsideView];
         [self addSubview:self.backView];
         [self.backView addSubview:self.titleLB];
         [self.backView addSubview:self.okBtn];
@@ -188,16 +188,16 @@
     return _topLineView;
 }
 
-- (UIView *)maskView
+- (UIView *)maskInsideView
 {
-    if (!_maskView) {
-        _maskView = [[UIView alloc] initWithFrame:self.bounds];
-        _maskView.backgroundColor = [UIColor clearColor];
+    if (!_maskInsideView) {
+        _maskInsideView = [[UIView alloc] initWithFrame:self.bounds];
+        _maskInsideView.backgroundColor = [UIColor clearColor];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedCancelAction)];
-        [_maskView addGestureRecognizer:tap];
+        [_maskInsideView addGestureRecognizer:tap];
     }
-    return _maskView;
+    return _maskInsideView;
 }
 
 - (void)setPickerFrame:(CGRect)pickerFrame
@@ -460,7 +460,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         @strongify(self);
         self.hidden = NO;
-        self.maskView.backgroundColor = self.maskColor;
+        self.maskInsideView.backgroundColor = self.maskColor;
         self.backView.zj_top = self.zj_height - self.pickerFrame.size.height;
     } completion:^(BOOL finished) {
     }];
@@ -471,7 +471,7 @@
     @weakify(self);
     [UIView animateWithDuration:0.3 animations:^{
         @strongify(self);
-        self.maskView.backgroundColor = [UIColor clearColor];
+        self.maskInsideView.backgroundColor = [UIColor clearColor];
         self.backView.zj_top = self.zj_height;
     } completion:^(BOOL finished) {
         @strongify(self);

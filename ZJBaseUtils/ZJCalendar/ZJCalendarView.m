@@ -18,7 +18,7 @@
 
 @interface ZJCalendarView()<UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *maskInsideView;
 @property (nonatomic, strong) UIView *contentView;
 
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -77,16 +77,16 @@
 
 #pragma mark -
 
-- (UIView *)maskView {
-    if (!_maskView) {
-        _maskView = [[UIView alloc] init];
-        _maskView.backgroundColor = [ZJColorFromRGB(0x181E28) colorWithAlphaComponent:0.7];
+- (UIView *)maskInsideView {
+    if (!_maskInsideView) {
+        _maskInsideView = [[UIView alloc] init];
+        _maskInsideView.backgroundColor = [ZJColorFromRGB(0x181E28) colorWithAlphaComponent:0.7];
         weakSelf(self);
-        [_maskView zj_addSingleTap:^(id  _Nonnull obj) {
+        [_maskInsideView zj_addSingleTap:^(id  _Nonnull obj) {
             [weakSelf dismiss];
         }];
     }
-    return _maskView;
+    return _maskInsideView;
 }
 
 - (UIView *)contentView {
@@ -140,7 +140,7 @@
 }
 
 - (void)configSubViews {
-    [self addSubview:self.maskView];
+    [self addSubview:self.maskInsideView];
     [self addSubview:self.contentView];
     
     self.okButton = [ZJButton buttonWithStyle:ZJButtonStyleColor];
@@ -168,7 +168,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.maskView.frame = self.bounds;
+    self.maskInsideView.frame = self.bounds;
     self.titleLabel.frame = CGRectMake(55, 0, self.contentView.bounds.size.width-110, 55);
     self.closeButton.frame = CGRectMake(self.contentView.bounds.size.width-16-55, 0, 55, 55);
     self.weekTitleView.frame = CGRectMake([self getCollectionViewMargin], 55, ZJScreenWidth()-[self getCollectionViewMargin]*2, 55);
