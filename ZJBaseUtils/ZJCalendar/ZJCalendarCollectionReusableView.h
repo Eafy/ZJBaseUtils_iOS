@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZJCalendarCollectionReusableView : UICollectionReusableView
 
 @property (nonatomic, strong) UILabel *titleLabel;
+/// 当前Section
+@property (nonatomic, assign) NSInteger indexSection;
 
 @end
 

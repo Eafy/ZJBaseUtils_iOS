@@ -259,30 +259,37 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    ZJCalendarCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ZJCalendarCollectionReusableView" forIndexPath:indexPath];
-    ZJCalendarMonth *month = self.datas[indexPath.section];
-    headerView.titleLabel.text = [self.dateFormatter stringFromDate:month.date];
-    return headerView;
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        ZJCalendarCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ZJCalendarCollectionReusableView" forIndexPath:indexPath];
+        ZJCalendarMonth *month = self.datas[indexPath.section];
+        headerView.titleLabel.text = [self.dateFormatter stringFromDate:month.date];
+        headerView.indexSection = indexPath.section;     //标记当前的section
+        return headerView;
+    } else {
+        return nil;
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    NSArray<NSIndexPath *> *indexPaths = [self.collectionView indexPathsForVisibleSupplementaryElementsOfKind:UICollectionElementKindSectionHeader];
-    for (NSIndexPath *indexP in indexPaths) {
-        ZJCalendarCollectionReusableView *headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ZJCalendarCollectionReusableView" forIndexPath:indexP];
+    NSArray<UICollectionReusableView *> *indexPaths = [self.collectionView visibleSupplementaryViewsOfKind:UICollectionElementKindSectionHeader];
+    if (!indexPaths || indexPaths.count == 0) return;
+    
+    for (UICollectionReusableView *view in indexPaths) {
+        ZJCalendarCollectionReusableView *headerView = (ZJCalendarCollectionReusableView *)view;
         
         CGRect rect = [headerView.superview convertRect:headerView.frame toView:self.contentView];
         if (rect.origin.y<0 || rect.origin.y>500){
             return;
         }
         if (rect.origin.y<=70) {
-            ZJCalendarMonth *month = self.datas[indexP.section];
+            ZJCalendarMonth *month = self.datas[headerView.indexSection];
             self.weekTitleView.titleLabel.text = [self.dateFormatter stringFromDate:month.date];
             return;
         }
         if (rect.origin.y>70) {
-            if (indexP.section - 1 >= 0){
-                ZJCalendarMonth *month = self.datas[indexP.section-1];
+            if (headerView.indexSection - 1 >= 0){
+                ZJCalendarMonth *month = self.datas[headerView.indexSection-1];
                 self.weekTitleView.titleLabel.text = [self.dateFormatter stringFromDate:month.date];
                 return;
             }
