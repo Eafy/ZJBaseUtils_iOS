@@ -150,10 +150,12 @@ singleton_m();
         if (@available(iOS 11.0, *)) {
             UIEdgeInsets safeAreaInsets = [[self getWindow] safeAreaInsets];
             CGFloat height = [[UITabBarController alloc] init].tabBar.frame.size.height;
-            if (@available(iOS 26.0, *)) {
-                height = 49.0;
-            } else if (height == 0) height = 49.0;
-            _tabarBarHeight = safeAreaInsets.bottom + height;
+            if (height > 49) {
+                _tabarBarHeight = height;
+            } else {
+                if (height == 0) height = 49.0;
+                _tabarBarHeight = safeAreaInsets.bottom + height;
+            }
         } else {
             _tabarBarHeight = 49.0;
         }
