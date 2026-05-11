@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZJBaseUtils"
-  s.version      = "1.5.4"
+  s.version      = "1.5.5"
   s.summary      = "Provide common、general、basic API and extensions for iOS Platform."
 
   s.description  = <<-DESC
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT"}
   s.author       = 'Eafy'
   s.requires_arc = true
-  s.ios.deployment_target   = '12.0'
+  s.ios.deployment_target   = '15.6'
   s.swift_version = '5.0'
   
   s.frameworks = 'GLKit','AVFoundation','CoreLocation','AssetsLibrary','SystemConfiguration','Photos','Security','UIKit','CoreText','CoreServices','UserNotifications','CoreTelephony'
